@@ -1,7 +1,7 @@
 # Agent Roster
 
 > **Andy must read this file first before delegating any task.**  
-> Last updated: 2026-04-24 | v2.1 — Web Team Added
+> Last updated: 2026-04-24 | v2.2 — Full Team Deployed (14 agents)
 
 | Name   | Title                      | Role                         | Specialty                                              | Status  |
 |--------|----------------------------|------------------------------|--------------------------------------------------------|---------|
@@ -14,6 +14,11 @@
 | Maya   | The Web Security Auditor   | Application Security Analyst | OWASP audits, header analysis, PII exposure, CWE refs  | Active  |
 | Lena   | The UI/UX Designer         | Senior UI/UX Designer        | Design systems, portfolio UX, visual redesign, WCAG    | Active  |
 | Rex    | The Web Developer          | Senior Frontend Developer    | React/TS, SEO, accessibility, performance, Base44      | Active  |
+| Mack   | The Automation Engineer    | Automation & API Specialist  | Webhooks, OAuth, Telegram bot, GitHub sync, MCP wiring | Active  |
+| Sage   | The LinkedIn Strategist    | Personal Brand Specialist    | LinkedIn growth, thought leadership, CPO brand content | Active  |
+| Cole   | The Conversion Copywriter  | Senior Copywriter            | CVs, cover letters, website copy, proposals            | Active  |
+| Silas  | The Database Architect     | Data Systems Engineer        | SQLite/Supabase schemas, RLS, pgvector, migrations     | Active  |
+| Vera   | The QA Inspector           | QA & Accessibility Auditor   | Responsive QA, WCAG 2.1, visual regression, Lighthouse | Active  |
 
 ## Delegation Map
 

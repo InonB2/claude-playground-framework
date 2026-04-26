@@ -11,6 +11,7 @@
 | Web Security Audit       | `sop_web_security.md`      | Maya                | OWASP checklist, severity levels, findings format    |
 | Web Design & Visual      | `sop_web_design.md`        | Lena                | Design audit, brief structure, visual QA protocol    |
 | Web Development          | `sop_web_development.md`   | Rex                 | Code standards, deployment gate, Base44 notes        |
+| CV Management            | `sop_cv_management.md`     | Cole, Silas         | CV creation, application tracking, archive protocol  |
 
 ## SOP Naming Convention
 `sop_[domain]_[topic].md` — e.g. `sop_web_security.md`, `sop_db_migrations.md`

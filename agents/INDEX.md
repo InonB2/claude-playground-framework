@@ -1,7 +1,7 @@
 # Agents Index
 
 > Quick-reference for all deployed agents. For full delegation map see [`roster.md`](roster.md).  
-> Last updated: 2026-04-24
+> Last updated: 2026-04-24 | v2.2 — 14 Active Agents
 
 | Name   | File                       | Role                   | Specialty                                           | Status  |
 |--------|----------------------------|------------------------|-----------------------------------------------------|---------|
@@ -14,6 +14,11 @@
 | Maya   | `web_security_auditor.md`  | Web Security Auditor   | App-layer security, OWASP, header & PII audits      | Active  |
 | Lena   | `ui_ux_designer.md`        | UI/UX Designer         | Visual design, design systems, portfolio UX         | Active  |
 | Rex    | `web_developer.md`         | Web Developer          | React/TS frontend, SEO, accessibility, performance  | Active  |
+| Mack   | `mack.md`                  | Automation Engineer    | Webhooks, Telegram bot, GitHub sync, API wiring     | Active  |
+| Sage   | `sage.md`                  | LinkedIn Strategist    | LinkedIn growth, personal brand, thought leadership | Active  |
+| Cole   | `cole.md`                  | Conversion Copywriter  | CVs, cover letters, website copy, proposals         | Active  |
+| Silas  | `silas.md`                 | Database Architect     | SQLite/Supabase, RLS, pgvector, schema migrations   | Active  |
+| Vera   | `vera.md`                  | QA Inspector           | Responsive QA, WCAG 2.1, visual regression          | Active  |
 
 ## Recruiting a New Agent
 ```
