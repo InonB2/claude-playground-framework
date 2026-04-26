@@ -1,0 +1,158 @@
+{
+  "last_updated": "2026-04-24",
+  "tasks": [
+    {
+      "task_id": "WEBSITE-001-SEC-01",
+      "title": "CRITICAL: Remove 'CHOOSE YOUR PHOTO' dev widget from production",
+      "priority": "critical",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Widget exposes internal versioning UI to public visitors. Conditionally render only for authenticated owner or remove entirely."
+    },
+    {
+      "task_id": "WEBSITE-001-SEC-02",
+      "title": "CRITICAL: Fix page title — remove internal agent name 'Andy'",
+      "priority": "critical",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Change from 'Home | Andy — App' to 'Inon Baasov | Product Leader · Co-Founder · CPO'."
+    },
+    {
+      "task_id": "WEBSITE-001-SEC-03",
+      "title": "HIGH: Add contact form to reduce PII exposure",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Phone and email are plaintext. Add a contact form as primary CTA. Optionally obfuscate direct email/phone."
+    },
+    {
+      "task_id": "WEBSITE-001-SEC-04",
+      "title": "HIGH: Full security header and cookie audit",
+      "priority": "high",
+      "assigned_to": "Maya",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Audit CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, cookie flags. Produce security report."
+    },
+    {
+      "task_id": "WEBSITE-001-SEO-01",
+      "title": "HIGH: Add SEO meta tags, Open Graph, and structured data",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Add meta description, og:title, og:description, og:image, Twitter Card tags, Schema.org Person markup."
+    },
+    {
+      "task_id": "WEBSITE-001-UX-01",
+      "title": "HIGH: Add testimonials section (2–3 quotes)",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/design_brief_WEBSITE-001.md",
+      "notes": "Place after Portfolio or Experience section. Requires Owner to supply quotes, names, and roles."
+    },
+    {
+      "task_id": "WEBSITE-001-UX-02",
+      "title": "HIGH: Audit and fix all 'Deep Dive →' portfolio links",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Verify 6 portfolio card links. Build stub pages or hide links if case study pages don't exist."
+    },
+    {
+      "task_id": "WEBSITE-001-UX-03",
+      "title": "HIGH: Replace emoji icons in portfolio cards with real visuals",
+      "priority": "high",
+      "assigned_to": "Lena",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/design_brief_WEBSITE-001.md",
+      "notes": "Design or source product screenshots, custom icons, or branded visuals for all 6 portfolio cards."
+    },
+    {
+      "task_id": "WEBSITE-001-DESIGN-01",
+      "title": "HIGH: Full visual redesign brief — color, typography, layout, animations",
+      "priority": "high",
+      "assigned_to": "Lena",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "brief": "scratchpad/brief_website_audit.md",
+      "notes": "Produce design_brief_WEBSITE-001.md covering color system, type scale, section differentiation, micro-animations, hero redesign."
+    },
+    {
+      "task_id": "WEBSITE-001-UX-04",
+      "title": "MEDIUM: Add downloadable CV/resume button",
+      "priority": "medium",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Add near hero CTAs. Requires Owner to provide PDF file."
+    },
+    {
+      "task_id": "WEBSITE-001-DESIGN-02",
+      "title": "MEDIUM: Add scroll-triggered animations and stat counters",
+      "priority": "medium",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Animate number counters on stats (10+, $2.5M, 38%, 6). Add fade-in on scroll for sections."
+    },
+    {
+      "task_id": "WEBSITE-001-COPY-01",
+      "title": "MEDIUM: Sharpen hero value proposition copy",
+      "priority": "medium",
+      "assigned_to": "Lena",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Add a differentiator sentence to hero. Make the bio more specific and less generic CPO boilerplate."
+    },
+    {
+      "task_id": "WEBSITE-001-UX-05",
+      "title": "MEDIUM: Add minimal contact form",
+      "priority": "medium",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Fields: Name, Email, Message, Send. Should complement existing contact links."
+    },
+    {
+      "task_id": "WEBSITE-001-PERF-01",
+      "title": "LOW: Mobile responsiveness audit at 375px and 768px",
+      "priority": "low",
+      "assigned_to": "Rex",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Test on simulated iOS Safari and Android Chrome viewports."
+    },
+    {
+      "task_id": "WEBSITE-001-A11Y-01",
+      "title": "LOW: Accessibility audit — contrast ratios and ARIA",
+      "priority": "low",
+      "assigned_to": "Maya",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Run Lighthouse accessibility audit. Fix any WCAG AA failures."
+    },
+    {
+      "task_id": "WEBSITE-001-CONTENT-01",
+      "title": "LOW: Add thought leadership section (blog / talks / press)",
+      "priority": "low",
+      "assigned_to": "Lena",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "notes": "Design section layout. Requires Owner to supply content (articles, talks, press links)."
+    }
+  ]
+}
