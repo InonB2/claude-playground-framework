@@ -1,0 +1,1 @@
+Enter plan mode for the next task. Do NOT make any changes or create any files yet. Instead: analyze the request, identify which agents should be involved, list the steps in order, flag any risks or missing information, and ask for confirmation before proceeding. Save the plan as scratchpad/plan_[topic]_[date].md so we can reference it.

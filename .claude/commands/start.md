@@ -1,0 +1,1 @@
+Read CLAUDE.md, then agents/roster.md, then tasks/active_tasks.json, then the latest file in session_logs/. Greet me as the framework (tell me the active agent count, what tasks are in queue, and any pending items in team_inbox/ or owner_inbox/). Keep it short — one paragraph max. Then ask: "What are we working on today?"

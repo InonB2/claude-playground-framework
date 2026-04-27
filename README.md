@@ -71,17 +71,14 @@
 
 ### 2. GitHub Sync
 
-**One-time setup:**
-```bash
-# 1. Create repo 'claude-playground-framework' on github.com/InonBaasov
-# 2. Run:
-bash scripts/github_sync.sh --init
+**Repo:** [github.com/InonB2/claude-playground-framework](https://github.com/InonB2/claude-playground-framework) (already live)
+
+**Manual sync (PowerShell):**
+```powershell
+powershell -ExecutionPolicy Bypass -File "scripts\github_sync.ps1"
 ```
 
-**Daily sync:**
-```bash
-bash scripts/github_sync.sh
-```
+**Daily auto-sync:** Active via Claude scheduled task (runs 9:00 AM daily)
 
 ---
 
