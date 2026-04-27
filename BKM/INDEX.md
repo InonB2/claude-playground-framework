@@ -2,7 +2,7 @@
 
 > Business Knowledge Management: centralized procedural library.  
 > All agents must check this index before executing complex tasks.  
-> Last updated: 2026-04-24
+> Last updated: 2026-04-27
 
 | SOP Name                 | File                       | Applies To          | Summary                                              |
 |--------------------------|----------------------------|---------------------|------------------------------------------------------|
@@ -12,6 +12,7 @@
 | Web Design & Visual      | `sop_web_design.md`        | Lena                | Design audit, brief structure, visual QA protocol    |
 | Web Development          | `sop_web_development.md`   | Rex                 | Code standards, deployment gate, Base44 notes        |
 | CV Management            | `sop_cv_management.md`     | Cole, Silas         | CV creation, application tracking, archive protocol  |
+| Session Logging          | `sop_session_logging.md`   | All Agents          | Mandatory end-of-session summary format and protocol |
 
 ## SOP Naming Convention
 `sop_[domain]_[topic].md` — e.g. `sop_web_security.md`, `sop_db_migrations.md`
