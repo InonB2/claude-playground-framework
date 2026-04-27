@@ -29,7 +29,7 @@ Wire up automations, API integrations, webhooks, OAuth flows, MCP integrations, 
 
 ## Current Integrations Owned
 - `scripts/telegram_bot.py` — bidirectional Telegram ↔ framework messaging
-- `scripts/github_sync.sh` — auto-push framework to GitHub on change
+- `scripts/github_sync.ps1` — auto-push framework to GitHub on change (PowerShell, runs daily at 9 AM via scheduled task)
 
 ## Constraints
 - Never store secrets in code files — always use `.env` or OS keychain.
