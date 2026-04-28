@@ -1,6 +1,29 @@
 {
-  "last_updated": "2026-04-27",
+  "last_updated": "2026-04-28",
   "tasks": [
+    {
+      "task_id": "PROMAKER-AR-001",
+      "title": "Assess ProMaker AR repo and define product scope",
+      "priority": "high",
+      "assigned_to": "Tomy",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "category": "product-development",
+      "notes": "PLATFORM: Lovable (lovable.dev/projects/d9e1a4ed-8961-40a3-8426-1e3632b1b300). IMPORTANT: Lovable is bidirectionally synced with GitHub — pushes to the repo update the live app. Stack: Vite + React + TypeScript + shadcn/ui + Tailwind. Repo cloned locally at D:\\Claude Playground\\pro-maker-ar. Product concept: AR-guided DIY construction tool — 'Make Every DIY a Pro Build'. Has Hero, Navbar, Categories, Features, CTASection, HowItWorks, Footer components. Appears to be a landing page only (no AR functionality yet). Tomy to: (1) read all src/ files, (2) assess how far the product is from a working AR MVP, (3) produce brief in scratchpad/promaker_ar_brief.md.",
+      "files": ["scratchpad/promaker_ar_brief.md"]
+    },
+    {
+      "task_id": "PROMAKER-AR-002",
+      "title": "Define agent team and task plan to complete ProMaker AR",
+      "priority": "high",
+      "assigned_to": "Andy",
+      "delegated_by": "Owner",
+      "status": "blocked",
+      "category": "product-development",
+      "blocked_by": "PROMAKER-AR-001 (needs Tomy's brief first)",
+      "notes": "Once Tomy delivers the brief, Andy to: (1) identify which agents are needed (Rex for frontend, Yoni for core logic, Silas for data, Maya for security), (2) decompose into sub-tasks, (3) add sub-tasks to this backlog. This is a new product build — treat like WEBSITE-001 pipeline.",
+      "files": ["scratchpad/promaker_ar_brief.md"]
+    },
     {
       "task_id": "CV-FIX-RENAME",
       "title": "Rename _NEW CV to final filename once old PDF is closed",
@@ -30,11 +53,10 @@
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
-      "status": "blocked",
+      "status": "done",
       "category": "github",
-      "blocked_by": "Owner action — PAT setup required",
-      "notes": "All 45 files are committed locally in 3 commits. Push requires GitHub PAT. Full instructions in scripts/github_setup_guide.md. Owner must: (1) store PAT via Windows Credential Manager OR add to .env file, (2) run 'git push origin master' from D:/Claude Playground terminal. Mack to verify push succeeded and confirm remote is in sync.",
-      "files": ["scripts/github_setup_guide.md", "scripts/github_sync.sh"]
+      "notes": "Completed. Framework pushed to https://github.com/InonB2/claude-playground-framework. Auto-sync script in scripts/github_sync.ps1.",
+      "files": ["scripts/github_setup_guide.md", "scripts/github_sync.ps1"]
     },
     {
       "task_id": "GITHUB-002",
@@ -54,10 +76,10 @@
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "ready-to-pair",
       "category": "integrations",
-      "notes": "Three options documented in scripts/whatsapp_setup_guide.md. RECOMMENDED START: Option 1 — 'npx claude-code-whatsapp' (5 min, scan QR, done). Owner must have Node.js installed ('node --version' to check). If Owner wants full framework integration, Mack builds custom MCP server (Option 3, 2-3 hrs) using @whiskeysockets/baileys. Mack to confirm Node.js version and guide Owner through QR scan on next session.",
-      "files": ["scripts/whatsapp_setup_guide.md"]
+      "notes": "Go bridge BUILT (C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe, 27MB). Uses modernc.org/sqlite (pure-Go, no CGO). AV workaround: -ldflags=-buildid= + CGO_ENABLED=0. Rebuild script: rebuild.ps1. NEXT: Owner runs whatsapp-bridge.exe in terminal, scans QR with WhatsApp mobile. Then: configure Python MCP server in Claude Desktop config (claude_desktop_config.json). Mack to guide on next session.",
+      "files": ["C:/tools/whatsapp-mcp/whatsapp-bridge/whatsapp-bridge.exe", "C:/tools/whatsapp-mcp/whatsapp-bridge/rebuild.ps1"]
     },
     {
       "task_id": "WEBSITE-001-SEC-01",

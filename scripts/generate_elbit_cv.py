@@ -98,7 +98,7 @@ con_items = [
     Paragraph("Email: Inonbaasov@hotmail.com", sCON),
     Paragraph("Tel: +972-54-444-5856", sCON),
     Paragraph("LinkedIn: linkedin.com/in/inonbaasov", sCON),
-    Paragraph("Location: Israel  |  Available Now", sCON),
+    Paragraph("Portfolio: inonbaasov-website.base44.app", sCON),
 ]
 con = Table([con_items], colWidths=[INNER/4 + M/2]*4)
 con.setStyle(TableStyle([
@@ -191,11 +191,11 @@ story.append(Spacer(1, 3*mm))
 # ══ PROFESSIONAL SUMMARY ═════════════════════════════════════════════════
 story += sec("Professional Summary")
 story.append(Paragraph(
-    "Product Leader with 10+ years delivering technology products from zero to scale in AI, SaaS, "
-    "and learning-adjacent systems. Raised <b>$2.5M</b>, led teams of 20+, and drove <b>38% efficiency gains</b>. "
-    "Experienced in full product lifecycle (PRD/MRD/V&amp;V), supplier management, global projects, and Agile "
-    "in regulated industries. Technion-educated (BSc + Executive MBA). Passionate about AI-driven "
-    "<b>training, simulation, and enterprise learning systems</b>.",
+    "Product Leader with 10+ years delivering complex technology products from zero to scale in AI, SaaS, "
+    "and interactive media systems. Raised <b>$2.5M</b>, led teams of 20+, and drove <b>38% efficiency gains</b>. "
+    "Experienced in full product lifecycle management (PRD/MRD/V&amp;V), supplier management, global cross-functional "
+    "projects, and Agile in regulated industries. Technion-educated (BSc + Executive MBA). "
+    "Passionate about <b>technically complex, multi-platform products that combine AI, simulation, and scalable content delivery</b>.",
     sBODY))
 story.append(Spacer(1, 3*mm))
 
@@ -235,10 +235,10 @@ exp_entry(
     "TouchE TV", "Co-Founder & Chief Product Officer", "2018 – 2024",
     "CPO  |  SaaS/PaaS  |  AWS  |  AI/ML  |  Android/iOS/Smart TV",
     [
-        "Built AI-powered interactive video learning platform from 0 to scale; raised $2.5M seed funding",
+        "Built AI-powered interactive video platform (content, e-commerce, advertising) from 0 to scale; raised $2.5M seed funding",
         "Led 4 cross-functional teams across full 6-year product lifecycle; authored all PRD/MRD documentation",
         "Achieved 99.99% uptime on AWS serving millions of concurrent users; drove 38% operational efficiency gains",
-        "Managed supplier relationships, external dev vendors, and international partnership programs",
+        "Managed supplier relationships, external dev vendors, and international studio partnerships (Paramount, Lionsgate)",
     ]
 )
 exp_entry(
