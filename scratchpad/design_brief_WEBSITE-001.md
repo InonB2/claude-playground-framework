@@ -254,7 +254,46 @@ Page transitions:   gsap
 
 ---
 
+## 9. awwwwards Reference Sites (April 2026)
+
+Updated with latest SOTD research:
+
+| Site | What to steal | Stack |
+|------|--------------|-------|
+| **Takuya Oshima** (takuya-oshima.com) | Clean dark/light toggle, smooth GSAP page transitions, minimal nav | Next.js + Tailwind + GSAP |
+| **OHZI Interactive** | Full-page WebGL distortion on mouse move, custom GLSL shaders for glow | WebGL + OGL |
+| **Dave Holloway** | Lottie + WebGL header combo, OGL for performance, GSAP transitions | OGL + Lottie + GSAP |
+| **Jasmine Gunarto** | Editorial palette (pure black + warm off-white #EBEAE4), animated loading sequence, dynamic gallery, page transitions | GSAP + Vite |
+| **Daniel Destefanis** | Spinning 3D App Icon, "daytime shadow" animation, WebGL hero video | WebGL + GSAP |
+| **SAV1N Portfolio** (awwwwards nominee) | Dark minimal portfolio nominee — inspect for layout patterns | — |
+
+**Key pattern across all winners:**
+- One dominant motion technique (WebGL or GSAP), not both everywhere
+- Dark background, high contrast text — NOT gray-on-dark
+- Page transitions as a design signature (not just fade)
+- Loading animation as first impression (300–800ms max)
+- Editorial spacing — generous whitespace feels premium
+- NO STOCK PHOTOS — either real screenshots, SVGs, or abstract WebGL backgrounds
+
+**For Inon's site (practical picks):**
+1. Use GSAP (already in brief) — no need for WebGL for a PM portfolio
+2. Add a loading animation (200ms logo reveal or line wipe) — this alone earns credibility
+3. Adopt the Jasmine Gunarto editorial spacing approach — generous gaps between sections
+4. Replace cyan separator lines under sections with whitespace (awwwwards winning sites use space, not lines)
+5. Consider a color-mode toggle (dark default, light option) — Takuya Oshima does this well
+
+---
+
 ## Hand-off to Rex
 1. Install Lenis and GSAP (+ ScrollTrigger plugin)
 2. Implement in priority order: (a) Remove dev widget → (b) Fix title → (c) Add animations → (d) New sections
-3. Test at 375px, 768px, 1280px before handing to Vera for QA
+3. Reference sites: takuya-oshima.com, ohzi.fr, dave-holloway.com
+4. Test at 375px, 768px, 1280px before handing to Vera for QA
+
+---
+
+## DEPLOYMENT NOTE (critical)
+The live site runs on Base44 at inonbaasov-website.base44.app. Base44 is NOT auto-synced with GitHub (unlike Lovable/ProMaker AR). Two paths to deploy:
+- **Option A:** Edit directly in Base44's web editor (fastest for small fixes)
+- **Option B:** Confirm if Base44 has GitHub sync in project Settings → if yes, pushes to the repo deploy automatically
+- **Option C (recommended for full redesign):** Migrate hosting to Vercel (free) connected to the GitHub repo — then all pushes from GitHub deploy instantly. Owner decides hosting platform.

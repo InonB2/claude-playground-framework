@@ -12,37 +12,10 @@ WhatsApp does not have an official public bot API. The three options below range
 
 ---
 
-## Option 1 — `npx claude-code-whatsapp` (RECOMMENDED — Easiest, 5 min)
+## ~~Option 1 — `npx claude-code-whatsapp`~~ (REMOVED — package does not exist on npm)
 
-**What it does:** Scans a QR code with your WhatsApp, then lets you message yourself to trigger Claude Code actions.
-
-### Setup Steps
-
-1. Open a terminal in your project folder (`D:/Claude Playground`)
-2. Make sure Node.js is installed. Check: `node --version`
-   - If not installed: download from [nodejs.org](https://nodejs.org) (LTS version)
-3. Run:
-   ```bash
-   npx claude-code-whatsapp
-   ```
-4. A **QR code** will appear in your terminal
-5. On your phone: WhatsApp → **Linked Devices** → **Link a Device** → scan the QR
-6. Done. Send a message to **yourself** on WhatsApp like:
-   ```
-   What files are in the agents folder?
-   ```
-   Claude Code will respond directly in the chat.
-
-### How It Works
-- Acts as a WhatsApp Web session on your computer
-- Messages to yourself trigger Claude Code
-- Responses come back as WhatsApp messages
-- No account, no API key, no business verification needed
-
-### Limitations
-- Must keep your computer running (it's a local process)
-- Uses WhatsApp Web (unofficial API — Meta can block it, but rarely does for personal use)
-- No persistent memory between sessions unless you run it continuously
+This option was removed from the guide. `claude-code-whatsapp` returns a 404 from the npm registry.
+**Use Option 2 or Option 3 instead.**
 
 ---
 
@@ -101,24 +74,28 @@ WhatsApp does not have an official public bot API. The three options below range
 
 ---
 
-## Recommendation
+## Recommendation (Updated 2026-04-28)
 
-| Option | Setup Time | Power | Risk |
-|--------|-----------|-------|------|
-| `npx claude-code-whatsapp` | 5 min | Basic (message yourself) | Low |
-| MCP Server (existing) | 30 min | Full read/write | Low-Medium |
-| Custom MCP | 2-3 hrs | Full + framework-integrated | Low |
+| Option | Setup Time | Power | Requires | Status |
+|--------|-----------|-------|----------|--------|
+| ~~`npx claude-code-whatsapp`~~ | ~~5 min~~ | ~~Basic~~ | ~~Node.js~~ | **REMOVED — package 404** |
+| whatsapp-mcp (Option 2) | 30-45 min | Full read/write | Go + Python | Available — install Go first |
+| Custom MCP (Option 3) | 2-3 hrs | Full + framework-integrated | Node.js only | **RECOMMENDED** — Mack builds this |
 
-**Start with Option 1 today.** Let Mack build Option 3 in a future session for full integration.
+**Recommended path:**
+- **Short term:** Install Go from [golang.org/dl](https://golang.org/dl/) → follow Option 2 steps above
+- **Long term:** Mack builds Option 3 (Node.js + baileys) for full framework integration — no Go needed
 
----
+**Current blocker:** Go is not installed on the machine. Python 3.11.9 ✓, Node.js 24.15.0 ✓, Go ✗.
 
-## Quick Start (Option 1 — Do This Now)
+## Quick Start (Option 2 — Do This When Ready)
 
-```bash
-# In your project terminal:
-node --version          # confirm Node.js installed
-npx claude-code-whatsapp
-# Scan QR with your phone
-# Done!
+```powershell
+# 1. Install Go from golang.org/dl (LTS installer)
+# 2. Restart terminal
+# 3. Then:
+git clone https://github.com/lharries/whatsapp-mcp.git C:\tools\whatsapp-mcp
+cd C:\tools\whatsapp-mcp
+go run .
+# Scan QR code with WhatsApp → Linked Devices → Link a Device
 ```
