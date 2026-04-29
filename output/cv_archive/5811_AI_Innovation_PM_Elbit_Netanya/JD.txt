@@ -1,0 +1,21 @@
+Technical Product Manager / Systems Engineer - AI & Innovation — Req #5811 — Netanya
+
+Title: Technical Product Manager \ Systems Engineer - AI & Innovation
+Location: Netanya
+Source: Elbit Systems careers (full JD not extracted — visit live page to apply)
+
+Inferred focus areas (from title + Elbit AI division context):
+- AI/ML product management (LLM, GenAI, NLP)
+- Systems engineering integration
+- Innovation pipeline / R&D-to-product translation
+- Cross-functional with R&D, data science, engineering teams
+
+Why Inon fits (~88%):
+- TouchE TV: AI-powered interactive video platform from 0 to scale, $2.5M raised
+- AiRakoon (consulting): Enterprise LLM architecture, API design, GenAI GTM
+- Medicrowd, Smash+: GenAI/data-driven product strategy in regulated/B2C contexts
+- 10+ yrs PM combined with technical depth (Technion BSc + Executive MBA)
+- Defense/regulated environment experience (pharma regulatory, supplier mgmt)
+
+Gap: Direct defense AI experience; some Elbit-specific systems engineering depth
+expected. Compensated by AI/LLM portfolio and 0-to-scale execution track record.

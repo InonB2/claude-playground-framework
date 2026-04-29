@@ -3,6 +3,13 @@
     "allow": [
       "Bash(python memory/init_db.py)",
       "WebFetch(domain:inonbaasov-website.base44.app)",
+      "WebFetch(domain:inon-baasov-website.base44.com)",
+      "WebFetch(domain:base44.com)",
+      "WebFetch(domain:elbitsystemscareer.com)",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:awwwwards.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:pitchmeai.com)",
       "WebSearch",
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "mcp__Claude_in_Chrome__navigate",
@@ -27,7 +34,24 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(echo \"Exit: $?\")"
+      "Bash(echo \"Exit: $?\")",
+      "Bash(gh auth *)",
+      "PowerShell(gh auth status 2>&1)",
+      "mcp__scheduled-tasks__create_scheduled_task",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:www.youtube-transcript.io)",
+      "Read(//c/Users/Inon Baasov/AppData/Local/claude-cli-nodejs//**)",
+      "Read(//c/Users/Inon Baasov/AppData/Local/Claude//**)",
+      "Bash(npm --version)",
+      "Bash(claude --version)",
+      "Bash(command -v cygpath)",
+      "Bash(cygpath -w \"/c/Users/Inon Baasov/AppData/Roaming/npm\")",
+      "Bash(/c/Users/Inon Baasov/AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/bin/claude.exe *)",
+      "PowerShell([System.IO.Path]::GetShortPathName\\(\"C:\\\\Users\\\\Inon Baasov\\\\.claude\\\\statusline.sh\"\\))",
+      "PowerShell(cmd /c \"for %I in \\(\\\\\"C:\\\\Users\\\\Inon Baasov\\\\.claude\\\\\"\\) do echo %~sI\")",
+      "Bash(cmd *)",
+      "Bash(git pull *)",
+      "Bash(git fetch *)"
     ]
   }
 }

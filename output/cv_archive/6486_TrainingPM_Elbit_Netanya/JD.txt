@@ -1,0 +1,35 @@
+Training Product Manager — Req #6486 — Netanya
+URL: https://elbitsystemscareer.com/job/?jid=20344
+
+Department: Learning Department (מחלקת הלמידה)
+
+Responsibilities:
+- Manage product lifecycle of learning department products (TPSS, learning systems,
+  emulators, knowledge portals, electronic technical literature)
+- Lead development of new and existing technological products
+- Market research and competitor analysis
+- Define operational and technological requirements per customer needs and market trends
+- Write and manage PRD/MRD documents
+- Cross-functional work: R&D, engineering, production, marketing, sales
+- Lead V&V (Verification & Validation) processes
+- Marketing coordination, conferences and exhibitions
+- Budget, schedule, and risk management
+- Sales support and technical/commercial proposals
+- Long-term strategic roadmap planning
+- Lead international projects with significant product component
+- Supplier management and external partnerships
+
+Requirements:
+- BSc in Engineering / Information Systems / Computer Science / Learning Technologies
+  (MSc - advantage)
+- 3+ yrs in technology product management, preferably training, EdTech or enterprise SW
+- Full PLM experience (research → spec → launch → maintenance)
+- Matrix-org experience (R&D, eng, production, marketing, sales)
+- Supplier management and global complex projects
+- Business development background — significant advantage
+- English C2 (speaking, reading, writing, presenting to mgmt/customers)
+- Travel abroad as needed
+
+Compatibility for Inon: ~93% (strong match across all PM/PLM/PRD-MRD/V&V/supplier
+dimensions; English C2; BD background; only gap is direct EdTech/TPSS — mitigated by
+adjacent interactive media and AI product experience).
