@@ -51,7 +51,10 @@
       "PowerShell(cmd /c \"for %I in \\(\\\\\"C:\\\\Users\\\\Inon Baasov\\\\.claude\\\\\"\\) do echo %~sI\")",
       "Bash(cmd *)",
       "Bash(git pull *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(git rm *)",
+      "Bash(git restore *)",
+      "Bash(git commit *)"
     ]
   }
 }
