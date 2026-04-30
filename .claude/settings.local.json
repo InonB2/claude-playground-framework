@@ -88,7 +88,11 @@
       "PowerShell([System.IO.Path]::GetShortPathName\\(\"C:\\\\Users\\\\Inon Baasov\\\\.claude\\\\statusline.sh\"\\))",
       "PowerShell(cmd /c \"for %I in \\(\\\\\"C:\\\\Users\\\\Inon Baasov\\\\.claude\\\\\"\\) do echo %~sI\")",
       "PowerShell($env:PATH = \"$env:PATH;C:\\\\Program Files\\\\Go\\\\bin\"; $env:GOTMPDIR = \"D:\\\\go-temp\"; Set-Location \"C:\\\\tools\\\\whatsapp-mcp\\\\whatsapp-bridge\"; go build -o \"D:\\\\whatsapp-bridge.exe\" . 2>&1; Write-Host \"Exit: $LASTEXITCODE\")",
-      "PowerShell(Set-Location \"C:\\\\tools\\\\whatsapp-mcp\\\\whatsapp-bridge\"; $proc = Start-Process -FilePath \".\\\\whatsapp-bridge.exe\" -PassThru -RedirectStandardOutput \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-output.txt\" -RedirectStandardError \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-error.txt\" -NoNewWindow; Start-Sleep -Seconds 4; Get-Content \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-output.txt\" -ErrorAction SilentlyContinue; Get-Content \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-error.txt\" -ErrorAction SilentlyContinue; if \\(!$proc.HasExited\\) { Write-Host \"Bridge is running \\(PID $\\($proc.Id\\)\\)\"; $proc.Kill\\(\\) } else { Write-Host \"Bridge exited with code $\\($proc.ExitCode\\)\" })"
+      "PowerShell(Set-Location \"C:\\\\tools\\\\whatsapp-mcp\\\\whatsapp-bridge\"; $proc = Start-Process -FilePath \".\\\\whatsapp-bridge.exe\" -PassThru -RedirectStandardOutput \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-output.txt\" -RedirectStandardError \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-error.txt\" -NoNewWindow; Start-Sleep -Seconds 4; Get-Content \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-output.txt\" -ErrorAction SilentlyContinue; Get-Content \"C:\\\\tools\\\\whatsapp-mcp\\\\bridge-error.txt\" -ErrorAction SilentlyContinue; if \\(!$proc.HasExited\\) { Write-Host \"Bridge is running \\(PID $\\($proc.Id\\)\\)\"; $proc.Kill\\(\\) } else { Write-Host \"Bridge exited with code $\\($proc.ExitCode\\)\" })",
+      "Write(//d/Claude Playground/**)",
+      "Edit(//d/Claude Playground/**)",                                                                                     
+      "Read(D:\\Claude Playground\\**)",                  
+      "Bash(*)"
     ]
   }
 }

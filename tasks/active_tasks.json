@@ -1,16 +1,46 @@
 {
-  "last_updated": "2026-04-28",
+  "last_updated": "2026-04-29",
   "tasks": [
+    {
+      "task_id": "CV-FIX-RENAME",
+      "title": "Rename _NEW CV / clean cv_archive root",
+      "priority": "critical",
+      "assigned_to": "Cole",
+      "delegated_by": "Andy",
+      "status": "pending",
+      "category": "cv",
+      "notes": "output/cv_archive/ has a stale Inon_Baasov_CV_Elbit_2026.pptx at root — should be moved or deleted. Lock file ~$v4_Inon_Baasov_CV_TrainingPM.pptx present (PowerPoint has file open). Owner must close PPTX first."
+    },
+    {
+      "task_id": "ELBIT-APPLY-001",
+      "title": "Submit CV to Elbit Systems and log contact",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "delegated_by": "Andy",
+      "status": "blocked",
+      "category": "cv",
+      "blocked_by": "CV-FIX-RENAME + Owner approval of V4 PPTX",
+      "notes": "V4 Training PM PPTX is in output/cv_archive/6486_TrainingPM_Elbit_Netanya/. Owner reviews, says approved. Andy runs cv_scale.py topdf to generate PDF. Cole guides submission. Log to cv_archive.db."
+    },
+    {
+      "task_id": "CV-SCALE-001",
+      "title": "CV scale pipeline — JD->PPTX->PDF",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "delegated_by": "Andy",
+      "status": "done",
+      "category": "cv",
+      "notes": "scripts/cv_scale.py complete. generate + topdf commands working. Template: V4 PPTX. Summary injection handles GROUP shapes recursively. comtypes + pywin32 installed for PDF export."
+    },
     {
       "task_id": "PROMAKER-AR-001",
       "title": "Assess ProMaker AR repo and define product scope",
       "priority": "high",
       "assigned_to": "Tomy",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "product-development",
-      "notes": "PLATFORM: Lovable (lovable.dev/projects/d9e1a4ed-8961-40a3-8426-1e3632b1b300). IMPORTANT: Lovable is bidirectionally synced with GitHub — pushes to the repo update the live app. Stack: Vite + React + TypeScript + shadcn/ui + Tailwind. Repo cloned locally at D:\\Claude Playground\\pro-maker-ar. Product concept: AR-guided DIY construction tool — 'Make Every DIY a Pro Build'. Has Hero, Navbar, Categories, Features, CTASection, HowItWorks, Footer components. Appears to be a landing page only (no AR functionality yet). Tomy to: (1) read all src/ files, (2) assess how far the product is from a working AR MVP, (3) produce brief in scratchpad/promaker_ar_brief.md.",
-      "files": ["scratchpad/promaker_ar_brief.md"]
+      "notes": "Assessed from local copy D:\\Claude Playground\\pro-maker-ar\\. React 18 + Vite + Shadcn/ui + Supabase + Tailwind (Lovable-built). Landing page only — no AR functionality. Supabase project nlxoazmcrlzsezsyvdre likely expired. Launchpad (project-launchpad repo) is private clone with fresh Supabase — identical codebase. Need gh auth login to access Launchpad repo."
     },
     {
       "task_id": "PROMAKER-AR-002",
@@ -18,265 +48,228 @@
       "priority": "high",
       "assigned_to": "Andy",
       "delegated_by": "Owner",
-      "status": "blocked",
-      "category": "product-development",
-      "blocked_by": "PROMAKER-AR-001 (needs Tomy's brief first)",
-      "notes": "Once Tomy delivers the brief, Andy to: (1) identify which agents are needed (Rex for frontend, Yoni for core logic, Silas for data, Maya for security), (2) decompose into sub-tasks, (3) add sub-tasks to this backlog. This is a new product build — treat like WEBSITE-001 pipeline.",
-      "files": ["scratchpad/promaker_ar_brief.md"]
-    },
-    {
-      "task_id": "CV-FIX-RENAME",
-      "title": "Rename _NEW CV to final filename once old PDF is closed",
-      "priority": "critical",
-      "assigned_to": "Cole",
-      "delegated_by": "Andy",
       "status": "pending",
-      "category": "cv",
-      "notes": "CV has been regenerated with all 8 fixes applied. Output is output/cv_archive/Inon_Baasov_CV_Elbit_2026_NEW.pdf. Owner must close the old PDF in their viewer, then either: (A) rename _NEW to Inon_Baasov_CV_Elbit_2026.pdf manually, or (B) simply re-run 'python scripts/generate_elbit_cv.py' — OUTPUT path is now fixed back to the final filename. Verify one-page layout before sending.",
-      "files": ["scripts/generate_elbit_cv.py", "output/cv_archive/Inon_Baasov_CV_Elbit_2026_NEW.pdf"]
-    },
-    {
-      "task_id": "ELBIT-APPLY-001",
-      "title": "Submit CV to Elbit Systems and log contact details",
-      "priority": "high",
-      "assigned_to": "Cole",
-      "delegated_by": "Andy",
-      "status": "blocked",
-      "category": "cv",
-      "blocked_by": "CV-FIX-RENAME",
-      "notes": "Once CV is finalised and renamed, Cole to: (1) identify the hiring manager or recruiter name for the Elbit Learning Dept PM role, (2) guide Owner through submission, (3) log all contact details in output/cv_archive/cv_archive.db applications table (contact_name, contact_email, submission_date, source_url). Owner to supply contact name once identified.",
-      "files": ["output/cv_archive/cv_archive.db", "output/cv_archive/Inon_Baasov_CV_Elbit_2026.pdf"]
+      "category": "product-development",
+      "blocked_by": "gh auth login (to clone Launchpad and confirm fresh Supabase project_id)",
+      "notes": "Brief done in session_2026-04-29.md. Once Launchpad confirmed: decompose into AR core (Yoni), UI (Rex), data/Supabase (Silas), security (Maya)."
     },
     {
       "task_id": "GITHUB-001",
-      "title": "Owner pushes framework to GitHub after setting up PAT",
+      "title": "Push framework to GitHub",
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
       "status": "done",
       "category": "github",
-      "notes": "Completed. Framework pushed to https://github.com/InonB2/claude-playground-framework. Auto-sync script in scripts/github_sync.ps1.",
-      "files": ["scripts/github_setup_guide.md", "scripts/github_sync.ps1"]
+      "notes": "Completed. Framework at https://github.com/InonB2/claude-playground-framework."
     },
     {
       "task_id": "GITHUB-002",
-      "title": "Create 'Website-product-portfolio' GitHub repo and wire up migration",
+      "title": "Website-product-portfolio GitHub repo",
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
-      "status": "blocked",
+      "status": "done",
       "category": "github",
-      "blocked_by": "GITHUB-001 + Owner must create repo at github.com/new + Base44 source access needed",
-      "notes": "Owner creates repo at github.com/new — name: 'Website-product-portfolio', no README init. Then: (1) Owner confirms Base44 source access (check Base44 project settings > Export), (2) Mack sets up remote and push pipeline. See scripts/github_setup_guide.md Step 4.",
-      "files": ["scripts/github_setup_guide.md"]
+      "notes": "Repo exists: InonB2/website-product-portfolio. Local clone at sites/website-product-portfolio/. Base44 has 2-way GitHub sync (confirmed by Owner). Need gh auth login to push."
     },
     {
       "task_id": "WHATSAPP-001",
-      "title": "Implement WhatsApp bridge",
+      "title": "WhatsApp bridge QR scan + Claude Desktop config",
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
-      "status": "ready-to-pair",
+      "status": "waiting-QR-scan",
       "category": "integrations",
-      "notes": "Go bridge BUILT (C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe, 27MB). Uses modernc.org/sqlite (pure-Go, no CGO). AV workaround: -ldflags=-buildid= + CGO_ENABLED=0. Rebuild script: rebuild.ps1. NEXT: Owner runs whatsapp-bridge.exe in terminal, scans QR with WhatsApp mobile. Then: configure Python MCP server in Claude Desktop config (claude_desktop_config.json). Mack to guide on next session.",
-      "files": ["C:/tools/whatsapp-mcp/whatsapp-bridge/whatsapp-bridge.exe", "C:/tools/whatsapp-mcp/whatsapp-bridge/rebuild.ps1"]
+      "notes": "Bridge rebuilt 2026-04-29: whatsmeow context.Context API patched (5 calls in main.go), sqlite3_compat.go rewritten with fkDriver for foreign key pragma, stale whatsapp.db deleted. QR confirmed working. Owner runs: ! \"/c/tools/whatsapp-mcp/whatsapp-bridge/whatsapp-bridge.exe\" then scans QR in WhatsApp -> Linked Devices."
     },
     {
       "task_id": "WEBSITE-001-SEC-01",
-      "title": "CRITICAL: Remove 'CHOOSE YOUR PHOTO' dev widget from production",
+      "title": "Remove dev widget from production",
       "priority": "critical",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-security",
-      "blocked_by": "Needs Base44 source access",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Widget exposes internal versioning UI to public visitors. Conditionally render only for authenticated owner or remove entirely. Requires Base44 project access to edit source."
+      "blocked_by": "gh auth login needed to push; live site inspection needed to confirm widget still present",
+      "notes": "Possibly the DesignOptions.jsx page or Base44 platform widget. Home.jsx code is clean. Need to inspect live site inonbaasov-website.base44.app to identify."
     },
     {
       "task_id": "WEBSITE-001-SEC-02",
-      "title": "CRITICAL: Fix page title — remove internal agent name 'Andy'",
+      "title": "Fix page title — remove 'Andy'",
       "priority": "critical",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-security",
-      "blocked_by": "Needs Base44 source access",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Change from 'Home | Andy — App' to 'Inon Baasov | Product Leader · Co-Founder · CPO'. Fix in index.html <title> and any meta og:title tags."
+      "notes": "Verified in Home.jsx — title is already 'Inon Baasov — Product Leader & Co-Founder'. No Andy reference found in source."
     },
     {
       "task_id": "WEBSITE-001-DESIGN-01",
-      "title": "HIGH: Full awwwards-level visual redesign implementation",
+      "title": "Full awwwards-level visual redesign",
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-design",
-      "blocked_by": "Needs Base44 source access. Pre-work: WEBSITE-001-UX-03 and WEBSITE-001-COPY-01 must be done first",
-      "brief": "scratchpad/design_brief_WEBSITE-001.md",
-      "notes": "Full spec in design_brief_WEBSITE-001.md. Key implementation: dark bg #080E1A, cyan #00B4D8, Syne ExtraBold + Inter fonts, Lenis smooth scroll (duration 1.2), GSAP ScrollTrigger reveals (y:40 opacity:0 -> 0 1 duration:0.8), particle hero, magnetic cursor, horizontal portfolio scroll, number counter animation on stats."
+      "blocked_by": "gh auth login + WEBSITE-001-UX-03 + WEBSITE-001-COPY-01",
+      "notes": "Full spec in scratchpad/design_brief_WEBSITE-001.md. Dark #080E1A, cyan #00B4D8, Syne+Inter fonts, GSAP reveals."
     },
     {
       "task_id": "WEBSITE-001-UX-03",
-      "title": "HIGH: Replace emoji icons in portfolio cards with real visuals",
+      "title": "Replace emoji icons with real visuals",
       "priority": "high",
       "assigned_to": "Lena",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-design",
-      "brief": "scratchpad/design_brief_WEBSITE-001.md",
-      "notes": "Design or source product screenshots, custom SVG icons, or branded visuals for all 6 portfolio cards (TouchE TV, AiRakoon, Medicrowd, Smash+, Arena Plus, Blau Pharma). Deliver final assets or detailed asset spec to Rex."
+      "notes": "Source or design product visuals for portfolio cards (TouchE, AiRakoon, Medicrowd, Smash+, Arena Plus, Blau Pharma)."
     },
     {
       "task_id": "WEBSITE-001-COPY-01",
-      "title": "MEDIUM: Sharpen hero value proposition and bio copy",
+      "title": "Sharpen hero copy and bio",
       "priority": "medium",
       "assigned_to": "Lena",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-copy",
-      "notes": "Add a differentiator sentence to hero. Rewrite bio to be more specific — reference AI-first products, $2.5M raised, Technion, current consulting work. Avoid generic CPO boilerplate. Deliver copy document to Rex for implementation."
+      "notes": "Add differentiator sentence. Rewrite bio to be specific — AI-first, $2.5M, Technion, consulting."
     },
     {
       "task_id": "WEBSITE-001-SEC-03",
-      "title": "HIGH: Add contact form to reduce PII exposure",
+      "title": "Add contact form",
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-security",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Phone and email are plaintext in DOM. Add a contact form as primary CTA. Fields: Name, Email, Message, Send. Optionally obfuscate direct email/phone display."
+      "blocked_by": "gh auth login",
+      "notes": "Fields: Name, Email, Message, Send. Reduce PII exposure. Ties into WEBSITE-001-UX-05."
     },
     {
       "task_id": "WEBSITE-001-SEC-04",
-      "title": "HIGH: Full security header and cookie audit",
+      "title": "Security headers audit",
       "priority": "high",
       "assigned_to": "Maya",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-security",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Audit CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, cookie flags (Secure, HttpOnly, SameSite). Produce written security report in scratchpad/security_audit_WEBSITE-001.md. Rex does NOT deploy redesign until Maya signs off."
+      "notes": "CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, cookie flags. Report in scratchpad/security_audit_WEBSITE-001.md."
     },
     {
       "task_id": "WEBSITE-001-SEO-01",
-      "title": "HIGH: Add SEO meta tags, Open Graph, and structured data",
+      "title": "SEO meta tags + structured data",
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-seo",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Add meta description, og:title, og:description, og:image, Twitter Card tags, Schema.org Person markup (name, jobTitle, alumniOf Technion, sameAs LinkedIn). Target keywords: 'Product Leader Israel', 'CPO hire', 'AI product manager Israel'."
+      "blocked_by": "gh auth login",
+      "notes": "og:title, og:description, og:image, Twitter Card, Schema.org Person. Keywords: 'Product Leader Israel', 'CPO hire', 'AI product manager Israel'."
     },
     {
       "task_id": "WEBSITE-001-UX-01",
-      "title": "HIGH: Add testimonials section (2-3 quotes)",
+      "title": "Add testimonials section (2-3 quotes)",
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "blocked",
       "category": "website-content",
       "blocked_by": "Owner must supply 2-3 quotes with name and role",
-      "brief": "scratchpad/design_brief_WEBSITE-001.md",
-      "notes": "Place after Portfolio section. Design: card layout with large quote mark, name, role, company. Owner to supply content — co-founder from TouchE TV, investor, or client reference. Drop content in owner_inbox/ once ready."
+      "notes": "Place after Portfolio section. Card layout with large quote mark, name, role, company."
     },
     {
       "task_id": "WEBSITE-001-UX-02",
-      "title": "HIGH: Audit and fix all 'Deep Dive' portfolio links",
+      "title": "Audit portfolio deep-dive links",
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-ux",
-      "brief": "scratchpad/brief_website_audit.md",
-      "notes": "Verify all 6 portfolio card deep-dive links. Build minimal stub case study pages or hide/remove broken links. Document which pages exist vs. which need to be built in scratchpad/."
+      "blocked_by": "gh auth login",
+      "notes": "Verify all 6 portfolio card links. Build stub case study pages or hide broken links."
     },
     {
       "task_id": "WEBSITE-001-UX-04",
-      "title": "MEDIUM: Add downloadable CV button",
+      "title": "Downloadable CV button",
       "priority": "medium",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "blocked",
+      "status": "partial",
       "category": "website-ux",
-      "blocked_by": "CV-FIX-RENAME must be complete first",
-      "notes": "Add download CV button near hero CTAs. Link to hosted PDF (host in GitHub repo once GITHUB-002 is complete). Requires final approved CV file."
+      "notes": "Button added to contact section in Home.jsx. Committed locally. Needs: (1) gh auth login + git push to go live, (2) real PDF URL to replace mailto: fallback. Owner uploads CV PDF somewhere public, provides URL."
     },
     {
       "task_id": "WEBSITE-001-DESIGN-02",
-      "title": "MEDIUM: Scroll-triggered animations and stat counters",
+      "title": "Scroll animations + stat counters",
       "priority": "medium",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-design",
-      "notes": "Animate number counters on stats (10+, $2.5M, 38%, 6) using GSAP CountTo or IntersectionObserver. Add fade-in on scroll for all major sections. Part of WEBSITE-001-DESIGN-01 implementation."
+      "notes": "Home.jsx already has Counter and Reveal components with IntersectionObserver animations. Effectively done in current code."
     },
     {
       "task_id": "WEBSITE-001-UX-05",
-      "title": "MEDIUM: Minimal contact form",
+      "title": "Minimal contact form",
       "priority": "medium",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-ux",
-      "notes": "Fields: Name, Email, Message, Send. Style consistent with redesign. Can use mailto: fallback if no backend yet. Ties into WEBSITE-001-SEC-03."
+      "blocked_by": "gh auth login",
+      "notes": "Name, Email, Message, Send. Ties into WEBSITE-001-SEC-03."
     },
     {
       "task_id": "WEBSITE-MIGRATE-001",
-      "title": "Migrate website source to 'Website-product-portfolio' GitHub repo",
+      "title": "Migrate website to GitHub repo",
       "priority": "high",
       "assigned_to": "Mack",
       "delegated_by": "Andy",
-      "status": "blocked",
+      "status": "done",
       "category": "github",
-      "blocked_by": "GITHUB-002 + Owner Base44 export access confirmation",
-      "notes": "Once GITHUB-002 repo is created and Base44 source is accessible: (1) export/clone Base44 project source, (2) clean up and structure as clean React repo, (3) push to Website-product-portfolio GitHub repo, (4) wire up Vercel or GitHub Pages deploy if desired. Mack leads; Rex implements."
+      "notes": "Website code is in InonB2/website-product-portfolio. Local clone active at sites/website-product-portfolio/. Base44 2-way sync confirmed. Push access requires gh auth login."
     },
     {
       "task_id": "LINKEDIN-001",
-      "title": "Draft first LinkedIn thought leadership post for Owner approval",
+      "title": "Draft first LinkedIn post",
       "priority": "medium",
       "assigned_to": "Sage",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "linkedin",
-      "notes": "Sage to draft a 150-250 word LinkedIn post on a topic relevant to Inon's positioning (AI in enterprise learning, product leadership in regulated industries, or CPO lessons from 0-to-scale). Draft goes to owner_inbox/LINKEDIN-001_draft.md for Owner review and explicit approval before any publishing action. Do NOT publish without Owner saying 'approved'.",
-      "files": ["owner_inbox/"]
+      "notes": "3 drafts in owner_inbox/linkedin_post_draft_001.md. Hook A (product feature kill story) recommended. Awaiting Owner approval — do NOT publish without explicit 'approved'."
     },
     {
       "task_id": "WEBSITE-001-PERF-01",
-      "title": "LOW: Mobile responsiveness audit at 375px and 768px",
+      "title": "Mobile responsiveness audit",
       "priority": "low",
       "assigned_to": "Vera",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-qa",
-      "notes": "Test on simulated iOS Safari (375px) and Android Chrome (768px) viewports. Document all layout breakage in scratchpad/mobile_audit_WEBSITE-001.md. Vera signs off before Rex deploys redesign."
+      "notes": "Test at 375px and 768px. Document in scratchpad/mobile_audit_WEBSITE-001.md."
     },
     {
       "task_id": "WEBSITE-001-A11Y-01",
-      "title": "LOW: Accessibility audit — contrast, ARIA, keyboard nav",
+      "title": "Accessibility audit",
       "priority": "low",
       "assigned_to": "Vera",
       "delegated_by": "Andy",
       "status": "pending",
       "category": "website-qa",
-      "notes": "Run Lighthouse accessibility audit. Check WCAG 2.1 AA: contrast ratios min 4.5:1, all interactive elements keyboard accessible, ARIA labels on icons and CTAs, skip-to-main link. Document findings in scratchpad/a11y_audit_WEBSITE-001.md."
+      "notes": "WCAG 2.1 AA: contrast 4.5:1, keyboard nav, ARIA labels. Document in scratchpad/a11y_audit_WEBSITE-001.md."
     },
     {
       "task_id": "WEBSITE-001-CONTENT-01",
-      "title": "LOW: Design thought leadership section (blog / talks / press)",
+      "title": "Thought leadership section",
       "priority": "low",
       "assigned_to": "Lena",
       "delegated_by": "Andy",
       "status": "blocked",
       "category": "website-content",
-      "blocked_by": "Owner must supply content — articles, talks, or press links",
-      "notes": "Design section layout and component spec. Section should be clean card grid. Requires Owner content before implementation. Drop links/articles in owner_inbox/ when ready."
+      "blocked_by": "Owner must supply articles, talks, or press links",
+      "notes": "Blog/talks/press card grid. Owner drops content in owner_inbox/ when ready."
     }
   ]
 }
