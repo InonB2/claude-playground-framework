@@ -13,11 +13,11 @@
 | `/skills/`      | [skills/INDEX.md](skills/INDEX.md) | Reusable skill registry (LYRA prompting, etc.)    |
 | `/tasks/`       | [tasks/active_tasks.json](tasks/active_tasks.json) | Live task queue               |
 | `/memory/`      | [memory/session_log.db](memory/session_log.db)    | SQLite activity log           |
-| `/output/cv_archive/` | [output/cv_archive/INDEX.md](output/cv_archive/INDEX.md) | CV versions + applications |
+| `/owner_inbox/archive/` | [owner_inbox/archive/](owner_inbox/archive/) | CV versions + approved deliverables |
 | `/scratchpad/`  | *(ephemeral)*  | Temporary drafts and intermediates                    |
 | `/team_inbox/`  | *(drop zone)*  | Raw inputs from Owner for Andy to scan                |
 | `/owner_inbox/` | *(approval gate)* | Approved items awaiting Owner sign-off             |
-| `/output/`      | *(final)*      | Owner-approved deliverables                           |
+| `/owner_inbox/archive/` | *(final)*      | Owner-approved deliverables                           |
 | `/scripts/`     | —              | Automation scripts (CV generator, Telegram bot, sync) |
 
 ---
@@ -64,7 +64,7 @@
 - Notifies you when Andy processes a new item → `/team_inbox/`
 - Sends approval requests when Jasmin moves work → `/owner_inbox/`
 - Drop any message to the bot → automatically filed in `/team_inbox/`
-- Reply `APPROVE filename.md` → moves to `/output/`
+- Reply `APPROVE filename.md` → moves to `/owner_inbox/archive/`
 - Type `/status` → see inbox counts
 
 ---
@@ -93,7 +93,7 @@ python scripts/generate_elbit_cv.py
 **Log a new application:**
 ```python
 import sqlite3
-conn = sqlite3.connect("output/cv_archive/cv_archive.db")
+conn = sqlite3.connect("owner_inbox/archive/cv_archive/cv_archive.db")
 conn.execute("""INSERT INTO applications (...) VALUES (...)""")
 conn.commit()
 ```

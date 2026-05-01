@@ -39,7 +39,9 @@ Quick delegation guide:
 /memory/          — SQLite session log (team_knowledge.db)
 /session_logs/    — Markdown session records
 /scratchpad/      — Ephemeral drafts (not persistent)
-/team_inbox/      — Raw inputs from Owner for you to process
+/archive/         — All historical CVs and archived materials
+  └─ cv_inon/    — Inon's personal CV versions (all years)
+/team_inbox/      — Raw inputs from Owner (drop zone only, no archiving here)
   └─ scanned_documents/ — Physical scanner drop zone
 /owner_inbox/     — Work ready for Owner review
   ├─ archive/     — All completed & approved deliverables (CV versions, final docs)

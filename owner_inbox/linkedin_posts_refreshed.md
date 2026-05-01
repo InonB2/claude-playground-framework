@@ -103,3 +103,73 @@ What's the first thing you'd take off your plate?
 ---
 
 *All posts written in first person as Inon Baasov. No source or tool references. Ready for sign-off.*
+
+---
+
+## Post 4 — Gemini Files
+
+I uploaded 6 receipts from a work trip.
+
+One prompt: "Create an Excel file with all my expenses — date, amount, category — formatted for QuickBooks."
+
+Gemini built it. I downloaded it. Done.
+
+Then I went a step further. I had the same trip data in Google Sheets. New chat. I asked: "Find my expenses log in Drive and build me a PDF report with graphs — show where I spent the most."
+
+It found the file. It read it. It generated a PDF with a pie chart and a bar chart. Most of my spend was food — three visits to the same breakfast spot.
+
+I didn't move any files. I didn't format anything. I didn't even open Sheets.
+
+Here's what I keep thinking about: the document was always a container for a decision. Now the container is a byproduct.
+
+The interesting question isn't "what can it generate?"
+
+It's: when producing a polished output takes 30 seconds, what does the human add?
+
+The answer I've landed on — the thing that doesn't compress: knowing what's worth asking for, and knowing whether the result is actually right.
+
+That judgment is the job now.
+
+What would you point Gemini at first?
+
+#AIProductivity #Gemini #ProductLeadership #FutureOfWork #GoogleWorkspace
+
+---
+
+**Posting note:** Best paired with a screenshot of a downloaded PDF or formatted spreadsheet. Tuesday–Thursday, 8–10am Israel time.
+
+---
+
+## Post 5 — Ghost.build
+
+I just found a way to let an AI agent destroy a database without actually destroying anything.
+
+The tool is Ghost.build. Free. One install command. Connect to Claude Code with `ghost mcp install` — that's the full setup.
+
+Here's what changed for me:
+
+I built a test database with 100,000 customers, 500,000 orders, and 1 million order items. Intentionally no indexes — I wanted it slow. Then I told the agent to fork it three times in parallel and try a different optimization strategy on each: targeted indexes, materialized view, denormalized summary table.
+
+It benchmarked all three. Picked the fastest. Applied it to the main database. Discarded the forks.
+
+The base database was never touched during the experiment.
+
+Then I tried something messier. I created a user database with intentionally broken phone numbers — some null, some malformed, the rest in five different formats. I asked the agent to fork it 10 times simultaneously and run a different cleanup strategy on each: drop bad rows, backfill, regex normalization, quarantine tables, and six more.
+
+All 10 forks ran in parallel. It compared the results. Combined the two best approaches. Applied to main.
+
+10 experiments. Zero risk. Zero cost. About 3 minutes.
+
+The mental shift this created: when databases are free and disposable, you stop treating them like they're precious. You just experiment.
+
+That's exactly how I want to work with AI agents — not carefully, but freely.
+
+Ghost.build is on the free tier: 100 compute hours a month, 1TB storage, unlimited databases and forks. I haven't paid for it once.
+
+Worth trying if you're building anything with agents right now.
+
+#AIAgents #DeveloperTools #ClaudeCode #BuildInPublic #AIEngineering
+
+---
+
+**Posting note:** Strong post for the technical/developer segment of Inon's audience. Works well with a terminal screenshot showing the fork commands or benchmark output.
