@@ -1,62 +1,38 @@
 ---
-updated: 2026-04-30
+updated: 2026-05-01
 ---
 
 # Quick Status — Andy Framework
 
-## Last Session (2026-04-30)
-CV inbox archived (2025+2026 to cv_archive/). Website pushed live — contact form, SEO meta tags, portfolio audit all done (commit e4d11a6). BuildARPro deep research complete (9,200 words, scratchpad/). 2 LinkedIn posts drafted from YouTube videos. Statusline redesigned (2-line: orange project/model/tokens/cost + lightblue session/weather/inbox). Owner inbox organized (PENDING_FOR_YOU.md written). V9 CV closed and moved. output/ folder deprecated — all contents migrated to owner_inbox/archive/cv_archive/. Ralph loop added to all-agent onboarding SOP. Session handoff skill expanded to 150 lines max.
+## Last Session (2026-05-01)
+Massive operational session: website hero copy + SVG icons + Journal section + 10 mobile fixes deployed live. Generic Senior PM CV converted to PDF + deployed. 5 LinkedIn posts + 3 thought leadership posts written. LlamaParse API integration built. WhatsApp bridge QR scanned. FamilyFlow + TradePulse mobile audits complete (TradePulse has 3 critical failures needing source repo).
 
 ## Active Tasks (compact)
 
 | ID | Title | Priority | Owner | Status |
 |----|-------|----------|-------|--------|
-| CV-FIX-RENAME | Archive CVs + V9 close | critical | Cole | done ✓ (V9 moved, output/ deprecated) |
-| ELBIT-APPLY-001 | Submit CV to Elbit | high | Cole | blocked (V4 PPTX→PDF needed; PPTX was open in PPT — close it first) |
-| PROMAKER-AR-002 | Agent plan for BuildARPro | high | Andy | in-progress (research done, stealth framing — no traction data) |
-| PROMAKER-AR-003 | Pitch deck stealth revision | high | Cole | in-progress (removing traction slides, replacing with market opportunity) |
-| PROMAKER-AR-004 | One-pager Word doc | high | Cole | pending (same stealth update needed) |
-| WHATSAPP-001 | WhatsApp QR scan | high | Mack | **waiting for Inon to scan** |
-| WEBSITE-001-SEC-01 | Remove dev widget | critical | Rex | blocked (Base44 platform badge — Owner must disable in Base44 dashboard OR Owner confirms Rex can try another approach) |
-| WEBSITE-001-DESIGN-01 | Awwwards redesign | high | Rex | pending (after UX-03 + COPY-01) |
-| WEBSITE-001-UX-03 | Replace emoji icons | high | Lena | **in-progress (agent running)** |
-| WEBSITE-001-COPY-01 | Sharpen hero copy | medium | Lena | **in-progress (agent running)** |
-| WEBSITE-001-SEC-04 | Security headers audit | high | Maya | **in-progress (agent running)** |
-| WEBSITE-001-UX-01 | Testimonials section | high | Rex | blocked (Owner supplies quotes) |
-| WEBSITE-001-UX-04 | Downloadable CV button | medium | Rex | partial (live but PDF URL needed) |
-| WEBSITE-001-PERF-01 | Mobile audit | low | Vera | **in-progress (agent running)** |
-| WEBSITE-001-A11Y-01 | Accessibility audit | low | Vera | **in-progress (agent running)** |
-| WEBSITE-001-CONTENT-01 | Thought leadership section | low | Lena | blocked (Owner supplies content) |
-| LINKEDIN-001 | First LinkedIn post (feature kill) | medium | Sage | **refreshing (agent running)** |
-| LINKEDIN-002 | 2 posts from YouTube videos | medium | Sage | **refreshing (agent running)** |
-| REPO-REFACTOR-001 | Audit + refactor all repos | medium | Tomy→Yoni | **in-progress: Tomy auditing (agent running)** |
-
-## Done This Session ✓
-- CV archive organized (cv_archive/2025 + cv_archive/2026)
-- V9 CV closed and moved
-- output/ folder deprecated and contents migrated to owner_inbox/archive/cv_archive/
-- CLAUDE.md + Cole agent file updated (no more /output/ references)
-- Ralph loop added to BKM/sop_onboarding.md (all 14 agents now follow it)
-- Session handoff skill updated (150 lines max, richer template)
-- Website: contact form + PII cleanup (e4d11a6, live)
-- Website: SEO meta + Schema.org (e4d11a6, live)
-- BuildARPro research: 9,200-word report (scratchpad/buildarproapp_research.md)
-- Statusline: redesigned 2-line (orange project/model/tokens/cost + lightblue session/weather/inbox)
-- Owner inbox: PENDING_FOR_YOU.md written with all pending Owner actions
+| ELBIT-APPLY-001 | Submit CV to Elbit | high | Cole | blocked — waiting on generic PDF (CV-GENERIC-001) |
+| CV-GENERIC-001 | Generic Senior PM CV PDF | high | Yoni | in-progress (source: CV1_AskAI, output to cv_archive/) |
+| PROMAKER-AR-002 | BuildARPro product plan | high | Andy | in-progress (stealth; OCR deferred; LlamaParse confirmed) |
+| PROMAKER-AR-003 | BuildARPro pitch deck stealth | high | Cole | partial (v2 written to owner_inbox; Owner applies to PPTX manually) |
+| PROMAKER-AR-005 | Connect LlamaParse API | high | Mack | pending (Owner must run: supabase secrets set LLAMAPARSE_API_KEY=...) |
+| PROMAKER-AR-006 | BuildARPro 6 AR concept images | medium | Owner | blocked — Owner runs prompts (brief at owner_inbox/promaker_ar_images_brief.md) |
+| WHATSAPP-001 | WhatsApp bridge sync | medium | Mack | in-progress (QR scanned; history syncing) |
+| WEBSITE-001-SEC-01 | Remove Base44 badge | critical | Rex | blocked — Owner must disable in base44.app dashboard |
+| WEBSITE-001-SEC-04 | Security headers | high | Rex | partial (code fixes done; HTTP headers need Base44 dashboard) |
+| WEBSITE-001-DESIGN-01 | Full Awwwards redesign | high | Rex | pending (waiting on Lena design brief) |
+| WEBSITE-001-UX-01 | Testimonials section | high | Rex | blocked — Owner supplies 2-3 quotes (name + role) |
+| WEBSITE-001-UX-04 | CV download — live PDF | medium | Rex | blocked — waiting on CV-GENERIC-001 to replace current PDF |
+| WEBSITE-001-CONTENT-01 | Thought leadership journal | medium | Rex | in-progress (3 posts live, UI built) |
+| MOBILE-AUDIT-001 | Mobile audit — website | high | Vera | done ✓ |
+| MOBILE-AUDIT-002 | Mobile audit — FamilyFlow + TradePulse | medium | Vera | in-progress (TradePulse: 3 critical failures; needs source repo) |
+| LINKEDIN-001 | 5 LinkedIn posts ready | medium | Sage | partial — awaiting Owner approval to publish |
+| REPO-CLEANUP-001 | Repo cleanup — 4 decisions | low | Owner | blocked — Owner decisions needed (see notes in tasks/) |
 
 ## Owner Blockers (prioritized)
-1. **Close V4 PPTX** in PowerPoint → then PDF auto-converts → Elbit submission unblocks
-2. **Base44 badge**: login to base44.app dashboard → disable platform badge (Rex can't do this remotely)
-3. **Testimonials**: 2-3 quotes (name + role) for website (WEBSITE-001-UX-01)
-4. **CV PDF URL**: upload PDF → paste URL → website Download CV button goes live (WEBSITE-001-UX-04)
-5. **LinkedIn approval**: review owner_inbox/linkedin_posts_refreshed.md when Sage finishes
-6. **WhatsApp QR**: run bridge exe → scan QR on phone
-7. **Statusline image**: save screenshot as file → share path with Andy
-
-## Agents Currently Running (background)
-- Sage → LinkedIn posts refresh → owner_inbox/linkedin_posts_refreshed.md
-- Maya → Security headers audit → owner_inbox/security_headers_audit.md
-- Vera → Mobile + accessibility audit → owner_inbox/mobile_audit.md + accessibility_audit.md
-- Lena → Emoji icons map + hero copy → owner_inbox/ux03_icon_replacements.md + copy01_hero_draft.md
-- Tomy → Full repo audit → owner_inbox/repo_refactor_plan.md
-- Cole → Pitch deck stealth revision + PDF conversion command → owner_inbox/BuildARPro_PitchDeck_Stealth_v2.md
+1. **LinkedIn approval** — owner_inbox/linkedin_posts_refreshed.md (5 posts, ready to publish)
+2. **LlamaParse API key** — `supabase secrets set LLAMAPARSE_API_KEY=llx-...` (unblocks PROMAKER-AR-005)
+3. **TradePulse repo name** — 3 critical mobile/a11y failures ready to fix once Rex has repo access
+4. **Base44 badge** — login to base44.app → app settings → disable platform badge
+5. **Testimonials** — 2-3 quotes (name + role + company) for website
+6. **Rotate Supabase anon key** — Supabase dashboard → Settings → API → Reset

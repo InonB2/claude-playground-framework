@@ -8,6 +8,7 @@
 | File | Version | Date | Tailored For |
 |------|---------|------|-------------|
 | `Inon_Baasov_CV_Elbit_2026.pdf` | v1.0 — Elbit Systems | 2026-04-24 | Product Manager, Learning Dept — Elbit Systems |
+| `Inon_Baasov_CV_SeniorPM.pdf` | v2.0 — Generic Senior PM | 2026-05-01 | General / Multi-role (AI, SaaS, Enterprise) |
 
 ## Applications Log
 
