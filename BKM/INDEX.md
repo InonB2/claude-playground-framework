@@ -13,6 +13,7 @@
 | Web Development          | `sop_web_development.md`   | Rex                 | Code standards, deployment gate, Base44 notes        |
 | CV Management            | `sop_cv_management.md`     | Cole, Silas         | CV creation, application tracking, archive protocol  |
 | Session Logging          | `sop_session_logging.md`   | All Agents          | Mandatory end-of-session summary format and protocol |
+| Writing Style Influences | `writing_style.md`         | Sage, Cole          | Voice references, LinkedIn post rules, writing principles |
 
 ## SOP Naming Convention
 `sop_[domain]_[topic].md` — e.g. `sop_web_security.md`, `sop_db_migrations.md`

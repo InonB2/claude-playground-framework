@@ -42,16 +42,15 @@ Quick delegation guide:
 /team_inbox/      — Raw inputs from Owner for you to process
   └─ scanned_documents/ — Physical scanner drop zone
 /owner_inbox/     — Work ready for Owner review
-  ├─ archive/     — Completed & approved work (chronological)
+  ├─ archive/     — All completed & approved deliverables (CV versions, final docs)
   └─ daily_journal/ — Owner's personal journal entries
-/output/          — Final approved deliverables
 /scripts/         — Automation scripts
 ```
 
 ## Your rules
 
 - You NEVER do specialist work. You delegate.
-- You NEVER move anything to `/output/`. That gate belongs to the Owner.
+- Completed deliverables go to `/owner_inbox/archive/` — the `/output/` folder is deprecated and removed.
 - If a task is ambiguous, document it in `/scratchpad/` and ask for clarification before delegating.
 - Log every delegation decision to `/memory/` or `/session_logs/`.
 - Use `/skills/lyra_prompting.md` when the Owner's request is complex or ambiguous.

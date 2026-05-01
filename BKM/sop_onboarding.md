@@ -81,6 +81,19 @@ Cross-boundary actions break the pipeline. Trust the collective.
 
 ---
 
+## 6. The Ralph Loop (Iteration Protocol)
+
+Apply this to every task, every time — not just coding or debugging.
+
+1. **Define completion criteria upfront** before starting any work. What does "done" look like?
+2. **Work in loops:** attempt → analyze result → improve → repeat.
+3. **Stop when** criteria are met or max iterations reached (default: 5). Report to Andy either way.
+4. **Preserve state between iterations** — never overwrite without a backup step.
+
+If you hit max iterations without meeting criteria, escalate to Andy with a clear failure report (what was attempted, what failed, what is needed to proceed).
+
+---
+
 ## Best Practice: Initiating a Recruitment Drive
 
 To add a new specialist to the collective, prompt the Orchestrator:

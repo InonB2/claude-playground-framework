@@ -1,0 +1,441 @@
+If you're building an app in 2026, then
+you need a database. The issue is that
+most databases are expensive, annoying
+to configure, and can't be handled
+natively by AI agents. And even if they
+can, the AI agent can make one mistake
+and nuke your entire database. So, in
+this video, I'm going to show you a
+solution to that. And I'm going to give
+Claude its own database that's
+specifically designed for working with
+AI agents that will allow me to run
+hundreds of databases in parallel at the
+exact same time. Fork existing
+databases, delete them, create them,
+read them, list them, everything
+natively inside of this AI tool so that
+I don't need to do anything manually.
+And the best part is this is completely
+free. So what is this database that I'm
+talking about? Well, it is ghost.build.
+It is free to use and you can install it
+with literally just one command and then
+add as an MCP server to things like
+Claude, Codeex, any of the main tools
+that you're using specifically for
+development. Now, the idea here is that
+we can really easily spin up databases,
+we can then fork those databases to
+create multiple versions. So, if we want
+to test something or we want the AI
+agent to build something, we can do it
+on a clone of our existing database
+rather than on the base one. So, if
+something goes wrong, nothing will be
+harmed. and then we can test all
+different types of database strategies
+and then apply the one that actually
+works back to the main DB. Now, I want
+to show you exactly how to set it up,
+but I'm just going to quickly pop into
+the docs here so you can understand when
+you would actually use this. Now, first
+of all, there's a free tier here. You
+get 100 compute hours per month, 1 TB of
+storage, and unlimited databases and
+forks. So you could use this for just
+persistent memory on your own if you
+want to have notes or blogs or something
+inside of claude because it doesn't have
+memory by itself or you can use it for
+various projects like I'm going to. And
+in the case of using it, it's good for
+persistent postcript storage, the
+freedom to create and discard databases
+really easily without the anxiety of the
+cost and then forking like I was talking
+about as well as those hard spending
+caps. Now it's probably not the best for
+something like a web dashboard or
+something like usage based pricing for
+precise cost control. You get the idea.
+Okay, so let me show you how to set it
+up. It's very basic. I'm going to leave
+the commands in the description or the
+link to the documentation. Whether
+you're on Mac or Linux, you can copy one
+of these commands. In my case, I'm on
+Mac. We can just go to the terminal. We
+can paste it in, hit enter, and then
+start running. Okay, so I've already got
+it installed, but it will just take a
+second. And then once you've done that,
+you're just going to run the command
+ghost login. When you do that, it's just
+going to uh prompt you to log in with
+GitHub here. I've already authenticated,
+hence why I'm just signed in. Again, you
+don't even need to like sign up. You
+just literally connect with your GitHub
+account. And then we can go back and
+what we're going to run next is the
+ghost mcp install. When we run that
+command, we can pick claude codeex
+cursor whatever. In my case, I'm going
+to go with clawed code because that's
+what I want to use. And then it will
+install. Anyways, I've already got this
+installed. So it said, hey, you know,
+failed to run cuz it's installed
+already. But in your case, it should
+install it. Pick whatever tool you want.
+And then what I'm going to do is just
+run cloud code here. And just to verify
+the install, we can just run the /mcp
+command. If we go here, we should see
+the ghost MCP server. And if we click
+into it, we can view some of the tools.
+We can see, you know, login, execute
+SQL, create database, etc. So, let's get
+out of that. And now what I want to do
+is start running a few demos so I can
+show you why this is actually useful and
+how you can get a benefit from it inside
+of Claude Code. So, for the first demo,
+let's keep it really simple. I'm going
+to go with something like spin up a new
+ghost database called reading log and
+give me a simple schema for tracking
+books. I want title, author, the date
+finished, and then a rating out of five.
+throw in maybe 10 different books about
+AI and machine learning. Let's start
+with that. Okay, cool. Go ahead and
+press enter. And you can see that we
+actually get this really nicely
+formatted text. You guys always ask me
+what I'm using for the voice dictation
+here. I'm using a tool called Whisper
+Flow. Now, let's just quickly pop into
+it here while this is actually running
+the thing. You can see that I'm
+literally a Power user. I have 103,000
+words, you know, 214 words per minute.
+It's obviously a lot faster than you
+having to type manually. And I like the
+fact that it saves the transcripts and
+gives you all of the automatic formatted
+text. Now, it is free to try out and
+use. I'll leave a link to it in the
+description. And fortunately, I have a
+long-term partnership with them because
+I literally use it all the time anyways,
+no matter what. So, I figured I'd let
+you guys know. Regardless, let's wait
+for this to finish. We can see it's in
+the process of calling Ghost. You can
+see it's creating a new database called
+reading log. We're going to wait for
+that to finish and then once it's done,
+we'll pop in here, see the database, and
+start experimenting with it. Okay, cool.
+So, it looks like it just finished. If I
+want to see the commands that it called,
+I'm just going to press control O. And
+you can see that it just kind of seated
+the database with a bunch of different
+values here. It executed some SQL to
+create the different tables. And this is
+happening natively inside of Cloud Code
+just using the MCP server without me
+really having to know anything about the
+database config. Now, from here, what we
+can do is we can ask it something like
+what's the average rating of the books
+in the database, right? And then I can
+go and hopefully execute that query.
+Okay? And we can see that we get a 4.4
+four out of five is that average rating.
+And then of course we can ask it pretty
+much anything else. What I'm going to
+say, give me the books organized by
+rating. Okay. And let's see if it could
+just pull those out and sort them by the
+average rating. Okay, cool. And then we
+get our fivestar, four-st star, and
+three star books showing up in the
+console. That's the first demo just
+showing you very easy. Connects to the
+MCP and uses it automatically. If for
+some reason it's not using the MCP, just
+make sure you include ghost. If you
+include ghost, it will know to go for
+that for the database in case you have
+maybe some other tools installed. Now,
+let's do something a little bit more
+complex. Okay, so for this demo, I'm
+going to say make a new database called
+Movie Night with a schema for tracking
+movies. I want the title, director,
+year, genre, runtime, the rating out of
+10, and then I want you to seed it with
+100 different movies across a mix of
+genres and decades. Okay, so let's run
+that and get it to create something a
+little bit larger. Okay, so it looks
+like it's finished. We've got a bunch of
+movies here. Now, what I'm going to do
+is have it build a dashboard around
+this. So, I'm going to say, now build me
+a simple dashboard for this. I want one
+page, Nex.js, shad cn/ui components.
+Connect directly to the movie night
+database. I want a table view of all of
+the movies, a filter by genre, and three
+statistic cards at the top showing the
+total movies, average rating, and most
+common director. Keep it minimal, just
+make it work. Okay, so let's pop this
+prompt inside of here. And now I'm just
+going to have it create a kind of simple
+dashboard. Now, it's not the best for
+making dashboards just because
+everything natively is happening through
+the MCP. However, you can grab the
+connection string of the underlying
+database and use it kind of however you
+want, but typically it's meant to be
+used directly by the AI agent and manage
+through the MCP server. So, I'm just
+going to go yes and kind of just accept
+all of these commands. Let's wait for it
+to finish. I'll be right back and let's
+see what it looks like. All right, so it
+took a minute there, but this is the
+dashboard that it created. And you can
+see that we can view all of the
+different movies. We can see the rating.
+We can sort by, you know, category,
+whatever, right? And kind of go through
+this. Obviously not perfect, but I just
+asked it to keep it simple, which it
+obviously did. And now let's continue
+and move to the next demo. And actually,
+before we do that, I want to show you
+that if I exit out of this, right,
+because Claude doesn't have memory
+persistently by default, and then I go
+back into it and I say, what databases
+do you have access to with Ghost for
+example, you'll see these databases will
+still exist. And then what we can do is
+we can nuke them, we can clear them, we
+can fork them, which I'm going to show
+you in the next demos right here. But
+you can see it's listing it. we have the
+two DBs and I can say okay delete them
+both right it's probably going to ask to
+verify that but let's see and then let's
+get rid of them okay and we can see that
+both of these databases are deleted now
+let's move to the next demo all right so
+for this one I want to do something that
+really shows the benefit of having this
+kind of tool which is running multiple
+databases at the same time to test
+various strategies in this case we'll
+start with like optimizing a query so
+first let's create a database that we
+can use to optimize so I'm going to say
+make a database called shop analytics
+with a small e-commerce schema. I want
+customers, orders, order items,
+products, categories, seed it with
+100,000 customers, 500,000 orders, and 1
+million order items. Don't add any
+indexes beyond the primary keys. I want
+this to be slow on purpose. Okay, so
+this is going to be crazy. I don't know
+how long it's going to take to actually
+create all of these entries here. The
+thing is I want a really large database
+with a bunch of different values so that
+we can see how slow it is when I try to
+query for something without any indexes
+or materialized views or different
+strategies. And then what we'll do is
+we'll fork three databases at the same
+time. We'll try different strategies.
+We'll run different queries on them. And
+then whatever one gives us the best
+result. We'll go back and apply that to
+the base DB. Okay. So it looks like it's
+done. It's created all of these values.
+Now what I want to do is run a query on
+this and just see how slow it is and
+then we'll do the optimization. Here's
+the query that I want you to run. I want
+you to show the top 10 customers by
+total spend in the last 90 days plus
+their order count and average order
+value. Write it, run it, and then show
+me the timing and the query plan. I want
+to see how long it takes. Okay, so it
+gave me the result here. We're looking
+at like 1 second, 800 milliseconds. Not
+extremely slow, but obviously we can
+make this faster. So now let's see how
+we can optimize this. So I'm going to
+say, okay, it's not too slow, but I
+think we can make this better. What I
+want you to do is fork three databases.
+Do this in parallel. Don't wait for the
+databases to finish forking before you
+fork the next one. Just fork all three
+of them at the same time. And then what
+I want you to do is apply three
+different strategies on these databases
+without touching the base database. That
+would make this query faster. What I
+want you to do is something like
+targeted indexes, materialized view, and
+then maybe a denormalized summary table.
+I want you to benchmark the query on all
+three of these databases and then give
+me the results and rank them. Okay, so
+let's run this now and see what we get.
+Okay, so it just finished here and you
+can see that we have the materialized
+views, summary table and targeted
+indexes and we get the speed increase
+versus the base query. So now what we
+can do because we see how much faster it
+actually is right across these different
+strategies is we can just tell it to
+apply this to the base DB. So we say,
+okay, this is great. Now let's apply
+this strategy to the base DB. Let's use
+a materialized view so that we have an
+improved query speed. Now, the benefit
+is that I was testing this on a separate
+database instance. I can then just
+discard that database instance after. It
+doesn't cost me any money. It's free.
+And that means that I didn't mess
+something up in my main DB before I
+verified that it was actually going to
+work where especially with AI agents is
+extremely important. You can see boom,
+it just went ahead and did this. And now
+we're good to go. So, I'm going to say
+cool. Okay. Remove the other three
+database forks, we don't need them
+anymore, right? And then we can just
+remove them. And there we are. Like this
+is crazy. And that's why I like this
+tool a lot specifically for these types
+of experiments. And now I want to do
+something even crazier. Okay, so now I
+want to do something that is pretty
+common where you have some like
+malformed data. You want to clean
+something up. But I want to do this with
+10 databases running in parallel. So
+what I'm going to do for now is I'm
+going to say the following. I'm going to
+say make a database called users base
+with let's go 500 fake users. I want
+name, email, phone number, a created at
+date, and I want to make the phone
+number column messy on purpose. So, I
+want 3% null, 2% straight up malformed,
+and the rest valid, but a bunch of
+different formats. Mix the bad rows
+throughout. I want to do this for a
+demo. So, I want to create this kind of
+malformed database, which is very common
+to deal with, especially at large
+companies. We have data coming from
+different sources. And then I want to
+spin up 10 databases in parallel to run
+some different strategies on cleaning up
+the database and see how many rows we
+delete, how many we keep, and what those
+strategies end up actually resulting in
+again before I apply them and
+potentially have something dangerous or
+destructive on the main DB. Okay, so the
+base DB is created. Now what I want to
+do is the following. I'm going to say I
+want to add a notnull and a strict
+format check to the phone number column,
+but I need to clean the data first and I
+don't know which approach is best. So, I
+want you to fork the user space 10
+times. Don't use the weight when you're
+forking it. Just make sure that we fork
+them all at the same time without
+waiting. And I want you to have it to be
+like migration test one, migration test
+two, migration test three, and try a
+different cleanup strategy for each. So,
+dropping bad rows, back filling, reg x,
+normalization, quarantine tables,
+whatever you can think of. Let's just do
+10 different strategies and then tell me
+what each one does after. Okay, so let's
+run this. And notice that I'm telling it
+not to use the wait command because by
+default it will wait for the database to
+finish forking before it forks the other
+one. That's going to take a really long
+time. So if we just tell it to fork them
+all at the same time in parallel, it can
+do that. But we just need to manually
+instruct that. So that's what I'm
+saying. Let's wait. Let's see what we
+get. Okay. So you can see that it's
+forking them. It did it in parallel. All
+10 of them happened pretty much
+instantly. And now it's going to go
+through and do that cleanup strategy.
+All right. So it's just giving me the
+result right now. So it looks like it
+was able to apply all 10 of the forks
+and then do all of the different
+strategies here. Now it says for a real
+migration we should combine five with
+three. So I'm going to say okay let's
+run the real migration on each of them.
+See how it performs. Then take the best
+one and apply it to the base DB. Okay.
+And it looks like it's applied and we
+are good to go here. Okay nice. And then
+yeah we can say nuke the other 10 DBs.
+And I think this is the thing that is a
+big unlock for me when using this is
+that when databases aren't annoying they
+don't take a long time to spin up. you
+don't have to spend money on them. You
+stop treating them as precious and you
+just allow yourself to experiment with
+them like I'm doing right now. And
+especially with this AI agentic
+development, you know, I can build four
+versions of the same app with four
+different DBs and then as soon as I'm
+done with one, I just scrap that version
+of the app, scrap the DB, and I move on.
+And there's no cost associated with
+that. So look guys, that's pretty much
+all I had to show you here. This is a
+super cool tool. Again, it's free to
+use. I think it's just a great MCP to
+have and have the ability to use inside
+of something like Cloud Code or really
+any other developer tool. I'd love to
+hear what you guys think of it. So, let
+me know in the comments down below. And
+I look forward to seeing you in another
+video.

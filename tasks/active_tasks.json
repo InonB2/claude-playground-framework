@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-29",
+  "last_updated": "2026-04-30",
   "tasks": [
     {
       "task_id": "CV-FIX-RENAME",
@@ -7,9 +7,9 @@
       "priority": "critical",
       "assigned_to": "Cole",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "partial",
       "category": "cv",
-      "notes": "output/cv_archive/ has a stale Inon_Baasov_CV_Elbit_2026.pptx at root — should be moved or deleted. Lock file ~$v4_Inon_Baasov_CV_TrainingPM.pptx present (PowerPoint has file open). Owner must close PPTX first."
+      "notes": "2026-04-30: ALL 2025 (27 items) and 2026 (10 items) CVs archived to team_inbox/cv_archive/ by year. V9.S.M4.TPMAI-E.pptx still in team_inbox/2026/ — locked open in PowerPoint. Owner must close it. Once closed, Andy commits it and moves it to cv_archive/2026/."
     },
     {
       "task_id": "ELBIT-APPLY-001",
@@ -34,24 +34,45 @@
     },
     {
       "task_id": "PROMAKER-AR-001",
-      "title": "Assess ProMaker AR repo and define product scope",
+      "title": "Assess BuildARPro repo and define product scope",
       "priority": "high",
       "assigned_to": "Tomy",
       "delegated_by": "Andy",
       "status": "done",
       "category": "product-development",
-      "notes": "Assessed from local copy D:\\Claude Playground\\pro-maker-ar\\. React 18 + Vite + Shadcn/ui + Supabase + Tailwind (Lovable-built). Landing page only — no AR functionality. Supabase project nlxoazmcrlzsezsyvdre likely expired. Launchpad (project-launchpad repo) is private clone with fresh Supabase — identical codebase. Need gh auth login to access Launchpad repo."
+      "notes": "Assessed from local copy D:\\Claude Playground\\pro-maker-ar\\. React 18 + Vite + Shadcn/ui + Supabase + Tailwind (Lovable-built). Landing page only — no AR functionality. Supabase project nlxoazmcrlzsezsyvdre likely expired. Launchpad (project-launchpad repo) is private clone with fresh Supabase — identical codebase. Need gh auth login to access Launchpad repo. Product renamed: BuildARPro."
     },
     {
       "task_id": "PROMAKER-AR-002",
-      "title": "Define agent team and task plan to complete ProMaker AR",
+      "title": "Define agent team and task plan to complete BuildARPro",
       "priority": "high",
       "assigned_to": "Andy",
       "delegated_by": "Owner",
-      "status": "pending",
+      "status": "in-progress",
       "category": "product-development",
-      "blocked_by": "gh auth login (to clone Launchpad and confirm fresh Supabase project_id)",
-      "notes": "Brief done in session_2026-04-29.md. Once Launchpad confirmed: decompose into AR core (Yoni), UI (Rex), data/Supabase (Silas), security (Maya)."
+      "notes": "2026-04-30: Research done. CORRECTED PRODUCT VISION from Owner: NOT a generic AR DIY app. Core feature: (1) User takes a physical paper manual/instructions, (2) scans it with phone camera, (3) app performs OCR + 3D interpretation of the page content, (4) builds a 3D model on phone that is rotatable and matches what the manual depicts, (5) overlays step-by-step AR visual cues guiding the user through each build step. Target market: LOCAL (Israel) + PRIVATE/consumer market — NOT enterprise (too crowded). Stage: stealth, 0 users, Inon is sole creator. Product name confirmed: BuildARPro. Pitch deck + one-pager in progress."
+    },
+    {
+      "task_id": "PROMAKER-AR-003",
+      "title": "Build BuildARPro pitch deck (12 slides, PowerPoint)",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "delegated_by": "Andy",
+      "status": "blocked",
+      "category": "product-development",
+      "blocked_by": "Owner must confirm traction data for slides 9+12 (waitlist count, beta NPS, creator count). See scratchpad/buildarproapp_research.md Section 7.",
+      "notes": "Research complete. Pitch deck outline in scratchpad/buildarproapp_research.md Section 7. Use Gamma MCP or PowerPoint template. Output to output/buildarproapp_pitch_deck.pptx."
+    },
+    {
+      "task_id": "PROMAKER-AR-004",
+      "title": "Build BuildARPro one-pager (Word doc)",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "delegated_by": "Andy",
+      "status": "blocked",
+      "category": "product-development",
+      "blocked_by": "Same traction data as PROMAKER-AR-003",
+      "notes": "One-pager copy written in scratchpad/buildarproapp_research.md Section 8. Output to output/buildarproapp_onepager.docx."
     },
     {
       "task_id": "GITHUB-001",
@@ -89,10 +110,10 @@
       "priority": "critical",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "blocked",
       "category": "website-security",
-      "blocked_by": "gh auth login needed to push; live site inspection needed to confirm widget still present",
-      "notes": "Possibly the DesignOptions.jsx page or Base44 platform widget. Home.jsx code is clean. Need to inspect live site inonbaasov-website.base44.app to identify."
+      "blocked_by": "Base44 platform badge is injected at hosting layer — cannot be removed from the repo. Owner must suppress it via Base44 app settings dashboard.",
+      "notes": "2026-04-30: Rex confirmed no debug widget in source code. Any visible badge comes from Base44 platform itself. Action: Inon logs into base44.app and disables the platform badge in app settings."
     },
     {
       "task_id": "WEBSITE-001-SEC-02",
@@ -141,10 +162,9 @@
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-security",
-      "blocked_by": "gh auth login",
-      "notes": "Fields: Name, Email, Message, Send. Reduce PII exposure. Ties into WEBSITE-001-UX-05."
+      "notes": "2026-04-30: ContactForm component added (Name, Email, Message, Send via mailto). Phone number removed from page. Email obfuscated — only in mailto href. Committed and pushed (commit e4d11a6)."
     },
     {
       "task_id": "WEBSITE-001-SEC-04",
@@ -162,10 +182,9 @@
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-seo",
-      "blocked_by": "gh auth login",
-      "notes": "og:title, og:description, og:image, Twitter Card, Schema.org Person. Keywords: 'Product Leader Israel', 'CPO hire', 'AI product manager Israel'."
+      "notes": "2026-04-30: og:title, og:description, og:image, og:type, og:url, Twitter Card, Schema.org Person JSON-LD injected client-side. Note: Base44 doesn't support server-side HTML head — for full crawler SEO coverage, consider migrating to Next.js/Vercel."
     },
     {
       "task_id": "WEBSITE-001-UX-01",
@@ -184,10 +203,9 @@
       "priority": "high",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-ux",
-      "blocked_by": "gh auth login",
-      "notes": "Verify all 6 portfolio card links. Build stub case study pages or hide broken links."
+      "notes": "2026-04-30: 4 portfolio cards found (not 6 — others appear only in career timeline text). TouchE: case study modal. TradePulse: live link. Family Flow: live link. AiRakoon: modal. No dead links."
     },
     {
       "task_id": "WEBSITE-001-UX-04",
@@ -215,10 +233,9 @@
       "priority": "medium",
       "assigned_to": "Rex",
       "delegated_by": "Andy",
-      "status": "pending",
+      "status": "done",
       "category": "website-ux",
-      "blocked_by": "gh auth login",
-      "notes": "Name, Email, Message, Send. Ties into WEBSITE-001-SEC-03."
+      "notes": "2026-04-30: Combined with WEBSITE-001-SEC-03. Done."
     },
     {
       "task_id": "WEBSITE-MIGRATE-001",
@@ -239,6 +256,16 @@
       "status": "done",
       "category": "linkedin",
       "notes": "3 drafts in owner_inbox/linkedin_post_draft_001.md. Hook A (product feature kill story) recommended. Awaiting Owner approval — do NOT publish without explicit 'approved'."
+    },
+    {
+      "task_id": "LINKEDIN-002",
+      "title": "Draft LinkedIn posts from YouTube videos",
+      "priority": "medium",
+      "assigned_to": "Sage",
+      "delegated_by": "Andy",
+      "status": "done",
+      "category": "linkedin",
+      "notes": "2026-04-30: 2 posts drafted in owner_inbox/linkedin_posts_youtube_001.md. Post 1: Claude+database memory (ghost.build MCP). Post 2: Gemini file creation. Includes Midjourney image prompts. Awaiting Owner approval."
     },
     {
       "task_id": "WEBSITE-001-PERF-01",

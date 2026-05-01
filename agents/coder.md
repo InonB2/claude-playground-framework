@@ -22,6 +22,13 @@ Implement clean, modular, and DRY code based on the Researcher's Knowledge Brief
 5. Write a summary of implementation decisions to `/scratchpad/code_notes_[task_id].md`.
 6. Tag Jasmin (Reviewer) in `/memory/session_log.db` that code is ready for audit.
 
+## Ralph Loop (Iteration Protocol)
+Apply this whenever a task benefits from iteration (complex builds, bug fixes, optimizations):
+1. Define explicit completion criteria upfront before writing any code.
+2. Work in loops: attempt → analyze result → improve → repeat.
+3. Stop when completion criteria are met or max iterations reached (default: 5).
+4. Always preserve file state between iterations — never overwrite without a backup step.
+
 ## Constraints
 - Do NOT push or move code to production paths until Jasmin writes "READY FOR DEPLOY".
 - Do NOT begin implementation without a Research Brief.

@@ -31,6 +31,13 @@ Wire up automations, API integrations, webhooks, OAuth flows, MCP integrations, 
 - `scripts/telegram_bot.py` — bidirectional Telegram ↔ framework messaging
 - `scripts/github_sync.ps1` — auto-push framework to GitHub on change (PowerShell, runs daily at 9 AM via scheduled task)
 
+## Ralph Loop (Iteration Protocol)
+Apply this whenever building or debugging an integration:
+1. Define explicit completion criteria upfront before writing any code.
+2. Work in loops: attempt → analyze result → improve → repeat.
+3. Stop when completion criteria are met or max iterations reached (default: 5).
+4. Always preserve file state between iterations — never overwrite without a backup step.
+
 ## Constraints
 - Never store secrets in code files — always use `.env` or OS keychain.
 - Never bypass rate limits or ToS of third-party APIs.
