@@ -11,3 +11,5 @@ Thumbs.db
 *.db
 store/
 scratchpad/*.db
+archive/cv_inon/
+team_inbox/cv_archive/
