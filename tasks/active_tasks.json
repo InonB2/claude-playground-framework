@@ -57,8 +57,8 @@
       "title": "BuildARPro PPTX + banners — visual design pass",
       "priority": "high",
       "assigned_to": "Lena",
-      "status": "in-progress",
-      "notes": "Assets in team_inbox/BuildAR Pro/: logo (orange hexagon + hammer/wrench), social banner, 6 product images. Catchphrase: 'Stop Pausing VIDEOS, Start building BETTER' — capitalized words in accent color + larger size. Apply to PPTX slides and website banners. Lena creating: (1) HTML/CSS banner templates, (2) Python-pptx design script for PPTX slides, (3) design spec."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-02. Deliverables: scratchpad/buildarpro_banner.html (hero banner, responsive), scratchpad/buildarpro_social_banner.html (LinkedIn/Twitter 1200x628), scratchpad/buildarpro_pptx_style.py (Python-pptx script, tested on all 12 slides, output: scratchpad/BuildARPro_PitchDeck_Styled.pptx), owner_inbox/buildarpro_design_spec.md (full brand spec). Colors: #0D0D0D bg, #F97316 accent, #E5E5E5 body."
     },
     {
       "task_id": "PROMAKER-AR-008",
@@ -89,8 +89,8 @@
       "title": "WhatsApp bridge — register MCP in Claude Code settings",
       "priority": "medium",
       "assigned_to": "Mack",
-      "status": "in-progress",
-      "notes": "QR already scanned. store/whatsapp.db exists. Need to: (1) verify whatsapp-mcp Go server is cloned/runnable, (2) add MCP config to ~/.claude/settings.json (NOT just Claude Desktop config), (3) test send_message tool. Guide at scripts/whatsapp_setup_guide.md."
+      "status": "pending-owner",
+      "notes": "MACK DONE 2026-05-02. Go v1.26.2 installed. whatsapp-mcp at C:\\tools\\whatsapp-mcp (Python MCP server). mcp[cli] + httpx installed. MCP entry added to C:\\Users\\Inon Baasov\\.claude\\settings.json. whatsapp.db (7.5MB) + messages.db (16MB) populated — no QR scan needed. TO ACTIVATE: (1) open PowerShell, run: cd C:\\tools\\whatsapp-mcp\\whatsapp-bridge && .\\whatsapp-bridge.exe — keep running; (2) restart Claude Code. Summary at owner_inbox/whatsapp_mcp_status.md."
     },
     {
       "task_id": "WEBSITE-001-SEC-01",
@@ -146,8 +146,8 @@
       "title": "Mobile fixes — Trademetrics",
       "priority": "medium",
       "assigned_to": "Rex",
-      "status": "in-progress",
-      "notes": "Repo: https://github.com/InonB2/trademetrics.git. Vera found 2 Critical mobile + 3 Critical a11y failures. Priority fixes: (1) TP-MOB-02 responsive charts, (2) TP-MOB-03 responsive table/card layout, (3) TP-A11Y-05 P&L secondary indicators beyond color, (4) TP-MOB-05 resize 718KB icon, (5) TP-MOB-08 brand name alignment. Rex cloning and fixing."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-02. Commit 8e266c5 pushed to main. Fixed: TP-A11Y-05 (P&L ▲/▼ symbols), TP-MOB-08 title (partially). Already passing: TP-MOB-02 (ResponsiveContainer in use), TP-MOB-03 (dual card/table layout exists). Manual items for Inon (Base44 dashboard): TP-MOB-05 icon resize (upload to Base44 settings), TP-MOB-08 manifest name. Full summary at owner_inbox/trademetrics_mobile_fixes.md."
     },
     {
       "task_id": "PROMAKER-AR-010",

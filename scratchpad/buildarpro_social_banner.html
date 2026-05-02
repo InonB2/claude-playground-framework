@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildARPro — Social Media Banner (1200×628)</title>
+  <style>
+    /* =============================================
+       BuildARPro — LinkedIn / Twitter Social Banner
+       Canonical size: 1200×628px
+       To export: screenshot at 1x zoom in Chrome DevTools
+       or use a headless browser (Puppeteer / wkhtmltoimage)
+    ============================================= */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111111;
+      /* Center the banner on the page for preview */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ---- BANNER FRAME ---- */
+    .social-banner {
+      /* Fixed 1200×628 for LinkedIn / Twitter OG image spec */
+      width: 1200px;
+      height: 628px;
+      position: relative;
+      overflow: hidden;
+
+      /* Dark base */
+      background: #0D0D0D;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+
+      /* Orange border frame */
+      outline: 3px solid #F97316;
+      outline-offset: -3px;
+    }
+
+    /* ---- BACKGROUND LAYERS ---- */
+
+    /* Radial orange glow — center */
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(249, 115, 22, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Subtle dot grid */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(249, 115, 22, 0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    /* Left vertical orange accent bar */
+    .accent-bar-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, transparent 0%, #F97316 25%, #FF8C42 75%, transparent 100%);
+      z-index: 5;
+    }
+
+    /* Right vertical orange accent bar */
+    .accent-bar-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, transparent 0%, #F97316 25%, #FF8C42 75%, transparent 100%);
+      z-index: 5;
+    }
+
+    /* Top horizontal gradient stripe */
+    .accent-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #F97316 30%, #FF8C42 70%, transparent 100%);
+      z-index: 5;
+    }
+
+    /* Bottom horizontal gradient stripe */
+    .accent-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #F97316 30%, #FF8C42 70%, transparent 100%);
+      z-index: 5;
+    }
+
+    /* Corner marks — industrial feel */
+    .corner {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      z-index: 6;
+      border-color: #F97316;
+      border-style: solid;
+      opacity: 0.7;
+    }
+    .corner-tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+    .corner-tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+    .corner-bl { bottom: 14px; left: 14px; border-width: 0 0 2px 2px; }
+    .corner-br { bottom: 14px; right: 14px; border-width: 0 2px 2px 0; }
+
+    /* ---- CONTENT LAYER ---- */
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      text-align: center;
+      padding: 48px 100px;
+    }
+
+    /* ---- LOGO ---- */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo-img {
+      height: 64px;
+      width: auto;
+      filter: drop-shadow(0 0 16px rgba(249, 115, 22, 0.5));
+    }
+
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .wordmark-name {
+      font-size: 30px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .wordmark-name span {
+      color: #F97316;
+    }
+
+    .wordmark-sub {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(249, 115, 22, 0.75);
+    }
+
+    /* ---- DIVIDER LINE ---- */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #F97316, transparent);
+      border-radius: 1px;
+    }
+
+    /* ---- CATCHPHRASE ---- */
+    .catchphrase {
+      font-size: 42px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      max-width: 820px;
+    }
+
+    /* Power words */
+    .catchphrase .power-word {
+      color: #F97316;
+      font-size: 1.08em;
+      font-weight: 900;
+      text-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+    }
+
+    /* ---- TAGLINE ---- */
+    .tagline {
+      font-size: 18px;
+      font-weight: 400;
+      color: #737373;
+      letter-spacing: 0.02em;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    /* ---- BOTTOM LABEL ---- */
+    .bottom-label {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249, 115, 22, 0.55);
+    }
+
+    .bottom-label::before,
+    .bottom-label::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(249, 115, 22, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       BuildARPro — LinkedIn / Twitter Social Banner
+       Export at 1200×628px (screenshot at 1x)
+  ============================================= -->
+  <div class="social-banner" role="img" aria-label="BuildARPro social media banner">
+
+    <!-- Background decoration layers -->
+    <div class="bg-glow" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- Orange frame elements -->
+    <div class="accent-bar-left" aria-hidden="true"></div>
+    <div class="accent-bar-right" aria-hidden="true"></div>
+    <div class="accent-top" aria-hidden="true"></div>
+    <div class="accent-bottom" aria-hidden="true"></div>
+
+    <!-- Industrial corner marks -->
+    <div class="corner corner-tl" aria-hidden="true"></div>
+    <div class="corner corner-tr" aria-hidden="true"></div>
+    <div class="corner corner-bl" aria-hidden="true"></div>
+    <div class="corner corner-br" aria-hidden="true"></div>
+
+    <!-- Main content -->
+    <div class="content">
+
+      <!-- Logo + wordmark -->
+      <div class="logo-wrap">
+        <img
+          class="logo-img"
+          src="../../team_inbox/BuildAR Pro/BuildAR PRO - logo image.png"
+          alt="BuildARPro logo"
+        />
+        <div class="logo-wordmark">
+          <div class="wordmark-name">BuildAR<span>Pro</span></div>
+          <div class="wordmark-sub">AR Maintenance Platform</div>
+        </div>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- Catchphrase with power words -->
+      <p class="catchphrase">
+        Stop Pausing <span class="power-word">VIDEOS</span>,<br>
+        Start building <span class="power-word">BETTER</span>
+      </p>
+
+      <!-- Supporting tagline -->
+      <p class="tagline">
+        AR-powered step-by-step repair guides for industrial maintenance teams
+      </p>
+
+    </div>
+
+    <!-- Bottom label -->
+    <div class="bottom-label" aria-hidden="true">
+      <span></span>
+      buildarpro.com
+      <span></span>
+    </div>
+
+  </div>
+
+</body>
+</html>
