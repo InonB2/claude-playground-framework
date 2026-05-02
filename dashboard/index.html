@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andy // Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0A0A0B;
+      --surface:      #131316;
+      --surface2:     #1C1C21;
+      --surface3:     #24242B;
+      --border:       #2C2C35;
+      --border-hover: #3E3E4D;
+      --text:         #E4E4EF;
+      --text-secondary: #9494A8;
+      --muted:        #6B6B7E;
+      --orange:       #F97316;
+      --orange-dim:   rgba(249,115,22,0.15);
+      --cyan:         #22D3EE;
+      --cyan-dim:     rgba(34,211,238,0.12);
+      --yellow:       #FACC15;
+      --yellow-dim:   rgba(250,204,21,0.12);
+      --red:          #F87171;
+      --red-bright:   #EF4444;
+      --red-dim:      rgba(239,68,68,0.15);
+      --green:        #34D399;
+      --green-dim:    rgba(52,211,153,0.12);
+      --grey:         #6B7280;
+      --grey-dim:     rgba(107,114,128,0.15);
+      --purple:       #A78BFA;
+
+      /* Priority border colors */
+      --prio-critical: #EF4444;
+      --prio-high:     #F97316;
+      --prio-medium:   #FACC15;
+      --prio-low:      #6B7280;
+      --prio-unknown:  #3E3E4D;
+
+      /* Column accent */
+      --col-needs-you:  #F97316;
+      --col-inprogress: #22D3EE;
+      --col-blocked:    #6B7280;
+      --col-done:       #34D399;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ─────────────────── TOP BAR ─────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10, 10, 11, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topbar-logo-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .topbar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .topbar-title span { color: var(--text-secondary); font-weight: 400; }
+
+    .topbar-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    .topbar-spacer { flex: 1; }
+
+    .needs-you-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange-dim);
+      border: 1px solid rgba(249,115,22,0.4);
+      border-radius: 8px;
+      padding: 5px 12px 5px 10px;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--orange);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .needs-you-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .needs-you-badge .count {
+      background: var(--orange);
+      color: #000;
+      border-radius: 12px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .last-updated {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─────────────────── FILTER BAR ─────────────────── */
+    .filterbar {
+      position: sticky;
+      top: 58px;
+      z-index: 190;
+      background: rgba(10, 10, 11, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      background: var(--surface3);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--surface3);
+      border-color: var(--border-hover);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .filter-btn.active[data-prio="high"],
+    .filter-btn.active[data-prio="critical"] {
+      border-color: rgba(239,68,68,0.5);
+      color: var(--red);
+      background: var(--red-dim);
+    }
+
+    .filter-sep {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+      margin: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .filter-spacer { flex: 1; }
+
+    .total-count {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─────────────────── BOARD ─────────────────── */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding: 20px 24px 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 1100px) {
+      .board { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .board { grid-template-columns: 1fr; padding: 12px; }
+      .topbar, .filterbar { padding: 0 12px; }
+      .filterbar { gap: 4px; overflow-x: auto; }
+    }
+
+    /* ─────────────────── COLUMN ─────────────────── */
+    .column {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 120px;
+    }
+
+    .col-header {
+      padding: 13px 14px 11px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .col-accent {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .col-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .col-count-badge {
+      margin-left: auto;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 22px;
+      text-align: center;
+    }
+
+    /* column-specific accent */
+    .col-needs-you  { border-top: 2px solid var(--col-needs-you); }
+    .col-needs-you  .col-accent { background: var(--col-needs-you); box-shadow: 0 0 8px rgba(249,115,22,0.6); }
+    .col-needs-you  .col-title  { color: var(--col-needs-you); }
+    .col-needs-you  .col-count-badge { background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.3); color: var(--orange); }
+
+    .col-inprogress { border-top: 2px solid var(--col-inprogress); }
+    .col-inprogress .col-accent { background: var(--col-inprogress); box-shadow: 0 0 8px rgba(34,211,238,0.4); }
+    .col-inprogress .col-title  { color: var(--col-inprogress); }
+    .col-inprogress .col-count-badge { background: var(--cyan-dim); border: 1px solid rgba(34,211,238,0.25); color: var(--cyan); }
+
+    .col-blocked    { border-top: 2px solid var(--col-blocked); }
+    .col-blocked    .col-accent { background: var(--col-blocked); }
+    .col-blocked    .col-title  { color: var(--col-blocked); }
+    .col-blocked    .col-count-badge { background: var(--grey-dim); border: 1px solid rgba(107,114,128,0.3); color: var(--grey); }
+
+    .col-done       { border-top: 2px solid var(--col-done); }
+    .col-done       .col-accent { background: var(--col-done); box-shadow: 0 0 8px rgba(52,211,153,0.4); }
+    .col-done       .col-title  { color: var(--col-done); }
+    .col-done       .col-count-badge { background: var(--green-dim); border: 1px solid rgba(52,211,153,0.25); color: var(--green); }
+
+    .cards {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .empty-state {
+      padding: 28px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ─────────────────── CARD ─────────────────── */
+    .card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--prio-unknown);
+      border-radius: 8px;
+      padding: 11px 12px 11px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 0 1px var(--border-hover);
+      border-color: var(--border-hover);
+      z-index: 2;
+    }
+
+    .card:active { transform: translateY(0); }
+
+    /* Priority left-border colors */
+    .card[data-priority="critical"] { border-left-color: var(--prio-critical); }
+    .card[data-priority="high"]     { border-left-color: var(--prio-high); }
+    .card[data-priority="medium"]   { border-left-color: var(--prio-medium); }
+    .card[data-priority="low"]      { border-left-color: var(--prio-low); }
+    .card[data-priority="unknown"]  { border-left-color: var(--prio-unknown); }
+
+    /* Hover glow per priority */
+    .card[data-priority="critical"]:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(239,68,68,0.4); }
+    .card[data-priority="high"]:hover     { box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(249,115,22,0.4); }
+    .card[data-priority="medium"]:hover   { box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(250,204,21,0.3); }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .card-title-block { flex: 1; min-width: 0; }
+
+    .card-id {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    /* Agent avatar */
+    .agent-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 1px;
+      border: 1.5px solid rgba(255,255,255,0.08);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .agent-name-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .priority-chip {
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .priority-chip.critical { background: rgba(239,68,68,0.2);  color: #f87171; }
+    .priority-chip.high     { background: rgba(249,115,22,0.15); color: #fb923c; }
+    .priority-chip.medium   { background: rgba(250,204,21,0.12); color: #fde047; }
+    .priority-chip.low      { background: rgba(107,114,128,0.15); color: #9ca3af; }
+    .priority-chip.unknown  { background: rgba(107,114,128,0.12); color: #6b7280; }
+
+    .card-note {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    .card-note.blocked-note {
+      color: rgba(249,115,22,0.9);
+      border-top-color: rgba(249,115,22,0.15);
+    }
+
+    .card-note.blocked-note::before {
+      content: 'BLOCKED · ';
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ─────────────────── MODAL ─────────────────── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      animation: fadeIn 0.15s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .modal {
+      background: var(--surface2);
+      border: 1px solid var(--border-hover);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 540px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+      animation: slideUp 0.18s ease;
+    }
+
+    .modal-header {
+      padding: 20px 20px 0;
+      position: relative;
+    }
+
+    .modal-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal-task-id {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .modal-status-chip {
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface3);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      line-height: 1;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      padding-right: 36px;
+      margin-bottom: 18px;
+    }
+
+    .modal-priority-bar {
+      height: 3px;
+      border-radius: 2px;
+      width: 100%;
+      margin: 0 -20px;
+      width: calc(100% + 40px);
+    }
+
+    .modal-priority-bar.critical, .modal-priority-bar.high { background: linear-gradient(90deg, var(--prio-critical), transparent); }
+    .modal-priority-bar.high { background: linear-gradient(90deg, var(--prio-high), transparent); }
+    .modal-priority-bar.medium { background: linear-gradient(90deg, var(--prio-medium), transparent); }
+    .modal-priority-bar.low { background: linear-gradient(90deg, var(--prio-low), transparent); }
+    .modal-priority-bar.unknown { background: var(--border); }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .modal-section-value {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .modal-section-value.muted { color: var(--text-secondary); }
+
+    .modal-agent-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-agent-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.1);
+    }
+
+    .modal-agent-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .modal-blocker-box {
+      background: rgba(249,115,22,0.08);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .modal-blocker-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .modal-blocker-text {
+      font-size: 12px;
+      color: rgba(249,115,22,0.85);
+      line-height: 1.55;
+    }
+
+    .modal-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 -20px;
+    }
+
+    /* ─────────────────── Loading / Error ─────────────────── */
+    #loading, #error-msg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60vh;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    #error-msg {
+      color: var(--red);
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+      padding: 24px;
+    }
+
+    #error-msg small {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    #error-msg code {
+      background: var(--surface3);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ─────────────────── Hidden filter ─────────────────── */
+    .card.hidden { display: none; }
+
+    /* Scroll-bar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <div class="topbar-logo-icon">A</div>
+    <div class="topbar-title">Andy <span>// Command Center</span></div>
+  </div>
+  <div class="topbar-divider"></div>
+  <div class="topbar-spacer"></div>
+  <div class="needs-you-badge" id="needs-you-counter" style="display:none">
+    <div class="pulse-dot"></div>
+    <span>Needs You</span>
+    <span class="count" id="needs-you-count">0</span>
+  </div>
+  <div class="last-updated" id="last-updated"></div>
+</header>
+
+<!-- FILTER BAR -->
+<div class="filterbar" id="filterbar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-prio="high" data-filter="priority" data-value="high,critical">High Priority</button>
+  <div class="filter-sep"></div>
+  <div id="agent-filters"></div>
+  <div class="filter-spacer"></div>
+  <span class="total-count" id="total-count"></span>
+</div>
+
+<div id="loading">Loading tasks…</div>
+<div id="error-msg" style="display:none"></div>
+
+<!-- BOARD -->
+<div class="board" id="board" style="display:none">
+  <div class="column col-needs-you">
+    <div class="col-header">
+      <div class="col-accent"></div>
+      <span class="col-title">Needs You</span>
+      <span class="col-count-badge" id="count-needs-you">0</span>
+    </div>
+    <div class="cards" id="cards-needs-you"></div>
+  </div>
+  <div class="column col-inprogress">
+    <div class="col-header">
+      <div class="col-accent"></div>
+      <span class="col-title">In Progress</span>
+      <span class="col-count-badge" id="count-inprogress">0</span>
+    </div>
+    <div class="cards" id="cards-inprogress"></div>
+  </div>
+  <div class="column col-blocked">
+    <div class="col-header">
+      <div class="col-accent"></div>
+      <span class="col-title">Blocked</span>
+      <span class="col-count-badge" id="count-blocked">0</span>
+    </div>
+    <div class="cards" id="cards-blocked"></div>
+  </div>
+  <div class="column col-done">
+    <div class="col-header">
+      <div class="col-accent"></div>
+      <span class="col-title">Done</span>
+      <span class="col-count-badge" id="count-done">0</span>
+    </div>
+    <div class="cards" id="cards-done"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop" style="display:none" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-panel" role="document">
+    <div class="modal-header">
+      <div class="modal-meta-row" id="modal-meta-row"></div>
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-priority-bar" id="modal-priority-bar"></div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  /* ─────────────── Agent color palette (consistent per name) ─────────────── */
+  const AGENT_COLORS = {
+    andy:   '#F97316', tomy:   '#22D3EE', yoni:   '#A78BFA',
+    jasmin: '#F472B6', maya:   '#34D399', vera:   '#FB923C',
+    mack:   '#60A5FA', cole:   '#FACC15', lena:   '#E879F9',
+    sage:   '#4ADE80', silas:  '#F87171', rex:    '#38BDF8',
+    pat:    '#C084FC', nolan:  '#FCD34D', owner:  '#6B7280',
+  };
+
+  function agentColor(name) {
+    if (!name) return '#6B7280';
+    const key = name.toLowerCase().split(/[\s_]/)[0];
+    return AGENT_COLORS[key] || '#' + (
+      [...name.toLowerCase()].reduce((h, c) => ((h * 31 + c.charCodeAt(0)) & 0xFFFFFF), 0xA0A0A0)
+        .toString(16).padStart(6, '0')
+    );
+  }
+
+  function agentInitial(name) {
+    if (!name || name === '—') return '?';
+    return name.trim()[0].toUpperCase();
+  }
+
+  function avatarHtml(name, size = 26, cls = 'agent-avatar') {
+    const color = agentColor(name);
+    const initial = agentInitial(name);
+    return `<div class="${cls}" style="background:${color};border-color:${color}33">${initial}</div>`;
+  }
+
+  /* ─────────────── Text helpers ─────────────── */
+  function esc(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function truncate(text, max = 110) {
+    if (!text) return '';
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    const lastSpace = cut.lastIndexOf(' ');
+    return (lastSpace > 60 ? cut.slice(0, lastSpace) : cut) + '…';
+  }
+
+  function firstSentence(text) {
+    if (!text) return '';
+    const match = text.match(/^(.{10,120}?[.!?])\s/);
+    return match ? match[1] : truncate(text, 110);
+  }
+
+  function isOwnerBlocked(task) {
+    return task.blocked_by && /owner/i.test(task.blocked_by);
+  }
+
+  function classify(task) {
+    const s = (task.status || '').toLowerCase();
+    if (s === 'pending-owner') return 'needs-you';
+    if (s === 'blocked' && isOwnerBlocked(task)) return 'needs-you';
+    if (s === 'in-progress') return 'inprogress';
+    if (s === 'blocked') return 'blocked';
+    if (s === 'done' || s === 'cancelled') return 'done';
+    if (s === 'partial' || s === 'pending') return 'inprogress';
+    return 'inprogress';
+  }
+
+  function statusChipHtml(col) {
+    const map = {
+      'needs-you':  { label: 'Needs You',   bg: 'var(--orange-dim)', color: 'var(--orange)', border: 'rgba(249,115,22,0.35)' },
+      inprogress:   { label: 'In Progress',  bg: 'var(--cyan-dim)',   color: 'var(--cyan)',   border: 'rgba(34,211,238,0.3)' },
+      blocked:      { label: 'Blocked',      bg: 'var(--grey-dim)',   color: 'var(--grey)',   border: 'rgba(107,114,128,0.3)' },
+      done:         { label: 'Done',         bg: 'var(--green-dim)',  color: 'var(--green)',  border: 'rgba(52,211,153,0.3)' },
+    };
+    const s = map[col] || map['inprogress'];
+    return `<span class="modal-status-chip" style="background:${s.bg};color:${s.color};border:1px solid ${s.border}">${s.label}</span>`;
+  }
+
+  /* ─────────────── Card builder ─────────────── */
+  function makeCard(task, col) {
+    const prio    = (task.priority || 'unknown').toLowerCase();
+    const agent   = task.assigned_to || '—';
+    const note    = firstSentence(task.notes || '');
+    const blocker = task.blocked_by ? firstSentence(task.blocked_by) : '';
+    const taskId  = task.task_id || '';
+
+    const noteHtml = blocker
+      ? `<div class="card-note blocked-note">${esc(blocker)}</div>`
+      : (note ? `<div class="card-note">${esc(note)}</div>` : '');
+
+    return `<div class="card" data-priority="${prio}" data-agent="${esc(agent.toLowerCase())}" data-col="${col}"
+               data-task-id="${esc(taskId)}"
+               tabindex="0" role="button" aria-label="Open task ${esc(taskId)}">
+      <div class="card-top">
+        <div class="card-title-block">
+          <div class="card-id">${esc(taskId)}</div>
+          <div class="card-title">${esc(task.title)}</div>
+        </div>
+        ${avatarHtml(agent)}
+      </div>
+      <div class="card-footer">
+        <span class="agent-name-badge">${esc(agent)}</span>
+        <span class="priority-chip ${prio}">${esc(prio)}</span>
+      </div>
+      ${noteHtml}
+    </div>`;
+  }
+
+  /* ─────────────── Render board ─────────────── */
+  let ALL_TASKS = [];
+
+  function render(data) {
+    ALL_TASKS = data.tasks || [];
+    const buckets = { 'needs-you': [], inprogress: [], blocked: [], done: [] };
+
+    ALL_TASKS.forEach(task => buckets[classify(task)].push(task));
+
+    const prioOrder = { critical:0, high:1, medium:2, low:3, unknown:4 };
+    Object.values(buckets).forEach(arr =>
+      arr.sort((a,b) =>
+        (prioOrder[(a.priority||'unknown').toLowerCase()] || 4) -
+        (prioOrder[(b.priority||'unknown').toLowerCase()] || 4)
+      )
+    );
+
+    ['needs-you','inprogress','blocked','done'].forEach(col => {
+      const container = document.getElementById('cards-' + col);
+      const tasks = buckets[col];
+      document.getElementById('count-' + col).textContent = tasks.length;
+      container.innerHTML = tasks.length === 0
+        ? '<div class="empty-state">Nothing here</div>'
+        : tasks.map(t => makeCard(t, col)).join('');
+    });
+
+    // Top bar needs-you counter
+    const nyCount = buckets['needs-you'].length;
+    const counter = document.getElementById('needs-you-counter');
+    if (nyCount > 0) {
+      counter.style.display = 'flex';
+      document.getElementById('needs-you-count').textContent = nyCount;
+    } else {
+      counter.style.display = 'none';
+    }
+
+    // Last updated
+    document.getElementById('last-updated').textContent =
+      data.last_updated ? 'Updated ' + data.last_updated : '';
+
+    // Total count
+    document.getElementById('total-count').textContent =
+      ALL_TASKS.length + ' task' + (ALL_TASKS.length !== 1 ? 's' : '');
+
+    // Build agent filter buttons
+    buildAgentFilters();
+
+    // Attach card listeners
+    attachCardListeners();
+  }
+
+  /* ─────────────── Agent filter builder ─────────────── */
+  function buildAgentFilters() {
+    const agents = [...new Set(
+      ALL_TASKS.map(t => t.assigned_to).filter(Boolean).sort()
+    )];
+    const container = document.getElementById('agent-filters');
+    container.innerHTML = agents.map(a =>
+      `<button class="filter-btn" data-filter="agent" data-value="${esc(a.toLowerCase())}"
+         style="display:inline-flex;align-items:center;gap:6px">
+        ${avatarHtml(a, 14, 'agent-avatar').replace('width: 26px', 'width:16px;height:16px;font-size:9px')}
+        ${esc(a)}
+       </button>`
+    ).join('');
+    // Re-attach filter listeners after rebuild
+    attachFilterListeners();
+  }
+
+  /* ─────────────── Filter logic ─────────────── */
+  let activeFilter = { type: 'all', value: null };
+
+  function attachFilterListeners() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = {
+          type:  btn.dataset.filter,
+          value: btn.dataset.value || null
+        };
+        applyFilter();
+      });
+    });
+  }
+
+  function applyFilter() {
+    const cards = document.querySelectorAll('.card');
+    let visible = 0;
+    cards.forEach(card => {
+      let show = true;
+      if (activeFilter.type === 'priority') {
+        const vals = (activeFilter.value || '').split(',');
+        show = vals.includes(card.dataset.priority);
+      } else if (activeFilter.type === 'agent') {
+        show = card.dataset.agent === activeFilter.value;
+      }
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    // Update column counts to reflect visible cards
+    ['needs-you','inprogress','blocked','done'].forEach(col => {
+      const visCount = document.querySelectorAll(`#cards-${col} .card:not(.hidden)`).length;
+      document.getElementById('count-' + col).textContent = visCount;
+    });
+    document.getElementById('total-count').textContent =
+      visible + ' task' + (visible !== 1 ? 's' : '') +
+      (activeFilter.type !== 'all' ? ' (filtered)' : '');
+  }
+
+  /* ─────────────── Modal ─────────────── */
+  function openModal(taskId) {
+    const task = ALL_TASKS.find(t => t.task_id === taskId);
+    if (!task) return;
+
+    const col  = classify(task);
+    const prio = (task.priority || 'unknown').toLowerCase();
+    const agent = task.assigned_to || '—';
+
+    // Meta row
+    document.getElementById('modal-meta-row').innerHTML =
+      `<span class="modal-task-id">${esc(task.task_id)}</span>` +
+      statusChipHtml(col);
+
+    // Title
+    document.getElementById('modal-title').textContent = task.title || '(no title)';
+
+    // Priority bar
+    const bar = document.getElementById('modal-priority-bar');
+    bar.className = 'modal-priority-bar ' + prio;
+
+    // Body sections
+    const sections = [];
+
+    // Agent section
+    sections.push(`
+      <div class="modal-section">
+        <div class="modal-section-label">Assigned Agent</div>
+        <div class="modal-agent-row">
+          ${avatarHtml(agent, 32, 'modal-agent-avatar')}
+          <div class="modal-agent-name">${esc(agent)}</div>
+        </div>
+      </div>`);
+
+    // Priority
+    sections.push(`
+      <div class="modal-section">
+        <div class="modal-section-label">Priority</div>
+        <div class="modal-section-value">
+          <span class="priority-chip ${prio}" style="font-size:12px;padding:3px 9px">${esc(prio)}</span>
+        </div>
+      </div>`);
+
+    sections.push('<div class="modal-divider"></div>');
+
+    // Notes / description
+    if (task.notes) {
+      sections.push(`
+        <div class="modal-section">
+          <div class="modal-section-label">Notes</div>
+          <div class="modal-section-value muted" style="white-space:pre-wrap">${esc(task.notes)}</div>
+        </div>`);
+    }
+
+    // Blocker
+    if (task.blocked_by) {
+      sections.push(`
+        <div class="modal-blocker-box">
+          <div class="modal-blocker-label">Blocker</div>
+          <div class="modal-blocker-text">${esc(task.blocked_by)}</div>
+        </div>`);
+    }
+
+    document.getElementById('modal-body').innerHTML = sections.join('');
+    document.getElementById('modal-backdrop').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-backdrop').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+
+  document.getElementById('modal-backdrop').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-backdrop')) closeModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ─────────────── Card click listeners ─────────────── */
+  function attachCardListeners() {
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.taskId));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(card.dataset.taskId);
+        }
+      });
+    });
+  }
+
+  /* ─────────────── Fetch + auto-refresh ─────────────── */
+  async function loadTasks() {
+    try {
+      const res = await fetch('../tasks/active_tasks.json?_=' + Date.now());
+      if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+      const data = await res.json();
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('board').style.display   = 'grid';
+      render(data);
+    } catch (err) {
+      document.getElementById('loading').style.display = 'none';
+      const errEl = document.getElementById('error-msg');
+      errEl.style.display = 'flex';
+      errEl.innerHTML = `
+        <span>Could not load active_tasks.json</span>
+        <small>${esc(err.message)}</small>
+        <small>Open via a local server — e.g. <code>npx serve .</code> in the Claude Playground root — or use VS Code Live Server. Direct <code>file://</code> fetch is blocked by browser CORS policy.</small>`;
+    }
+  }
+
+  // Auto-refresh every 30 s (without full page reload)
+  loadTasks();
+  setInterval(loadTasks, 30000);
+</script>
+</body>
+</html>

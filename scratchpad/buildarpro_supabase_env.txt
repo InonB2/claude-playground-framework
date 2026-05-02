@@ -1,0 +1,13 @@
+# BuildARPro — Supabase Credentials
+# Generated: 2026-05-02
+# KEEP THIS FILE IN SCRATCHPAD ONLY — do not commit or share
+
+VITE_SUPABASE_URL=https://meonilvpqerbemeikrfk.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lb25pbHZwcWVyYmVtZWlrcmZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NDUwNjksImV4cCI6MjA5MzMyMTA2OX0.OGrAwBhGNKx4JR0-DDu1FVcSA1JJVJ4dB1LJpZC_2DU
+
+# Modern publishable key (recommended for new apps):
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_JGAZp9Rdyx6n8DjYj3Y8pg_Nz4U8HLW
+
+# Project ID: meonilvpqerbemeikrfk
+# Region: eu-west-1
+# Organization: Bazland (zjcejcjucyjnvtqwkodz)

@@ -1,0 +1,101 @@
+{
+  "name": "Inon Baasov",
+  "title": "Senior Product Manager — AI & Enterprise | B.Sc. Engineering | Executive MBA | GenAI Product Specialist",
+  "contact": {
+    "email": "inonbaasov@gmail.com",
+    "phone": "+972-54-444-5856",
+    "linkedin": "https://linkedin.com/in/inonbaasov",
+    "linkedin_display": "linkedin.com/in/inonbaasov",
+    "location": "Tel Aviv, Israel"
+  },
+  "summary": "Senior Product Manager with 10+ years of end-to-end product ownership across AI, SaaS, and enterprise platforms. Co-Founder & CPO of TouchE — an AI-powered interactive video platform that raised $2.5M, achieved 99.99% uptime at millions of concurrent users, and delivered 38% team efficiency gains through Agile transformation. Currently advising enterprise AI startups (AiRakoon, Medicrowd) on product strategy, GTM, and adoption frameworks. Proven in bridging the gap between AI/ML research and user-facing product to elevate enterprise efficiency at scale.",
+  "key_skills_inline": "AI Product Lifecycle | Enterprise SaaS (B2B) | LLM / GenAI Integration | Product-Led Adoption | Agile / Scrum | Stakeholder Management | Data-Driven Roadmaps | Cross-Functional Leadership | KPI Definition",
+  "experience": [
+    {
+      "company": "Inon Baasov Ltd — Product Strategy Consulting",
+      "role": "Senior Product Strategy Consultant",
+      "dates": "2024 – Present",
+      "bullets": [
+        "Advising AiRakoon (enterprise AI platform) on product strategy, model selection matrix, API usage patterns, pricing (per-token + seat licensing), and 12-month roadmap — enabling closure of first enterprise pilot.",
+        "Defined product requirements and adoption KPIs for Medicrowd (AI-enabled MedTech) and Smash+ (consumer AI fitness), focusing on D7/D30 retention and usage-based growth loops.",
+        "Built AI feature evaluation frameworks, data governance models, and GTM playbooks for 4 startups across GenAI, FinTech, and HealthTech domains."
+      ]
+    },
+    {
+      "company": "TouchE TV — AI Interactive Video Platform (SaaS / PaaS)",
+      "role": "Co-Founder & Chief Product Officer",
+      "dates": "2018 – 2024",
+      "bullets": [
+        "Led product from 0→scale: defined vision, hired and managed 4 cross-functional teams, owned $2.5M budget — achieving 99.99% uptime at millions of concurrent users.",
+        "Drove 38% team efficiency improvement via full Agile / Scrum transformation across R&D, QA, and Product.",
+        "Integrated AI / ML layer across Web, Mobile, and Smart TV SDKs; shipped user-facing features with 24% engagement uplift and 22% quarterly adoption growth.",
+        "Closed enterprise partnerships with HOT, Ozon, Eros Now, Paramount, JVP, and Lion's Gate — managing complex multi-stakeholder product rollouts across 4 countries.",
+        "Built and shipped: Creator CMS, Viewer SDK, AI Recommendation Engine, Analytics Dashboard, Monetization Engine."
+      ]
+    },
+    {
+      "company": "Arena Plus Financial Services — FinTech Platform (B2B)",
+      "role": "Product Manager → Senior Product Manager (Promoted)",
+      "dates": "2013 – 2018",
+      "bullets": [
+        "Owned product roadmap for enterprise FinTech platform: delivered +22% user adoption, +15% revenue growth, −20% time-to-market via structured Agile delivery.",
+        "Led cross-functional squads across 3 geographies; managed backlog, sprint ceremonies, and stakeholder reporting to C-suite."
+      ]
+    },
+    {
+      "company": "Previous Experience",
+      "role": "",
+      "dates": "",
+      "bullets": [
+        "Regulatory Affairs Consultant, Blau Pharmaceuticals (2009–2011)",
+        "QA Manager, Pharmabest & Philtel (2011–2013)"
+      ]
+    }
+  ],
+  "portfolio": [
+    { "label": "Personal Portfolio & Case Studies", "url": "https://inonbaasov-website.base44.app", "display": "inonbaasov-website.base44.app" },
+    { "label": "Family Flow (Live App)", "url": "https://family-flow-he.lovable.app/", "display": "family-flow-he.lovable.app" },
+    { "label": "TradePulse Journal Pro (Live App)", "url": "https://trade-pulse-journal-pro.base44.app", "display": "trade-pulse-journal-pro.base44.app" },
+    { "label": "Consulting clients", "url": null, "display": "AiRakoon · Smash+ · Medicrowd · Yazamos" }
+  ],
+  "education": [
+    {
+      "institution": "Technion, Israel Institute of Technology",
+      "degree": "Executive MBA, Entrepreneurship & High-Tech Management",
+      "year": "2018"
+    },
+    {
+      "institution": "Technion, Israel Institute of Technology",
+      "degree": "B.Sc., Biotechnology & Food Engineering",
+      "year": "2008"
+    },
+    {
+      "institution": "McGill University, Montreal, Canada",
+      "degree": "Chemical Engineering Studies",
+      "year": "2005"
+    }
+  ],
+  "skills": [
+    "AI / GenAI / LLM Product",
+    "Enterprise SaaS (B2B)",
+    "Product Lifecycle Management",
+    "0→1 Product Building",
+    "Agile / Scrum",
+    "Roadmap Planning",
+    "Stakeholder Management",
+    "Cross-Functional Leadership",
+    "GTM Strategy",
+    "KPI & OKR Definition",
+    "Data-Driven Decision Making",
+    "Product-Led Growth",
+    "API & Platform Products",
+    "Enterprise Partnerships",
+    "Mobile / Web / SDK",
+    "Data Governance"
+  ],
+  "languages": [
+    { "language": "Hebrew", "level": "Native" },
+    { "language": "English", "level": "Fluent" },
+    { "language": "Russian", "level": "Native" }
+  ]
+}

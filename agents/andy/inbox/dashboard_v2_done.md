@@ -1,0 +1,2 @@
+Dashboard v2 delivered — `dashboard/index.html` overwritten with Jira-inspired redesign: clickable cards with modal detail view, agent avatar badges, priority left-border system, filter bar (All / High Priority / per-agent), column count badges, hover lift+glow effects, and 30s JS auto-refresh (no more meta-reload).
+All dark theme, 4 columns, and CDN-only constraints preserved — no build step required.

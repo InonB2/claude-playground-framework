@@ -1,5 +1,7 @@
 Review THIS conversation — from the first message to now. Do NOT read session logs or historical files. Output a handoff summary for this session only in the chat. Aim for under 50 lines; hard cap 150 lines.
 
+After outputting the handoff to chat, **also overwrite `session_logs/QUICK_STATUS.md`** with an updated version of the file using the format below — this ensures /start has accurate data next session.
+
 ---
 # Session Handoff — $CURRENT_DATE
 
@@ -19,8 +21,7 @@ Review THIS conversation — from the first message to now. Do NOT read session 
 ## Next Session: Pick Up Here
 1. [First action — specific: name the file, agent, or command]
 2. [Second action]
-3. [Third action]
-[Continue in priority order, minimum 3 items]
+3. [Continue in priority order, minimum 3 items]
 
 ## New Owner Blockers
 - [Only blockers discovered or clarified this session — skip ones from before]

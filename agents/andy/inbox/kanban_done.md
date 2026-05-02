@@ -1,0 +1,3 @@
+Built: `dashboard/index.html` — single-file dark Kanban board with 4 columns (Needs You / In Progress / Blocked / Done), priority dots, agent badges, auto-refresh every 30s, mobile-responsive; reads from `tasks/active_tasks.json` via relative fetch.
+Open: run `npx serve "D:\Claude Playground"` then visit `http://localhost:3000/dashboard/` — OR use VS Code Live Server pointed at the repo root (not the dashboard folder).
+Gotcha: browsers block `fetch()` on `file://` URLs (CORS); the dashboard must be served over HTTP — a one-liner `npx serve .` from the Claude Playground root is all that's needed.

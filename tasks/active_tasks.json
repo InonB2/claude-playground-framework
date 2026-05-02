@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-02",
+  "last_updated": "2026-05-03",
   "tasks": [
     {
       "task_id": "ELBIT-APPLY-001",
@@ -40,17 +40,17 @@
       "priority": "high",
       "assigned_to": "Mack",
       "status": "blocked",
-      "blocked_by": "PROMAKER-AR-009 — Supabase project must be restored first",
-      "notes": "API key retrieved from team_inbox. Once Supabase is restored: run supabase secrets set LLAMAPARSE_API_KEY=<key>, then Yoni wires edge function."
+      "blocked_by": null,
+      "notes": "UNBLOCKED 2026-05-03. Supabase project meonilvpqerbemeikrfk is live. LlamaParse API key in team_inbox/GH and LlamaParse access.docx. Next: Mack runs supabase secrets set LLAMAPARSE_API_KEY=<key> on project meonilvpqerbemeikrfk, then Yoni wires edge function. Key must not be logged in any tracked file."
     },
     {
       "task_id": "PROMAKER-AR-006",
       "title": "BuildARPro images — generate 6 AR concept visuals",
       "priority": "medium",
       "assigned_to": "Owner",
-      "status": "blocked",
-      "blocked_by": "Requires Midjourney/DALL-E/SD — Andy cannot generate images",
-      "notes": "Prompts ready at owner_inbox/promaker_ar_images_brief.md. Owner runs prompts through image generator of choice."
+      "status": "done",
+      "blocked_by": null,
+      "notes": "COMPLETED 2026-05-02. Owner generated all assets and dropped in team_inbox/BuildAR Pro/: 6 AR concept images (image 1-6.png), BuildARPro logo (BuildARPro - logo image.png), social banner (BuildARPro - social image.png)."
     },
     {
       "task_id": "PROMAKER-AR-007",
@@ -73,8 +73,8 @@
       "title": "Restore Supabase 'Pro maker AR' project",
       "priority": "high",
       "assigned_to": "Owner",
-      "status": "pending",
-      "notes": "Scheduled for 2026-05-03. Project paused 90+ days — must use 'Restore backup to new Supabase project' option in dashboard. After restore: update pro-maker-ar/.env with new VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY. Then unblocks PROMAKER-AR-005."
+      "status": "cancelled",
+      "notes": "CANCELLED 2026-05-02. Screenshot confirmed: project paused 90+ days, dashboard restore no longer available. Decision: use existing Lovable Cloud Supabase project (ref: yfpwajzpwswjflzwcnff, eu-west-1) as the BuildARPro database. PROMAKER-AR-010 updated accordingly."
     },
     {
       "task_id": "INFRA-001",
@@ -86,11 +86,12 @@
     },
     {
       "task_id": "WHATSAPP-001",
-      "title": "WhatsApp bridge — register MCP in Claude Code settings",
-      "priority": "medium",
+      "title": "WhatsApp MCP — debug and fix messaging",
+      "priority": "high",
       "assigned_to": "Mack",
-      "status": "pending-owner",
-      "notes": "MACK DONE 2026-05-02. Go v1.26.2 installed. whatsapp-mcp at C:\\tools\\whatsapp-mcp (Python MCP server). mcp[cli] + httpx installed. MCP entry added to C:\\Users\\Inon Baasov\\.claude\\settings.json. whatsapp.db (7.5MB) + messages.db (16MB) populated — no QR scan needed. TO ACTIVATE: (1) open PowerShell, run: cd C:\\tools\\whatsapp-mcp\\whatsapp-bridge && .\\whatsapp-bridge.exe — keep running; (2) restart Claude Code. Summary at owner_inbox/whatsapp_mcp_status.md."
+      "status": "blocked",
+      "blocked_by": "Unknown — Inon completed all setup steps (bridge running, Claude Code restarted 3-4 hrs ago) but WhatsApp tools not loading and no messages sending",
+      "notes": "Setup complete per Inon: bridge running, Claude Code restarted, QR not needed. Still failing. Mack to debug: check settings.json MCP entry, verify bridge port, check if whatsapp-mcp Python server starts correctly, test tool loading. May need fresh QR scan or sessions.db reset."
     },
     {
       "task_id": "WEBSITE-001-SEC-01",
@@ -114,8 +115,9 @@
       "title": "Full Awwwards-level visual redesign",
       "priority": "high",
       "assigned_to": "Rex",
-      "status": "pending",
-      "notes": "Pending Lena design brief. Dark #080E1A, cyan #00B4D8, Syne+Inter fonts, GSAP reveals. Hero copy and icons now done — redesign can start when Lena delivers visual spec."
+      "status": "blocked",
+      "blocked_by": "Wrong codebase — Rex applied to website-product-portfolio but live site is inon-baasov-website repo (inon-baasov-website.base44.app). Rex must reapply changes to correct repo.",
+      "notes": "Rex commit da1659e exists on sites/website-product-portfolio (wrong target). Live website = InonB2/inon-baasov-website → inon-baasov-website.base44.app. Next: Rex clones/locates correct repo, reapplies same Awwwards changes there, then Inon deploys via Base44 dashboard."
     },
     {
       "task_id": "WEBSITE-001-UX-04",
@@ -154,16 +156,16 @@
       "title": "BuildARPro: apply Supabase schema",
       "priority": "high",
       "assigned_to": "Silas",
-      "status": "blocked",
-      "blocked_by": "PROMAKER-AR-009 — Supabase must be restored first",
-      "notes": "Apply 5-table schema from owner_inbox/buildarpro_architecture_research.md (Q9): users, guides, image_targets, subscriptions, guide_views. Enable RLS. Output migration SQL to scratchpad/buildarpro_schema.sql."
+      "status": "done",
+      "blocked_by": null,
+      "notes": "COMPLETED 2026-05-03. New project 'BuildARPro' created (ID: meonilvpqerbemeikrfk, eu-west-1, Bazland org, free tier). All 5 tables live with RLS: users, guides, image_targets, subscriptions, guide_views. Credentials at scratchpad/buildarpro_supabase_env.txt. Next: Yoni updates pro-maker-ar/.env, Mack sets LLAMAPARSE_API_KEY secret, Mack sets up Stripe webhook."
     },
     {
       "task_id": "PROMAKER-AR-011",
       "title": "BuildARPro: AR.js investor demo (1 tool)",
       "priority": "high",
       "assigned_to": "Yoni",
-      "status": "pending",
+      "status": "done",
       "notes": "Build a web AR demo using AR.js. Pick one demo tool (e.g., DeWalt drill or HVAC filter). Register one image target. Overlay 3-5 text steps when tool is detected. Host on a simple URL (GitHub Pages or Vercel). No login required. Goal: shareable link for investor demo. See plan at owner_inbox/buildarpro_product_plan.md."
     },
     {
@@ -172,7 +174,7 @@
       "priority": "high",
       "assigned_to": "Mack",
       "status": "blocked",
-      "blocked_by": "PROMAKER-AR-009 — Supabase must be restored for webhook endpoint",
+      "blocked_by": null,
       "notes": "Create Stripe products: Free ($0), Pro ($29/month + $249/year), Team ($99/month). Set up webhook endpoint on Supabase Edge Function /functions/v1/stripe-webhook handling: checkout.session.completed, customer.subscription.updated, invoice.payment_failed. See plan at owner_inbox/buildarpro_product_plan.md."
     },
     {

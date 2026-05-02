@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inon Baasov — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Screen base ── */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 10.5pt;
+      color: #111;
+      background: #f0f2f5;
+      line-height: 1.5;
+    }
+
+    /* ── Print button ── */
+    #print-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #fff;
+      border-bottom: 1px solid #dde1e7;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    #print-bar button {
+      background: #00B4D8;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.15s;
+    }
+
+    #print-bar button:hover { background: #0096b7; }
+
+    #print-bar span {
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* ── Page wrapper ── */
+    .page-wrapper {
+      padding-top: 64px; /* clear fixed bar */
+      padding-bottom: 40px;
+    }
+
+    /* ── A4 page ── */
+    .page {
+      width: 210mm;
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 14mm 16mm 16mm 16mm;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    }
+
+    /* ── Header ── */
+    .cv-header {
+      text-align: center;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #111;
+    }
+
+    .cv-header h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cv-header .cv-title {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .cv-header .cv-contact {
+      font-size: 9pt;
+      color: #555;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px 0;
+    }
+
+    .cv-header .cv-contact span { white-space: nowrap; }
+    .cv-header .cv-contact .sep { margin: 0 6px; color: #999; }
+    .cv-header .cv-contact a { color: #00B4D8; text-decoration: none; }
+    .cv-header .cv-contact a:hover { text-decoration: underline; }
+
+    /* ── Section ── */
+    .section { margin-top: 12px; }
+
+    .section-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #00B4D8;
+      border-bottom: 1.5px solid #00B4D8;
+      padding-bottom: 2px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Summary ── */
+    .summary p { font-size: 10pt; margin-bottom: 5px; }
+
+    .key-skills {
+      font-size: 9pt;
+      color: #333;
+      margin-top: 4px;
+    }
+
+    .key-skills strong { font-weight: 600; color: #111; }
+
+    /* ── Experience ── */
+    .job { margin-bottom: 10px; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 8px;
+    }
+
+    .job-company {
+      font-weight: 700;
+      font-size: 10pt;
+    }
+
+    .job-dates {
+      font-size: 9pt;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .job-role {
+      font-style: italic;
+      font-size: 9.5pt;
+      color: #444;
+      margin-bottom: 4px;
+    }
+
+    .job ul {
+      padding-left: 14px;
+      margin-top: 2px;
+    }
+
+    .job ul li {
+      font-size: 9.5pt;
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+
+    /* ── Portfolio ── */
+    .portfolio-list {
+      padding-left: 14px;
+      list-style: disc;
+    }
+
+    .portfolio-list li {
+      font-size: 9.5pt;
+      margin-bottom: 3px;
+    }
+
+    .portfolio-list a { color: #00B4D8; text-decoration: none; }
+    .portfolio-list a:hover { text-decoration: underline; }
+
+    /* ── Education ── */
+    .edu-item { margin-bottom: 5px; }
+
+    .edu-degree { font-weight: 600; font-size: 10pt; }
+    .edu-institution { font-size: 9.5pt; color: #444; }
+    .edu-year { font-size: 9pt; color: #777; }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+    }
+
+    .skill-tag {
+      font-size: 9pt;
+      background: #f0fafd;
+      color: #006f87;
+      border: 1px solid #b3e8f4;
+      border-radius: 3px;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+
+    /* ── Languages ── */
+    .lang-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+
+    .lang-item { font-size: 9.5pt; }
+    .lang-item strong { font-weight: 600; }
+    .lang-level { color: #666; font-size: 9pt; }
+
+    /* ── Error state ── */
+    #error-msg {
+      display: none;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px auto;
+      width: 210mm;
+      font-size: 13px;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; }
+      #print-bar { display: none !important; }
+      .page-wrapper { padding-top: 0; }
+      .page {
+        width: 210mm;
+        max-width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 12mm 14mm;
+        box-shadow: none;
+      }
+      .section-title { color: #00B4D8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .skill-tag { background: #f0fafd !important; color: #006f87 !important; border-color: #b3e8f4 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cv-header .cv-contact a { color: #00B4D8 !important; }
+      a { text-decoration: none; }
+      .portfolio-list a { color: #00B4D8 !important; }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar -->
+  <div id="print-bar">
+    <button onclick="window.print()">Print to PDF</button>
+    <span>Open this file in your browser, then click "Print to PDF" — save as PDF from the print dialog.</span>
+  </div>
+
+  <!-- Error message if fetch fails -->
+  <div id="error-msg">
+    <strong>Could not load cv_data.json.</strong> Make sure you are opening this file via a local server (not file://).
+    Run: <code>npx serve .</code> or <code>python -m http.server 8080</code> in the <code>cv_builder</code> folder, then open <code>http://localhost:8080</code>.
+  </div>
+
+  <div class="page-wrapper">
+    <div class="page" id="cv-page">
+      <!-- Rendered by JavaScript below -->
+    </div>
+  </div>
+
+  <script>
+    const page = document.getElementById('cv-page');
+    const errMsg = document.getElementById('error-msg');
+
+    function esc(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderCV(cv) {
+      let html = '';
+
+      // ── Header ──
+      html += `<div class="cv-header">`;
+      html += `<h1>${esc(cv.name)}</h1>`;
+      html += `<div class="cv-title">${esc(cv.title)}</div>`;
+      html += `<div class="cv-contact">`;
+      if (cv.contact.email) html += `<span>${esc(cv.contact.email)}</span><span class="sep">|</span>`;
+      if (cv.contact.phone) html += `<span>${esc(cv.contact.phone)}</span><span class="sep">|</span>`;
+      if (cv.contact.linkedin) html += `<span><a href="${esc(cv.contact.linkedin)}" target="_blank">${esc(cv.contact.linkedin_display || cv.contact.linkedin)}</a></span><span class="sep">|</span>`;
+      if (cv.contact.location) html += `<span>${esc(cv.contact.location)}</span>`;
+      html += `</div></div>`;
+
+      // ── Summary ──
+      if (cv.summary) {
+        html += `<div class="section summary">`;
+        html += `<div class="section-title">Professional Summary</div>`;
+        html += `<p>${esc(cv.summary)}</p>`;
+        if (cv.key_skills_inline) {
+          html += `<p class="key-skills"><strong>Key Skills:</strong> ${esc(cv.key_skills_inline)}</p>`;
+        }
+        html += `</div>`;
+      }
+
+      // ── Experience ──
+      if (cv.experience && cv.experience.length) {
+        html += `<div class="section">`;
+        html += `<div class="section-title">Professional Experience</div>`;
+        cv.experience.forEach(job => {
+          html += `<div class="job">`;
+          html += `<div class="job-header">`;
+          html += `<span class="job-company">${esc(job.company)}</span>`;
+          if (job.dates) html += `<span class="job-dates">${esc(job.dates)}</span>`;
+          html += `</div>`;
+          if (job.role) html += `<div class="job-role">${esc(job.role)}</div>`;
+          if (job.bullets && job.bullets.length) {
+            html += `<ul>`;
+            job.bullets.forEach(b => { html += `<li>${esc(b)}</li>`; });
+            html += `</ul>`;
+          }
+          html += `</div>`;
+        });
+        html += `</div>`;
+      }
+
+      // ── Portfolio ──
+      if (cv.portfolio && cv.portfolio.length) {
+        html += `<div class="section">`;
+        html += `<div class="section-title">Portfolio</div>`;
+        html += `<ul class="portfolio-list">`;
+        cv.portfolio.forEach(item => {
+          if (item.url) {
+            html += `<li>${esc(item.label)}: <a href="${esc(item.url)}" target="_blank">${esc(item.display || item.url)}</a></li>`;
+          } else {
+            html += `<li>${esc(item.label)}: ${esc(item.display)}</li>`;
+          }
+        });
+        html += `</ul></div>`;
+      }
+
+      // ── Education ──
+      if (cv.education && cv.education.length) {
+        html += `<div class="section">`;
+        html += `<div class="section-title">Education</div>`;
+        cv.education.forEach(edu => {
+          html += `<div class="edu-item">`;
+          html += `<span class="edu-degree">${esc(edu.degree)}</span>`;
+          html += ` &mdash; <span class="edu-institution">${esc(edu.institution)}</span>`;
+          if (edu.year) html += ` <span class="edu-year">(${esc(edu.year)})</span>`;
+          html += `</div>`;
+        });
+        html += `</div>`;
+      }
+
+      // ── Skills ──
+      if (cv.skills && cv.skills.length) {
+        html += `<div class="section">`;
+        html += `<div class="section-title">Skills</div>`;
+        html += `<div class="skills-grid">`;
+        cv.skills.forEach(s => { html += `<span class="skill-tag">${esc(s)}</span>`; });
+        html += `</div></div>`;
+      }
+
+      // ── Languages ──
+      if (cv.languages && cv.languages.length) {
+        html += `<div class="section">`;
+        html += `<div class="section-title">Languages</div>`;
+        html += `<div class="lang-list">`;
+        cv.languages.forEach(l => {
+          html += `<span class="lang-item"><strong>${esc(l.language)}</strong>`;
+          if (l.level) html += ` <span class="lang-level">(${esc(l.level)})</span>`;
+          html += `</span>`;
+        });
+        html += `</div></div>`;
+      }
+
+      page.innerHTML = html;
+    }
+
+    fetch('./cv_data.json')
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(renderCV)
+      .catch(err => {
+        console.error('CV load error:', err);
+        errMsg.style.display = 'block';
+        page.innerHTML = '<p style="padding:20px;color:#888;">Failed to load CV data. See the yellow notice above.</p>';
+      });
+  </script>
+</body>
+</html>
