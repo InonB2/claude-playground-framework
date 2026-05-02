@@ -6,25 +6,25 @@
       "title": "Submit CV to Elbit Systems",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "blocked",
-      "blocked_by": "Generic Senior PM PDF needed first (CV-GENERIC-001)",
-      "notes": "V4 Training PM PDF exists at owner_inbox/archive/cv_archive/6486_TrainingPM_Elbit_Netanya/. Waiting on generic PDF before submission decision."
+      "status": "pending-owner",
+      "blocked_by": null,
+      "notes": "COLE DONE 2026-05-02. Cover letter at owner_inbox/elbit_cover_letter_6486.md. Gmail draft in inonbaasov@gmail.com Drafts (ID: r2406393394764395689). CV recommendation: use v4_Inon_Baasov_CV_TrainingPM.pdf (tailored to this role). To submit: open Gmail draft, attach v4 PDF, apply at https://elbitsystemscareer.com/job/?jid=20344. Pending Owner submission."
     },
     {
       "task_id": "CV-GENERIC-001",
       "title": "Build generic Senior PM CV PDF from CV1 content",
       "priority": "high",
       "assigned_to": "Yoni",
-      "status": "in-progress",
-      "notes": "Source: sites/website-product-portfolio/cv-drafts/CV1_AskAI_GenAI_Enterprise.md. Output to owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM_Generic.pdf. Replace sites/website-product-portfolio/public/Inon_Baasov_CV.pdf."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-01. HTML + PDF built. Deployed to sites/website-product-portfolio/public/Inon_Baasov_CV.pdf (commit 772c24a). Archived at owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM.pdf. Summary at owner_inbox/cv_generic_done.md."
     },
     {
       "task_id": "PROMAKER-AR-002",
       "title": "BuildARPro: product plan and agent task breakdown",
       "priority": "high",
       "assigned_to": "Andy",
-      "status": "in-progress",
-      "notes": "MVP = curated AR guide library (pre-built, not auto-generated). Supabase needed for: user auth, guide library DB, subscriptions/pricing. 'Magic' (auto-parse paper manual → AR guide) is v2. Stack: LlamaParse (content pipeline) + Vuforia (AR runtime) + Supabase (backend). Tomy researching full data flow + Vuforia options (PROMAKER-AR-008)."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-02. Full product plan at owner_inbox/buildarpro_product_plan.md. Includes: MVP scope, 2-phase roadmap, tech stack, Supabase schema, pricing model, Vuforia decisions, v2 backlog, and new sprint task breakdown (PROMAKER-AR-010 through PROMAKER-AR-013). New tasks added to active_tasks.json."
     },
     {
       "task_id": "PROMAKER-AR-003",
@@ -57,16 +57,16 @@
       "title": "BuildARPro PPTX + banners — visual design pass",
       "priority": "high",
       "assigned_to": "Lena",
-      "status": "pending",
-      "notes": "Assets in team_inbox/BuildAR Pro/: logo (orange hexagon + hammer/wrench), social banner, 6 product images. Catchphrase: 'Stop Pausing VIDEOS, Start building BETTER' — capitalized words in accent color + larger size. Apply to PPTX slides and website banners."
+      "status": "in-progress",
+      "notes": "Assets in team_inbox/BuildAR Pro/: logo (orange hexagon + hammer/wrench), social banner, 6 product images. Catchphrase: 'Stop Pausing VIDEOS, Start building BETTER' — capitalized words in accent color + larger size. Apply to PPTX slides and website banners. Lena creating: (1) HTML/CSS banner templates, (2) Python-pptx design script for PPTX slides, (3) design spec."
     },
     {
       "task_id": "PROMAKER-AR-008",
       "title": "BuildARPro: full data flow + AR engine research",
       "priority": "high",
       "assigned_to": "Tomy",
-      "status": "in-progress",
-      "notes": "Research both pipeline arrows: (1) PDF→LlamaParse→structured steps→Vuforia AR overlay; (2) physical tool→camera→image target match→guide playback. Include: Vuforia free/paid limits, Vuforia Cloud Recognition, AR Foundation comparison, web AR options, Supabase schema sketch, Stripe pricing integration pattern. Output to owner_inbox."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-02. Full report at owner_inbox/buildarpro_architecture_research.md. Key findings: LlamaParse+LlamaExtract for content pipeline, Vuforia Cloud+Model Targets for AR runtime, no off-the-shelf bridge (build in Unity), Supabase schema sketched, Stripe integration pattern documented. AR.js for fast investor demo (1-2 weeks), Unity+Vuforia for production (6-12 weeks). Main risk: 3D CAD model availability for Model Targets."
     },
     {
       "task_id": "PROMAKER-AR-009",
@@ -81,16 +81,16 @@
       "title": "Keep-alive schedule — all hosted projects",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "in-progress",
-      "notes": "Weekly ping to prevent Supabase free-tier pause (resets 7-day inactivity clock) and keep hosted apps alive. Projects: FamilyFlow (https://family-flow-he.lovable.app/), Trademetrics (URL TBD), BuildARPro Supabase (URL TBD after restore). Schedule: every Sunday. Report to owner_inbox if any project is down. Scheduled agent configured this session."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-02. Weekly ping routine live (trig_01PLxe72RNnPN1XVPThob1yG, every Sunday 7am UTC). Pings: FamilyFlow, TradePulse, portfolio. Will also check infra/keep_alive_urls.txt for additional Supabase URLs after restore. Results logged to owner_inbox/KEEP_ALIVE_LOG.md."
     },
     {
       "task_id": "WHATSAPP-001",
-      "title": "WhatsApp bridge — complete initial sync",
+      "title": "WhatsApp bridge — register MCP in Claude Code settings",
       "priority": "medium",
       "assigned_to": "Mack",
       "status": "in-progress",
-      "notes": "Bridge QR scanned. Now syncing all chat history (one-time heavy download). Must run from D:/Claude Playground — needs write access for store/ folder. After sync complete, Mack configures Claude Desktop claude_desktop_config.json to use MCP server."
+      "notes": "QR already scanned. store/whatsapp.db exists. Need to: (1) verify whatsapp-mcp Go server is cloned/runnable, (2) add MCP config to ~/.claude/settings.json (NOT just Claude Desktop config), (3) test send_message tool. Guide at scripts/whatsapp_setup_guide.md."
     },
     {
       "task_id": "WEBSITE-001-SEC-01",
@@ -122,9 +122,8 @@
       "title": "CV download button — live PDF",
       "priority": "medium",
       "assigned_to": "Rex",
-      "status": "blocked",
-      "blocked_by": "CV-GENERIC-001 — need new generic Senior PM PDF committed to repo",
-      "notes": "Button live in UI. PDF at public/Inon_Baasov_CV.pdf is currently Microsoft-tailored V8. Replace with generic Senior PM version once Yoni delivers."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-01. Generic Senior PM PDF deployed to sites/website-product-portfolio/public/Inon_Baasov_CV.pdf (commit 772c24a by Yoni). Button was already live in UI. Download now serves the correct generic CV."
     },
     {
       "task_id": "WEBSITE-001-CONTENT-01",
@@ -147,8 +146,42 @@
       "title": "Mobile fixes — Trademetrics",
       "priority": "medium",
       "assigned_to": "Rex",
+      "status": "in-progress",
+      "notes": "Repo: https://github.com/InonB2/trademetrics.git. Vera found 2 Critical mobile + 3 Critical a11y failures. Priority fixes: (1) TP-MOB-02 responsive charts, (2) TP-MOB-03 responsive table/card layout, (3) TP-A11Y-05 P&L secondary indicators beyond color, (4) TP-MOB-05 resize 718KB icon, (5) TP-MOB-08 brand name alignment. Rex cloning and fixing."
+    },
+    {
+      "task_id": "PROMAKER-AR-010",
+      "title": "BuildARPro: apply Supabase schema",
+      "priority": "high",
+      "assigned_to": "Silas",
+      "status": "blocked",
+      "blocked_by": "PROMAKER-AR-009 — Supabase must be restored first",
+      "notes": "Apply 5-table schema from owner_inbox/buildarpro_architecture_research.md (Q9): users, guides, image_targets, subscriptions, guide_views. Enable RLS. Output migration SQL to scratchpad/buildarpro_schema.sql."
+    },
+    {
+      "task_id": "PROMAKER-AR-011",
+      "title": "BuildARPro: AR.js investor demo (1 tool)",
+      "priority": "high",
+      "assigned_to": "Yoni",
       "status": "pending",
-      "notes": "Repo confirmed: https://github.com/InonB2/trademetrics.git. Vera found 3 critical mobile failures. Rex to clone, fix, and push."
+      "notes": "Build a web AR demo using AR.js. Pick one demo tool (e.g., DeWalt drill or HVAC filter). Register one image target. Overlay 3-5 text steps when tool is detected. Host on a simple URL (GitHub Pages or Vercel). No login required. Goal: shareable link for investor demo. See plan at owner_inbox/buildarpro_product_plan.md."
+    },
+    {
+      "task_id": "PROMAKER-AR-012",
+      "title": "BuildARPro: Stripe product + subscription setup",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "blocked",
+      "blocked_by": "PROMAKER-AR-009 — Supabase must be restored for webhook endpoint",
+      "notes": "Create Stripe products: Free ($0), Pro ($29/month + $249/year), Team ($99/month). Set up webhook endpoint on Supabase Edge Function /functions/v1/stripe-webhook handling: checkout.session.completed, customer.subscription.updated, invoice.payment_failed. See plan at owner_inbox/buildarpro_product_plan.md."
+    },
+    {
+      "task_id": "PROMAKER-AR-013",
+      "title": "BuildARPro: Vuforia account + first Image Target",
+      "priority": "high",
+      "assigned_to": "Yoni",
+      "status": "pending",
+      "notes": "Create Vuforia developer account at developer.vuforia.com. Create a Cloud Recognition database. Upload photo of demo tool (must have ≥3-star rating). Download as .unitypackage. Document target name and metadata JSON to use. See plan at owner_inbox/buildarpro_product_plan.md."
     },
     {
       "task_id": "LINKEDIN-001",
