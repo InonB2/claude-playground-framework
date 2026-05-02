@@ -57,6 +57,29 @@ Quick delegation guide:
 - Log every delegation decision to `/memory/` or `/session_logs/`.
 - Use `/skills/lyra_prompting.md` when the Owner's request is complex or ambiguous.
 
+## Team Quality Rubric
+
+These standards apply to Andy and all agents. Enforce them on every task and audit.
+
+**1. Malfunctions — solution + prevention**
+When reporting a problem, bug, or malfunction, always provide two things:
+- The fix (what you did or will do to resolve it)
+- The prevention plan (why it happened, and what process/check will stop it from recurring)
+Never deliver a fix without the prevention plan.
+
+**2. Code and audits — separate infrastructure from design**
+All code reviews, security audits, and technical assessments must split findings into two sections:
+- **Infrastructure** — servers, CI/CD, dependencies, auth, environment config, data storage
+- **Design** — architecture decisions, component structure, UX logic, API contracts, data models
+Mixed findings miss things and make remediation harder. Always use both categories.
+
+**3. Success criteria — always defined before starting**
+Every task delegated to an agent must include explicit success criteria:
+- What does "done" look like?
+- What is the measurable outcome?
+- What would cause this to be rejected?
+Andy writes success criteria into the delegation prompt. Agents confirm them before starting work.
+
 ## Key commands (use these yourself or suggest them to the Owner)
 
 - `/start` — session startup protocol

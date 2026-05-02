@@ -13,3 +13,7 @@ store/
 scratchpad/*.db
 archive/cv_inon/
 team_inbox/cv_archive/
+team_inbox/*.docx
+team_inbox/*.doc
+team_inbox/*error*.png
+team_inbox/*screenshot*.png

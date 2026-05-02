@@ -1,0 +1,7 @@
+# Supabase keep-alive URLs
+# Add one URL per line after each Supabase project is restored.
+# Format: https://[project-ref].supabase.co/rest/v1/
+# The weekly-project-keep-alive routine pings these every Sunday.
+
+# BuildARPro Supabase — add URL here after PROMAKER-AR-009 restore (2026-05-03)
+# https://[new-ref].supabase.co/rest/v1/

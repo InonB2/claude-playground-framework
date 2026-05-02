@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-01",
+  "last_updated": "2026-05-02",
   "tasks": [
     {
       "task_id": "ELBIT-APPLY-001",
@@ -24,7 +24,7 @@
       "priority": "high",
       "assigned_to": "Andy",
       "status": "in-progress",
-      "notes": "MVP = curated 3D instruction library. OCR+vision is deferred (research-grade). LlamaParse for document parsing is production-ready now — integration starting. Stack confirmed: KIRI Engine (3D) + LlamaParse (parsing) + Vuforia (AR). Taqtile Manifest is closest competitor."
+      "notes": "MVP = curated AR guide library (pre-built, not auto-generated). Supabase needed for: user auth, guide library DB, subscriptions/pricing. 'Magic' (auto-parse paper manual → AR guide) is v2. Stack: LlamaParse (content pipeline) + Vuforia (AR runtime) + Supabase (backend). Tomy researching full data flow + Vuforia options (PROMAKER-AR-008)."
     },
     {
       "task_id": "PROMAKER-AR-003",
@@ -32,15 +32,16 @@
       "priority": "high",
       "assigned_to": "Cole",
       "status": "partial",
-      "notes": "Stealth revision written to owner_inbox/BuildARPro_PitchDeck_Stealth_v2.md. Owner needs to apply text changes to original owner_inbox/BuildARPro_PitchDeck.pptx manually. Design is the main gap."
+      "notes": "Stealth revision written to owner_inbox/BuildARPro_PitchDeck_Stealth_v2.md. Owner needs to apply text changes to original owner_inbox/BuildARPro_PitchDeck.pptx manually. Design pass pending Lena (PROMAKER-AR-007)."
     },
     {
       "task_id": "PROMAKER-AR-005",
       "title": "Connect LlamaParse API to BuildARPro",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "pending",
-      "notes": "Owner has free LlamaParse account. API key to be added to pro-maker-ar/.env as LLAMAPARSE_API_KEY. Mack to build document upload → parse → structured JSON pipeline."
+      "status": "blocked",
+      "blocked_by": "PROMAKER-AR-009 — Supabase project must be restored first",
+      "notes": "API key retrieved from team_inbox. Once Supabase is restored: run supabase secrets set LLAMAPARSE_API_KEY=<key>, then Yoni wires edge function."
     },
     {
       "task_id": "PROMAKER-AR-006",
@@ -50,6 +51,38 @@
       "status": "blocked",
       "blocked_by": "Requires Midjourney/DALL-E/SD — Andy cannot generate images",
       "notes": "Prompts ready at owner_inbox/promaker_ar_images_brief.md. Owner runs prompts through image generator of choice."
+    },
+    {
+      "task_id": "PROMAKER-AR-007",
+      "title": "BuildARPro PPTX + banners — visual design pass",
+      "priority": "high",
+      "assigned_to": "Lena",
+      "status": "pending",
+      "notes": "Assets in team_inbox/BuildAR Pro/: logo (orange hexagon + hammer/wrench), social banner, 6 product images. Catchphrase: 'Stop Pausing VIDEOS, Start building BETTER' — capitalized words in accent color + larger size. Apply to PPTX slides and website banners."
+    },
+    {
+      "task_id": "PROMAKER-AR-008",
+      "title": "BuildARPro: full data flow + AR engine research",
+      "priority": "high",
+      "assigned_to": "Tomy",
+      "status": "in-progress",
+      "notes": "Research both pipeline arrows: (1) PDF→LlamaParse→structured steps→Vuforia AR overlay; (2) physical tool→camera→image target match→guide playback. Include: Vuforia free/paid limits, Vuforia Cloud Recognition, AR Foundation comparison, web AR options, Supabase schema sketch, Stripe pricing integration pattern. Output to owner_inbox."
+    },
+    {
+      "task_id": "PROMAKER-AR-009",
+      "title": "Restore Supabase 'Pro maker AR' project",
+      "priority": "high",
+      "assigned_to": "Owner",
+      "status": "pending",
+      "notes": "Scheduled for 2026-05-03. Project paused 90+ days — must use 'Restore backup to new Supabase project' option in dashboard. After restore: update pro-maker-ar/.env with new VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY. Then unblocks PROMAKER-AR-005."
+    },
+    {
+      "task_id": "INFRA-001",
+      "title": "Keep-alive schedule — all hosted projects",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "in-progress",
+      "notes": "Weekly ping to prevent Supabase free-tier pause (resets 7-day inactivity clock) and keep hosted apps alive. Projects: FamilyFlow (https://family-flow-he.lovable.app/), Trademetrics (URL TBD), BuildARPro Supabase (URL TBD after restore). Schedule: every Sunday. Report to owner_inbox if any project is down. Scheduled agent configured this session."
     },
     {
       "task_id": "WHATSAPP-001",
@@ -74,7 +107,7 @@
       "priority": "high",
       "assigned_to": "Rex",
       "status": "partial",
-      "notes": "Code fixes done (PII obfuscated, rel=noreferrer added). HTTP headers (CSP, HSTS etc.) cannot be set from React — need Base44 dashboard Custom Headers panel. If Base44 doesn't support it, document for future. Full audit at owner_inbox/archive/handled_2026_05/security_headers_audit.md."
+      "notes": "Code fixes done (PII obfuscated, rel=noreferrer added). HTTP headers (CSP, HSTS etc.) cannot be set from React — need Base44 dashboard Custom Headers panel. If Base44 doesn't support it, document for future."
     },
     {
       "task_id": "WEBSITE-001-DESIGN-01",
@@ -83,15 +116,6 @@
       "assigned_to": "Rex",
       "status": "pending",
       "notes": "Pending Lena design brief. Dark #080E1A, cyan #00B4D8, Syne+Inter fonts, GSAP reveals. Hero copy and icons now done — redesign can start when Lena delivers visual spec."
-    },
-    {
-      "task_id": "WEBSITE-001-UX-01",
-      "title": "Add testimonials section",
-      "priority": "high",
-      "assigned_to": "Rex",
-      "status": "blocked",
-      "blocked_by": "Owner must supply 2-3 quotes (name + role)",
-      "notes": "Card layout with large quote mark, name, role, company. Ready to implement once content supplied."
     },
     {
       "task_id": "WEBSITE-001-UX-04",
@@ -120,11 +144,11 @@
     },
     {
       "task_id": "MOBILE-AUDIT-002",
-      "title": "Mobile audit — FamilyFlow + TradePulse apps",
+      "title": "Mobile fixes — Trademetrics",
       "priority": "medium",
-      "assigned_to": "Vera",
-      "status": "in-progress",
-      "notes": "FamilyFlow: https://family-flow-he.lovable.app/ | TradePulse: https://trade-pulse-journal-pro.base44.app. Code audit of source if available, otherwise URL-based."
+      "assigned_to": "Rex",
+      "status": "pending",
+      "notes": "Repo confirmed: https://github.com/InonB2/trademetrics.git. Vera found 3 critical mobile failures. Rex to clone, fix, and push."
     },
     {
       "task_id": "LINKEDIN-001",
@@ -132,16 +156,16 @@
       "priority": "medium",
       "assigned_to": "Sage",
       "status": "partial",
-      "notes": "5 posts in owner_inbox/linkedin_posts_refreshed.md. Awaiting Owner approval to publish. Posts 4+5 based on actual video transcripts (Gemini files + Ghost.build)."
+      "notes": "5 posts in owner_inbox/linkedin_posts_refreshed.md. Awaiting Owner approval to publish."
     },
     {
       "task_id": "REPO-CLEANUP-001",
-      "title": "Repository cleanup — 4 pending decisions",
+      "title": "Repository cleanup — pending decisions",
       "priority": "low",
       "assigned_to": "Owner",
       "status": "blocked",
       "blocked_by": "Owner decisions needed",
-      "notes": "1. Rotate Supabase anon key (Supabase dashboard → Settings → API → Reset). 2. Confirm archive/cv_inon/ stays gitignored (done). 3. Scratchpad partial cleanup remaining. 4. BFG history pruning — optional, low urgency."
+      "notes": "1. Supabase anon key rotation — defer until after PROMAKER-AR-009 restore (new project = new keys). 2. archive/cv_inon/ gitignored (done). 3. Scratchpad partial cleanup remaining. 4. BFG history pruning — optional, low urgency."
     }
   ]
 }
