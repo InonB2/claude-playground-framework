@@ -173,6 +173,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      overflow-x: auto;
     }
 
     .filter-label {
@@ -212,12 +213,14 @@
       font-weight: 600;
     }
 
-    .filter-btn.active[data-prio="high"],
-    .filter-btn.active[data-prio="critical"] {
-      border-color: rgba(239,68,68,0.5);
-      color: var(--red);
-      background: var(--red-dim);
-    }
+    /* Project filter active colors */
+    .filter-btn.active[data-project="BuildARPro"]  { border-color: rgba(167,139,250,0.5); color: var(--purple); background: rgba(167,139,250,0.1); }
+    .filter-btn.active[data-project="Website"]     { border-color: rgba(34,211,238,0.5);  color: var(--cyan);   background: var(--cyan-dim); }
+    .filter-btn.active[data-project="TradeMetrics"]{ border-color: rgba(250,204,21,0.5);  color: var(--yellow); background: var(--yellow-dim); }
+    .filter-btn.active[data-project="FamilyFlow"]  { border-color: rgba(52,211,153,0.5);  color: var(--green);  background: var(--green-dim); }
+    .filter-btn.active[data-project="Career"]      { border-color: rgba(249,115,22,0.5);  color: var(--orange); background: var(--orange-dim); }
+    .filter-btn.active[data-project="Infra"]       { border-color: rgba(96,165,250,0.5);  color: #60A5FA;       background: rgba(96,165,250,0.1); }
+    .filter-btn.active[data-project="Other"]       { border-color: rgba(107,114,128,0.5); color: var(--grey);   background: var(--grey-dim); }
 
     .filter-sep {
       width: 1px;
@@ -227,7 +230,7 @@
       flex-shrink: 0;
     }
 
-    .filter-spacer { flex: 1; }
+    .filter-spacer { flex: 1; min-width: 12px; }
 
     .total-count {
       font-size: 11px;
@@ -250,7 +253,7 @@
     @media (max-width: 640px) {
       .board { grid-template-columns: 1fr; padding: 12px; }
       .topbar, .filterbar { padding: 0 12px; }
-      .filterbar { gap: 4px; overflow-x: auto; }
+      .filterbar { gap: 4px; }
     }
 
     /* ─────────────────── COLUMN ─────────────────── */
@@ -368,7 +371,7 @@
     .card-top {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
 
     .card-title-block { flex: 1; min-width: 0; }
@@ -407,6 +410,31 @@
       border: 1.5px solid rgba(255,255,255,0.08);
     }
 
+    /* Edit pencil button */
+    .card-edit-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+
+    .card-edit-btn:hover {
+      background: var(--surface3);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
     .card-footer {
       display: flex;
       align-items: center;
@@ -418,6 +446,18 @@
       font-size: 11px;
       font-weight: 500;
       color: var(--text-secondary);
+    }
+
+    /* Project tag on card */
+    .project-tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      background: var(--surface3);
+      color: var(--muted);
+      border: 1px solid var(--border);
     }
 
     .priority-chip {
@@ -456,6 +496,112 @@
       color: var(--orange);
       display: block;
       margin-bottom: 2px;
+    }
+
+    /* ─────────────────── INLINE EDIT PANEL ─────────────────── */
+    .card-edit-panel {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .edit-panel-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .edit-notes-textarea {
+      width: 100%;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--text);
+      resize: vertical;
+      min-height: 72px;
+      line-height: 1.55;
+      transition: border-color 0.15s;
+    }
+
+    .edit-notes-textarea:focus {
+      outline: none;
+      border-color: var(--border-hover);
+    }
+
+    .edit-col-select {
+      width: 100%;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B6B7E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+
+    .edit-col-select:focus {
+      outline: none;
+      border-color: var(--border-hover);
+    }
+
+    .edit-col-select option {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .edit-actions {
+      display: flex;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .edit-save-btn, .edit-cancel-btn {
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .edit-save-btn {
+      background: var(--cyan-dim);
+      border-color: rgba(34,211,238,0.35);
+      color: var(--cyan);
+    }
+
+    .edit-save-btn:hover {
+      background: rgba(34,211,238,0.2);
+      border-color: rgba(34,211,238,0.6);
+    }
+
+    .edit-cancel-btn {
+      background: var(--surface3);
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    .edit-cancel-btn:hover {
+      background: var(--border);
+      color: var(--text);
     }
 
     /* ─────────────────── MODAL ─────────────────── */
@@ -650,6 +796,121 @@
       margin: 0 -20px;
     }
 
+    /* Modal edit button */
+    .modal-edit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface3);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .modal-edit-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+      background: var(--border);
+    }
+
+    /* Modal inline edit styles */
+    .modal-edit-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-edit-notes {
+      width: 100%;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text);
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+      transition: border-color 0.15s;
+    }
+
+    .modal-edit-notes:focus {
+      outline: none;
+      border-color: var(--border-hover);
+    }
+
+    .modal-edit-col-select {
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 32px 7px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B6B7E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    .modal-edit-col-select:focus {
+      outline: none;
+      border-color: var(--border-hover);
+    }
+
+    .modal-edit-col-select option {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .modal-edit-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-save-btn, .modal-cancel-edit-btn {
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .modal-save-btn {
+      background: var(--cyan-dim);
+      border-color: rgba(34,211,238,0.35);
+      color: var(--cyan);
+    }
+
+    .modal-save-btn:hover {
+      background: rgba(34,211,238,0.2);
+      border-color: rgba(34,211,238,0.6);
+    }
+
+    .modal-cancel-edit-btn {
+      background: var(--surface3);
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    .modal-cancel-edit-btn:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
     /* ─────────────────── Loading / Error ─────────────────── */
     #loading, #error-msg {
       display: flex;
@@ -711,11 +972,15 @@
 
 <!-- FILTER BAR -->
 <div class="filterbar" id="filterbar">
-  <span class="filter-label">Filter:</span>
+  <span class="filter-label">Project:</span>
   <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-prio="high" data-filter="priority" data-value="high,critical">High Priority</button>
-  <div class="filter-sep"></div>
-  <div id="agent-filters"></div>
+  <button class="filter-btn" data-filter="project" data-project="BuildARPro"   data-value="BuildARPro">BuildARPro</button>
+  <button class="filter-btn" data-filter="project" data-project="Website"      data-value="Website">Website</button>
+  <button class="filter-btn" data-filter="project" data-project="TradeMetrics" data-value="TradeMetrics">TradeMetrics</button>
+  <button class="filter-btn" data-filter="project" data-project="FamilyFlow"   data-value="FamilyFlow">FamilyFlow</button>
+  <button class="filter-btn" data-filter="project" data-project="Career"       data-value="Career">Career</button>
+  <button class="filter-btn" data-filter="project" data-project="Infra"        data-value="Infra">Infra</button>
+  <button class="filter-btn" data-filter="project" data-project="Other"        data-value="Other">Other</button>
   <div class="filter-spacer"></div>
   <span class="total-count" id="total-count"></span>
 </div>
@@ -828,6 +1093,30 @@
     return task.blocked_by && /owner/i.test(task.blocked_by);
   }
 
+  /* ─────────────── Project inference ─────────────── */
+  function inferProject(task) {
+    const id    = (task.task_id  || '').toUpperCase();
+    const title = (task.title    || '').toUpperCase();
+    const combined = id + ' ' + title;
+
+    if (/^PROMAKER-AR|BUILDARPRO|PROMAKER/.test(id))          return 'BuildARPro';
+    if (/^WEBSITE/.test(id))                                   return 'Website';
+    if (/^MOBILE-AUDIT-002|^TRADEMETRICS|^TRADEPULSE/.test(id))return 'TradeMetrics';
+    if (/^FAMILY/.test(id))                                    return 'FamilyFlow';
+    if (/^ELBIT|^CV-|^LINKEDIN/.test(id))                     return 'Career';
+    if (/^INFRA|^WHATSAPP|^REPO/.test(id))                     return 'Infra';
+
+    // Title-based fallbacks
+    if (/BUILDARPRO|BUILD AR PRO/.test(combined))              return 'BuildARPro';
+    if (/WEBSITE|REX|PORTFOLIO/.test(combined))                return 'Website';
+    if (/TRADEMETRICS|TRADEPULSE|MOBILE AUDIT/.test(combined)) return 'TradeMetrics';
+    if (/FAMILYFLOW|FAMILY FLOW/.test(combined))               return 'FamilyFlow';
+    if (/ELBIT|LINKEDIN|\bCV\b|COVER LETTER|RESUME/.test(combined)) return 'Career';
+    if (/INFRA|WHATSAPP|REPO|GITHUB|SUPABASE/.test(combined))  return 'Infra';
+
+    return 'Other';
+  }
+
   function classify(task) {
     const s = (task.status || '').toLowerCase();
     if (s === 'pending-owner') return 'needs-you';
@@ -838,6 +1127,21 @@
     if (s === 'partial' || s === 'pending') return 'inprogress';
     return 'inprogress';
   }
+
+  /* Map internal column key → display label used in status/select */
+  const COL_KEY_TO_STATUS = {
+    'needs-you':  'pending-owner',
+    'inprogress': 'in-progress',
+    'blocked':    'blocked',
+    'done':       'done',
+  };
+
+  const COL_KEY_TO_LABEL = {
+    'needs-you':  'Needs You',
+    'inprogress': 'In Progress',
+    'blocked':    'Blocked',
+    'done':       'Done',
+  };
 
   function statusChipHtml(col) {
     const map = {
@@ -857,12 +1161,14 @@
     const note    = firstSentence(task.notes || '');
     const blocker = task.blocked_by ? firstSentence(task.blocked_by) : '';
     const taskId  = task.task_id || '';
+    const project = task._project || inferProject(task);
 
     const noteHtml = blocker
       ? `<div class="card-note blocked-note">${esc(blocker)}</div>`
       : (note ? `<div class="card-note">${esc(note)}</div>` : '');
 
-    return `<div class="card" data-priority="${prio}" data-agent="${esc(agent.toLowerCase())}" data-col="${col}"
+    return `<div class="card" data-priority="${prio}" data-agent="${esc(agent.toLowerCase())}"
+               data-col="${col}" data-project="${esc(project)}"
                data-task-id="${esc(taskId)}"
                tabindex="0" role="button" aria-label="Open task ${esc(taskId)}">
       <div class="card-top">
@@ -871,9 +1177,11 @@
           <div class="card-title">${esc(task.title)}</div>
         </div>
         ${avatarHtml(agent)}
+        <button class="card-edit-btn" title="Edit card" data-edit-id="${esc(taskId)}" tabindex="0">&#9998;</button>
       </div>
       <div class="card-footer">
         <span class="agent-name-badge">${esc(agent)}</span>
+        <span class="project-tag">${esc(project)}</span>
         <span class="priority-chip ${prio}">${esc(prio)}</span>
       </div>
       ${noteHtml}
@@ -885,8 +1193,11 @@
 
   function render(data) {
     ALL_TASKS = data.tasks || [];
-    const buckets = { 'needs-you': [], inprogress: [], blocked: [], done: [] };
 
+    // Attach inferred project to each task object
+    ALL_TASKS.forEach(t => { if (!t._project) t._project = inferProject(t); });
+
+    const buckets = { 'needs-you': [], inprogress: [], blocked: [], done: [] };
     ALL_TASKS.forEach(task => buckets[classify(task)].push(task));
 
     const prioOrder = { critical:0, high:1, medium:2, low:3, unknown:4 };
@@ -924,28 +1235,12 @@
     document.getElementById('total-count').textContent =
       ALL_TASKS.length + ' task' + (ALL_TASKS.length !== 1 ? 's' : '');
 
-    // Build agent filter buttons
-    buildAgentFilters();
-
-    // Attach card listeners
-    attachCardListeners();
-  }
-
-  /* ─────────────── Agent filter builder ─────────────── */
-  function buildAgentFilters() {
-    const agents = [...new Set(
-      ALL_TASKS.map(t => t.assigned_to).filter(Boolean).sort()
-    )];
-    const container = document.getElementById('agent-filters');
-    container.innerHTML = agents.map(a =>
-      `<button class="filter-btn" data-filter="agent" data-value="${esc(a.toLowerCase())}"
-         style="display:inline-flex;align-items:center;gap:6px">
-        ${avatarHtml(a, 14, 'agent-avatar').replace('width: 26px', 'width:16px;height:16px;font-size:9px')}
-        ${esc(a)}
-       </button>`
-    ).join('');
-    // Re-attach filter listeners after rebuild
+    // Re-attach filter and card listeners
     attachFilterListeners();
+    attachCardListeners();
+
+    // Re-apply any active filter
+    applyFilter();
   }
 
   /* ─────────────── Filter logic ─────────────── */
@@ -970,11 +1265,8 @@
     let visible = 0;
     cards.forEach(card => {
       let show = true;
-      if (activeFilter.type === 'priority') {
-        const vals = (activeFilter.value || '').split(',');
-        show = vals.includes(card.dataset.priority);
-      } else if (activeFilter.type === 'agent') {
-        show = card.dataset.agent === activeFilter.value;
+      if (activeFilter.type === 'project') {
+        show = card.dataset.project === activeFilter.value;
       }
       card.classList.toggle('hidden', !show);
       if (show) visible++;
@@ -989,11 +1281,106 @@
       (activeFilter.type !== 'all' ? ' (filtered)' : '');
   }
 
+  /* ─────────────── Inline card edit ─────────────── */
+  let activeEditId = null;
+
+  function openCardEdit(taskId, cardEl) {
+    // Close any other open edit panels first
+    if (activeEditId && activeEditId !== taskId) {
+      closeCardEdit(activeEditId);
+    }
+
+    const task = ALL_TASKS.find(t => t.task_id === taskId);
+    if (!task) return;
+    activeEditId = taskId;
+
+    // Prevent card click from opening modal while edit panel is open
+    cardEl.dataset.editing = '1';
+
+    const currentCol = classify(task);
+
+    // Build the edit panel HTML
+    const panel = document.createElement('div');
+    panel.className = 'card-edit-panel';
+    panel.dataset.editPanel = taskId;
+    panel.innerHTML = `
+      <div>
+        <div class="edit-panel-label">Notes / Description</div>
+        <textarea class="edit-notes-textarea" id="edit-notes-${esc(taskId)}">${esc(task.notes || '')}</textarea>
+      </div>
+      <div>
+        <div class="edit-panel-label">Move to Column</div>
+        <select class="edit-col-select" id="edit-col-${esc(taskId)}">
+          <option value="needs-you" ${currentCol === 'needs-you'  ? 'selected' : ''}>Needs You</option>
+          <option value="inprogress" ${currentCol === 'inprogress' ? 'selected' : ''}>In Progress</option>
+          <option value="blocked" ${currentCol === 'blocked'    ? 'selected' : ''}>Blocked</option>
+          <option value="done" ${currentCol === 'done'       ? 'selected' : ''}>Done</option>
+        </select>
+      </div>
+      <div class="edit-actions">
+        <button class="edit-cancel-btn" data-cancel-edit="${esc(taskId)}">Cancel</button>
+        <button class="edit-save-btn" data-save-edit="${esc(taskId)}">Save</button>
+      </div>`;
+
+    cardEl.appendChild(panel);
+    // Focus the textarea
+    document.getElementById('edit-notes-' + taskId)?.focus();
+  }
+
+  function closeCardEdit(taskId) {
+    const panel = document.querySelector(`[data-edit-panel="${CSS.escape(taskId)}"]`);
+    if (panel) panel.remove();
+    const cardEl = document.querySelector(`.card[data-task-id="${CSS.escape(taskId)}"]`);
+    if (cardEl) delete cardEl.dataset.editing;
+    if (activeEditId === taskId) activeEditId = null;
+  }
+
+  function saveCardEdit(taskId) {
+    const task = ALL_TASKS.find(t => t.task_id === taskId);
+    if (!task) return;
+
+    const notesEl = document.getElementById('edit-notes-' + taskId);
+    const colEl   = document.getElementById('edit-col-'   + taskId);
+    if (!notesEl || !colEl) return;
+
+    const newNotes  = notesEl.value;
+    const newColKey = colEl.value;
+
+    // Apply edits in-memory
+    task.notes  = newNotes;
+    task.status = COL_KEY_TO_STATUS[newColKey] || task.status;
+    task._project = inferProject(task); // keep project tag consistent
+
+    // Close the edit panel before re-render
+    activeEditId = null;
+
+    // Full board re-render (preserves filter state)
+    renderFromMemory();
+  }
+
+  /* ─────────────── Re-render from in-memory ALL_TASKS ─────────────── */
+  function renderFromMemory() {
+    const pseudoData = { tasks: ALL_TASKS, last_updated: document.getElementById('last-updated').textContent.replace('Updated ', '') };
+    render(pseudoData);
+  }
+
   /* ─────────────── Modal ─────────────── */
+  let currentModalTaskId = null;
+  let modalInEditMode = false;
+
   function openModal(taskId) {
     const task = ALL_TASKS.find(t => t.task_id === taskId);
     if (!task) return;
 
+    currentModalTaskId = taskId;
+    modalInEditMode = false;
+    renderModal(task, false);
+
+    document.getElementById('modal-backdrop').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderModal(task, editMode) {
     const col  = classify(task);
     const prio = (task.priority || 'unknown').toLowerCase();
     const agent = task.assigned_to || '—';
@@ -1034,17 +1421,43 @@
 
     sections.push('<div class="modal-divider"></div>');
 
-    // Notes / description
-    if (task.notes) {
+    if (editMode) {
+      // ── Edit mode ──
       sections.push(`
         <div class="modal-section">
-          <div class="modal-section-label">Notes</div>
-          <div class="modal-section-value muted" style="white-space:pre-wrap">${esc(task.notes)}</div>
+          <div class="modal-section-label">Notes / Description</div>
+          <div class="modal-edit-area">
+            <textarea class="modal-edit-notes" id="modal-edit-notes">${esc(task.notes || '')}</textarea>
+            <div>
+              <div class="modal-section-label" style="margin-bottom:6px">Move to Column</div>
+              <select class="modal-edit-col-select" id="modal-edit-col">
+                <option value="needs-you" ${classify(task) === 'needs-you'  ? 'selected' : ''}>Needs You</option>
+                <option value="inprogress" ${classify(task) === 'inprogress' ? 'selected' : ''}>In Progress</option>
+                <option value="blocked" ${classify(task) === 'blocked'    ? 'selected' : ''}>Blocked</option>
+                <option value="done" ${classify(task) === 'done'       ? 'selected' : ''}>Done</option>
+              </select>
+            </div>
+            <div class="modal-edit-actions">
+              <button class="modal-cancel-edit-btn" id="modal-cancel-edit">Cancel</button>
+              <button class="modal-save-btn" id="modal-save-edit">Save</button>
+            </div>
+          </div>
+        </div>`);
+    } else {
+      // ── View mode ──
+      // Notes / description
+      sections.push(`
+        <div class="modal-section">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <div class="modal-section-label">Notes</div>
+            <button class="modal-edit-btn" id="modal-edit-trigger">&#9998; Edit</button>
+          </div>
+          <div class="modal-section-value muted" style="white-space:pre-wrap">${task.notes ? esc(task.notes) : '<span style="color:var(--muted);font-style:italic">No notes yet.</span>'}</div>
         </div>`);
     }
 
-    // Blocker
-    if (task.blocked_by) {
+    // Blocker (view mode only)
+    if (!editMode && task.blocked_by) {
       sections.push(`
         <div class="modal-blocker-box">
           <div class="modal-blocker-label">Blocker</div>
@@ -1053,13 +1466,38 @@
     }
 
     document.getElementById('modal-body').innerHTML = sections.join('');
-    document.getElementById('modal-backdrop').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+
+    // Attach modal edit listeners
+    if (editMode) {
+      document.getElementById('modal-save-edit')?.addEventListener('click', () => {
+        const notesVal = document.getElementById('modal-edit-notes')?.value ?? task.notes;
+        const colVal   = document.getElementById('modal-edit-col')?.value ?? classify(task);
+        task.notes  = notesVal;
+        task.status = COL_KEY_TO_STATUS[colVal] || task.status;
+        task._project = inferProject(task);
+        modalInEditMode = false;
+        renderModal(task, false);
+        renderFromMemory();
+      });
+      document.getElementById('modal-cancel-edit')?.addEventListener('click', () => {
+        modalInEditMode = false;
+        renderModal(task, false);
+      });
+      // Focus the textarea
+      document.getElementById('modal-edit-notes')?.focus();
+    } else {
+      document.getElementById('modal-edit-trigger')?.addEventListener('click', () => {
+        modalInEditMode = true;
+        renderModal(task, true);
+      });
+    }
   }
 
   function closeModal() {
     document.getElementById('modal-backdrop').style.display = 'none';
     document.body.style.overflow = '';
+    currentModalTaskId = null;
+    modalInEditMode = false;
   }
 
   document.getElementById('modal-close').addEventListener('click', closeModal);
@@ -1069,19 +1507,67 @@
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+      if (modalInEditMode && currentModalTaskId) {
+        // Exit edit mode, stay in modal
+        const task = ALL_TASKS.find(t => t.task_id === currentModalTaskId);
+        if (task) { modalInEditMode = false; renderModal(task, false); }
+      } else {
+        closeModal();
+      }
+    }
   });
 
   /* ─────────────── Card click listeners ─────────────── */
   function attachCardListeners() {
     document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.taskId));
+      // Card body click → open modal (unless edit mode is open)
+      card.addEventListener('click', (e) => {
+        // Ignore clicks originating from the edit button or edit panel
+        if (e.target.closest('.card-edit-btn') || e.target.closest('.card-edit-panel')) return;
+        if (card.dataset.editing) return;
+        openModal(card.dataset.taskId);
+      });
+
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
+          if (card.dataset.editing) return;
           e.preventDefault();
           openModal(card.dataset.taskId);
         }
       });
+    });
+
+    // Edit pencil buttons (delegated because cards are rebuilt on render)
+    document.querySelectorAll('.card-edit-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const taskId = btn.dataset.editId;
+        const cardEl = btn.closest('.card');
+        if (!cardEl) return;
+
+        // Toggle: if this card's panel is already open, close it
+        if (activeEditId === taskId) {
+          closeCardEdit(taskId);
+        } else {
+          openCardEdit(taskId, cardEl);
+        }
+      });
+
+      btn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+
+    // Save / Cancel buttons inside edit panels (event delegation on board)
+    document.getElementById('board').addEventListener('click', (e) => {
+      const saveBtn   = e.target.closest('[data-save-edit]');
+      const cancelBtn = e.target.closest('[data-cancel-edit]');
+      if (saveBtn)   { e.stopPropagation(); saveCardEdit(saveBtn.dataset.saveEdit); }
+      if (cancelBtn) { e.stopPropagation(); closeCardEdit(cancelBtn.dataset.cancelEdit); }
     });
   }
 
