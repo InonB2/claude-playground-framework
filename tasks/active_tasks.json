@@ -7,24 +7,7 @@
       "priority": "high",
       "assigned_to": "Cole",
       "status": "pending-owner",
-      "blocked_by": null,
-      "notes": "COLE DONE 2026-05-02. Cover letter at owner_inbox/elbit_cover_letter_6486.md. Gmail draft in inonbaasov@gmail.com Drafts (ID: r2406393394764395689). CV recommendation: use v4_Inon_Baasov_CV_TrainingPM.pdf (tailored to this role). To submit: open Gmail draft, attach v4 PDF, apply at https://elbitsystemscareer.com/job/?jid=20344. Pending Owner submission."
-    },
-    {
-      "task_id": "CV-GENERIC-001",
-      "title": "Build generic Senior PM CV PDF from CV1 content",
-      "priority": "high",
-      "assigned_to": "Yoni",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-01. HTML + PDF built. Deployed to sites/website-product-portfolio/public/Inon_Baasov_CV.pdf (commit 772c24a). Archived at owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM.pdf. Summary at owner_inbox/cv_generic_done.md."
-    },
-    {
-      "task_id": "PROMAKER-AR-002",
-      "title": "BuildARPro: product plan and agent task breakdown",
-      "priority": "high",
-      "assigned_to": "Andy",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-02. Full product plan at owner_inbox/buildarpro_product_plan.md. Includes: MVP scope, 2-phase roadmap, tech stack, Supabase schema, pricing model, Vuforia decisions, v2 backlog, and new sprint task breakdown (PROMAKER-AR-010 through PROMAKER-AR-013). New tasks added to active_tasks.json."
+      "notes": "Gmail draft ready (inonbaasov@gmail.com). Attach v4_Inon_Baasov_CV_TrainingPM.pdf → apply at https://elbitsystemscareer.com/job/?jid=20344."
     },
     {
       "task_id": "PROMAKER-AR-003",
@@ -32,124 +15,16 @@
       "priority": "high",
       "assigned_to": "Cole",
       "status": "partial",
-      "notes": "Stealth revision written to owner_inbox/BuildARPro_PitchDeck_Stealth_v2.md. Owner needs to apply text changes to original owner_inbox/BuildARPro_PitchDeck.pptx manually. Design pass pending Lena (PROMAKER-AR-007)."
+      "notes": "Stealth text at owner_inbox/presentations/BuildARPro_PitchDeck_Stealth_v2.md. Owner applies text to owner_inbox/presentations/BuildARPro_PitchDeck.pptx manually."
     },
     {
       "task_id": "PROMAKER-AR-005",
       "title": "Connect LlamaParse API to BuildARPro",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "blocked",
+      "status": "pending",
       "blocked_by": null,
-      "notes": "UNBLOCKED 2026-05-03. Supabase project meonilvpqerbemeikrfk is live. LlamaParse API key in team_inbox/GH and LlamaParse access.docx. Next: Mack runs supabase secrets set LLAMAPARSE_API_KEY=<key> on project meonilvpqerbemeikrfk, then Yoni wires edge function. Key must not be logged in any tracked file."
-    },
-    {
-      "task_id": "PROMAKER-AR-006",
-      "title": "BuildARPro images — generate 6 AR concept visuals",
-      "priority": "medium",
-      "assigned_to": "Owner",
-      "status": "done",
-      "blocked_by": null,
-      "notes": "COMPLETED 2026-05-02. Owner generated all assets and dropped in team_inbox/BuildAR Pro/: 6 AR concept images (image 1-6.png), BuildARPro logo (BuildARPro - logo image.png), social banner (BuildARPro - social image.png)."
-    },
-    {
-      "task_id": "PROMAKER-AR-007",
-      "title": "BuildARPro PPTX + banners — visual design pass",
-      "priority": "high",
-      "assigned_to": "Lena",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-02. Deliverables: scratchpad/buildarpro_banner.html (hero banner, responsive), scratchpad/buildarpro_social_banner.html (LinkedIn/Twitter 1200x628), scratchpad/buildarpro_pptx_style.py (Python-pptx script, tested on all 12 slides, output: scratchpad/BuildARPro_PitchDeck_Styled.pptx), owner_inbox/buildarpro_design_spec.md (full brand spec). Colors: #0D0D0D bg, #F97316 accent, #E5E5E5 body."
-    },
-    {
-      "task_id": "PROMAKER-AR-008",
-      "title": "BuildARPro: full data flow + AR engine research",
-      "priority": "high",
-      "assigned_to": "Tomy",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-02. Full report at owner_inbox/buildarpro_architecture_research.md. Key findings: LlamaParse+LlamaExtract for content pipeline, Vuforia Cloud+Model Targets for AR runtime, no off-the-shelf bridge (build in Unity), Supabase schema sketched, Stripe integration pattern documented. AR.js for fast investor demo (1-2 weeks), Unity+Vuforia for production (6-12 weeks). Main risk: 3D CAD model availability for Model Targets."
-    },
-    {
-      "task_id": "PROMAKER-AR-009",
-      "title": "Restore Supabase 'Pro maker AR' project",
-      "priority": "high",
-      "assigned_to": "Owner",
-      "status": "cancelled",
-      "notes": "CANCELLED 2026-05-02. Screenshot confirmed: project paused 90+ days, dashboard restore no longer available. Decision: use existing Lovable Cloud Supabase project (ref: yfpwajzpwswjflzwcnff, eu-west-1) as the BuildARPro database. PROMAKER-AR-010 updated accordingly."
-    },
-    {
-      "task_id": "INFRA-001",
-      "title": "Keep-alive schedule — all hosted projects",
-      "priority": "high",
-      "assigned_to": "Mack",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-02. Weekly ping routine live (trig_01PLxe72RNnPN1XVPThob1yG, every Sunday 7am UTC). Pings: FamilyFlow, TradePulse, portfolio. Will also check infra/keep_alive_urls.txt for additional Supabase URLs after restore. Results logged to owner_inbox/KEEP_ALIVE_LOG.md."
-    },
-    {
-      "task_id": "WHATSAPP-001",
-      "title": "WhatsApp MCP — debug and fix messaging",
-      "priority": "high",
-      "assigned_to": "Mack",
-      "status": "blocked",
-      "blocked_by": "Unknown — Inon completed all setup steps (bridge running, Claude Code restarted 3-4 hrs ago) but WhatsApp tools not loading and no messages sending",
-      "notes": "Setup complete per Inon: bridge running, Claude Code restarted, QR not needed. Still failing. Mack to debug: check settings.json MCP entry, verify bridge port, check if whatsapp-mcp Python server starts correctly, test tool loading. May need fresh QR scan or sessions.db reset."
-    },
-    {
-      "task_id": "WEBSITE-001-SEC-01",
-      "title": "Remove Base44 platform badge",
-      "priority": "critical",
-      "assigned_to": "Rex",
-      "status": "blocked",
-      "blocked_by": "Owner must disable in Base44 app dashboard — cannot be done from code",
-      "notes": "Injected at hosting layer. Action: Inon logs into base44.app → app settings → disable platform badge."
-    },
-    {
-      "task_id": "WEBSITE-001-SEC-04",
-      "title": "Security headers",
-      "priority": "high",
-      "assigned_to": "Rex",
-      "status": "partial",
-      "notes": "Code fixes done (PII obfuscated, rel=noreferrer added). HTTP headers (CSP, HSTS etc.) cannot be set from React — need Base44 dashboard Custom Headers panel. If Base44 doesn't support it, document for future."
-    },
-    {
-      "task_id": "WEBSITE-001-DESIGN-01",
-      "title": "Full Awwwards-level visual redesign",
-      "priority": "high",
-      "assigned_to": "Rex",
-      "status": "blocked",
-      "blocked_by": "Wrong codebase — Rex applied to website-product-portfolio but live site is inon-baasov-website repo (inon-baasov-website.base44.app). Rex must reapply changes to correct repo.",
-      "notes": "Rex commit da1659e exists on sites/website-product-portfolio (wrong target). Live website = InonB2/inon-baasov-website → inon-baasov-website.base44.app. Next: Rex clones/locates correct repo, reapplies same Awwwards changes there, then Inon deploys via Base44 dashboard."
-    },
-    {
-      "task_id": "WEBSITE-001-UX-04",
-      "title": "CV download button — live PDF",
-      "priority": "medium",
-      "assigned_to": "Rex",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-01. Generic Senior PM PDF deployed to sites/website-product-portfolio/public/Inon_Baasov_CV.pdf (commit 772c24a by Yoni). Button was already live in UI. Download now serves the correct generic CV."
-    },
-    {
-      "task_id": "WEBSITE-001-CONTENT-01",
-      "title": "Thought leadership / journal section",
-      "priority": "medium",
-      "assigned_to": "Rex",
-      "status": "in-progress",
-      "notes": "3 posts written by Sage/Cole in owner_inbox/thought_leadership_batch_001.md. Rex to build the journal section UI. One post per day cadence. Content pipeline active."
-    },
-    {
-      "task_id": "MOBILE-AUDIT-001",
-      "title": "Mobile audit — portfolio website",
-      "priority": "high",
-      "assigned_to": "Vera",
-      "status": "done",
-      "notes": "Audit complete. Report at owner_inbox/mobile_audit.md. Rex to implement fixes."
-    },
-    {
-      "task_id": "MOBILE-AUDIT-002",
-      "title": "Mobile fixes — Trademetrics",
-      "priority": "medium",
-      "assigned_to": "Rex",
-      "status": "done",
-      "notes": "COMPLETED 2026-05-02. Commit 8e266c5 pushed to main. Fixed: TP-A11Y-05 (P&L ▲/▼ symbols), TP-MOB-08 title (partially). Already passing: TP-MOB-02 (ResponsiveContainer in use), TP-MOB-03 (dual card/table layout exists). Manual items for Inon (Base44 dashboard): TP-MOB-05 icon resize (upload to Base44 settings), TP-MOB-08 manifest name. Full summary at owner_inbox/trademetrics_mobile_fixes.md."
+      "notes": "UNBLOCKED 2026-05-03. Supabase project meonilvpqerbemeikrfk live. LlamaParse API key in team_inbox/GH and LlamaParse access.docx. Next: Mack sets LLAMAPARSE_API_KEY secret on project, Yoni wires edge function."
     },
     {
       "task_id": "PROMAKER-AR-010",
@@ -157,25 +32,23 @@
       "priority": "high",
       "assigned_to": "Silas",
       "status": "done",
-      "blocked_by": null,
-      "notes": "COMPLETED 2026-05-03. New project 'BuildARPro' created (ID: meonilvpqerbemeikrfk, eu-west-1, Bazland org, free tier). All 5 tables live with RLS: users, guides, image_targets, subscriptions, guide_views. Credentials at scratchpad/buildarpro_supabase_env.txt. Next: Yoni updates pro-maker-ar/.env, Mack sets LLAMAPARSE_API_KEY secret, Mack sets up Stripe webhook."
+      "notes": "COMPLETED 2026-05-03. Project meonilvpqerbemeikrfk (eu-west-1). All 5 tables live with RLS. Credentials at scratchpad/buildarpro_supabase_env.txt."
     },
     {
       "task_id": "PROMAKER-AR-011",
-      "title": "BuildARPro: AR.js investor demo (1 tool)",
+      "title": "BuildARPro: AR.js investor demo",
       "priority": "high",
       "assigned_to": "Yoni",
       "status": "done",
-      "notes": "Build a web AR demo using AR.js. Pick one demo tool (e.g., DeWalt drill or HVAC filter). Register one image target. Overlay 3-5 text steps when tool is detected. Host on a simple URL (GitHub Pages or Vercel). No login required. Goal: shareable link for investor demo. See plan at owner_inbox/buildarpro_product_plan.md."
+      "notes": "COMPLETED 2026-05-03. Files on ar-demo branch (.nojekyll + root redirect + demo). GitHub Pages enabled by Inon (ar-demo, / root). URL: https://inonb2.github.io/claude-playground-framework/ — check Actions tab if still 404."
     },
     {
       "task_id": "PROMAKER-AR-012",
       "title": "BuildARPro: Stripe product + subscription setup",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "blocked",
-      "blocked_by": null,
-      "notes": "Create Stripe products: Free ($0), Pro ($29/month + $249/year), Team ($99/month). Set up webhook endpoint on Supabase Edge Function /functions/v1/stripe-webhook handling: checkout.session.completed, customer.subscription.updated, invoice.payment_failed. See plan at owner_inbox/buildarpro_product_plan.md."
+      "status": "pending",
+      "notes": "Free ($0), Pro ($29/mo, $249/yr), Team ($99/mo). Webhook: Supabase Edge Function /functions/v1/stripe-webhook. See owner_inbox/research/buildarpro_product_plan.md."
     },
     {
       "task_id": "PROMAKER-AR-013",
@@ -183,24 +56,80 @@
       "priority": "high",
       "assigned_to": "Yoni",
       "status": "pending",
-      "notes": "Create Vuforia developer account at developer.vuforia.com. Create a Cloud Recognition database. Upload photo of demo tool (must have ≥3-star rating). Download as .unitypackage. Document target name and metadata JSON to use. See plan at owner_inbox/buildarpro_product_plan.md."
+      "notes": "Create Vuforia dev account, Cloud Recognition database, upload demo tool photo (≥3-star rating), download .unitypackage."
+    },
+    {
+      "task_id": "WHATSAPP-001",
+      "title": "WhatsApp MCP — activate messaging",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "pending-owner",
+      "notes": "Config is correct. QR session valid (whatsapp.db 2.1MB). Bridge not running. Owner: start C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe then restart Claude Code. Mack to add Task Scheduler autostart (next session)."
+    },
+    {
+      "task_id": "RALPH-LOOP-001",
+      "title": "Ralph Loop — implement for agent team",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "pending",
+      "notes": "RATE LIMITED 2026-05-03. Mack to: create .ralph/guardrails.md, update CLAUDE.md with Ralph Loop section, create agents/[name]/scratchpad/learning_log.md for all 14 agents, fix github_sync.ps1 comment parsing bug."
+    },
+    {
+      "task_id": "DASHBOARD-001",
+      "title": "C&C Dashboard — project filters + inline edit",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "pending",
+      "notes": "RATE LIMITED 2026-05-03. Replace agent filters with project filters (BuildARPro/Website/TradeMetrics/FamilyFlow/Career/Infra/Other). Add inline edit per card: description text + column dropdown. In-memory is fine."
+    },
+    {
+      "task_id": "WEBSITE-001-DESIGN-01",
+      "title": "Full Awwwards-level visual redesign",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "blocked",
+      "blocked_by": "Wrong codebase — live site is InonB2/inon-baasov-website, not website-product-portfolio",
+      "notes": "Rex must locate inon-baasov-website local path and reapply da1659e changes there."
+    },
+    {
+      "task_id": "WEBSITE-001-SEC-01",
+      "title": "Remove Base44 platform badge",
+      "priority": "critical",
+      "assigned_to": "Rex",
+      "status": "blocked",
+      "blocked_by": "Owner: base44.app → app settings → disable platform badge"
+    },
+    {
+      "task_id": "WEBSITE-001-SEC-04",
+      "title": "Security headers",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "partial",
+      "notes": "Code fixes done. HTTP headers need Base44 dashboard Custom Headers panel."
+    },
+    {
+      "task_id": "WEBSITE-001-CONTENT-01",
+      "title": "Thought leadership / journal section",
+      "priority": "medium",
+      "assigned_to": "Rex",
+      "status": "in-progress",
+      "notes": "3 posts at owner_inbox/posts/thought_leadership_batch_001.md. Rex builds journal section UI."
     },
     {
       "task_id": "LINKEDIN-001",
       "title": "LinkedIn posts — 5 posts ready",
       "priority": "medium",
       "assigned_to": "Sage",
-      "status": "partial",
-      "notes": "5 posts in owner_inbox/linkedin_posts_refreshed.md. Awaiting Owner approval to publish."
+      "status": "pending-owner",
+      "notes": "5 posts at owner_inbox/posts/linkedin_posts_refreshed.md. Awaiting Owner approval."
     },
     {
-      "task_id": "REPO-CLEANUP-001",
-      "title": "Repository cleanup — pending decisions",
+      "task_id": "SCRATCHPAD-001",
+      "title": "Scratchpad cleanup",
       "priority": "low",
-      "assigned_to": "Owner",
-      "status": "blocked",
-      "blocked_by": "Owner decisions needed",
-      "notes": "1. Supabase anon key rotation — defer until after PROMAKER-AR-009 restore (new project = new keys). 2. archive/cv_inon/ gitignored (done). 3. Scratchpad partial cleanup remaining. 4. BFG history pruning — optional, low urgency."
+      "assigned_to": "General",
+      "status": "pending",
+      "notes": "RATE LIMITED 2026-05-03. Delete cv_template/, cv_v9/. Move trademetrics/ nested git repo to sites/trademetrics/. Archive old research md files to owner_inbox/archive/handled_2026_05/."
     }
   ]
 }
