@@ -1,11 +1,11 @@
 # Owner Action Items
-_Last updated: 2026-05-03_
+_Last updated: 2026-05-04_
 
 ---
 
-### [WHATSAPP-001] Activate WhatsApp MCP
-**Context:** Config is correct, session is authenticated. Bridge just needs to be running.
-**Action:** `C:\tools\whatsapp-mcp\whatsapp-bridge\whatsapp-bridge.exe` (keep window open) → restart Claude Code.
+### [WHATSAPP-001] Restart Claude Code to activate WhatsApp MCP
+**Context:** Bridge is running (started 2026-05-04). MCP tools load at session start.
+**Action:** Restart Claude Code — WhatsApp send will be available immediately after.
 
 ---
 

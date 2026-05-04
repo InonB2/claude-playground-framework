@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-03",
+  "last_updated": "2026-05-04",
   "tasks": [
     {
       "task_id": "ELBIT-APPLY-001",
@@ -63,8 +63,8 @@
       "title": "WhatsApp MCP — activate messaging",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "pending-owner",
-      "notes": "Config is correct. QR session valid (whatsapp.db 2.1MB). Bridge not running. Owner: start C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe then restart Claude Code. Mack to add Task Scheduler autostart (next session)."
+      "status": "in-progress",
+      "notes": "Bridge running manually (2026-05-04). Owner approved Task Scheduler autostart. Mack to: create Task Scheduler entry that starts C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe at user logon, hidden window, with working dir C:\\tools\\whatsapp-mcp\\whatsapp-bridge. Owner must restart Claude Code for MCP tools to load in new session."
     },
     {
       "task_id": "RALPH-LOOP-001",
