@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-04",
+  "last_updated": "2026-05-05",
   "tasks": [
     {
       "task_id": "FAMILYFLOW-KEEPALIVE-001",
@@ -68,12 +68,11 @@
     },
     {
       "task_id": "WHATSAPP-001",
-      "title": "WhatsApp MCP — activate messaging",
-      "priority": "high",
+      "title": "WhatsApp MCP — 2-way reliable messaging",
+      "priority": "low",
       "assigned_to": "Mack",
-      "status": "blocked",
-      "blocked_by": "Stale whatsapp.db-journal file causing SQLITE_BUSY on bridge startup",
-      "notes": "UPDATED 2026-05-04 (session 2). Bridge is DOWN again — port 8080 not listening. Root cause: C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\store\\whatsapp.db-journal exists (stale journal from prior crash), SQLite returns SQLITE_BUSY when bridge tries to open whatsapp.db. Watchdog IS registered (State: Ready) but it monitors the Python MCP server only — does not catch Go bridge failures. Fix: (1) Delete whatsapp.db-journal — safe when no process holds it; (2) Restart whatsapp-bridge.exe. Inon needs to do this manually or approve Andy to delete the stale file. NEXT: Inon approves deletion of whatsapp.db-journal → Andy deletes → bridge restarts → test send."
+      "status": "paused",
+      "notes": "PAUSED 2026-05-05 by Inon. All WhatsApp software stopped: bridge killed, watchdog scheduled task deleted, no auto-start. Current Go bridge is fundamentally fragile (port conflicts, SQLite stuck transactions, manual restarts required). Open questions when resuming: (1) How does Inon send messages TO Andy? (2) Windows Service for auto-restart; (3) 2-way comms needs a dedicated number — Green API recommended; (4) Remote control / dispatch trigger from WhatsApp. Resume when Inon is ready — recommend Green API (commercial REST, no local bridge, true 2-way) as the clean solution."
     },
     {
       "task_id": "RALPH-LOOP-001",
@@ -97,7 +96,23 @@
       "priority": "high",
       "assigned_to": "Rex",
       "status": "done",
-      "notes": "COMPLETED 2026-05-04. Tomy researched 3 YouTube videos + web best practices (Notion/Huntr/Teal ecosystem). Cole updated agents/cole.md with CV Tailoring Playbook section (ATS keywords, version naming, outcome tracking). Andy added two tabs via targeted edits to dashboard/index.html: (1) Job Applications Kanban — 7 active stages + 4 terminal archive states, drag-and-drop, aging badges, interview prep checklist, full detail modal, localStorage persistence; (2) CV Versions table — outcome badges, expand rows, edit/duplicate/delete, localStorage persistence. Sample data pre-loaded on first open. Requires local server (npx serve .) to use."
+      "notes": "COMPLETED 2026-05-04. Tomy researched 3 YouTube videos + web best practices (Notion/Huntr/Teal ecosystem). Cole updated agents/cole.md with CV Tailoring Playbook section (ATS keywords, version naming, outcome tracking). Andy added two tabs via targeted edits to dashboard/index.html: (1) Job Applications Kanban — 7 active stages + 4 terminal archive states, drag-and-drop, aging badges, interview prep checklist, full detail modal, localStorage persistence; (2) CV Versions table — outcome badges, expand rows, edit/duplicate/delete, localStorage persistence. Sample data pre-loaded on first open. Requires local server (npx serve .) to use. UPGRADED 2026-05-05: CV tab now has JD column (clickable to job posting), Version Name links to HTML preview, cyan Preview button, and 3 new form fields (jdTitle, jdUrl, htmlPath). See CV-DASH-UPGRADE-001."
+    },
+    {
+      "task_id": "CV-GENERIC-001",
+      "title": "Generic Senior PM CV — fix, template, and deploy",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-05. Fixed all 8 issues in scratchpad/cv_senior_pm_generic.html: (1) website URL added to header contact line as clickable link; (2) email made mailto link; (3) title line reformatted to pipe-separated one-liner; (4) experience order confirmed Inon Baasov Ltd → TouchE → Arena Plus; (5) Military Service section added — Israeli Air Force, Planning & Control Dept, 2000–2003 (extracted from archive PPTX); (6) one-page CSS constraints applied (max-height 269mm, @page 10mm 14mm margins); (7) 7 template markers added for JD customization zones; (8) all portfolio links have target=_blank. PDF regenerated (149.6 KB) at owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM.pdf and deployed to sites/website-product-portfolio/public/Inon_Baasov_CV.pdf (commit 858c3ec). Also: bulk-replaced wrong URL inonbaasov-website → inon-baasov-website in 31 files across 2 repos. 7 template zones: title line, summary, key skills, professional experience section, consulting bullets, TouchE bullets, military service on/off."
+    },
+    {
+      "task_id": "CV-DASH-UPGRADE-001",
+      "title": "Dashboard CV tab — JD link + HTML preview",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-05. Upgraded dashboard/index.html CV Versions tab (commit e4bf9c2): table expanded to 7 columns — added JD column between Industry and Date; Version Name is now a cyan clickable link that opens htmlPath in new tab; cyan Preview button in Actions column opens HTML directly; CV edit/add form has 3 new fields: JD Title (short label), JD URL (link to job posting), HTML Preview Path (relative path to cv_custom.html). When Cole creates a custom CV for a JD, he populates these fields so the dashboard shows it. Expand row colspan updated to 7. Sample data updated with jdTitle/jdUrl/htmlPath fields."
     },
     {
       "task_id": "WEBSITE-001-DESIGN-01",

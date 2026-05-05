@@ -1,5 +1,5 @@
 # Owner Action Items
-_Last updated: 2026-05-04_
+_Last updated: 2026-05-05_
 
 ---
 
@@ -22,6 +22,12 @@ _Last updated: 2026-05-04_
 ### [WEBSITE] Push BuildARPro images live
 **Context:** Rex added BuildARPro as Product #05 in Home.jsx with images — won't render until pushed.
 **Action:** Run `scripts\github_sync.ps1` (or `git add -A && git commit && git push`).
+
+---
+
+### [CV-WORKFLOW] Send a JD link to get a custom CV
+**Context (2026-05-05):** Generic CV template is ready at `scratchpad/cv_senior_pm_generic.html` with 7 marked zones. Dashboard CV tab can now show HTML previews. Cole is briefed on the full workflow.
+**Action:** Send Andy a JD URL. Cole will: (1) customize all 7 zones; (2) show HTML preview; (3) iterate until approved; (4) produce PPTX + PDF in `owner_inbox/cvs/[jd-slug]/`; (5) register in dashboard CV tab.
 
 ---
 
