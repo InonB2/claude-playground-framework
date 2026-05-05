@@ -1302,6 +1302,8 @@
 
     .cv-action-btns button:hover { background: var(--border); color: var(--text); }
     .cv-action-btns button.del:hover { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: var(--red); }
+    .cv-action-btns button.preview { background: var(--cyan-dim); border-color: rgba(34,211,238,0.35); color: var(--cyan); }
+    .cv-action-btns button.preview:hover { background: rgba(34,211,238,0.2); border-color: rgba(34,211,238,0.6); }
 
     .cv-expand-row td {
       padding: 0 0 0 0;
@@ -1627,6 +1629,7 @@
           <th>Version Name</th>
           <th>Target Role</th>
           <th>Industry</th>
+          <th>JD</th>
           <th>Date</th>
           <th>Outcome</th>
           <th>Actions</th>
@@ -1737,6 +1740,18 @@
       <div class="form-field">
         <label class="form-label">Keywords Added (comma-separated)</label>
         <input class="form-input" id="cv-edit-keywords" name="keywords" placeholder="SaaS, OKRs, product-led growth">
+      </div>
+      <div class="form-field">
+        <label class="form-label">JD Title (short label)</label>
+        <input class="form-input" id="cv-edit-jdTitle" name="jdTitle" placeholder="Elbit — Tech PM">
+      </div>
+      <div class="form-field">
+        <label class="form-label">JD URL</label>
+        <input class="form-input" id="cv-edit-jdUrl" name="jdUrl" type="url" placeholder="https://...">
+      </div>
+      <div class="form-field">
+        <label class="form-label">HTML Preview Path (relative to dashboard)</label>
+        <input class="form-input" id="cv-edit-htmlPath" name="htmlPath" placeholder="../owner_inbox/cvs/elbit-techpm/cv_custom.html">
       </div>
       <div class="form-field">
         <label class="form-label">File Link</label>
@@ -2582,8 +2597,8 @@
     const raw = localStorage.getItem('cc_cv_versions');
     if (raw) return JSON.parse(raw);
     const samples = [
-      {id:'cv1',name:'IB-v3-PM-SaaS',role:'Product Manager',industry:'SaaS',date:'2026-04-20',outcome:'Interview Got',baseVersion:'IB-v2-PM',changes:'Added cloud/SaaS keywords, rewrote summary for tech focus',keywords:'SaaS,product-led growth,OKRs,roadmap',format:'PDF',fileLink:'',notes:'Used for Microsoft, Accenture applications'},
-      {id:'cv2',name:'IB-v4-PM-Tech',role:'Senior PM',industry:'Tech',date:'2026-05-01',outcome:'In Use',baseVersion:'IB-v3-PM-SaaS',changes:'Added Azure/AI keywords, updated metrics in bullet 3',keywords:'Azure,AI,machine learning,enterprise',format:'DOCX',fileLink:'',notes:'Current active version'}
+      {id:'cv1',name:'IB-v3-PM-SaaS',role:'Product Manager',industry:'SaaS',date:'2026-04-20',outcome:'Interview Got',baseVersion:'IB-v2-PM',changes:'Added cloud/SaaS keywords, rewrote summary for tech focus',keywords:'SaaS,product-led growth,OKRs,roadmap',format:'PDF',fileLink:'',jdTitle:'Accenture — Senior PM',jdUrl:'',htmlPath:'',notes:'Used for Microsoft, Accenture applications'},
+      {id:'cv2',name:'IB-v4-PM-Tech',role:'Senior PM',industry:'Tech',date:'2026-05-01',outcome:'In Use',baseVersion:'IB-v3-PM-SaaS',changes:'Added Azure/AI keywords, updated metrics in bullet 3',keywords:'Azure,AI,machine learning,enterprise',format:'DOCX',fileLink:'',jdTitle:'Microsoft — PM',jdUrl:'',htmlPath:'',notes:'Current active version'}
     ];
     saveCVs(samples);
     return samples;
@@ -2602,12 +2617,20 @@
       const tr = document.createElement('tr');
       tr.className = 'cv-main-row';
       tr.innerHTML = `
-        <td><strong>${esc(cv.name)}</strong></td>
+        <td><strong>${cv.htmlPath
+          ? `<a href="${esc(cv.htmlPath)}" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none" title="Preview CV HTML">${esc(cv.name)} ↗</a>`
+          : esc(cv.name)
+        }</strong></td>
         <td>${esc(cv.role)}</td>
         <td>${esc(cv.industry)}</td>
+        <td>${cv.jdUrl
+          ? `<a class="job-modal-url-link" href="${esc(cv.jdUrl)}" target="_blank" rel="noopener" title="Open JD">${esc(cv.jdTitle || 'View JD')} ↗</a>`
+          : (cv.jdTitle ? esc(cv.jdTitle) : '<span style="color:var(--muted)">—</span>')
+        }</td>
         <td>${esc(cv.date)}</td>
         <td><span class="cv-outcome-badge ${outClass}">${esc(cv.outcome)}</span></td>
         <td><div class="cv-action-btns">
+          ${cv.htmlPath ? `<button class="preview" onclick="window.open('${esc(cv.htmlPath)}','_blank')">Preview</button>` : ''}
           <button onclick="toggleCVExpand('${esc(cv.id)}')">Details</button>
           <button onclick="editCV('${esc(cv.id)}')">Edit</button>
           <button onclick="duplicateCV('${esc(cv.id)}')">Dupe</button>
@@ -2619,7 +2642,7 @@
       expandTr.className = 'cv-expand-row';
       expandTr.id = 'cv-expand-' + cv.id;
       expandTr.style.display = 'none';
-      expandTr.innerHTML = `<td colspan="6"><div class="cv-expand-inner">
+      expandTr.innerHTML = `<td colspan="7"><div class="cv-expand-inner">
         <div class="cv-expand-field" style="min-width:220px;flex:2">
           <div class="cv-expand-label">Key Changes</div>
           <div class="cv-expand-value">${esc(cv.changes||'—')}</div>
@@ -2632,6 +2655,7 @@
           <div class="cv-expand-label">Format</div>
           <div class="cv-expand-value">${esc(cv.format||'—')}</div>
         </div>
+        ${cv.jdUrl ? `<div class="cv-expand-field"><div class="cv-expand-label">Job Description</div><div class="cv-expand-value"><a class="job-modal-url-link" href="${esc(cv.jdUrl)}" target="_blank">${esc(cv.jdTitle || cv.jdUrl)} ↗</a></div></div>` : ''}
         ${cv.fileLink ? `<div class="cv-expand-field"><div class="cv-expand-label">File</div><div class="cv-expand-value"><a class="job-modal-url-link" href="${esc(cv.fileLink)}" target="_blank">Open ↗</a></div></div>` : ''}
         ${chips ? `<div class="cv-expand-field" style="flex-basis:100%"><div class="cv-expand-label">Keywords</div><div class="cv-keyword-chips">${chips}</div></div>` : ''}
         ${cv.notes ? `<div class="cv-expand-field" style="flex-basis:100%"><div class="cv-expand-label">Notes</div><div class="cv-expand-value">${esc(cv.notes)}</div></div>` : ''}
@@ -2678,6 +2702,9 @@
     document.getElementById('cv-edit-keywords').value    = cv.keywords || '';
     document.getElementById('cv-edit-format').value      = cv.format || 'PDF';
     document.getElementById('cv-edit-fileLink').value    = cv.fileLink || '';
+    document.getElementById('cv-edit-jdTitle').value     = cv.jdTitle  || '';
+    document.getElementById('cv-edit-jdUrl').value       = cv.jdUrl    || '';
+    document.getElementById('cv-edit-htmlPath').value    = cv.htmlPath || '';
     document.getElementById('cv-edit-notes').value       = cv.notes || '';
     document.getElementById('cv-edit-modal-backdrop').style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -2692,7 +2719,8 @@
     document.getElementById('cv-edit-id').value           = '';
     document.getElementById('cv-modal-title').textContent = 'New CV Version';
     ['cv-edit-name','cv-edit-role','cv-edit-industry','cv-edit-baseVersion',
-     'cv-edit-changes','cv-edit-keywords','cv-edit-fileLink','cv-edit-notes'].forEach(i => {
+     'cv-edit-changes','cv-edit-keywords','cv-edit-fileLink','cv-edit-notes',
+     'cv-edit-jdTitle','cv-edit-jdUrl','cv-edit-htmlPath'].forEach(i => {
       document.getElementById(i).value = '';
     });
     document.getElementById('cv-edit-date').value    = new Date().toISOString().slice(0,10);
@@ -2718,7 +2746,8 @@
       name:fd.get('name'), role:fd.get('role'), industry:fd.get('industry'),
       date:fd.get('date'), outcome:fd.get('outcome'), baseVersion:fd.get('baseVersion'),
       changes:fd.get('changes'), keywords:fd.get('keywords'), format:fd.get('format'),
-      fileLink:fd.get('fileLink'), notes:fd.get('notes')
+      fileLink:fd.get('fileLink'), jdTitle:fd.get('jdTitle'), jdUrl:fd.get('jdUrl'),
+      htmlPath:fd.get('htmlPath'), notes:fd.get('notes')
     };
     if (editId) {
       const idx = cvs.findIndex(c => c.id === editId);
