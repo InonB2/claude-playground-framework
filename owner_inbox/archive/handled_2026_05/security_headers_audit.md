@@ -2,7 +2,7 @@
 **Task:** WEBSITE-001-SEC-04  
 **Auditor:** Maya (Web Security Auditor)  
 **Date:** 2026-04-30  
-**Target:** https://inonbaasov-website.base44.app  
+**Target:** https://inon-baasov-website.base44.app  
 **Stack:** React SPA (JSX) hosted on Base44 managed platform  
 **Prepared for:** Rex (implementation)
 
@@ -86,7 +86,7 @@ X-Content-Type-Options: nosniff
 **CWE:** CWE-200 (Exposure of Sensitive Information)  
 **Location:** HTTP response headers — all pages  
 **Evidence:** No `Referrer-Policy` header present. Default browser behaviour sends the full URL as `Referer` on cross-origin navigation.  
-**Impact:** When a visitor clicks the LinkedIn link, CV download link (raw.githubusercontent.com), or the live product links, the full URL of the portfolio (`https://inonbaasov-website.base44.app/...`) is sent in the `Referer` header. This is low-risk for this site because there are no private URL parameters, but it is a best-practice gap and will affect analytics accuracy.  
+**Impact:** When a visitor clicks the LinkedIn link, CV download link (raw.githubusercontent.com), or the live product links, the full URL of the portfolio (`https://inon-baasov-website.base44.app/...`) is sent in the `Referer` header. This is low-risk for this site because there are no private URL parameters, but it is a best-practice gap and will affect analytics accuracy.  
 **Recommendation:**
 ```
 Referrer-Policy: strict-origin-when-cross-origin
@@ -119,7 +119,7 @@ This denies all sensitive browser feature APIs that the portfolio site has no re
 ```
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 ```
-**Action:** Rex should verify via `curl -I https://inonbaasov-website.base44.app` whether Base44 already sets this. If not, request it through the platform dashboard or escalate to Base44 support. Do not add `preload` until the domain is stable and intentionally submitted to the HSTS preload list.
+**Action:** Rex should verify via `curl -I https://inon-baasov-website.base44.app` whether Base44 already sets this. If not, request it through the platform dashboard or escalate to Base44 support. Do not add `preload` until the domain is stable and intentionally submitted to the HSTS preload list.
 
 ---
 

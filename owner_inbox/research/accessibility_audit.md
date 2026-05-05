@@ -2,7 +2,7 @@
 **Standard:** WCAG 2.1 AA  
 **Auditor:** Vera (QA & Visual Inspector)  
 **Date:** 2026-04-30  
-**Site:** https://inonbaasov-website.base44.app  
+**Site:** https://inon-baasov-website.base44.app  
 **Codebase:** `sites/website-product-portfolio/pages/Home.jsx`
 
 ---

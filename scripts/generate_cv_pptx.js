@@ -70,7 +70,7 @@ const contactItems = [
   "✉  Inonbaasov@hotmail.com",
   "✆  +972-54-444-5856",
   "in  linkedin.com/in/inonbaasov",
-  "⌂  inonbaasov-website.base44.app"
+  "⌂  inon-baasov-website.base44.app"
 ];
 const colW = W / 4;
 contactItems.forEach((txt, i) => {

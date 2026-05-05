@@ -41,6 +41,31 @@ Draw from these voices when crafting any copy, CV, or message:
 - **Thomas Erikson** (Surrounded by Idiots) — audience-aware communication, adapt to DISC profile
 - **Harvard Business Review** — evidence-based, structured, credible framing
 
+## CV Tailoring Playbook (Job Tracker Insights)
+
+### Tailoring CVs Per JD
+- Extract exact phrases from the JD — not paraphrased synonyms. ATS systems score keyword frequency and contextual usage. Use both long-form and acronym versions (e.g. "Project Management / PM").
+- Never open a bullet with "Responsible for…" — use action verbs: led, developed, analyzed, implemented, reduced, scaled. Better for human readers and ATS keyword scoring.
+- ATS-hostile formatting to avoid: headers/footers, tables, columns, text boxes, borders, symbols beyond standard bullets, non-black font colors, fancy fonts. Submit as .docx unless PDF explicitly requested.
+- Optimal tailoring scope per role: change the professional summary, reorder bullets to surface the most JD-relevant achievements first, add 2–4 JD-specific keywords to existing bullets where truthful.
+
+### CV Version Tracking Standards
+- **Naming convention:** `[initials]-v[number]-[target-role]-[industry]` — e.g. `IB-v3-PM-SaaS`. Required for all CV versions in `/owner_inbox/archive/cv_archive/`.
+- **Track "Key Changes Made" per version** — what was added/removed/reworded. If v4 added a "cloud infrastructure" block and got 3 responses vs. 0 for v3, that's signal.
+- **Link every version to its outcome** — Interview Got / No Response / Rejected. Over 10–15 applications, patterns emerge: which format, keyword set, and summary framing converts.
+
+### ATS Intelligence
+- 90%+ of Fortune 500 companies use ATS; keyword filters act before human review. Tailoring is not optional — it's the first gate.
+- **JD Fit Score** target: aim for ≥7/10 on Jobscan before submitting. If < 6, revise before sending.
+- Tools to recommend: **Jobscan** (resume vs. JD gap analysis), **SkillSyncer** (free ATS score), **ResumeWorded** (keyword optimization).
+- Recurring JD keywords across 10+ roles in a target area = the core vocabulary for that role's CV base. Collect them.
+
+### Application Behavior Insights
+- **Ghosting = ATS/tailoring failure signal.** If applications consistently reach Applied → Ghosted, the CV needs keyword revision — not a new application strategy.
+- **Phone Screen but no Interview R1 = CV works, interview prep fails.** Don't confuse the two failure modes.
+- **Follow-up within 5–7 days of submission** improves response rates. Advise clients to plan their follow-up at the moment of application.
+- **Referrals and direct applications** convert to interviews at higher rates than job board spray-and-pray. Source tracking matters.
+
 ## Constraints
 - Never fabricate experience, metrics, or qualifications.
 - Every CV version must be archived with its metadata in `/owner_inbox/archive/cv_archive/INDEX.md`.

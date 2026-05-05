@@ -23,14 +23,17 @@
     .page {
       width: 210mm;
       max-width: 210mm;
+      min-height: 0;
+      max-height: 269mm;
+      overflow: hidden;
       margin: 0 auto;
-      padding: 14mm 16mm 14mm 16mm;
+      padding: 0;
     }
 
     /* ── Header ── */
     .header {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       border-bottom: 2px solid #1a1a1a;
       padding-bottom: 8px;
     }
@@ -61,7 +64,7 @@
 
     /* ── Section headings ── */
     .section {
-      margin-top: 11px;
+      margin-top: 6px;
     }
 
     .section-title {
@@ -90,7 +93,7 @@
 
     /* ── Experience ── */
     .job {
-      margin-bottom: 9px;
+      margin-bottom: 5px;
     }
 
     .job-header {
@@ -126,7 +129,7 @@
 
     .job ul li {
       margin-bottom: 2px;
-      font-size: 10pt;
+      font-size: 9.5pt;
     }
 
     /* ── Portfolio ── */
@@ -151,14 +154,14 @@
 
     .edu-list li {
       font-size: 10pt;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     /* ── Skills ── */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px 12px;
+      gap: 3px 10px;
     }
 
     .skill-item {
@@ -178,7 +181,7 @@
       }
       .page {
         width: 210mm;
-        padding: 12mm 14mm;
+        padding: 0;
         margin: 0;
       }
       a {
@@ -189,7 +192,7 @@
 
     @page {
       size: A4;
-      margin: 0;
+      margin: 10mm 14mm;
     }
   </style>
 </head>
@@ -199,18 +202,22 @@
     <!-- ── HEADER ── -->
     <div class="header">
       <h1>INON BAASOV</h1>
-      <div class="title-line">SENIOR PRODUCT MANAGER &mdash; AI &amp; ENTERPRISE | B.Sc. Engineering | Executive MBA | GenAI Product Specialist</div>
+      <!-- TEMPLATE: One-liner title — change for each JD -->
+      <div class="title-line">Senior Product Manager | B.Sc. Engineering | Executive MBA | AI &amp; Enterprise SaaS | End-to-End Product Delivery</div>
+      <!-- TEMPLATE: Customize title-line for each JD -->
       <div class="contact-line">
-        inonbaasov@gmail.com &nbsp;|&nbsp;
+        <a href="mailto:inonbaasov@gmail.com">inonbaasov@gmail.com</a> &nbsp;|&nbsp;
         <a href="https://linkedin.com/in/inonbaasov">linkedin.com/in/inonbaasov</a> &nbsp;|&nbsp;
-        Tel Aviv, Israel &nbsp;|&nbsp;
-        +972-54-444-5856
+        +972-54-444-5856 &nbsp;|&nbsp;
+        <a href="https://inon-baasov-website.base44.app">inon-baasov-website.base44.app</a> &nbsp;|&nbsp;
+        Tel Aviv, Israel
       </div>
     </div>
 
     <!-- ── PROFESSIONAL SUMMARY ── -->
     <div class="section summary">
       <div class="section-title">Professional Summary</div>
+      <!-- TEMPLATE: Customize summary paragraph for each JD -->
       <p>
         Senior Product Manager with 10+ years of end-to-end product ownership across AI, SaaS, and enterprise platforms.
         Co-Founder &amp; CPO of TouchE — an AI-powered interactive video platform that raised <strong>$2.5M</strong>,
@@ -225,13 +232,15 @@
         Product-Led Adoption &nbsp;|&nbsp; Agile / Scrum &nbsp;|&nbsp; Stakeholder Management &nbsp;|&nbsp;
         Data-Driven Roadmaps &nbsp;|&nbsp; Cross-Functional Leadership &nbsp;|&nbsp; KPI Definition
       </p>
+      <!-- TEMPLATE: Customize key skills for each JD -->
     </div>
 
     <!-- ── PROFESSIONAL EXPERIENCE ── -->
     <div class="section">
       <div class="section-title">Professional Experience</div>
 
-      <!-- Consulting -->
+      <!-- Consulting — 2024–Present -->
+      <!-- TEMPLATE: Reframe bullets to match JD focus -->
       <div class="job">
         <div class="job-header">
           <span class="job-title-company">Inon Baasov Ltd &mdash; Product Strategy Consulting</span>
@@ -245,7 +254,8 @@
         </ul>
       </div>
 
-      <!-- TouchE -->
+      <!-- TouchE — 2018–2024 -->
+      <!-- TEMPLATE: Reframe bullets to match JD focus -->
       <div class="job">
         <div class="job-header">
           <span class="job-title-company">TouchE TV &mdash; AI Interactive Video Platform (SaaS / PaaS)</span>
@@ -261,7 +271,7 @@
         </ul>
       </div>
 
-      <!-- Arena Plus -->
+      <!-- Arena Plus — 2013–2018 -->
       <div class="job">
         <div class="job-header">
           <span class="job-title-company">Arena Plus Financial Services &mdash; FinTech Platform (B2B)</span>
@@ -274,7 +284,7 @@
         </ul>
       </div>
 
-      <!-- Previous -->
+      <!-- Previous Experience -->
       <div class="job">
         <div class="job-header">
           <span class="job-title-company">Previous Experience</span>
@@ -286,13 +296,28 @@
       </div>
     </div>
 
+    <!-- TEMPLATE: Military service — keep for defense roles, optional for others -->
+    <!-- MILITARY SERVICE -->
+    <div class="section">
+      <div class="section-title">Military Service</div>
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">Israeli Air Force — Planning and Control Department</span>
+          <span class="job-date">2000 – 2003</span>
+        </div>
+        <ul>
+          <li>Command &amp; Control: Oversaw a 27-soldier roster, managing shift planning, operational readiness, and equipment logistics in a high-pressure environment.</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- ── PORTFOLIO ── -->
     <div class="section">
       <div class="section-title">Portfolio</div>
       <ul class="portfolio-list">
-        <li>Personal Portfolio &amp; Case Studies: <a href="https://inonbaasov-website.base44.app">inonbaasov-website.base44.app</a></li>
-        <li>Family Flow (Live App): <a href="https://family-flow-he.lovable.app/">family-flow-he.lovable.app</a></li>
-        <li>TradePulse Journal Pro (Live App): <a href="https://trade-pulse-journal-pro.base44.app">trade-pulse-journal-pro.base44.app</a></li>
+        <li>Personal Portfolio &amp; Case Studies: <a href="https://inon-baasov-website.base44.app" target="_blank" rel="noopener">inon-baasov-website.base44.app</a></li>
+        <li>Family Flow (Live App): <a href="https://family-flow-he.lovable.app/" target="_blank" rel="noopener">family-flow-he.lovable.app</a></li>
+        <li>TradePulse Journal Pro (Live App): <a href="https://trade-pulse-journal-pro.base44.app" target="_blank" rel="noopener">trade-pulse-journal-pro.base44.app</a></li>
         <li>Consulting clients: AiRakoon &middot; Smash+ &middot; Medicrowd &middot; Yazamos</li>
       </ul>
     </div>

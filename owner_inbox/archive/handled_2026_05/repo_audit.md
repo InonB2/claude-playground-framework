@@ -88,7 +88,7 @@ dist/
 ### README Accuracy
 **File:** `D:/Claude Playground/sites/website-product-portfolio/README.md`
 - README is accurate and up to date. Phone number was already removed (SEC-07 comment present). No stale paths. Minor: uses emoji in section headers (cosmetic).
-- The README references the live URL `https://inonbaasov-website.base44.app` — should be verified that this is still the active deploy URL.
+- The README references the live URL `https://inon-baasov-website.base44.app` — should be verified that this is still the active deploy URL.
 
 ### Folder Structure Issues
 - `docs/` folder contains `agent_system.md` and `cv_master_template.md` — internal framework documentation that has no business being in the portfolio website repo. These appear to have been accidentally committed during initial setup.

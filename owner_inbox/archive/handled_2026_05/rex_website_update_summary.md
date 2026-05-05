@@ -39,10 +39,10 @@ DONE. Implemented Inon's combined tagline and all copy changes:
 
 DONE with TODO flag. No custom domain was found in the codebase.
 
-- Removed all hardcoded `https://inonbaasov-website.base44.app` occurrences from meta/schema
+- Removed all hardcoded `https://inon-baasov-website.base44.app` occurrences from meta/schema
 - Added a single `SITE_URL` constant at the top of `Home.jsx` (line 6)
 - Current placeholder value: `"https://TODO-SET-CUSTOM-DOMAIN.com"`
-- Footer text changed from `© 2026 · inonbaasov-website.base44.app` to `© 2026 · Inon Baasov`
+- Footer text changed from `© 2026 · inon-baasov-website.base44.app` to `© 2026 · Inon Baasov`
 
 **Action required from Inon:** Once your custom domain is set up in Base44, update `SITE_URL`
 on line 6 of `Home.jsx` — that single change propagates to og:url and schema.org "url".

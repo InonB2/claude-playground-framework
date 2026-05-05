@@ -3,9 +3,12 @@ _Last updated: 2026-05-04_
 
 ---
 
-### [WHATSAPP-001] Restart Claude Code to activate WhatsApp MCP
-**Context:** Bridge is running (started 2026-05-04). MCP tools load at session start.
-**Action:** Restart Claude Code — WhatsApp send will be available immediately after.
+### [WHATSAPP-001] Fix bridge SQLite lock — bridge is DOWN again
+**Context (2026-05-04 session 2):** Bridge crashed again. Stale file `C:\tools\whatsapp-mcp\whatsapp-bridge\store\whatsapp.db-journal` is blocking startup with SQLITE_BUSY. Watchdog is registered but only monitors the Python server, not the Go bridge.
+**Action:** Tell Andy "delete whatsapp.db-journal and restart the bridge" — or do it yourself:
+1. Delete `C:\tools\whatsapp-mcp\whatsapp-bridge\store\whatsapp.db-journal`
+2. Start `C:\tools\whatsapp-mcp\whatsapp-bridge\whatsapp-bridge.exe`
+3. Restart Claude Code → test send to 972544445856
 
 ---
 

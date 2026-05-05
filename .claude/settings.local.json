@@ -2,7 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(python memory/init_db.py)",
-      "WebFetch(domain:inonbaasov-website.base44.app)",
+      "WebFetch(domain:inon-baasov-website.base44.app)",
       "WebFetch(domain:inon-baasov-website.base44.com)",
       "WebFetch(domain:base44.com)",
       "WebFetch(domain:elbitsystemscareer.com)",

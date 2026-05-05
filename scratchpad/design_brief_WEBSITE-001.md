@@ -293,7 +293,7 @@ Updated with latest SOTD research:
 ---
 
 ## DEPLOYMENT NOTE (critical)
-The live site runs on Base44 at inonbaasov-website.base44.app. Base44 is NOT auto-synced with GitHub (unlike Lovable/ProMaker AR). Two paths to deploy:
+The live site runs on Base44 at inon-baasov-website.base44.app. Base44 is NOT auto-synced with GitHub (unlike Lovable/ProMaker AR). Two paths to deploy:
 - **Option A:** Edit directly in Base44's web editor (fastest for small fixes)
 - **Option B:** Confirm if Base44 has GitHub sync in project Settings → if yes, pushes to the repo deploy automatically
 - **Option C (recommended for full redesign):** Migrate hosting to Vercel (free) connected to the GitHub repo — then all pushes from GitHub deploy instantly. Owner decides hosting platform.

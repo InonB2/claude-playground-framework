@@ -2,6 +2,14 @@
   "last_updated": "2026-05-04",
   "tasks": [
     {
+      "task_id": "FAMILYFLOW-KEEPALIVE-001",
+      "title": "FamilyFlow Supabase keep-alive pings",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-04. Three daily remote routines created via claude.ai/code/routines to prevent familyflow DB (heqcgdjhinuiskzvzlcr, ap-southeast-1) from going inactive. Morning 8 AM IL (trig_013CoDUbVzmNTc7T56mLzmBj), Noon 12 PM IL (trig_01UjuH1gvdf3VaZe3qE6iUw4), Evening 7 PM IL (trig_01Ez3CcHsCxXtf1zkBLuQH8Y). Each runs SELECT NOW() via Supabase MCP. First run: 2026-05-05."
+    },
+    {
       "task_id": "ELBIT-APPLY-001",
       "title": "Submit CV to Elbit Systems",
       "priority": "high",
@@ -63,8 +71,9 @@
       "title": "WhatsApp MCP — activate messaging",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "in-progress",
-      "notes": "Bridge running manually (2026-05-04). Owner approved Task Scheduler autostart. Mack to: create Task Scheduler entry that starts C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\whatsapp-bridge.exe at user logon, hidden window, with working dir C:\\tools\\whatsapp-mcp\\whatsapp-bridge. Owner must restart Claude Code for MCP tools to load in new session."
+      "status": "blocked",
+      "blocked_by": "Stale whatsapp.db-journal file causing SQLITE_BUSY on bridge startup",
+      "notes": "UPDATED 2026-05-04 (session 2). Bridge is DOWN again — port 8080 not listening. Root cause: C:\\tools\\whatsapp-mcp\\whatsapp-bridge\\store\\whatsapp.db-journal exists (stale journal from prior crash), SQLite returns SQLITE_BUSY when bridge tries to open whatsapp.db. Watchdog IS registered (State: Ready) but it monitors the Python MCP server only — does not catch Go bridge failures. Fix: (1) Delete whatsapp.db-journal — safe when no process holds it; (2) Restart whatsapp-bridge.exe. Inon needs to do this manually or approve Andy to delete the stale file. NEXT: Inon approves deletion of whatsapp.db-journal → Andy deletes → bridge restarts → test send."
     },
     {
       "task_id": "RALPH-LOOP-001",
@@ -81,6 +90,14 @@
       "assigned_to": "Rex",
       "status": "pending",
       "notes": "RATE LIMITED 2026-05-03. Replace agent filters with project filters (BuildARPro/Website/TradeMetrics/FamilyFlow/Career/Infra/Other). Add inline edit per card: description text + column dropdown. In-memory is fine."
+    },
+    {
+      "task_id": "CAREER-DASH-001",
+      "title": "Job Applications + CV Versions tabs in C&C dashboard",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-04. Tomy researched 3 YouTube videos + web best practices (Notion/Huntr/Teal ecosystem). Cole updated agents/cole.md with CV Tailoring Playbook section (ATS keywords, version naming, outcome tracking). Andy added two tabs via targeted edits to dashboard/index.html: (1) Job Applications Kanban — 7 active stages + 4 terminal archive states, drag-and-drop, aging badges, interview prep checklist, full detail modal, localStorage persistence; (2) CV Versions table — outcome badges, expand rows, edit/duplicate/delete, localStorage persistence. Sample data pre-loaded on first open. Requires local server (npx serve .) to use."
     },
     {
       "task_id": "WEBSITE-001-DESIGN-01",

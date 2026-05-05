@@ -56,7 +56,7 @@ Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
 ```
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 ```
-First verify: run `curl -I https://inonbaasov-website.base44.app` to check if Base44 already
+First verify: run `curl -I https://inon-baasov-website.base44.app` to check if Base44 already
 sets this. Only add if it is absent. Do NOT add `preload` until the domain is stable.
 
 ---

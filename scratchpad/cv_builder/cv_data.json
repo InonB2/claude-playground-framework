@@ -53,7 +53,7 @@
     }
   ],
   "portfolio": [
-    { "label": "Personal Portfolio & Case Studies", "url": "https://inonbaasov-website.base44.app", "display": "inonbaasov-website.base44.app" },
+    { "label": "Personal Portfolio & Case Studies", "url": "https://inon-baasov-website.base44.app", "display": "inon-baasov-website.base44.app" },
     { "label": "Family Flow (Live App)", "url": "https://family-flow-he.lovable.app/", "display": "family-flow-he.lovable.app" },
     { "label": "TradePulse Journal Pro (Live App)", "url": "https://trade-pulse-journal-pro.base44.app", "display": "trade-pulse-journal-pro.base44.app" },
     { "label": "Consulting clients", "url": null, "display": "AiRakoon · Smash+ · Medicrowd · Yazamos" }

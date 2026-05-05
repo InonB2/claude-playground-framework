@@ -24,7 +24,7 @@ OUT_BASE = Path(r"D:\Claude Playground\output\cv_archive")
 V1 = SRC_DIR / "Inon Baasov V1.S.M1.PPM.pptx"
 V9 = SRC_DIR / "Inon Baasov V9.S.M4.TPMAI-E.pptx"
 
-WEBSITE = "inonbaasov-website.base44.app"
+WEBSITE = "inon-baasov-website.base44.app"
 
 
 def add_website_to_contact_row(pptx_path: Path):

@@ -28,12 +28,12 @@ The previous audit (4 repos) was incomplete. An unauthenticated API call only re
 | 3 | `family-flow-he` | **private** | 2026-04-30 | TypeScript | Hebrew-locale FamilyFlow variant |
 | 4 | `FamilyFlow` | **private** | 2026-03-25 | — | Personal family chore repository |
 | 5 | `inon-baasov-cv-career` | **private** | 2026-05-02 | — | CV drafts, templates, JD analysis, career architecture |
-| 6 | `inon-baasov-website` | **public** | 2026-05-02 | JavaScript | Portfolio website — inonbaasov-website.base44.app (**LIVE SITE**) |
+| 6 | `inon-baasov-website` | **public** | 2026-05-02 | JavaScript | Portfolio website — inon-baasov-website.base44.app (**LIVE SITE**) |
 | 7 | `inon-baasov-website-base44` | **private** | 2026-05-01 | JavaScript | Base44 App: Inon Baasov Portfolio |
 | 8 | `pro-maker-ar` | **private** | 2026-05-01 | TypeScript | BuildARPro / ProMaker AR app (created 2025-01-26; 1 star) |
 | 9 | `project-launchpad` | **private** | 2026-05-01 | TypeScript | (no description) |
 | 10 | `trademetrics` | **private** | 2026-05-02 | JavaScript | Base44 App: TradeMetrics |
-| 11 | `website-product-portfolio` | **public** | 2026-05-01 | JavaScript | Inon Baasov — Personal Portfolio Website (homepage: https://inonbaasov-website.base44.app) |
+| 11 | `website-product-portfolio` | **public** | 2026-05-01 | JavaScript | Inon Baasov — Personal Portfolio Website (homepage: https://inon-baasov-website.base44.app) |
 
 ---
 
@@ -43,8 +43,8 @@ The previous audit (4 repos) was incomplete. An unauthenticated API call only re
 
 Two repos reference this URL:
 
-- **`inon-baasov-website`** (public) — description explicitly states "Portfolio website — inonbaasov-website.base44.app". Last pushed 2026-05-02. **Owner confirmed this is the live site.**
-- **`website-product-portfolio`** (public) — `homepage` field set to `https://inonbaasov-website.base44.app`. Last pushed 2026-05-01.
+- **`inon-baasov-website`** (public) — description explicitly states "Portfolio website — inon-baasov-website.base44.app". Last pushed 2026-05-02. **Owner confirmed this is the live site.**
+- **`website-product-portfolio`** (public) — `homepage` field set to `https://inon-baasov-website.base44.app`. Last pushed 2026-05-01.
 
 **Correction to previous audit:** `inon-baasov-website` was wrongly flagged as a duplicate/archive candidate. Owner confirmed it IS the live site. Do NOT archive it.
 

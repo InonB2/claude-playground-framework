@@ -98,7 +98,7 @@ con_items = [
     Paragraph("Email: Inonbaasov@hotmail.com", sCON),
     Paragraph("Tel: +972-54-444-5856", sCON),
     Paragraph("LinkedIn: linkedin.com/in/inonbaasov", sCON),
-    Paragraph("Portfolio: inonbaasov-website.base44.app", sCON),
+    Paragraph("Portfolio: inon-baasov-website.base44.app", sCON),
 ]
 con = Table([con_items], colWidths=[INNER/4 + M/2]*4)
 con.setStyle(TableStyle([

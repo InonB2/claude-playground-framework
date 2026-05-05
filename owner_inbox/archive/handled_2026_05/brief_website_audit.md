@@ -1,4 +1,4 @@
-# Knowledge Brief: Website Audit — inonbaasov-website.base44.app
+# Knowledge Brief: Website Audit — inon-baasov-website.base44.app
 **By:** Tomy (Researcher)  
 **Date:** 2026-04-24  
 **Task ID:** WEBSITE-001  
@@ -7,7 +7,7 @@
 ---
 
 ## Site Overview
-- **URL:** https://inonbaasov-website.base44.app/Home  
+- **URL:** https://inon-baasov-website.base44.app/Home  
 - **Platform:** Base44 (AI no-code app builder)  
 - **Purpose:** Personal portfolio for Inon Baasov — Product Leader / Co-Founder / CPO  
 - **Sections:** Hero, Product Portfolio (6 items), Experience Timeline, Core Capabilities, Academic Foundation, Contact/CTA, Footer

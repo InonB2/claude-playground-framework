@@ -1,7 +1,7 @@
 # Mobile Responsiveness Audit — WEBSITE-001-PERF-01
 **Auditor:** Vera (QA & Visual Inspector)  
 **Date:** 2026-04-30  
-**Site:** https://inonbaasov-website.base44.app  
+**Site:** https://inon-baasov-website.base44.app  
 **Codebase:** `sites/website-product-portfolio/pages/Home.jsx`  
 **Viewports tested (via code inspection):** 375px · 768px · 1280px
 
