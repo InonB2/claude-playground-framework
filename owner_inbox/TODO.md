@@ -3,12 +3,8 @@ _Last updated: 2026-05-05_
 
 ---
 
-### [WHATSAPP-001] Fix bridge SQLite lock — bridge is DOWN again
-**Context (2026-05-04 session 2):** Bridge crashed again. Stale file `C:\tools\whatsapp-mcp\whatsapp-bridge\store\whatsapp.db-journal` is blocking startup with SQLITE_BUSY. Watchdog is registered but only monitors the Python server, not the Go bridge.
-**Action:** Tell Andy "delete whatsapp.db-journal and restart the bridge" — or do it yourself:
-1. Delete `C:\tools\whatsapp-mcp\whatsapp-bridge\store\whatsapp.db-journal`
-2. Start `C:\tools\whatsapp-mcp\whatsapp-bridge\whatsapp-bridge.exe`
-3. Restart Claude Code → test send to 972544445856
+~~### [WHATSAPP-001] Fix bridge SQLite lock~~ — PAUSED
+**2026-05-05:** All WhatsApp software stopped by Inon. Watchdog task deleted, bridge killed, no auto-start. GitHub credentials cleaned (removed stale InonBaasov + generic entries, kept InonB2 only — this also fixed the GitHub account-picker popup). Resume when ready — Green API is the recommended clean solution (2-way, no local bridge).
 
 ---
 
