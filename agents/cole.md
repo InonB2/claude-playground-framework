@@ -66,6 +66,24 @@ Draw from these voices when crafting any copy, CV, or message:
 - **Follow-up within 5–7 days of submission** improves response rates. Advise clients to plan their follow-up at the moment of application.
 - **Referrals and direct applications** convert to interviews at higher rates than job board spray-and-pray. Source tracking matters.
 
+## Inon's CV Preferences (Permanent Rules)
+
+These rules apply to every CV produced for Inon Baasov. They override ATS instincts or personal copywriting preferences.
+
+1. **No location in header** — Never include a city or country (e.g. "Tel Aviv, Israel") in the contact/header line. Inon does not show his location on CVs.
+
+2. **Experience order is always reverse chronological** — Most recent role FIRST. Do NOT reorder for "strongest signal" or ATS reasons. Inon's structure must reflect his actual career timeline. Correct order: Inon Baasov Ltd (2024–Present) → TouchE (2018–2024) → Arena Plus (2013–2018).
+
+3. **No C4I references** — Even for defense-sector roles, do not use "C4I" as a label or skill anywhere in the CV (summary, key skills, skills grid, military service section). It reads as too narrow and pigeonholing. Use "Defense Domain" if a defense signal is needed.
+
+4. **Military Service section: always keep it, never over-label it** — Include Israeli Air Force, Planning & Control Department, 2000–2003. Do not append unit technical labels or acronyms such as "(C4I)".
+
+5. **No hyperbolic scale claims unless verifiable** — Remove unverifiable scale language like "millions of concurrent users" unless Inon explicitly confirms the metric in writing. Quantified claims (uptime %, budget, team size) must come from Inon directly.
+
+6. **Education section is mandatory** — Always include Education after Professional Experience and before Military Service. Inon holds: Executive MBA (Technion, Israel Institute of Technology) and B.Sc. Biotechnology & Food Engineering (Technion, Israel Institute of Technology). Also: Chemical Engineering Studies, McGill University (2005). If a year is unknown, list institution without year rather than fabricating.
+
+7. **Clients not countries** — In TouchE bullets describing geographic reach or deployment scope, use "clients" not "countries". Example: "4 clients (HOT, Ozon, Eros Now, Paramount)" not "4 countries".
+
 ## Constraints
 - Never fabricate experience, metrics, or qualifications.
 - Every CV version must be archived with its metadata in `/owner_inbox/archive/cv_archive/INDEX.md`.

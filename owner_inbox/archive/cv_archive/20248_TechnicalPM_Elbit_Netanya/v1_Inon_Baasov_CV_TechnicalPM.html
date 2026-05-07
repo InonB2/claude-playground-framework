@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inon Baasov — Technical Project Manager CV</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, system-ui, -apple-system, sans-serif;
+      font-size: 10.5pt;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.45;
+    }
+
+    /* A4-width container */
+    .page {
+      width: 210mm;
+      max-width: 210mm;
+      min-height: 0;
+      max-height: 269mm;
+      overflow: hidden;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 8px;
+    }
+
+    .header h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+
+    .header .title-line {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .header .contact-line {
+      font-size: 9.5pt;
+      color: #444;
+    }
+
+    .header .contact-line a {
+      color: #444;
+      text-decoration: none;
+    }
+
+    /* ── Section headings ── */
+    .section {
+      margin-top: 6px;
+    }
+
+    .section-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 2px;
+      margin-bottom: 7px;
+    }
+
+    /* ── Summary ── */
+    .summary p {
+      margin-bottom: 5px;
+    }
+
+    .summary .key-skills {
+      font-size: 9.5pt;
+      color: #222;
+    }
+
+    .summary .key-skills strong {
+      font-weight: 700;
+    }
+
+    /* ── Experience ── */
+    .job {
+      margin-bottom: 5px;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .job-title-company {
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+
+    .job-subtitle {
+      font-style: italic;
+      font-size: 10pt;
+      color: #333;
+      margin-bottom: 3px;
+    }
+
+    .job-date {
+      font-size: 9.5pt;
+      color: #555;
+      white-space: nowrap;
+    }
+
+    .job ul {
+      padding-left: 15px;
+      margin-top: 3px;
+    }
+
+    .job ul li {
+      margin-bottom: 2px;
+      font-size: 9.5pt;
+    }
+
+    /* ── Portfolio ── */
+    .portfolio-list {
+      padding-left: 15px;
+    }
+
+    .portfolio-list li {
+      font-size: 10pt;
+      margin-bottom: 2px;
+    }
+
+    .portfolio-list a {
+      color: #1a1a1a;
+      text-decoration: underline;
+    }
+
+    /* ── Education ── */
+    .edu-list {
+      padding-left: 15px;
+    }
+
+    .edu-list li {
+      font-size: 10pt;
+      margin-bottom: 2px;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 10px;
+    }
+
+    .skill-item {
+      font-size: 10pt;
+      white-space: nowrap;
+    }
+
+    .skill-item::before {
+      content: "• ";
+      color: #555;
+    }
+
+    /* ── Print overrides ── */
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page {
+        width: 210mm;
+        padding: 0;
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: #1a1a1a;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm 14mm;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ── HEADER ── -->
+    <div class="header">
+      <h1>INON BAASOV</h1>
+      <div class="title-line">Technical Project Manager | System Engineering | Defense</div>
+      <div class="contact-line">
+        <a href="mailto:inonbaasov@gmail.com">inonbaasov@gmail.com</a> &nbsp;|&nbsp;
+        <a href="https://linkedin.com/in/inonbaasov">linkedin.com/in/inonbaasov</a> &nbsp;|&nbsp;
+        +972-54-444-5856 &nbsp;|&nbsp;
+        <a href="https://inon-baasov-website.base44.app">inon-baasov-website.base44.app</a>
+      </div>
+    </div>
+
+    <!-- ── PROFESSIONAL SUMMARY ── -->
+    <div class="section summary">
+      <div class="section-title">Professional Summary</div>
+      <p>
+        Technical Project Manager and system engineering leader with 10+ years of end-to-end ownership across complex software platforms,
+        multidisciplinary engineering teams, and mission-critical product delivery. Co-Founder &amp; CPO of TouchE &mdash; built and
+        shipped a full software stack (Web, Mobile, Smart TV SDKs, AI engine, CMS, analytics) from architecture through integration,
+        testing, and customer-site deployment at scale. Proven in translating operational needs into clear engineering requirements,
+        driving Agile / Product Owner workflows, and leading cross-functional teams in matrix environments. Background includes
+        Israeli Air Force service; available for travel abroad.
+      </p>
+      <p class="key-skills">
+        <strong>Key Skills:</strong>
+        System Engineering &nbsp;|&nbsp; Software Project Management &nbsp;|&nbsp; Agile / Scrum / Product Owner &nbsp;|&nbsp;
+        Requirements Analysis &nbsp;|&nbsp; System Architecture &nbsp;|&nbsp; Integration &amp; Testing &nbsp;|&nbsp;
+        Cross-Functional Leadership &nbsp;|&nbsp; Defense Domain &nbsp;|&nbsp; Matrix Leadership &nbsp;|&nbsp; Stakeholder Management
+      </p>
+    </div>
+
+    <!-- ── PROFESSIONAL EXPERIENCE ── -->
+    <div class="section">
+      <div class="section-title">Professional Experience</div>
+
+      <!-- Inon Baasov Ltd — 2024–Present (most recent, leads) -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">Inon Baasov Ltd &mdash; Product &amp; System Engineering Consulting</span>
+          <span class="job-date">2024 &ndash; Present</span>
+        </div>
+        <div class="job-subtitle">Senior Technical Product Consultant</div>
+        <ul>
+          <li>Defined engineering requirements and system architecture blueprints for <strong>AiRakoon</strong> (enterprise AI platform) &mdash; including API design, model selection, and 12-month software project roadmap enabling first enterprise pilot.</li>
+          <li>Conducted requirements analysis and translated operational needs into product specs and adoption KPIs for <strong>Medicrowd</strong> (AI-enabled MedTech) and <strong>Smash+</strong> (consumer AI), covering integration, data governance, and GTM.</li>
+          <li>Built AI feature evaluation frameworks and cross-functional delivery playbooks for 4 startups across GenAI, FinTech, and HealthTech domains.</li>
+        </ul>
+      </div>
+
+      <!-- TouchE — 2018–2024 -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">TouchE TV &mdash; AI Interactive Video Platform (SaaS / PaaS)</span>
+          <span class="job-date">2018 &ndash; 2024</span>
+        </div>
+        <div class="job-subtitle">Co-Founder &amp; Chief Product Officer</div>
+        <ul>
+          <li>Owned full system engineering lifecycle: defined system architecture, authored engineering requirements, led integration and testing of Web, Mobile, and Smart TV SDKs across hardware and software layers.</li>
+          <li>Served as Product Owner in Agile / Scrum teams &mdash; drove <strong>38% team efficiency improvement</strong> via sprint ceremonies, backlog prioritization, and cross-functional delivery across R&amp;D, QA, and Product.</li>
+          <li>Translated complex operational needs into clear software requirements and led hands-on deployment at customer sites across 4 clients (HOT, Ozon, Eros Now, Paramount).</li>
+          <li>Managed <strong>$2.5M</strong> software project budget end-to-end; achieved <strong>99.99% uptime</strong> through rigorous testing and system architecture decisions.</li>
+          <li>Built and shipped mission-critical components: Creator CMS, Viewer SDK, AI Recommendation Engine, Analytics Dashboard, Monetization Engine.</li>
+        </ul>
+      </div>
+
+      <!-- Arena Plus — 2013–2018 -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">Arena Plus Financial Services &mdash; FinTech Platform (B2B)</span>
+          <span class="job-date">2013 &ndash; 2018</span>
+        </div>
+        <div class="job-subtitle">Product Manager &rarr; Senior Product Manager (Promoted)</div>
+        <ul>
+          <li>Led software project management for enterprise FinTech platform: delivered <strong>+22% user adoption</strong>, <strong>&minus;20% time-to-market</strong> via structured Agile delivery and cross-functional team leadership across 3 geographies.</li>
+          <li>Managed backlog, sprint ceremonies, stakeholder design reviews, and C-suite reporting in a matrix environment.</li>
+        </ul>
+      </div>
+
+      <!-- Previous Experience -->
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">Previous Experience</span>
+        </div>
+        <ul>
+          <li>Regulatory Affairs Consultant, Blau Pharmaceuticals (2009&ndash;2011)</li>
+          <li>QA Manager, Pharmabest &amp; Philtel (2011&ndash;2013)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── EDUCATION ── -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <ul class="edu-list">
+        <li><strong>Executive MBA</strong>, Entrepreneurship &amp; High-Tech Management &mdash; Technion, Israel Institute of Technology (2018)</li>
+        <li><strong>B.Sc.</strong>, Biotechnology &amp; Food Engineering &mdash; Technion, Israel Institute of Technology (2008)</li>
+        <li>Chemical Engineering Studies &mdash; McGill University, Montreal, Canada (2005)</li>
+      </ul>
+    </div>
+
+    <!-- ── MILITARY SERVICE ── -->
+    <div class="section">
+      <div class="section-title">Military Service</div>
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title-company">Israeli Air Force &mdash; Planning and Control Department</span>
+          <span class="job-date">2000 – 2003</span>
+        </div>
+        <ul>
+          <li>Command &amp; Control operations: managed a 27-soldier roster, overseeing shift planning, operational readiness, and equipment logistics in a mission-critical defense environment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── PORTFOLIO ── -->
+    <div class="section">
+      <div class="section-title">Portfolio</div>
+      <ul class="portfolio-list">
+        <li>Personal Portfolio &amp; Case Studies: <a href="https://inon-baasov-website.base44.app" target="_blank" rel="noopener">inon-baasov-website.base44.app</a></li>
+        <li>Family Flow (Live App): <a href="https://family-flow-he.lovable.app/" target="_blank" rel="noopener">family-flow-he.lovable.app</a></li>
+        <li>TradePulse Journal Pro (Live App): <a href="https://trade-pulse-journal-pro.base44.app" target="_blank" rel="noopener">trade-pulse-journal-pro.base44.app</a></li>
+        <li>Consulting clients: AiRakoon &middot; Smash+ &middot; Medicrowd &middot; Yazamos</li>
+      </ul>
+    </div>
+
+    <!-- ── SKILLS ── -->
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="skills-grid">
+        <span class="skill-item">System Engineering</span>
+        <span class="skill-item">Software Project Management</span>
+        <span class="skill-item">Agile / Scrum / Product Owner</span>
+        <span class="skill-item">Requirements Analysis</span>
+        <span class="skill-item">System Architecture</span>
+        <span class="skill-item">Integration &amp; Testing</span>
+        <span class="skill-item">Cross-Functional Leadership</span>
+        <span class="skill-item">Defense Domain</span>
+        <span class="skill-item">Matrix Leadership</span>
+        <span class="skill-item">API &amp; Platform Products</span>
+        <span class="skill-item">Mobile / Web / SDK</span>
+        <span class="skill-item">Data Governance</span>
+        <span class="skill-item">Stakeholder Management</span>
+        <span class="skill-item">AI / GenAI Product</span>
+        <span class="skill-item">GTM Strategy</span>
+        <span class="skill-item">KPI &amp; OKR Definition</span>
+      </div>
+    </div>
+
+  </div><!-- /.page -->
+</body>
+</html>

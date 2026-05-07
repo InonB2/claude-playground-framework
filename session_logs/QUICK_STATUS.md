@@ -34,7 +34,7 @@ Fixed /start + /session-handoff skills, hardened Tomy's researcher.md, integrate
 | PROMAKER-AR-012 | Stripe setup | high | Mack | pending |
 | PROMAKER-AR-013 | Vuforia account + Image Target | high | Yoni | pending |
 | PROMAKER-AR-003 | Pitch deck stealth text | high | Cole | partial |
-| WEBSITE-001-DESIGN-01 | Awwwards redesign | high | Rex | **done** (code in repo — needs Base44 sync) |
+| WEBSITE-001-DESIGN-01 | Awwwards redesign | high | Rex | **done** — migrated to correct repo (inon-baasov-website-base44, commit c45a9a3) |
 | WEBSITE-001-SEC-01 | Remove Base44 badge | critical | Rex | blocked (Owner) |
 | WEBSITE-001-SEC-04 | Security headers | high | Rex | partial |
 | WEBSITE-001-CONTENT-01 | Journal section | medium | Rex | in-progress |

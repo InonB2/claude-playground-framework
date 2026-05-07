@@ -1,6 +1,14 @@
 {
-  "last_updated": "2026-05-05",
+  "last_updated": "2026-05-06",
   "tasks": [
+    {
+      "task_id": "ELBIT-TPM-001",
+      "title": "Tailored CV — Technical PM, Elbit Smart Sensing (jid=20248)",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "status": "pending-owner",
+      "notes": "COMPLETED 2026-05-06. CV at owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/v1_Inon_Baasov_CV_TechnicalPM.html. 14 JD keywords injected. ATS fit: 8.5/10. TouchE moved to lead role (strongest tech signal). Military Service kept + labeled C4I. Flag: Inon's BSc is Biotechnology & Food Engineering — JD requires CS/Software Eng. Cole recommends cover letter addressing degree gap before submission. Next: Inon reviews HTML, Cole converts to PDF, Gmail draft created."
+    },
     {
       "task_id": "FAMILYFLOW-KEEPALIVE-001",
       "title": "FamilyFlow Supabase keep-alive pings",

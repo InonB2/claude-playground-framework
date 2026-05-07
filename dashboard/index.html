@@ -1230,6 +1230,23 @@
 
     .cv-add-btn:hover { background: rgba(34,211,238,0.2); border-color: rgba(34,211,238,0.6); }
 
+    .cv-legend {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 24px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cv-legend-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-right: 2px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
     .cv-table-wrap {
       padding: 16px 24px 32px;
       overflow-x: auto;
@@ -1267,7 +1284,7 @@
 
     .cv-table tr.cv-row-expanded td { background: rgba(34,211,238,0.03); }
 
-    .cv-outcome-badge {
+    .cv-status-badge {
       border-radius: 5px;
       padding: 2px 8px;
       font-size: 10px;
@@ -1277,10 +1294,14 @@
       white-space: nowrap;
     }
 
-    .cv-outcome-badge.interview  { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
-    .cv-outcome-badge.noresponse { background: rgba(107,114,128,0.15); color: var(--grey); border: 1px solid rgba(107,114,128,0.3); }
-    .cv-outcome-badge.rejected   { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
-    .cv-outcome-badge.inuse      { background: rgba(34,211,238,0.12); color: var(--cyan); border: 1px solid rgba(34,211,238,0.3); }
+    /* Workflow status: Drafting → HTML Ready → PDF Ready → Applied → Interview → Rejected → Ghosted */
+    .cv-status-badge.drafting    { background: rgba(251,191,36,0.15);  color: #FBBF24; border: 1px solid rgba(251,191,36,0.35); }
+    .cv-status-badge.htmlready   { background: rgba(96,165,250,0.15);  color: #60A5FA; border: 1px solid rgba(96,165,250,0.35); }
+    .cv-status-badge.pdfready    { background: rgba(34,211,238,0.15);  color: var(--cyan); border: 1px solid rgba(34,211,238,0.35); }
+    .cv-status-badge.applied     { background: rgba(167,139,250,0.15); color: #A78BFA; border: 1px solid rgba(167,139,250,0.35); }
+    .cv-status-badge.interview   { background: rgba(52,211,153,0.15);  color: var(--green); border: 1px solid rgba(52,211,153,0.35); }
+    .cv-status-badge.rejected    { background: rgba(239,68,68,0.15);   color: var(--red); border: 1px solid rgba(239,68,68,0.35); }
+    .cv-status-badge.ghosted     { background: rgba(107,114,128,0.15); color: var(--muted); border: 1px solid rgba(107,114,128,0.35); }
 
     .cv-action-btns {
       display: flex;
@@ -1622,6 +1643,16 @@
   <div class="cv-toolbar">
     <button class="cv-add-btn" id="cv-add-btn">+ New CV Version</button>
   </div>
+  <div class="cv-legend">
+    <span class="cv-legend-label">Legend:</span>
+    <span class="cv-status-badge drafting">Drafting</span>
+    <span class="cv-status-badge htmlready">HTML Ready</span>
+    <span class="cv-status-badge pdfready">PDF Ready</span>
+    <span class="cv-status-badge applied">Applied</span>
+    <span class="cv-status-badge interview">Interview</span>
+    <span class="cv-status-badge rejected">Rejected</span>
+    <span class="cv-status-badge ghosted">Ghosted</span>
+  </div>
   <div class="cv-table-wrap">
     <table class="cv-table" id="cv-table">
       <thead>
@@ -1631,7 +1662,7 @@
           <th>Industry</th>
           <th>JD</th>
           <th>Date</th>
-          <th>Outcome</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -1713,12 +1744,15 @@
           <input class="form-input" id="cv-edit-date" name="date" type="date">
         </div>
         <div class="form-field">
-          <label class="form-label">Outcome</label>
-          <select class="form-select" id="cv-edit-outcome" name="outcome">
-            <option value="In Use">In Use</option>
-            <option value="Interview Got">Interview Got</option>
-            <option value="No Response">No Response</option>
+          <label class="form-label">Status</label>
+          <select class="form-select" id="cv-edit-status" name="status">
+            <option value="Drafting">Drafting — HTML in progress</option>
+            <option value="HTML Ready">HTML Ready — PDF not yet generated</option>
+            <option value="PDF Ready">PDF Ready — not yet submitted</option>
+            <option value="Applied">Applied — submitted to job posting</option>
+            <option value="Interview">Interview — callback / interview scheduled</option>
             <option value="Rejected">Rejected</option>
+            <option value="Ghosted">Ghosted — no response after 14 days</option>
           </select>
         </div>
         <div class="form-field">
@@ -2591,17 +2625,51 @@
   });
 
   /* ─────────────── CV VERSIONS ─────────────── */
-  const CV_OUTCOME_CLASS = {'Interview Got':'interview','No Response':'noresponse','Rejected':'rejected','In Use':'inuse'};
+  const CV_STATUS_CLASS = {
+    'Drafting':   'drafting',
+    'HTML Ready': 'htmlready',
+    'PDF Ready':  'pdfready',
+    'Applied':    'applied',
+    'Interview':  'interview',
+    'Rejected':   'rejected',
+    'Ghosted':    'ghosted',
+  };
+
+  const CANONICAL_CVS = [
+    {id:'cv-generic-pm',name:'IB-v1-SeniorPM-Generic',role:'Senior Product Manager',industry:'Generic',date:'2026-05-05',status:'HTML Ready',baseVersion:'—',changes:'Base template with 7 template zones. Full generic Senior PM version.',keywords:'Product Manager,Agile,Roadmap,Stakeholder Management,Executive MBA',format:'PDF',fileLink:'../owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM.pdf',jdTitle:'Generic — Senior PM base',jdUrl:'',htmlPath:'../scratchpad/cv_senior_pm_generic.html',notes:'Master template. Tailor from this for every application.'},
+    {id:'cv-elbit-training-pm',name:'IB-v4-TrainingPM-Elbit',role:'Training PM',industry:'Defense',date:'2026-05-05',status:'PDF Ready',baseVersion:'IB-v1-SeniorPM-Generic',changes:'Tailored for Training PM role. Emphasized L&D, instructional design, Elbit defense context.',keywords:'Training PM,L&D,Instructional Design,Defense,Elbit',format:'PDF',fileLink:'../owner_inbox/archive/cv_archive/6486_TrainingPM_Elbit_Netanya/v4_Inon_Baasov_CV_TrainingPM.pdf',jdTitle:'Elbit — Training PM (jid=20344)',jdUrl:'https://elbitsystemscareer.com/job/?jid=20344',htmlPath:'',notes:'Draft in Gmail. Pending submission.'},
+    {id:'cv-elbit-technical-pm',name:'IB-v1-TechnicalPM-Elbit',role:'Technical PM',industry:'Defense',date:'2026-05-06',status:'HTML Ready',baseVersion:'IB-v1-SeniorPM-Generic',changes:'Tailored for Technical PM / System Engineering role. TouchE moved to lead. Military Service kept + labeled C4I. 14 JD keywords injected. ATS: 8.5/10.',keywords:'Technical PM,System Engineering,C4I,Agile,Product Owner,Integration & Testing',format:'HTML',fileLink:'',jdTitle:'Elbit — Technical PM (jid=20248)',jdUrl:'https://elbitsystemscareer.com/job/?jid=20248',htmlPath:'../owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/v1_Inon_Baasov_CV_TechnicalPM.html',notes:'Cole delivered 2026-05-06. Pending PDF + submission. Note: BSc is Biotech/Food Eng — cover letter recommended.'}
+  ];
 
   function loadCVs() {
     const raw = localStorage.getItem('cc_cv_versions');
-    if (raw) return JSON.parse(raw);
-    const samples = [
-      {id:'cv1',name:'IB-v3-PM-SaaS',role:'Product Manager',industry:'SaaS',date:'2026-04-20',outcome:'Interview Got',baseVersion:'IB-v2-PM',changes:'Added cloud/SaaS keywords, rewrote summary for tech focus',keywords:'SaaS,product-led growth,OKRs,roadmap',format:'PDF',fileLink:'',jdTitle:'Accenture — Senior PM',jdUrl:'',htmlPath:'',notes:'Used for Microsoft, Accenture applications'},
-      {id:'cv2',name:'IB-v4-PM-Tech',role:'Senior PM',industry:'Tech',date:'2026-05-01',outcome:'In Use',baseVersion:'IB-v3-PM-SaaS',changes:'Added Azure/AI keywords, updated metrics in bullet 3',keywords:'Azure,AI,machine learning,enterprise',format:'DOCX',fileLink:'',jdTitle:'Microsoft — PM',jdUrl:'',htmlPath:'',notes:'Current active version'}
-    ];
-    saveCVs(samples);
-    return samples;
+    let cvs = raw ? JSON.parse(raw) : [];
+    let changed = false;
+    // Inject canonical entries that don't exist yet
+    CANONICAL_CVS.forEach(entry => {
+      const existing = cvs.find(c => c.id === entry.id);
+      if (!existing) {
+        cvs.push(entry);
+        changed = true;
+      } else {
+        // Sync status from canonical definition (keeps canonical statuses up to date)
+        if (existing.status !== entry.status) {
+          existing.status = entry.status;
+          changed = true;
+        }
+      }
+    });
+    // Migrate old entries that have outcome but no status
+    cvs.forEach(cv => {
+      if (!cv.status) {
+        // Map legacy outcome values to nearest status
+        const legacyMap = {'In Use':'HTML Ready','Interview Got':'Interview','No Response':'Ghosted','Rejected':'Rejected'};
+        cv.status = legacyMap[cv.outcome] || 'HTML Ready';
+        changed = true;
+      }
+    });
+    if (changed || !raw) saveCVs(cvs);
+    return cvs;
   }
 
   function saveCVs(cvs) { localStorage.setItem('cc_cv_versions', JSON.stringify(cvs)); }
@@ -2612,8 +2680,8 @@
     if (!tbody) return;
     tbody.innerHTML = '';
     cvs.forEach(cv => {
-      const outClass = CV_OUTCOME_CLASS[cv.outcome] || 'noresponse';
-      const chips    = (cv.keywords || '').split(',').filter(k => k.trim()).map(k => `<span class="cv-keyword-chip">${esc(k.trim())}</span>`).join('');
+      const statusClass = CV_STATUS_CLASS[cv.status] || 'htmlready';
+      const chips       = (cv.keywords || '').split(',').filter(k => k.trim()).map(k => `<span class="cv-keyword-chip">${esc(k.trim())}</span>`).join('');
       const tr = document.createElement('tr');
       tr.className = 'cv-main-row';
       tr.innerHTML = `
@@ -2628,7 +2696,7 @@
           : (cv.jdTitle ? esc(cv.jdTitle) : '<span style="color:var(--muted)">—</span>')
         }</td>
         <td>${esc(cv.date)}</td>
-        <td><span class="cv-outcome-badge ${outClass}">${esc(cv.outcome)}</span></td>
+        <td><span class="cv-status-badge ${statusClass}">${esc(cv.status)}</span></td>
         <td><div class="cv-action-btns">
           ${cv.htmlPath ? `<button class="preview" onclick="window.open('${esc(cv.htmlPath)}','_blank')">Preview</button>` : ''}
           <button onclick="toggleCVExpand('${esc(cv.id)}')">Details</button>
@@ -2682,7 +2750,7 @@
     const m = orig.name.match(/v(\d+)/);
     const n = m ? parseInt(m[1]) + 1 : 2;
     const newName = m ? orig.name.replace(/v\d+/, 'v' + n) : orig.name + '-v2';
-    cvs.push({...orig, id:'cv'+Date.now(), name:newName, date:new Date().toISOString().slice(0,10), outcome:'In Use'});
+    cvs.push({...orig, id:'cv'+Date.now(), name:newName, date:new Date().toISOString().slice(0,10), status:'Drafting'});
     saveCVs(cvs);
     renderCVs();
   }
@@ -2696,7 +2764,7 @@
     document.getElementById('cv-edit-role').value        = cv.role || '';
     document.getElementById('cv-edit-industry').value    = cv.industry || '';
     document.getElementById('cv-edit-date').value        = cv.date || '';
-    document.getElementById('cv-edit-outcome').value     = cv.outcome || 'In Use';
+    document.getElementById('cv-edit-status').value      = cv.status || 'HTML Ready';
     document.getElementById('cv-edit-baseVersion').value = cv.baseVersion || '';
     document.getElementById('cv-edit-changes').value     = cv.changes || '';
     document.getElementById('cv-edit-keywords').value    = cv.keywords || '';
@@ -2723,9 +2791,9 @@
      'cv-edit-jdTitle','cv-edit-jdUrl','cv-edit-htmlPath'].forEach(i => {
       document.getElementById(i).value = '';
     });
-    document.getElementById('cv-edit-date').value    = new Date().toISOString().slice(0,10);
-    document.getElementById('cv-edit-outcome').value = 'In Use';
-    document.getElementById('cv-edit-format').value  = 'PDF';
+    document.getElementById('cv-edit-date').value   = new Date().toISOString().slice(0,10);
+    document.getElementById('cv-edit-status').value = 'Drafting';
+    document.getElementById('cv-edit-format').value = 'PDF';
     document.getElementById('cv-edit-modal-backdrop').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   });
@@ -2744,7 +2812,7 @@
     const editId = document.getElementById('cv-edit-id').value;
     const data   = {
       name:fd.get('name'), role:fd.get('role'), industry:fd.get('industry'),
-      date:fd.get('date'), outcome:fd.get('outcome'), baseVersion:fd.get('baseVersion'),
+      date:fd.get('date'), status:fd.get('status'), baseVersion:fd.get('baseVersion'),
       changes:fd.get('changes'), keywords:fd.get('keywords'), format:fd.get('format'),
       fileLink:fd.get('fileLink'), jdTitle:fd.get('jdTitle'), jdUrl:fd.get('jdUrl'),
       htmlPath:fd.get('htmlPath'), notes:fd.get('notes')
