@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-10c",
+  "last_updated": "2026-05-10d",
   "tasks": [
     {
       "task_id": "TELEGRAM-001",
@@ -7,7 +7,7 @@
       "priority": "high",
       "assigned_to": "Mack",
       "status": "pending-restart",
-      "notes": "FIXED 2026-05-10 (evening). Root cause: .env had CRLF line endings that broke the token regex in server.ts. Fixed by rewriting with LF-only endings. Server now starts and loads token correctly. Remaining: (1) Restart Claude Code — MCP server needs to reload; (2) DM the bot on Telegram → get 6-char pairing code; (3) Run /telegram:access pair <code>; (4) /telegram:access policy allowlist to lock down. Bot token in ~/.claude/channels/telegram/.env."
+      "notes": "FIXED 2026-05-10 (evening) CRLF in .env. CACHE FIX 2026-05-10 (night): Plugin cache (~/.claude/plugins/cache/claude-plugins-official/telegram/0.0.6/) was empty after restart — copied source + node_modules from marketplace dir. Token intact at ~/.claude/channels/telegram/.env. Bun v1.3.13 confirmed. Remaining: (1) Restart Claude Code — MCP must reload with populated cache; (2) DM the bot → get 6-char pairing code; (3) /telegram:access pair <code>; (4) /telegram:access policy allowlist. If cache is empty again after restart, escalate to symlink/wrapper fix."
     },
     {
       "task_id": "BUILDAR-REBUILD-000",

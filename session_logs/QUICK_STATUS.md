@@ -1,12 +1,13 @@
-# QUICK STATUS — 2026-05-10 (Late Evening)
+# QUICK STATUS — 2026-05-10 (Night)
 
-## Last Session (2026-05-10c)
-Statusline fully fixed: (1) atomic writes prevent empty-file crash, (2) session % and time-remaining now read from `rate_limits.five_hour` in Claude Code's stdin JSON — numbers match Claude desktop app exactly. QA rule formalized: Yoni→Jasmin on all scripts, Rex→Vera on UI.
+## Last Session (2026-05-10c — night)
+Telegram MCP still failing after restart. Root cause found: plugin cache (`~/.claude/plugins/cache/claude-plugins-official/telegram/0.0.6/`) was wiped on restart. Cache repopulated from marketplace dir. Token intact. Bun v1.3.13 confirmed. Restart Claude Code to pick up the fix.
 
 ## Pending: Telegram Setup (pick up first)
-1. **Restart Claude Code** → verify `claude mcp list` shows `plugin:telegram:telegram` **Connected**
-2. DM the bot on Telegram → get pairing code → `/telegram:access pair <code>`
+1. **Restart Claude Code** → `claude mcp list` → confirm `plugin:telegram:telegram` **Connected**
+2. DM the bot → get 6-char pairing code → `/telegram:access pair <code>`
 3. Lock down: `/telegram:access policy allowlist`
+4. **If cache is empty again after restart** → tell Andy → needs symlink/wrapper fix
 
 ## Active Task Table
 
@@ -34,4 +35,4 @@ Statusline fully fixed: (1) atomic writes prevent empty-file crash, (2) session 
 - **ELBIT-SYSENG-001** — CV ready for review (`owner_inbox/archive/cv_archive/ELBIT-SystemEngPM-Netanya/`)
 - **ELBIT-APPLY-001** — manual submission: Gmail draft → attach PDF → Elbit portal
 - **LINKEDIN-001** — posts 2–5 pending approval (`owner_inbox/posts/linkedin_posts_v2.md`)
-- **andy/inbox** — 14 pending agent reports unreviewed
+- **andy/inbox** — inbox cleared; no pending reports

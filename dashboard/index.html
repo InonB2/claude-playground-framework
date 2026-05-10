@@ -2235,12 +2235,13 @@ function _cvEditorInjectEditable() {
 }
 
 function _cvEditorUpdateToolbar() {
-  const hasFsApi = 'showOpenFilePicker' in window;
+  const hasFsApi = 'showSaveFilePicker' in window || 'showOpenFilePicker' in window;
   const saveFileBtn = document.getElementById('cvEditorSaveFileBtn');
   const downloadBtn = document.getElementById('cvEditorDownloadBtn');
-  // Show "Save" button only when we have a file handle for this session
-  const hasHandle = !!(cvEditorFileHandle || cvFileHandles[cvEditorCvId]);
-  saveFileBtn.style.display = (hasFsApi && hasHandle) ? 'inline-block' : 'none';
+  // Show "Save" button whenever the File System API is available:
+  // — first Save will prompt once (showSaveFilePicker, pre-filled filename)
+  // — subsequent Saves in the same session write directly without a dialog
+  saveFileBtn.style.display = hasFsApi ? 'inline-block' : 'none';
   // Download always visible as fallback
   downloadBtn.style.display = 'inline-block';
   downloadBtn.title = hasFsApi ? 'Download a copy' : 'Save not supported in this browser — use Download instead';
@@ -2271,56 +2272,37 @@ function openCvEditor(cvId) {
 }
 
 // openCvEditorInline — opened from "Edit CV" button, loads htmlPath via iframe src
-// Immediately opens file picker so Save works without a second dialog (Fix 1)
-async function openCvEditorInline(cvId) {
+// No file picker on open. Save will call showSaveFilePicker on first use (pre-filled).
+function openCvEditorInline(cvId) {
   const cv = cvVersions.find(c => c.id === cvId);
   if (!cv || !cv.htmlPath) return;
   cvEditorCvId = cvId;
+  // Do NOT inherit any stale handle — handle starts null; first Save will prompt once
   cvEditorFileHandle = null;
   _cvEditorSetDirty(false);
   cvEditorSrcMode = true;
 
-  // Extract filename hint from htmlPath for the picker suggestedName
-  const pathParts = (cv.htmlPath || '').split(/[\\/]/);
-  const suggestedFilename = pathParts[pathParts.length - 1] || (cv.name.replace(/[^a-zA-Z0-9_-]/g,'_') + '.html');
-
   document.getElementById('cvEditorTitle').textContent = cv.name + ' — Edit CV';
   document.getElementById('cvEditorOverlay').classList.remove('hidden');
 
-  // Show design mode
+  // Switch to design mode (this may set iframe.srcdoc = '' from empty source textarea)
   setCvEditorMode('design');
 
-  // Load iframe via src — preserves relative CSS/font paths
+  // Load iframe via src — preserves relative CSS/font paths baked into the HTML file.
+  // Must clear srcdoc first: browsers give srcdoc priority over src when both are set.
   const iframe = document.getElementById('cvEditorIframe');
   _cvIframeLoadHandlerDetach(iframe);
+  iframe.removeAttribute('srcdoc');  // clear any residual srcdoc so src wins
+  iframe.srcdoc = '';                // belt-and-suspenders clear
   _cvIframeLoadHandler = function(){
     _cvEditorInjectEditable();
     document.getElementById('cvEditorStatus').textContent =
-      'Editing in place — click any text and type. Pick the file below so Save works without a dialog.';
+      'Editing in place — click any text and type. Press Save to write back to the file.';
   };
   iframe.addEventListener('load', _cvIframeLoadHandler);
   iframe.src = cv.htmlPath;
 
-  // Immediately prompt for file handle so the user doesn't need a second picker on Save
-  if ('showOpenFilePicker' in window) {
-    try {
-      const [handle] = await window.showOpenFilePicker({
-        suggestedName: suggestedFilename,
-        types: [{ description: 'HTML CV File', accept: { 'text/html': ['.html'] } }],
-        multiple: false
-      });
-      cvEditorFileHandle = handle;
-      cvFileHandles[cvId] = handle;
-      document.getElementById('cvEditorStatus').textContent =
-        'File linked: ' + handle.name + ' — edits will save directly to this file.';
-    } catch(e) {
-      if (e.name !== 'AbortError') console.error('File picker error:', e);
-      // User dismissed — Save will fall back to Download
-      document.getElementById('cvEditorStatus').textContent =
-        'No file linked — use Download to save, or click "Open File" to link the file.';
-    }
-  }
-
+  document.getElementById('cvEditorStatus').textContent = 'Loading CV…';
   _cvEditorUpdateToolbar();
 }
 
@@ -2399,21 +2381,45 @@ function setCvEditorMode(mode) {
   }
 }
 
-// Save to File — writes directly to the already-opened file handle (no second picker)
-// Falls back to Download if no handle available or File System API not supported
+// Save to File — on first save (no handle yet) prompts once via showSaveFilePicker
+// with the filename pre-filled from htmlPath. Subsequent saves in the same editor
+// session write directly to the stored handle — no dialog.
+// Falls back to Download if File System API is not supported.
 async function cvEditorSaveToFile() {
   const content = _cvEditorGetContent();
   if (!content) { document.getElementById('cvEditorStatus').textContent = 'Nothing to save — CV not loaded'; return; }
 
-  const handle = cvEditorFileHandle || (cvEditorCvId ? cvFileHandles[cvEditorCvId] : null);
+  let handle = cvEditorFileHandle || (cvEditorCvId ? cvFileHandles[cvEditorCvId] : null);
+
+  if (!handle && 'showSaveFilePicker' in window) {
+    // First Save in this session — prompt once, pre-filled with the CV filename
+    const cv = cvEditorCvId ? cvVersions.find(c => c.id === cvEditorCvId) : null;
+    const pathParts = (cv && cv.htmlPath ? cv.htmlPath : '').split(/[\\/]/);
+    const suggestedName = pathParts[pathParts.length - 1] || (cv ? cv.name.replace(/[^a-zA-Z0-9_-]/g,'_') + '.html' : 'cv.html');
+    try {
+      handle = await window.showSaveFilePicker({
+        suggestedName,
+        types: [{ description: 'HTML CV File', accept: { 'text/html': ['.html'] } }]
+      });
+      cvEditorFileHandle = handle;
+      if (cvEditorCvId) cvFileHandles[cvEditorCvId] = handle;
+      _cvEditorUpdateToolbar();
+    } catch(e) {
+      if (e.name === 'AbortError') {
+        document.getElementById('cvEditorStatus').textContent = 'Save cancelled — no file selected.';
+      } else {
+        document.getElementById('cvEditorStatus').textContent = 'Save failed: ' + e.message;
+      }
+      return;
+    }
+  }
 
   if (handle && 'createWritable' in handle) {
-    // Write directly to the same file — no dialog
+    // Write directly to the file — no additional dialog
     try {
       const writable = await handle.createWritable();
       await writable.write(content);
       await writable.close();
-      if (cvEditorCvId) cvFileHandles[cvEditorCvId] = handle;
       _cvEditorSetDirty(false);
       document.getElementById('cvEditorStatus').textContent = 'Saved ✓ — ' + new Date().toLocaleTimeString();
       _cvEditorShowToast('Saved ✓');
@@ -2421,7 +2427,7 @@ async function cvEditorSaveToFile() {
       document.getElementById('cvEditorStatus').textContent = 'Save failed: ' + e.message;
     }
   } else {
-    // Fallback: Download as Blob
+    // Fallback: Download as Blob (browser doesn't support File System Access API)
     cvEditorDownload();
     _cvEditorSetDirty(false);
   }
