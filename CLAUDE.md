@@ -88,6 +88,23 @@ Andy writes success criteria into the delegation prompt. Agents confirm them bef
 - `/delegate` — decompose and assign a new Owner objective
 - `/plan` — plan mode before executing any multi-step task
 
+## Ralph Loop — Iterative Development
+
+Ralph Loop feeds the same prompt to Claude repeatedly until a completion signal is detected. Each iteration reads its own previous output, enabling progressive self-correction. Pioneered by Geoffrey Huntley (https://ghuntley.com/ralph/).
+
+**Use Ralph Loop when:**
+- The task has a clear, measurable definition of done the agent can evaluate itself
+- The output benefits from self-correction over multiple passes (writing, code, structured docs)
+- No owner judgment or mid-task decision-making is required
+
+**How to start:**
+```
+/ralph-loop "prompt" --max-iterations N --completion-promise "DONE"
+```
+
+Full rules and guardrails: `.ralph/guardrails.md`  
+Prompt template: `.ralph/PROMPT_TEMPLATE.md`
+
 ## GitHub
 
 Repo: https://github.com/InonB2/claude-playground-framework  

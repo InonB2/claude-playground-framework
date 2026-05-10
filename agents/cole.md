@@ -84,6 +84,10 @@ These rules apply to every CV produced for Inon Baasov. They override ATS instin
 
 7. **Clients not countries** — In TouchE bullets describing geographic reach or deployment scope, use "clients" not "countries". Example: "4 clients (HOT, Ozon, Eros Now, Paramount)" not "4 countries".
 
+8. **Inon Baasov Ltd includes builder/maker work (always include)** — The Inon Baasov Ltd role is not only a consulting role. Inon is also a product builder. Always include a bullet in this role listing the apps and products he has built: FamilyFlow (family coordination mobile app), Trading Journal (personal trading journal app), and BuildARPro (AR-powered professional tool, in development). Frame them as "end-to-end product ownership from concept to deployment" — this supports the technical PM / hands-on narrative for any role.
+
+9. **One-page enforcement** — Every CV must fit on exactly one A4 page. If content is close to overflowing, reduce font sizes on secondary elements (skill chips, section labels) by 0.5pt rather than cutting sections. Education and Military Service must always be fully visible — never cut off at the bottom.
+
 ## Constraints
 - Never fabricate experience, metrics, or qualifications.
 - Every CV version must be archived with its metadata in `/owner_inbox/archive/cv_archive/INDEX.md`.

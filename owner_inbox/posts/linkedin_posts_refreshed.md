@@ -1,33 +1,33 @@
-# LinkedIn Posts — Refreshed & Ready for Review
-**Prepared by:** Sage  
-**Date:** 2026-04-30  
-**Status:** Awaiting Owner sign-off before publishing
+# LinkedIn Posts — גרסה בעברית
+**הוכן על ידי:** Sage  
+**תאריך:** 2026-04-30  
+**Status: Hebrew — Awaiting Owner approval**
 
 ---
 
-## Post 1 — The Feature We Killed
+## פוסט 1 — הפיצ'ר שהרגנו
 
-Most PMs ship features. I've spent 10 years learning to kill them.
+רוב ה-PMs שולחים פיצ'רים לאוויר. אני בילית 10 שנים בלמוד להרוג אותם.
 
-At TouchE, we built an AI interactive video platform. Raised $2.5M. Onboarded Paramount, JVP, Lionsgate.
+ב-TouchE בנינו פלטפורמת וידאו אינטראקטיבית עם AI. גייסנו 2.5 מיליון דולר. הרכבנו Paramount, JVP ו-Lionsgate.
 
-The product decision I'm most proud of? One we never shipped.
+החלטת ה-product שאני הכי גאה בה? אחת שמעולם לא שלחנו.
 
-We had a social viewing feature in the works — co-watch with friends, live reactions, shared playlists. Engineering was excited. Early users said they wanted it. It looked great in every deck.
+עבדנו על פיצ'ר צפייה חברתית — לצפות עם חברים, תגובות בזמן אמת, פלייליסטים משותפים. הפיתוח היה נלהב. משתמשים ראשוניים אמרו שהם רוצים את זה. זה נראה מעולה בכל מצגת.
 
-We killed it 3 weeks before launch.
+הרגנו את זה שלושה שבועות לפני ההשקה.
 
-Here's what changed my mind:
+מה שינה את דעתי:
 
-When I stopped reading surveys and started watching actual behavior, the pattern was unmistakable. Users who engaged with interactive overlays watched 34% longer. Users who watched "socially" left after 8 minutes. Every single time.
+כשהפסקתי לקרוא סקרים והתחלתי לצפות בהתנהגות אמיתית, הדפוס היה חד-משמעי. משתמשים שהשתמשו ב-overlays אינטראקטיביים צפו 34% יותר. משתמשים שצפו "חברתית" עזבו אחרי 8 דקות. כל פעם מחדש.
 
-The feature was solving the problem people *said* they had. Not the one they *actually* had.
+הפיצ'ר פתר את הבעיה שאנשים *אמרו* שיש להם. לא את זו שהייתה להם *באמת*.
 
-That's the discipline that's hardest to teach: killing something you've already built. Something the team believed in. Something that looked right on paper.
+זו הדיסציפלינה שהכי קשה ללמד: להרוג משהו שכבר בנית. משהו שהצוות האמין בו. משהו שנראה נכון על הנייר.
 
-That moment — more than any feature we shipped — shaped how I think about product.
+הרגע ההוא — יותר מכל פיצ'ר שהשקנו — עיצב את הדרך שבה אני חושב על product.
 
-What's the hardest product decision you've ever had to make?
+מה הייתה החלטת ה-product הקשה ביותר שאי פעם נדרשת לקבל?
 
 #ProductManagement #ProductLeadership #StartupLife #AIProduct
 
@@ -37,30 +37,27 @@ What's the hardest product decision you've ever had to make?
 
 ---
 
-## Post 2 — When AI Starts Remembering
+## פוסט 2 — כשה-AI מתחיל לזכור
 
-Every AI session, you start from zero.
+כל שיחת AI מתחילה מאפס.
 
-No memory of why you chose that architecture. No recall of the decision you made last Tuesday. No context from three debugging sessions ago.
+אין זיכרון למה בחרת את הארכיטקטורה הזו. אין שחזור של ההחלטה שקיבלת ביום שלישי שעבר. אין הקשר משלוש סשנים של דיבאג לפני כן.
 
-You spend the first 10 minutes of every conversation re-briefing a tool that should already know you.
+אתה מבלה את 10 הדקות הראשונות של כל שיחה בלהסביר מחדש לכלי שהיה צריך כבר להכיר אותך.
 
-I've been working on changing that. I built a persistent database layer into my AI workflow — so the assistant can read and write structured data that carries across sessions. Decisions get logged. Patterns accumulate. Agents can hand state to each other without a full briefing every time.
+עבדתי על לשנות את זה. בניתי שכבת בסיס נתונים עקבית לתוך ה-workflow שלי עם AI — כדי שהאסיסטנט יוכל לקרוא ולכתוב מידע מובנה שנשמר בין סשנים. החלטות מתועדות. דפוסים מצטברים. agents מעבירים state אחד לשני בלי לחזור על הכל מהתחלה בכל פעם.
 
-In practice, it means:
-- Preferred patterns and constraints don't disappear overnight
-- Project decisions build into queryable knowledge over time
-- The "context tax" of every new session gets smaller, not larger
+בפועל זה אומר שאני כבר לא מבלה את עשר הדקות הראשונות בכל שיחה בלהסביר מחדש מי אנחנו ומה עשינו — ההחלטות נשמרות, הדפוסים מצטברים, וה-agent יודע להמשיך מאיפה שעצרנו.
 
-Here's the product take I keep coming back to:
+ה-take שאני חוזר אליו שוב ושוב:
 
-Memory isn't a feature. It's the difference between a chatbot and a system you can actually trust with ongoing work.
+זיכרון הוא לא פיצ'ר. זה ההבדל בין chatbot לבין מערכת שאפשר באמת לסמוך עליה עם עבודה שוטפת.
 
-We talk a lot about AI getting smarter. But the bigger unlock isn't intelligence — it's continuity. An AI that remembers what you decided last week is more useful than one that's slightly smarter but starts fresh every morning.
+הרבה מדברים על AI שנעשה חכם יותר. אבל הפריצה הגדולה יותר אינה אינטליגנציה — היא רציפות. AI שזוכר מה החלטת שבוע שעבר שימושי יותר מאחד שקצת יותר חכם אבל מתחיל מחדש כל בוקר.
 
-That's the shift I'm watching: from AI as a tool you pick up, to AI as a teammate that learns.
+זה המעבר שאני עוקב אחריו: מ-AI ככלי שאתה מרים, ל-AI כעמית שלומד.
 
-What would you build if your AI never forgot?
+מה היית בונה אם ה-AI שלך לא היה שוכח?
 
 #AgentAI #ProductLeadership #AIEngineering #BuildInPublic #FutureOfWork
 
@@ -70,29 +67,29 @@ What would you build if your AI never forgot?
 
 ---
 
-## Post 3 — The Document Is Dead. Long Live Judgment.
+## פוסט 3 — המסמך מת. יחי השיפוט.
 
-For years, producing a polished document was a skill.
+במשך שנים, לייצר מסמך מלוטש היה מיומנות.
 
-Formatting a financial model. Structuring a board deck. Getting the slides right. These were things that took time — real time — and signaled competence.
+לעצב מודל פיננסי. לבנות מצגת לדירקטוריון. לסדר את השקפים נכון. אלה היו דברים שלקחו זמן — זמן אמיתי — ושיקפו כישרון.
 
-That's changing.
+זה משתנה.
 
-I've been experimenting with AI that doesn't just help draft content — it generates finished, formatted, exportable files directly. PDFs. Decks. Spreadsheets. Ready to send.
+ניסיתי AI שלא רק עוזר לחדד ולסדר תוכן — הוא מייצר קבצים מוגמרים, מפורמטים ומוכנים לייצוא ישירות. PDFs. מצגות. גיליונות אלקטרוניים. מוכנים לשליחה.
 
-Not outlines. Not bullet points. The actual deliverable.
+לא טיוטות. לא כיווני כתיבה. הפלט המוכן עצמו.
 
-Brief it → get a stakeholder-ready document. "Analyze this and build the spreadsheet" becomes a single step. One prompt, multiple formats — send the exec the PDF, send the team the editable version.
+תבריף → קבל מסמך מוכן לבעלי עניין. "נתח את זה ובנה את הגיליון" הופך לצעד אחד. פרומפט אחד, פורמטים מרובים — שלח למנהל את ה-PDF, שלח לצוות את הגרסה הניתנת לעריכה.
 
-Here's the product implication nobody's talking about: the document was never the point. It was always the thinking behind it.
+ה-implication שאף אחד לא מדבר עליו: המסמך מעולם לא היה הנקודה. זה תמיד היה החשיבה מאחוריו.
 
-When a finished file is a byproduct of a 30-second conversation, the real skill shifts. It's not formatting fluency anymore. It's knowing what to ask for, what good looks like, and whether the output actually holds up under pressure.
+כשקובץ מוגמר הוא תוצר לוואי של שיחה בת 30 שניות, המיומנות האמיתית עוברת מקום. זה כבר לא שטף פורמוט. זה לדעת מה לבקש, מה נראה טוב, ואם הפלט עומד בלחץ.
 
-Judgment. Context. A high bar.
+שיפוט. הקשר. רף גבוה.
 
-That's the new stack for knowledge workers. And most teams aren't ready for it.
+זה הסטק החדש של עובדי הידע. ורוב הצוותים עדיין לא מוכנים לזה.
 
-What's the first thing you'd take off your plate?
+מה ה-task הראשון שהיית מוציא מהצלחת?
 
 #AIProductivity #FutureOfWork #ProductLeadership #Gemini #GoogleWorkspace
 
@@ -102,35 +99,35 @@ What's the first thing you'd take off your plate?
 
 ---
 
-*All posts written in first person as Inon Baasov. No source or tool references. Ready for sign-off.*
+*כל הפוסטים נכתבו בגוף ראשון כאינון בעסוב. ללא אזכורי מקור או כלים. מוכן לאישור.*
 
 ---
 
-## Post 4 — Gemini Files
+## פוסט 4 — Gemini Files
 
-I uploaded 6 receipts from a work trip.
+העליתי 6 קבלות מנסיעת עסקים.
 
-One prompt: "Create an Excel file with all my expenses — date, amount, category — formatted for QuickBooks."
+פרומפט אחד: "צור קובץ Excel עם כל ההוצאות שלי — תאריך, סכום, קטגוריה — מפורמט ל-QuickBooks."
 
-Gemini built it. I downloaded it. Done.
+Gemini בנה. הורדתי. סיימנו.
 
-Then I went a step further. I had the same trip data in Google Sheets. New chat. I asked: "Find my expenses log in Drive and build me a PDF report with graphs — show where I spent the most."
+אז הלכתי צעד קדימה. היה לי אותו מידע מהנסיעה ב-Google Sheets. צ'אט חדש. ביקשתי: "מצא את יומן ההוצאות שלי ב-Drive ובנה לי דוח PDF עם גרפים — הצג איפה הוצאתי הכי הרבה."
 
-It found the file. It read it. It generated a PDF with a pie chart and a bar chart. Most of my spend was food — three visits to the same breakfast spot.
+הוא מצא את הקובץ. קרא אותו. ייצר PDF עם עוגה ועמודות. רוב ההוצאות שלי היו אוכל — שלוש ביקורות באותו מקום ארוחת בוקר.
 
-I didn't move any files. I didn't format anything. I didn't even open Sheets.
+לא הזזתי שום קובץ. לא פירמטתי כלום. אפילו לא פתחתי Sheets.
 
-Here's what I keep thinking about: the document was always a container for a decision. Now the container is a byproduct.
+מה שאני חוזר אליו: המסמך היה תמיד מיכל להחלטה. עכשיו המיכל הוא תוצר לוואי.
 
-The interesting question isn't "what can it generate?"
+השאלה המעניינת היא לא "מה הוא יכול לייצר?"
 
-It's: when producing a polished output takes 30 seconds, what does the human add?
+אלא: כשייצור פלט מלוטש לוקח 30 שניות, מה האדם מוסיף?
 
-The answer I've landed on — the thing that doesn't compress: knowing what's worth asking for, and knowing whether the result is actually right.
+התשובה שהגעתי אליה — הדבר שלא מתכווץ: לדעת מה שווה לבקש, ולדעת אם התוצאה אכן נכונה.
 
-That judgment is the job now.
+השיפוט הזה הוא העבודה עכשיו.
 
-What would you point Gemini at first?
+על מה היית מפנה את Gemini ראשון?
 
 #AIProductivity #Gemini #ProductLeadership #FutureOfWork #GoogleWorkspace
 
@@ -140,33 +137,33 @@ What would you point Gemini at first?
 
 ---
 
-## Post 5 — Ghost.build
+## פוסט 5 — Ghost.build
 
-I just found a way to let an AI agent destroy a database without actually destroying anything.
+מצאתי דרך לתת לאייג'נט AI להרוס בסיס נתונים — בלי להרוס שום דבר בפועל.
 
-The tool is Ghost.build. Free. One install command. Connect to Claude Code with `ghost mcp install` — that's the full setup.
+הכלי הוא Ghost.build. חינמי. פקודת התקנה אחת. מתחבר ל-Claude Code עם `ghost mcp install` — זה כל ה-setup.
 
-Here's what changed for me:
+מה שהשתנה אצלי:
 
-I built a test database with 100,000 customers, 500,000 orders, and 1 million order items. Intentionally no indexes — I wanted it slow. Then I told the agent to fork it three times in parallel and try a different optimization strategy on each: targeted indexes, materialized view, denormalized summary table.
+בניתי בסיס נתונים בדיקה עם 100,000 לקוחות, 500,000 הזמנות ומיליון פריטי הזמנה. בכוונה ללא אינדקסים — רציתי שיהיה איטי. אחר כך ביקשתי מהאייג'נט ל-fork אותו שלוש פעמים במקביל ולנסות אסטרטגיית אופטימיזציה שונה על כל אחד: אינדקסים ממוקדים, materialized view, טבלת סיכום denormalized.
 
-It benchmarked all three. Picked the fastest. Applied it to the main database. Discarded the forks.
+הוא ביצע benchmark לכל שלושה. בחר את המהיר ביותר. החיל על בסיס הנתונים הראשי. מחק את ה-forks.
 
-The base database was never touched during the experiment.
+בסיס הנתונים הבסיסי לא נגעו בו בכלל במהלך הניסוי.
 
-Then I tried something messier. I created a user database with intentionally broken phone numbers — some null, some malformed, the rest in five different formats. I asked the agent to fork it 10 times simultaneously and run a different cleanup strategy on each: drop bad rows, backfill, regex normalization, quarantine tables, and six more.
+אז ניסיתי משהו יותר מבולגן. יצרתי בסיס נתונים משתמשים עם מספרי טלפון שבורים בכוונה — חלק null, חלק עיוותים, השאר בחמישה פורמטים שונים. ביקשתי מהאייג'נט ל-fork אותו 10 פעמים בו-זמנית ולהריץ אסטרטגיית ניקוי שונה על כל אחד: מחיקת שורות גרועות, backfill, נרמול regex, טבלאות quarantine, ועוד שישה.
 
-All 10 forks ran in parallel. It compared the results. Combined the two best approaches. Applied to main.
+כל 10 ה-forks רצו במקביל. הוא השווה את התוצאות. שילב את שתי הגישות הטובות ביותר. החיל על הראשי.
 
-10 experiments. Zero risk. Zero cost. About 3 minutes.
+10 ניסויים. אפס סיכון. אפס עלות. בערך 3 דקות.
 
-The mental shift this created: when databases are free and disposable, you stop treating them like they're precious. You just experiment.
+השינוי המנטלי שזה יצר: כשבסיסי נתונים הם חינמיים ומתכלים, מפסיקים להתייחס אליהם כאל משהו יקר. פשוט מתנסים.
 
-That's exactly how I want to work with AI agents — not carefully, but freely.
+בדיוק ככה אני רוצה לעבוד עם AI agents — לא בזהירות, אלא בחופשיות.
 
-Ghost.build is on the free tier: 100 compute hours a month, 1TB storage, unlimited databases and forks. I haven't paid for it once.
+Ghost.build בחבילה החינמית: 100 שעות מחשוב בחודש, TB1 אחסון, בסיסי נתונים ו-forks ללא הגבלה. לא שילמתי עליו אפילו פעם אחת.
 
-Worth trying if you're building anything with agents right now.
+שווה לנסות אם אתם בונים משהו עם agents כרגע.
 
 #AIAgents #DeveloperTools #ClaudeCode #BuildInPublic #AIEngineering
 

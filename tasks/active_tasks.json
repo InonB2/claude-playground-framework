@@ -1,6 +1,38 @@
 {
-  "last_updated": "2026-05-06",
+  "last_updated": "2026-05-10",
   "tasks": [
+    {
+      "task_id": "BUILDAR-REBUILD-000",
+      "title": "BuildAR Pro Rebuild — 7 open questions (waiting on Inon)",
+      "priority": "critical",
+      "assigned_to": "Andy",
+      "status": "pending-owner",
+      "notes": "Plan at scratchpad/plan_buildar_pro_rebuild_2026-05-07.md. 7 questions must be answered before Stage 2 (backbone) can start: (1) Expo vs bare RN, (2) CMS data access pattern, (3) deployment topology, (4) Hebrew in CMS v0, (5) seed library projects, (6) publishing model, (7) existing vs fresh Supabase project. Tomy + Pat dispatched in parallel while awaiting answers."
+    },
+    {
+      "task_id": "BUILDAR-REBUILD-001",
+      "title": "BuildAR Pro — pre-build research (AR libs, Expo vs RN, schema delta)",
+      "priority": "high",
+      "assigned_to": "Tomy",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-10. Full report at owner_inbox/research/buildar_prebuild_research.md. Key findings: (1) AR lib: ViroReact — only option with AR+non-AR fallback as first-class APIs, iOS+Android, Expo config plugin, active (v2.54.0 April 2026); (2) Expo path: managed prebuild (expo prebuild + config plugin) not bare — ViroReact doesn't run in Expo Go but works cleanly with prebuild, eject cost later is low; (3) PNPM: use node-linker=hoisted for mobile workspace + Expo metro monorepo config; (4) Schema: existing schema is guides/image_targets — completely different from new plan. Start fresh, carry forward Silas's RLS patterns + auto-profile trigger."
+    },
+    {
+      "task_id": "BUILDAR-REBUILD-002",
+      "title": "BuildAR Pro — DevOps agent profile brief",
+      "priority": "high",
+      "assigned_to": "Pat",
+      "status": "pending-owner",
+      "notes": "COMPLETED 2026-05-10. Profile at scratchpad/pat_devops_agent_profile.md. Agent name: Dev — The DevOps & Cloud Infrastructure Engineer. Stack: Railway (API) + Expo EAS (mobile) + Vercel (web). Boundary with Mack: Mack connects systems at runtime; Dev configures infrastructure. 7 sample tasks defined. Nolan handoff note included. Awaiting Andy/Inon approval to proceed with Nolan agent creation."
+    },
+    {
+      "task_id": "ELBIT-SYSENG-001",
+      "title": "Tailored CV — Product Manager / System Engineer, Elbit Artillery C4I, Netanya",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "status": "pending-owner",
+      "notes": "COMPLETED 2026-05-10. CV at owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM.html. 12 JD keywords injected. ATS fit: 8.5/10. All permanent CV rules applied. Portfolio section removed (irrelevant for defense hiring). Gap: artillery systems not in Inon's background — IAF framed as operational environment proxy. Dashboard updated (IB-v1-SystemEngPM-Elbit, status: Drafting). Next: Inon reviews HTML, Cole converts to PDF, Gmail draft."
+    },
     {
       "task_id": "ELBIT-TPM-001",
       "title": "Tailored CV — Technical PM, Elbit Smart Sensing (jid=20248)",
@@ -36,11 +68,11 @@
     {
       "task_id": "PROMAKER-AR-005",
       "title": "Connect LlamaParse API to BuildARPro",
-      "priority": "high",
+      "priority": "low",
       "assigned_to": "Mack",
-      "status": "pending",
+      "status": "deferred",
       "blocked_by": null,
-      "notes": "UNBLOCKED 2026-05-03. Supabase project meonilvpqerbemeikrfk live. LlamaParse API key in team_inbox/GH and LlamaParse access.docx. Next: Mack sets LLAMAPARSE_API_KEY secret on project, Yoni wires edge function."
+      "notes": "DEFERRED 2026-05-10. Not in Phase 0-1 scope per new Perplexity plan. Resume only after Gate B (product loop accepted). LlamaParse key stored in team_inbox/GH and LlamaParse access.docx."
     },
     {
       "task_id": "PROMAKER-AR-010",
@@ -61,18 +93,18 @@
     {
       "task_id": "PROMAKER-AR-012",
       "title": "BuildARPro: Stripe product + subscription setup",
-      "priority": "high",
+      "priority": "low",
       "assigned_to": "Mack",
-      "status": "pending",
-      "notes": "Free ($0), Pro ($29/mo, $249/yr), Team ($99/mo). Webhook: Supabase Edge Function /functions/v1/stripe-webhook. See owner_inbox/research/buildarpro_product_plan.md."
+      "status": "deferred",
+      "notes": "DEFERRED 2026-05-10. Monetization not in Phase 0-1 scope. Resume only after consumer loop is proven (Gate B accepted)."
     },
     {
       "task_id": "PROMAKER-AR-013",
       "title": "BuildARPro: Vuforia account + first Image Target",
-      "priority": "high",
+      "priority": "low",
       "assigned_to": "Yoni",
-      "status": "pending",
-      "notes": "Create Vuforia dev account, Cloud Recognition database, upload demo tool photo (≥3-star rating), download .unitypackage."
+      "status": "deferred",
+      "notes": "DEFERRED 2026-05-10. Specific AR vendor TBD pending Tomy's AR library research. Vuforia likely superseded by a different AR stack. Resume after Tomy research is reviewed."
     },
     {
       "task_id": "WHATSAPP-001",
@@ -87,8 +119,8 @@
       "title": "Ralph Loop — implement for agent team",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "pending",
-      "notes": "RATE LIMITED 2026-05-03. Mack to: create .ralph/guardrails.md, update CLAUDE.md with Ralph Loop section, create agents/[name]/scratchpad/learning_log.md for all 14 agents, fix github_sync.ps1 comment parsing bug."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-09. Created .ralph/guardrails.md (when-to-use, max iteration guidelines, completion promise conventions, prohibited task types, prompt template guidance). Created .ralph/PROMPT_TEMPLATE.md (reusable template with Task/Files/Success Criteria/Completion Signal/Max Iterations sections). Created agents/learning_logs/[name].md for all 14 agents (Andy, Tomy, Yoni, Jasmin, Maya, Vera, Pat, Nolan, Mack, Cole, Lena, Sage, Silas, Rex). Updated CLAUDE.md with Ralph Loop section after Key commands. Completion signal standard: <promise>DONE</promise> / <promise>BLOCKED</promise>."
     },
     {
       "task_id": "DASHBOARD-001",
@@ -136,8 +168,9 @@
       "title": "Remove Base44 platform badge",
       "priority": "critical",
       "assigned_to": "Rex",
-      "status": "blocked",
-      "blocked_by": "Owner: base44.app → app settings → disable platform badge"
+      "status": "done",
+      "blocked_by": null,
+      "notes": "COMPLETED 2026-05-09. Tomy verified https://inon-baasov-website.base44.app — no Base44 badge, footer, or hidden markup found anywhere on the page. Owner disabled it via Base44 app settings."
     },
     {
       "task_id": "WEBSITE-001-SEC-04",
@@ -161,7 +194,7 @@
       "priority": "medium",
       "assigned_to": "Sage",
       "status": "pending-owner",
-      "notes": "5 posts at owner_inbox/posts/linkedin_posts_refreshed.md. Awaiting Owner approval."
+      "notes": "REVISED 2026-05-09. Post 1: Approved. Posts 2–5 rewritten — improved content at owner_inbox/posts/linkedin_posts_v2.md. All 5 reflected in dashboard LinkedIn tab. Post 2: /session-handoff mechanism. Post 3: PM identity/craft shift. Post 4: Gemini Drive synthesis. Post 5: Ghost.build. All Hebrew, RTL-aligned in dashboard."
     },
     {
       "task_id": "SCRATCHPAD-001",
