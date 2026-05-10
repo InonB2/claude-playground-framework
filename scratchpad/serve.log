@@ -797,3 +797,75 @@
  HTTP  07/05/2026 16:33:51 ::1 Returned 200 in 2 ms
  HTTP  07/05/2026 17:49:18 ::1 GET /tasks/active_tasks.json?_=1778165356474
  HTTP  07/05/2026 17:49:18 ::1 Returned 200 in 14 ms
+ HTTP  08/05/2026 11:10:49 ::1 GET /tasks/active_tasks.json?_=1778227849708
+ HTTP  08/05/2026 11:10:49 ::1 Returned 200 in 135 ms
+ HTTP  08/05/2026 11:10:51 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:10:51 ::1 Returned 200 in 40 ms
+ HTTP  08/05/2026 11:10:58 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:10:58 ::1 Returned 304 in 4 ms
+ HTTP  08/05/2026 11:11:18 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:11:18 ::1 Returned 200 in 2 ms
+ HTTP  08/05/2026 11:11:18 ::1 GET /favicon.ico
+ HTTP  08/05/2026 11:11:18 ::1 Returned 404 in 13 ms
+ HTTP  08/05/2026 11:11:20 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:11:20 ::1 Returned 304 in 13 ms
+ HTTP  08/05/2026 11:11:29 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:11:29 ::1 Returned 304 in 13 ms
+ HTTP  08/05/2026 11:13:00 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:13:00 ::1 Returned 304 in 4 ms
+ HTTP  08/05/2026 11:14:26 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:14:26 ::1 Returned 304 in 4 ms
+ HTTP  08/05/2026 11:20:12 ::1 GET /dashboard/
+ HTTP  08/05/2026 11:20:12 ::1 Returned 304 in 5 ms
+ HTTP  08/05/2026 15:56:44 ::1 GET /dashboard/
+ HTTP  08/05/2026 15:56:44 ::1 Returned 200 in 174 ms
+ HTTP  08/05/2026 16:05:14 ::1 GET /dashboard/owner_inbox/archive/cv_archive/Inon_Baasov_CV_TrainingPM.html
+ HTTP  08/05/2026 16:05:14 ::1 Returned 301 in 32 ms
+ HTTP  08/05/2026 16:05:14 ::1 GET /dashboard/owner_inbox/archive/cv_archive/Inon_Baasov_CV_TrainingPM
+ HTTP  08/05/2026 16:05:14 ::1 Returned 404 in 17 ms
+ HTTP  08/05/2026 16:05:23 ::1 GET /dashboard/owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM.html
+ HTTP  08/05/2026 16:05:23 ::1 Returned 301 in 3 ms
+ HTTP  08/05/2026 16:05:23 ::1 GET /dashboard/owner_inbox/archive/cv_archive/Inon_Baasov_CV_SeniorPM
+ HTTP  08/05/2026 16:05:23 ::1 Returned 404 in 5 ms
+ HTTP  09/05/2026 0:14:40 ::1 GET /dashboard/
+ HTTP  09/05/2026 0:14:40 ::1 Returned 200 in 208 ms
+ HTTP  09/05/2026 0:16:45 ::1 GET /dashboard/
+ HTTP  09/05/2026 0:16:45 ::1 Returned 304 in 118 ms
+ HTTP  10/05/2026 11:45:59 ::1 GET /dashboard/
+ HTTP  10/05/2026 11:45:59 ::1 Returned 200 in 377 ms
+ HTTP  10/05/2026 11:57:50 ::1 GET /dashboard/
+ HTTP  10/05/2026 11:57:50 ::1 Returned 200 in 389 ms
+ HTTP  10/05/2026 11:57:57 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM.html
+ HTTP  10/05/2026 11:57:57 ::1 Returned 301 in 13 ms
+ HTTP  10/05/2026 11:57:57 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 11:57:57 ::1 Returned 200 in 8 ms
+ HTTP  10/05/2026 11:58:50 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 11:58:50 ::1 Returned 304 in 5 ms
+ HTTP  10/05/2026 12:05:08 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 12:05:08 ::1 Returned 304 in 6 ms
+ HTTP  10/05/2026 12:13:02 ::1 GET /dashboard/
+ HTTP  10/05/2026 12:13:02 ::1 Returned 200 in 92 ms
+ HTTP  10/05/2026 12:13:15 ::1 GET /owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/v1_Inon_Baasov_CV_TechnicalPM
+ HTTP  10/05/2026 12:13:15 ::1 Returned 200 in 14 ms
+ HTTP  10/05/2026 12:13:17 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM.html
+ HTTP  10/05/2026 12:13:17 ::1 Returned 301 in 5 ms
+ HTTP  10/05/2026 12:13:17 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 12:13:17 ::1 Returned 200 in 19 ms
+ HTTP  10/05/2026 12:18:31 ::1 GET /dashboard/
+ HTTP  10/05/2026 12:18:31 ::1 Returned 304 in 4 ms
+ HTTP  10/05/2026 12:18:36 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 12:18:36 ::1 Returned 200 in 8 ms
+ HTTP  10/05/2026 17:22:48 ::1 GET /dashboard/
+ HTTP  10/05/2026 17:22:48 ::1 Returned 304 in 116 ms
+ HTTP  10/05/2026 17:23:06 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 17:23:06 ::1 Returned 200 in 52 ms
+ HTTP  10/05/2026 17:30:43 ::1 GET /dashboard/
+ HTTP  10/05/2026 17:30:43 ::1 Returned 304 in 72 ms
+ HTTP  10/05/2026 17:30:46 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 17:30:46 ::1 Returned 200 in 33 ms
+ HTTP  10/05/2026 17:37:46 ::1 GET /favicon.ico
+ HTTP  10/05/2026 17:37:46 ::1 Returned 404 in 21 ms
+ HTTP  10/05/2026 17:55:33 ::1 GET /dashboard/
+ HTTP  10/05/2026 17:55:33 ::1 Returned 200 in 319 ms
+ HTTP  10/05/2026 17:55:39 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 17:55:39 ::1 Returned 200 in 46 ms

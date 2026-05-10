@@ -2,6 +2,14 @@
   "last_updated": "2026-05-10",
   "tasks": [
     {
+      "task_id": "TELEGRAM-001",
+      "title": "Telegram MCP — 2-way bot pairing",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "pending-restart",
+      "notes": "FIXED 2026-05-10 (evening). Root cause: .env had CRLF line endings that broke the token regex in server.ts. Fixed by rewriting with LF-only endings. Server now starts and loads token correctly. Remaining: (1) Restart Claude Code — MCP server needs to reload; (2) DM the bot on Telegram → get 6-char pairing code; (3) Run /telegram:access pair <code>; (4) /telegram:access policy allowlist to lock down. Bot token in ~/.claude/channels/telegram/.env."
+    },
+    {
       "task_id": "BUILDAR-REBUILD-000",
       "title": "BuildAR Pro Rebuild — 7 open questions (waiting on Inon)",
       "priority": "critical",

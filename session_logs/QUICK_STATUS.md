@@ -1,12 +1,18 @@
-# QUICK STATUS — 2026-05-10
+# QUICK STATUS — 2026-05-10 (Evening)
 
-## Last Session (2026-05-10)
-Very short session: status line was broken (stat -c %Y incompatible on Windows + python3 not in PATH). Andy fixed ~/.claude/statusline.sh — Python mtime + python3/python fallback. No tasks moved.
+## Last Session (2026-05-10 evening)
+Fixed Telegram MCP server — `.env` had Windows CRLF line endings that broke token loading; rewritten with LF, server now starts cleanly. Pairing still pending: requires Claude Code restart, then DM bot → `/telegram:access pair <code>`.
+
+## Pending: Telegram Setup (pick up first)
+1. **Restart Claude Code** → verify `claude mcp list` shows `plugin:telegram:telegram` **Connected**
+2. DM the bot on Telegram → get pairing code → `/telegram:access pair <code>`
+3. Lock down: `/telegram:access policy allowlist`
 
 ## Active Task Table
 
 | ID | Title | Priority | Owner | Status |
 |----|-------|----------|-------|--------|
+| TELEGRAM-001 | Telegram 2-way bot pairing | high | Mack | pending-restart |
 | BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — 7 open Qs | critical | Andy | pending-owner |
 | BUILDAR-REBUILD-002 | DevOps agent profile (Pat→Nolan) | high | Pat | pending-owner |
 | ELBIT-SYSENG-001 | CV — SystemEngPM, Elbit | high | Cole | pending-owner |
@@ -22,9 +28,10 @@ Very short session: status line was broken (stat -c %Y incompatible on Windows +
 | SCRATCHPAD-001 | Scratchpad cleanup | low | General | pending |
 
 ## Owner Blockers
+- **TELEGRAM-001** — restart Claude Code first; then DM bot and pair
 - **BUILDAR-REBUILD-000** — 7 questions unanswered; Stage 2 cannot start
-- **BUILDAR-REBUILD-002** — DevOps agent awaiting approval (`scratchpad/pat_devops_agent_profile.md`)
-- **ELBIT-SYSENG-001** — CV ready for review
+- **BUILDAR-REBUILD-002** — DevOps agent profile ready (`scratchpad/pat_devops_agent_profile.md`), awaiting approval
+- **ELBIT-SYSENG-001** — CV ready for review (`owner_inbox/archive/cv_archive/ELBIT-SystemEngPM-Netanya/`)
 - **ELBIT-APPLY-001** — manual submission: Gmail draft → attach PDF → Elbit portal
-- **LINKEDIN-001** — posts 2–5 pending approval; 3 open Qs (34% stat, scheduling gap, Ghost.build disclosure)
-- **AI-news posts** — 8 posts at `owner_inbox/posts/ai_news_posts_v1.md`; none approved yet
+- **LINKEDIN-001** — posts 2–5 pending approval (`owner_inbox/posts/linkedin_posts_v2.md`)
+- **andy/inbox** — 14 pending agent reports unreviewed
