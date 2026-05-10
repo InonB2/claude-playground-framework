@@ -1,7 +1,7 @@
-# QUICK STATUS — 2026-05-10 (Evening)
+# QUICK STATUS — 2026-05-10 (Late Evening)
 
-## Last Session (2026-05-10 evening)
-Fixed Telegram MCP server — `.env` had Windows CRLF line endings that broke token loading; rewritten with LF, server now starts cleanly. Pairing still pending: requires Claude Code restart, then DM bot → `/telegram:access pair <code>`.
+## Last Session (2026-05-10c)
+Statusline fully fixed: (1) atomic writes prevent empty-file crash, (2) session % and time-remaining now read from `rate_limits.five_hour` in Claude Code's stdin JSON — numbers match Claude desktop app exactly. QA rule formalized: Yoni→Jasmin on all scripts, Rex→Vera on UI.
 
 ## Pending: Telegram Setup (pick up first)
 1. **Restart Claude Code** → verify `claude mcp list` shows `plugin:telegram:telegram` **Connected**
