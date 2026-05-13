@@ -1,13 +1,29 @@
 {
-  "last_updated": "2026-05-10d",
+  "last_updated": "2026-05-13",
   "tasks": [
+    {
+      "task_id": "DASH-SYNC-001",
+      "title": "Dashboard CV↔Job sync engine + UI connections",
+      "priority": "high",
+      "assigned_to": "Rex",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-13. Full CV↔Job pipeline sync: syncCvToJob + syncJobToCv with never-downgrade logic. Print button auto-advances CV to PDF Ready. Apply button on CV rows. Job Stage column in CV table. CV name chips on job cards. 'CV Ready' added to JOB_STAGES. linkedJob corrected on cv-001/cv-002 (was wrong task IDs). CV_SEED_VER bumped to 6, JOBS_SEED_VER to 3. Jasmin: 14/14 PASS. Vera: 1 XSS HIGH fixed (escHtml on stage in innerHTML). QA: PASS."
+    },
+    {
+      "task_id": "LENOVO-INC-001",
+      "title": "Tailored CV — Tech Incubation PM, Lenovo CTO Org (LinkedIn jid=4380617928)",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "status": "pending-owner",
+      "notes": "COMPLETED 2026-05-11. CV at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Strategy: builder angle leaned hard — 3 live solo products + 4 AI startup incubation engagements framed as real-stakes 0-to-1 work. Biotech degree framed as Engineering (accurate) + scientist's hypothesis-driven incubation approach. No location shown. No Mandarin gap raised (preferred only). JD ATS fit: ~9.5/10. Jasmin QA: PASS — all 9 permanent rules verified. Next: Inon reviews, Cole converts to PDF, dashboard entry IB-v1-IncubationPM-Lenovo."
+    },
     {
       "task_id": "TELEGRAM-001",
       "title": "Telegram MCP — 2-way bot pairing",
       "priority": "high",
       "assigned_to": "Mack",
       "status": "pending-restart",
-      "notes": "FIXED 2026-05-10 (evening) CRLF in .env. CACHE FIX 2026-05-10 (night): Plugin cache (~/.claude/plugins/cache/claude-plugins-official/telegram/0.0.6/) was empty after restart — copied source + node_modules from marketplace dir. Token intact at ~/.claude/channels/telegram/.env. Bun v1.3.13 confirmed. Remaining: (1) Restart Claude Code — MCP must reload with populated cache; (2) DM the bot → get 6-char pairing code; (3) /telegram:access pair <code>; (4) /telegram:access policy allowlist. If cache is empty again after restart, escalate to symlink/wrapper fix."
+      "notes": "FIXED 2026-05-10 (evening) CRLF in .env. CACHE FIX 2026-05-10 (night): Plugin cache populated. ROOT CAUSE FOUND 2026-05-10 (night): bun is correctly registered in user PATH (C:\\Users\\Inon Baasov\\.bun\\bin) but Claude Code process has stale PATH — it was launched before bun was in PATH, so bun executable not found at runtime. FIX: Restart Claude Code to inherit fresh PATH. After restart: (1) DM bot → get 6-char pairing code; (2) /telegram:access pair <code>; (3) /telegram:access policy allowlist."
     },
     {
       "task_id": "BUILDAR-REBUILD-000",

@@ -521,6 +521,8 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 .cv-editor-mode-btn:hover:not(.active){border-color:var(--border-hover);color:var(--text)}
 .cv-edit-inline-btn{background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);color:var(--green);border-radius:5px;padding:2px 8px;font-size:10px;font-weight:600;cursor:pointer;margin-right:4px}
 .cv-edit-inline-btn:hover{background:rgba(52,211,153,0.22);border-color:rgba(52,211,153,0.5)}
+.cv-apply-btn{background:rgba(34,211,238,0.1);border:1px solid var(--cyan);color:var(--cyan);border-radius:6px;padding:3px 9px;font-size:11px;cursor:pointer;white-space:nowrap}
+.cv-apply-btn:hover{background:rgba(34,211,238,0.2)}
 .cv-save-file-btn{background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:var(--green);border-radius:6px;padding:4px 12px;font-size:11px;font-weight:600;cursor:pointer}
 .cv-save-file-btn:hover{background:rgba(52,211,153,0.25)}
 .cv-save-file-btn:disabled{opacity:0.4;cursor:not-allowed}
@@ -718,6 +720,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
           <th scope="col">Status</th>
           <th scope="col">Role / Target</th>
           <th scope="col">JD</th>
+          <th scope="col">Job Stage</th>
           <th scope="col">Industry</th>
           <th scope="col">Date</th>
           <th scope="col">Actions</th>
@@ -887,6 +890,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
       <div class="modal-field"><label for="jStage">Stage</label>
         <select id="jStage">
           <option value="Saved">Saved</option>
+          <option value="CV Ready">CV Ready</option>
           <option value="Applied">Applied</option>
           <option value="Screen">Phone Screen</option>
           <option value="Interview">Interview</option>
@@ -1073,7 +1077,9 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 // STATE
 // ══════════════════════════════════════════════════════════════════
 const LI_POSTS_SEED_VER = 2;
-const CV_SEED_VER = 4;
+const CV_SEED_VER = 6;
+const JOBS_SEED_VER = 3;
+const TASKS_SEED_VER = 2;
 let tasks = [];
 let jobs = [];
 let cvVersions = [];
@@ -1179,6 +1185,7 @@ function seedDefaultTasks(){
     {id:'CAREER-DASH-001',title:'Job Applications + CV Versions tabs',priority:'high',agent:'Rex',status:'done',project:'Career',blockedBy:'',notes:'COMPLETED 2026-05-04. Two tabs added with full functionality.'},
     {id:'PROMAKER-AR-010',title:'BuildARPro: apply Supabase schema',priority:'high',agent:'Silas',status:'done',project:'BuildARPro',blockedBy:'',notes:'COMPLETED. All 5 tables live with RLS.'},
     {id:'CV-GENERIC-001',title:'Generic Senior PM CV — fix, template, deploy',priority:'high',agent:'Cole',status:'done',project:'Career',blockedBy:'',notes:'COMPLETED. Fixed 8 issues, PDF at owner_inbox/archive.'},
+    {id:'LENOVO-INC-001',title:'Tailored CV — Tech Incubation PM, Lenovo CTO Org',priority:'high',agent:'Cole',status:'needs-you',project:'Career',blockedBy:'',notes:'COMPLETED 2026-05-11. HTML at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Builder angle leaned hard. ATS ~9.5/10. Jasmin QA: PASS. Next: review HTML, convert to PDF, submit via LinkedIn.'},
   ];
   saveTasks();
 }
@@ -1188,6 +1195,7 @@ function seedDefaultJobs(){
     {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',date:'2026-05-06',url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
     {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',date:'2026-05-06',url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
     {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interview',date:'2026-04-15',url:'',notes:'Internal — own venture.'},
+    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'CV Ready',date:'2026-05-11',url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
   ];
   saveJobs();
 }
@@ -1204,7 +1212,7 @@ function seedDefaultCvs(){
       industry:'Defense',
       date:'2026-05-06',
       outcome:'approved',
-      linkedJob:'ELBIT-APPLY-001',
+      linkedJob:'job-001',
       notes:'ATS optimized. Military service highlighted. PDF ready to attach and send.'
     },
     {
@@ -1217,7 +1225,7 @@ function seedDefaultCvs(){
       industry:'Defense',
       date:'2026-05-06',
       outcome:'approved',
-      linkedJob:'ELBIT-TPM-001',
+      linkedJob:'job-002',
       notes:'14 keywords. 8.5/10 ATS.'
     },
     {
@@ -1248,10 +1256,39 @@ function seedDefaultCvs(){
       jdTitle:'Elbit — PM / System Engineer (Artillery C4I)',
       jdUrl:'',
       htmlPath:'../owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM.html',
+      linkedJob:null,
       notes:'Delivered 2026-05-10. Pending PDF + submission. Gap: no artillery systems background — IAF service used as operational environment proxy.'
+    },
+    {
+      id:'cv-lenovo-inc-001',
+      name:'IB-v1-IncubationPM-Lenovo',
+      role:'Tech Incubation PM',
+      jdTitle:'Lenovo CTO Org — Tech Incubation PM',
+      jdUrl:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',
+      htmlPath:'../owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html',
+      industry:'Tech / AI',
+      date:'2026-05-11',
+      outcome:'draft',
+      linkedJob:'job-lenovo-inc-001',
+      notes:'Builder angle leaned hard. Scientist\'s hypothesis-driven incubation framing. Biotech = Engineering + scientist mindset used as differentiator. 18 JD keywords injected. Jasmin QA: PASS. Next: review HTML, PDF, submit.'
     }
   ];
   saveCvs();
+}
+
+// New entries injected per version bump — merged without wiping existing user data
+const TASKS_V2_ENTRIES = [
+  {id:'LENOVO-INC-001',title:'Tailored CV — Tech Incubation PM, Lenovo CTO Org',priority:'high',agent:'Cole',status:'needs-you',project:'Career',blockedBy:'',notes:'COMPLETED 2026-05-11. HTML at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Builder angle leaned hard. ATS ~9.5/10. Jasmin QA: PASS. Next: review HTML, convert to PDF, submit via LinkedIn.'}
+];
+const JOBS_V2_ENTRIES = [
+  {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'CV Ready',date:'2026-05-11',url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10.'}
+];
+const JOBS_V3_ENTRIES = [];
+function _mergeNewSeeds(arr, newEntries, saveFunc){
+  const ids = new Set(arr.map(x=>x.id));
+  let added = 0;
+  newEntries.forEach(e=>{ if(!ids.has(e.id)){ arr.push(e); added++; } });
+  if(added>0) saveFunc();
 }
 
 function seedDefaultLiPosts(){
@@ -1703,8 +1740,71 @@ function addNewTask(){
 // ══════════════════════════════════════════════════════════════════
 // JOB APPLICATIONS
 // ══════════════════════════════════════════════════════════════════
-const JOB_STAGES=['Saved','Applied','Screen','Interview','Offer','Negotiating','Accepted','Rejected','Ghosted','Withdrawn','Archived'];
-const JOB_COL_COLORS={Saved:'var(--muted)',Applied:'var(--cyan)',Screen:'var(--yellow)',Interview:'var(--orange)',Offer:'var(--green)',Negotiating:'var(--purple)',Accepted:'var(--green)',Rejected:'var(--red)',Ghosted:'var(--muted)',Withdrawn:'var(--muted)',Archived:'var(--muted)'};
+const JOB_STAGES=['Saved','CV Ready','Applied','Screen','Interview','Offer','Negotiating','Accepted','Rejected','Ghosted','Withdrawn','Archived'];
+const JOB_COL_COLORS={Saved:'var(--muted)','CV Ready':'var(--purple)',Applied:'var(--cyan)',Screen:'var(--yellow)',Interview:'var(--orange)',Offer:'var(--green)',Negotiating:'var(--purple)',Accepted:'var(--green)',Rejected:'var(--red)',Ghosted:'var(--muted)',Withdrawn:'var(--muted)',Archived:'var(--muted)'};
+
+// Pipeline rank — used to enforce "never downgrade" rule
+const JOB_STAGE_RANK = {Saved:0,'CV Ready':1,Applied:2,Screen:3,Interview:4,Offer:5,Negotiating:6,Accepted:7,Rejected:8,Ghosted:9,Withdrawn:10,Archived:11};
+const CV_STATUS_RANK = {Drafting:0,'HTML Ready':1,'PDF Ready':2,Applied:3,Interview:4,Rejected:5,Ghosted:6};
+
+// CV status → minimum job stage to advance to (null = no auto-advance)
+const CV_TO_JOB_STAGE = {
+  'Drafting':     null,
+  'HTML Ready':   'CV Ready',
+  'PDF Ready':    'CV Ready',
+  'Applied':      'Applied',
+  'Interview':    'Interview',
+  'Rejected':     'Rejected',
+  'Ghosted':      'Ghosted'
+};
+
+// Job stage → CV status to advance to (null = no auto-sync back)
+const JOB_TO_CV_STATUS = {
+  'Applied':      'Applied',
+  'Screen':       'Applied',
+  'Interview':    'Interview',
+  'Offer':        'Interview',
+  'Rejected':     'Rejected',
+  'Ghosted':      'Ghosted'
+};
+
+// Advance job stage if new stage is ahead in pipeline (never downgrade)
+function syncCvToJob(cvId) {
+  const cv = cvVersions.find(c => c.id === cvId);
+  if (!cv || !cv.linkedJob) return false;
+  const job = jobs.find(j => j.id === cv.linkedJob);
+  if (!job) return false;
+  const targetStage = CV_TO_JOB_STAGE[cv.status];
+  if (!targetStage) return false;
+  const currentRank = JOB_STAGE_RANK[job.stage] ?? 0;
+  const targetRank  = JOB_STAGE_RANK[targetStage] ?? 0;
+  if (targetRank > currentRank) {
+    job.stage = targetStage;
+    saveJobs();
+    renderJobs();
+    return true;
+  }
+  return false;
+}
+
+// Advance CV status when linked job moves forward (never downgrade)
+function syncJobToCv(jobId) {
+  const job = jobs.find(j => j.id === jobId);
+  if (!job) return;
+  const linked = cvVersions.filter(cv => cv.linkedJob === jobId);
+  let changed = false;
+  linked.forEach(cv => {
+    const targetStatus = JOB_TO_CV_STATUS[job.stage];
+    if (!targetStatus) return;
+    const currentRank = CV_STATUS_RANK[cv.status] ?? 0;
+    const targetRank  = CV_STATUS_RANK[targetStatus] ?? 0;
+    if (targetRank > currentRank) {
+      cv.status = targetStatus;
+      changed = true;
+    }
+  });
+  if (changed) { saveCvs(); renderCvs(); }
+}
 
 function renderJobs(){
   const container = document.getElementById('jobKanban');
@@ -1738,9 +1838,14 @@ function renderJobs(){
         const cls = days<7?'aging-fresh':days<21?'aging-ok':'aging-stale';
         agingHtml=`<div class="job-aging-badge ${cls}">${days}d ago</div>`;
       }
+      const linkedCvs = cvVersions.filter(cv => cv.linkedJob === j.id);
+      const cvChips = linkedCvs.map(cv =>
+        `<span style="display:inline-block;margin-top:4px;font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(139,92,246,0.15);color:var(--purple);border:1px solid rgba(139,92,246,0.3)">${escHtml(cv.name)}</span>`
+      ).join(' ');
       card.innerHTML=`<div class="job-card-company">${escHtml(j.company)}</div>
         <div class="job-card-role">${escHtml(j.role)}</div>
-        ${agingHtml}`;
+        ${agingHtml}
+        ${cvChips ? '<div style="margin-top:6px">'+cvChips+'</div>' : ''}`;
       card.addEventListener('click',()=>openJobModal(j.id));
       col.querySelector('.col-cards').appendChild(card);
     });
@@ -1764,9 +1869,12 @@ function openJobModal(id){
 function closeJobModal(){ document.getElementById('jobModal').classList.remove('open'); editingJobId=null; }
 function saveJob(){
   const data={company:document.getElementById('jCompany').value,role:document.getElementById('jRole').value,stage:document.getElementById('jStage').value,date:document.getElementById('jDate').value,url:document.getElementById('jUrl').value,notes:document.getElementById('jNotes').value};
-  if(editingJobId){ Object.assign(jobs.find(j=>j.id===editingJobId),data); }
-  else { jobs.push({id:'job-'+Date.now(),...data}); }
-  saveJobs(); renderJobs(); closeJobModal();
+  let savedJobId;
+  if(editingJobId){ Object.assign(jobs.find(j=>j.id===editingJobId),data); savedJobId=editingJobId; }
+  else { const newId='job-'+Date.now(); jobs.push({id:newId,...data}); savedJobId=newId; }
+  saveJobs(); renderJobs();
+  syncJobToCv(savedJobId);
+  closeJobModal();
 }
 function deleteJob(){ jobs=jobs.filter(j=>j.id!==editingJobId); saveJobs(); renderJobs(); closeJobModal(); }
 
@@ -1795,11 +1903,19 @@ function loadCVs(){
   return list;
 }
 
-function openCvPreview(htmlPath){
-  if(!htmlPath) return;
-  // Paths stored as ../owner_inbox/... resolve correctly relative to dashboard/index.html
-  // when served from root: ../owner_inbox → /owner_inbox. window.open uses current page as base.
-  window.open(htmlPath,'_blank','noopener,noreferrer');
+// Resolve a stored relative/absolute path to a full URL using the document's actual base.
+// Works in both HTTP-server mode and file:// mode.
+function resolveCvPath(p){
+  if(!p) return null;
+  if(/^(https?|file):\/\//.test(p)) return p;
+  try{ return new URL(p, document.baseURI).href; }catch(e){ return p; }
+}
+
+function openCvPreview(cvId){
+  const cv = cvVersions.find(c=>c.id===cvId);
+  const url = resolveCvPath(cv && cv.htmlPath);
+  if(!url) return;
+  window.open(url,'_blank','noopener,noreferrer');
 }
 
 function renderCvs(){
@@ -1809,14 +1925,24 @@ function renderCvs(){
   all.forEach((cv)=>{
     const tr = document.createElement('tr');
     const hasPreview = !!(cv.htmlPath && cv.htmlPath.trim());
+    const isHtmlFile = hasPreview && /\.html?$/i.test(cv.htmlPath.trim());
     const statusVal = cv.status || cv.outcome || 'draft';
     const statusClass = statusVal.toLowerCase().replace(/\s+/g,'-');
     const previewBtn = hasPreview
-      ? `<button class="cv-preview-btn" onclick="openCvPreview('${escHtml(cv.htmlPath).replace(/'/g,"\\'")}')">Open</button>`
-      : `<button class="cv-preview-btn" disabled title="No HTML preview available">Open</button>`;
-    const editInlineBtn = hasPreview
+      ? `<button class="cv-preview-btn" onclick="openCvPreview('${cv.id}')">Open</button>`
+      : `<button class="cv-preview-btn" disabled title="No preview path set">Open</button>`;
+    const editInlineBtn = isHtmlFile
       ? `<button class="cv-edit-inline-btn" onclick="openCvEditorInline('${cv.id}')">Edit CV</button>`
       : '';
+    const applyBtn = (cv.status !== 'Applied' && cv.status !== 'Rejected' && cv.status !== 'Ghosted')
+      ? `<button class="cv-apply-btn" onclick="markCvApplied('${cv.id}')" title="Mark this CV as Applied and advance linked job">Applied ✓</button>`
+      : '';
+    const linkedJobObj = cv.linkedJob ? jobs.find(j=>j.id===cv.linkedJob) : null;
+    const _ljStage = linkedJobObj ? escHtml(linkedJobObj.stage) : null;
+    const _ljColor = linkedJobObj ? (JOB_COL_COLORS[linkedJobObj.stage]||'var(--muted)') : null;
+    const jobStageBadge = linkedJobObj
+      ? `<span style="font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(0,0,0,0.3);color:${_ljColor};border:1px solid ${_ljColor}">${_ljStage}</span>`
+      : '<span style="color:var(--muted);font-size:11px">—</span>';
     tr.innerHTML=`<td><a class="cv-link" href="#" onclick="openCvEditor('${cv.id}');return false;">${escHtml(cv.name)}</a></td>
       <td><span class="cv-outcome ${escHtml(statusClass)}">${escHtml(statusVal.toUpperCase())}</span></td>
       <td>${escHtml(cv.role||'')}</td>
@@ -1824,11 +1950,13 @@ function renderCvs(){
         ${cv.jdUrl?`<a class="cv-link" href="${escHtml(cv.jdUrl)}" target="_blank">${escHtml(cv.jdTitle||'JD')}</a>`:escHtml(cv.jdTitle||'—')}
         ${cv.linkedJob?`<br><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);opacity:0.7">${escHtml(cv.linkedJob)}</span>`:''}
       </td>
+      <td>${jobStageBadge}</td>
       <td>${escHtml(cv.industry||'')}</td>
       <td><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">${escHtml(cv.date||'')}</span></td>
       <td>
         ${previewBtn}
         ${editInlineBtn}
+        ${applyBtn}
         <button class="cv-action-btn" onclick="openCvModal('${cv.id}')">Edit</button>
         <button class="cv-action-btn" onclick="dupCv('${cv.id}')">Dup</button>
       </td>`;
@@ -1930,9 +2058,12 @@ function saveCv(){
     notes:document.getElementById('cvNotes').value,
     linkedJob:_editingCv?_editingCv.linkedJob||null:null
   };
-  if(editingCvId){ Object.assign(cvVersions.find(c=>c.id===editingCvId),data); }
-  else { cvVersions.push({id:'cv-'+Date.now(),...data}); }
-  saveCvs(); renderCvs(); closeCvModal();
+  let savedCvId;
+  if(editingCvId){ Object.assign(cvVersions.find(c=>c.id===editingCvId),data); savedCvId=editingCvId; }
+  else { const newCvId='cv-'+Date.now(); cvVersions.push({id:newCvId,...data}); savedCvId=newCvId; }
+  saveCvs(); renderCvs();
+  syncCvToJob(savedCvId);
+  closeCvModal();
 }
 function deleteCv(){ cvVersions=cvVersions.filter(c=>c.id!==editingCvId); saveCvs(); renderCvs(); closeCvModal(); }
 function dupCv(id){
@@ -1940,6 +2071,14 @@ function dupCv(id){
   if(!cv) return;
   const copy={...cv,id:'cv-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),name:cv.name+' (copy)',outcome:'draft'};
   cvVersions.push(copy); saveCvs(); renderCvs();
+}
+function markCvApplied(cvId) {
+  const cv = cvVersions.find(c => c.id === cvId);
+  if (!cv) return;
+  cv.status = 'Applied';
+  saveCvs();
+  syncCvToJob(cvId);
+  renderCvs();
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -2263,47 +2402,77 @@ function openCvEditor(cvId) {
   cvEditorSrcMode = false;
   document.getElementById('cvEditorTitle').textContent = cv.name + ' — CV Editor';
   document.getElementById('cvEditorOverlay').classList.remove('hidden');
-  document.getElementById('cvEditorStatus').textContent = cvEditorFileHandle
-    ? 'File handle ready — you can save changes'
-    : 'No file loaded — click "Open File" to pick the CV file from disk';
   _cvEditorUpdateToolbar();
   setCvEditorMode('design');
-  if (cvEditorFileHandle) cvEditorLoad();
+  if (cvEditorFileHandle) {
+    cvEditorLoad();
+  } else if (cv.htmlPath && /\.html?$/i.test(cv.htmlPath)) {
+    const url = resolveCvPath(cv.htmlPath);
+    document.getElementById('cvEditorStatus').textContent = 'Loading CV…';
+    fetch(url)
+      .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+      .then(html => {
+        const iframe = document.getElementById('cvEditorIframe');
+        document.getElementById('cvEditorSource').value = html;
+        _cvIframeLoadHandlerDetach(iframe);
+        _cvIframeLoadHandler = function(){ if(cvEditorMode==='design') _cvEditorInjectEditable(); };
+        iframe.addEventListener('load', _cvIframeLoadHandler);
+        iframe.removeAttribute('srcdoc');
+        iframe.srcdoc = html;
+        document.getElementById('cvEditorStatus').textContent =
+          'CV loaded — click any text to edit. Use "Open File" to enable Save-to-disk.';
+        _cvEditorUpdateToolbar();
+      })
+      .catch(() => {
+        document.getElementById('cvEditorStatus').textContent =
+          '⚠ Cannot load — serve the dashboard from project root: npx serve .';
+        _cvEditorUpdateToolbar();
+      });
+  } else {
+    document.getElementById('cvEditorStatus').textContent =
+      'No file loaded — click "Open File" to pick the CV file from disk';
+  }
 }
 
-// openCvEditorInline — opened from "Edit CV" button, loads htmlPath via iframe src
-// No file picker on open. Save will call showSaveFilePicker on first use (pre-filled).
+// openCvEditorInline — opened from "Edit CV" button.
+// Fetches CV content then loads via srcdoc (works on both HTTP and avoids srcdoc/src priority bug).
 function openCvEditorInline(cvId) {
   const cv = cvVersions.find(c => c.id === cvId);
   if (!cv || !cv.htmlPath) return;
   cvEditorCvId = cvId;
-  // Do NOT inherit any stale handle — handle starts null; first Save will prompt once
   cvEditorFileHandle = null;
   _cvEditorSetDirty(false);
   cvEditorSrcMode = true;
 
   document.getElementById('cvEditorTitle').textContent = cv.name + ' — Edit CV';
   document.getElementById('cvEditorOverlay').classList.remove('hidden');
-
-  // Switch to design mode (this may set iframe.srcdoc = '' from empty source textarea)
   setCvEditorMode('design');
 
-  // Load iframe via src — preserves relative CSS/font paths baked into the HTML file.
-  // Must clear srcdoc first: browsers give srcdoc priority over src when both are set.
   const iframe = document.getElementById('cvEditorIframe');
   _cvIframeLoadHandlerDetach(iframe);
-  iframe.removeAttribute('srcdoc');  // clear any residual srcdoc so src wins
-  iframe.srcdoc = '';                // belt-and-suspenders clear
-  _cvIframeLoadHandler = function(){
-    _cvEditorInjectEditable();
-    document.getElementById('cvEditorStatus').textContent =
-      'Editing in place — click any text and type. Press Save to write back to the file.';
-  };
-  iframe.addEventListener('load', _cvIframeLoadHandler);
-  iframe.src = cv.htmlPath;
+  iframe.removeAttribute('srcdoc');
 
+  const url = resolveCvPath(cv.htmlPath);
   document.getElementById('cvEditorStatus').textContent = 'Loading CV…';
   _cvEditorUpdateToolbar();
+
+  fetch(url)
+    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+    .then(html => {
+      document.getElementById('cvEditorSource').value = html;
+      _cvIframeLoadHandlerDetach(iframe);
+      _cvIframeLoadHandler = function(){
+        _cvEditorInjectEditable();
+        document.getElementById('cvEditorStatus').textContent =
+          'Editing in place — click any text and type. Press Save to write back to the file.';
+      };
+      iframe.addEventListener('load', _cvIframeLoadHandler);
+      iframe.srcdoc = html;
+    })
+    .catch(() => {
+      document.getElementById('cvEditorStatus').textContent =
+        '⚠ Cannot load — serve the dashboard from project root: npx serve .';
+    });
 }
 
 function closeCvEditor() {
@@ -2456,6 +2625,19 @@ async function cvEditorSave() {
 }
 
 function cvEditorPrint() {
+  if (cvEditorCvId) {
+    const cv = cvVersions.find(c => c.id === cvEditorCvId);
+    if (cv) {
+      const currentRank = CV_STATUS_RANK[cv.status] ?? 0;
+      if (currentRank < CV_STATUS_RANK['PDF Ready']) {
+        cv.status = 'PDF Ready';
+        saveCvs();
+        syncCvToJob(cvEditorCvId);
+        renderCvs();
+        _cvEditorShowToast('Status → PDF Ready ✓');
+      }
+    }
+  }
   const iframe = document.getElementById('cvEditorIframe');
   if (iframe.contentWindow) iframe.contentWindow.print();
 }
@@ -2586,7 +2768,7 @@ window.cvTabTests = (function(){
 
   function testCanonicalMerge(){
     // Check that the CANONICAL seed ids survive a fresh load
-    const CANONICAL_IDS = ['cv-001','cv-002','cv-003','cv-elbit-syseng-pm'];
+    const CANONICAL_IDS = ['cv-001','cv-002','cv-003','cv-elbit-syseng-pm','cv-lenovo-inc-001'];
     // Save current, wipe localStorage key, seed, load
     const backup = localStorage.getItem('andy_cvs');
     const backupVer = localStorage.getItem('andy_cvs_ver');
@@ -2700,8 +2882,14 @@ window.cvTabTests = (function(){
 // ══════════════════════════════════════════════════════════════════
 (function init(){
   loadAll();
-  if(tasks.length===0) seedDefaultTasks();
-  if(jobs.length===0) seedDefaultJobs();
+
+  const _tasksVer = parseInt(localStorage.getItem('andy_tasks_ver')||'0');
+  if(tasks.length===0){ seedDefaultTasks(); localStorage.setItem('andy_tasks_ver', TASKS_SEED_VER); }
+  else if(_tasksVer < TASKS_SEED_VER){ _mergeNewSeeds(tasks, TASKS_V2_ENTRIES, saveTasks); localStorage.setItem('andy_tasks_ver', TASKS_SEED_VER); }
+
+  const _jobsVer = parseInt(localStorage.getItem('andy_jobs_ver')||'0');
+  if(jobs.length===0){ seedDefaultJobs(); localStorage.setItem('andy_jobs_ver', JOBS_SEED_VER); }
+  else if(_jobsVer < JOBS_SEED_VER){ _mergeNewSeeds(jobs, JOBS_V2_ENTRIES, saveJobs); localStorage.setItem('andy_jobs_ver', JOBS_SEED_VER); }
 
   const _liVer = parseInt(localStorage.getItem('andy_liposts_ver')||'0');
   if(_liVer < LI_POSTS_SEED_VER){ seedDefaultLiPosts(); localStorage.setItem('andy_liposts_ver', LI_POSTS_SEED_VER); }

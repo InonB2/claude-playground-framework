@@ -1,38 +1,32 @@
-# QUICK STATUS — 2026-05-10 (Night)
+# Quick Status — Last updated: 2026-05-13
 
-## Last Session (2026-05-10c — night)
-Telegram MCP still failing after restart. Root cause found: plugin cache (`~/.claude/plugins/cache/claude-plugins-official/telegram/0.0.6/`) was wiped on restart. Cache repopulated from marketplace dir. Token intact. Bun v1.3.13 confirmed. Restart Claude Code to pick up the fix.
+## Last Session (2026-05-13)
+Cole delivered Lenovo CTO Org Tech Incubation PM CV (builder angle, ATS ~9.5/10, pending Inon review). Rex built full CV↔Job bidirectional sync engine in the dashboard — print auto-advances CV status, Apply button added, Job Stage column in CV table, CV chips on job cards, 4 file-opening bugs fixed, XSS patched.
 
-## Pending: Telegram Setup (pick up first)
-1. **Restart Claude Code** → `claude mcp list` → confirm `plugin:telegram:telegram` **Connected**
-2. DM the bot → get 6-char pairing code → `/telegram:access pair <code>`
-3. Lock down: `/telegram:access policy allowlist`
-4. **If cache is empty again after restart** → tell Andy → needs symlink/wrapper fix
-
-## Active Task Table
+## Active Tasks
 
 | ID | Title | Priority | Owner | Status |
 |----|-------|----------|-------|--------|
-| TELEGRAM-001 | Telegram 2-way bot pairing | high | Mack | pending-restart |
-| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — 7 open Qs | critical | Andy | pending-owner |
-| BUILDAR-REBUILD-002 | DevOps agent profile (Pat→Nolan) | high | Pat | pending-owner |
-| ELBIT-SYSENG-001 | CV — SystemEngPM, Elbit | high | Cole | pending-owner |
-| ELBIT-TPM-001 | CV — TechnicalPM, Elbit | high | Cole | pending-owner |
-| ELBIT-APPLY-001 | Submit CV to Elbit (manual) | high | Cole | pending-owner |
-| PROMAKER-AR-003 | BuildARPro pitch deck (stealth) | high | Cole | partial |
-| DASHBOARD-001 | C&C — project filters + inline edit | high | Rex | pending |
-| WEBSITE-001-DESIGN-01 | Full visual redesign | high | Rex | blocked |
+| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — 7 open questions | critical | Andy | pending-owner |
+| LENOVO-INC-001 | Tailored CV — Lenovo CTO Org Tech Incubation PM | high | Cole | pending-owner |
+| ELBIT-APPLY-001 | Submit CV to Elbit Systems (Training PM) | high | Cole | pending-owner |
+| ELBIT-SYSENG-001 | Tailored CV — Elbit Artillery C4I PM/SysEng | high | Cole | pending-owner |
+| ELBIT-TPM-001 | Tailored CV — Elbit Smart Sensing Technical PM | high | Cole | pending-owner |
+| TELEGRAM-001 | Telegram MCP — 2-way bot pairing | high | Mack | pending-restart |
+| BUILDAR-REBUILD-002 | BuildAR Pro — DevOps agent profile (Dev) | high | Pat | pending-owner |
+| DASHBOARD-001 | C&C Dashboard — project filters + inline edit | high | Rex | pending |
+| WEBSITE-001-DESIGN-01 | Full Awwwards-level visual redesign | high | Rex | blocked |
 | WEBSITE-001-SEC-04 | Security headers | high | Rex | partial |
-| WEBSITE-001-CONTENT-01 | Thought leadership section | medium | Rex | in-progress |
-| LINKEDIN-001 | LinkedIn posts 2–5 | medium | Sage | pending-owner |
-| WHATSAPP-001 | WhatsApp MCP 2-way | low | Mack | paused |
+| WEBSITE-001-CONTENT-01 | Thought leadership / journal section | medium | Rex | in-progress |
+| LINKEDIN-001 | LinkedIn posts — 5 posts ready | medium | Sage | pending-owner |
+| PROMAKER-AR-003 | BuildARPro pitch deck — stealth version | high | Cole | partial |
 | SCRATCHPAD-001 | Scratchpad cleanup | low | General | pending |
+| DASH-SYNC-001 | Dashboard CV↔Job sync engine | high | Rex | done |
 
 ## Owner Blockers
-- **TELEGRAM-001** — restart Claude Code first; then DM bot and pair
-- **BUILDAR-REBUILD-000** — 7 questions unanswered; Stage 2 cannot start
-- **BUILDAR-REBUILD-002** — DevOps agent profile ready (`scratchpad/pat_devops_agent_profile.md`), awaiting approval
-- **ELBIT-SYSENG-001** — CV ready for review (`owner_inbox/archive/cv_archive/ELBIT-SystemEngPM-Netanya/`)
-- **ELBIT-APPLY-001** — manual submission: Gmail draft → attach PDF → Elbit portal
-- **LINKEDIN-001** — posts 2–5 pending approval (`owner_inbox/posts/linkedin_posts_v2.md`)
-- **andy/inbox** — inbox cleared; no pending reports
+1. **Lenovo CV** — review HTML → approve → Cole makes PDF → submit via LinkedIn
+2. **BuildAR Pro** — answer 7 questions in `scratchpad/plan_buildar_pro_rebuild_2026-05-07.md` to unblock Stage 2
+3. **Dev agent** — approve `scratchpad/pat_devops_agent_profile.md` → Nolan creates agent
+4. **Elbit submissions** — 3 CVs ready: Training PM (ELBIT-APPLY-001), Technical PM (ELBIT-TPM-001), SystemEng PM (ELBIT-SYSENG-001)
+5. **Telegram** — restart Claude Code (one-time) → DM bot → pair with 6-char code
+6. **Dashboard** — run `npx serve .` from `D:\Claude Playground` to test new CV↔Job sync
