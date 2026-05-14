@@ -1,5 +1,15 @@
 # Owner Action Items
-_Last updated: 2026-05-05_
+_Last updated: 2026-05-14_
+
+---
+
+### [JOBSEARCH-PHASE-2] ✅ Phase 2 shipped — green-light Phase 3?
+**Context (2026-05-14):** Phase 2 complete and QA-approved. Rex shipped prep checklist (5 items) per job + follow-up reminders with overdue banner. Yoni shipped ATS Match tab with weighted keyword engine. Jasmin retuned engine after self-test surfaced over-strict scoring. Vera: 194/194 jsdom PASS.
+**Action:**
+1. Open dashboard → check new ATS Match tab. Try pasting one of your Elbit JDs and the matching CV — note the gap keywords.
+2. **Cole rework needed before Elbit submissions** — Jasmin's engine confirms `artillery`, `c4i`, `smart sensing`, `cyber` are missing from your Elbit CVs. Authorize Cole to integrate these keywords (without fabricating experience).
+3. Say "go Phase 3" to dispatch contacts panel + AI Prompt Toolkit + URL auto-parser (3 features, Rex + Yoni + Mack).
+**Files:** `owner_inbox/research/job_search_upgrade_plan.md`, `agents/andy/inbox/jasmin_ats_engine_qa.md`, `agents/andy/inbox/vera_jobsearch_phase2_qa.md`.
 
 ---
 

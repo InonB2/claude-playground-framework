@@ -2,6 +2,46 @@
   "last_updated": "2026-05-13",
   "tasks": [
     {
+      "task_id": "JOBSEARCH-PLAN-001",
+      "title": "Job Search System Upgrade — Phase 1 (Kanban + Rating + ATS Format Check)",
+      "priority": "high",
+      "assigned_to": "Rex + Jasmin",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-13. (1) JOBSEARCH-001: Rex implemented 5-stage Teal funnel (Bookmarked → Preparing → Applied → Interviewing → Offer) + 4 terminal columns (Accepted/Rejected/Ghosted/Archived) with idempotent legacy stage migration on load. (2) JOBSEARCH-002: 1-5 star excitement rating per job card, sortable, localStorage-persisted, ARIA radiogroup. (3) JOBSEARCH-008: Jasmin built scripts/ats_format_check.py — 6 checks (tables/images/columns/headers-footers/fonts/date consistency); Cole's persona updated with mandatory pre-archive ATS check. Self-test: 3/3 existing CVs PASS (5/1/0 each). Rex 41/41 smoke tests PASS. Vera QA: 59/59 PASS WITH NOTES — CV↔Job sync preserved end-to-end, XSS guard intact, WCAG AA contrast clear (11.08:1 filled / 3.76:1 unfilled / 9.39:1 focus ring). Two Phase 2 polish notes filed (color palette didn't grow with 9 columns; modal uses native select while cards use bespoke widget). Reports: rex_jobsearch_phase1_done.md, jasmin_ats_checker_done.md, vera_jobsearch_phase1_qa.md."
+    },
+    {
+      "task_id": "JOBSEARCH-PLAN-002",
+      "title": "Job Search System Upgrade — Phase 2 (Sub-tasks + Reminders + ATS Score Engine)",
+      "priority": "high",
+      "assigned_to": "Rex + Yoni",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-14. (1) JOBSEARCH-003: Rex prep checklist (5 items: Identified recruiter / Customized CV / Sent connection / Got referral / Cover letter ready) with compact x/5 indicator on Bookmarked/Preparing cards + full checklist in modal. (2) JOBSEARCH-004: Rex follow-up date per job + colored badge (red overdue / gold upcoming / gray distant) + Overdue Follow-ups banner at top of Jobs tab with clickable scroll-to chips and inline +3d snooze. Don't-nag rule: bookmarked/terminal stages excluded from overdue alerts. (3) JOBSEARCH-005: Yoni ATS keyword match engine — pure JS, n-gram tokenizer + stemmer + weighted score + title match. New ATS Match tab in dashboard with CV picker dropdown, two textareas, Analyze button, score pill (red <50/yellow 50-74/green ≥75), gap list, noise list (collapsible). Engine retuned by Jasmin (trigram 1.6→1.15, bigram 1.3→1.10, stop-word interior filter, soft-match for unigram-covered n-grams). Scores: tailored CVs 39-43% post-retune (was 28-32%). Self-match 100%, cross-domain 17%, empty 0%. KEY FINDING: Elbit CVs genuinely lack JD vocabulary (artillery/c4i/smart sensing/cyber) — actionable for Cole. Rex: 84/84 smoke PASS. Vera: 194/194 jsdom PASS + 19/23 WCAG AA contrast PASS (4 decorative chrome cases noted as Phase 3 polish). Jasmin: engine logic + security CLEAN (no XSS, ReDoS, proto-pollution). Compute time 3-11ms. Reports: rex_jobsearch_phase2_done.md, yoni_ats_match_engine_done.md, jasmin_ats_engine_qa.md, vera_jobsearch_phase2_qa.md."
+    },
+    {
+      "task_id": "JOBSEARCH-PLAN-003",
+      "title": "Job Search System Upgrade — Phase 3 (Contacts + AI Toolkit + URL Parser)",
+      "priority": "medium",
+      "assigned_to": "Rex + Yoni + Mack",
+      "status": "in-progress",
+      "notes": "DISPATCHED 2026-05-14. Phase 2 dependency met. (1) JOBSEARCH-006: Rex contacts sub-panel per job card; (2) JOBSEARCH-009: Rex daily widget (jobs added this week vs 5/week target, apps sent, overdue follow-ups, next interview); (3) JOBSEARCH-007: Yoni AI Prompt Toolkit tab (6 templates); (4) JOBSEARCH-010: Mack job URL auto-parser. Sequential on dashboard file (Rex → Yoni → Mack) to avoid merge conflicts. QA: Vera (UI), Jasmin (parser logic)."
+    },
+    {
+      "task_id": "ELBIT-CV-KEYWORD-FIX",
+      "title": "Elbit CVs — integrate missing JD vocabulary (artillery/c4i/smart sensing/cyber)",
+      "priority": "high",
+      "assigned_to": "Cole",
+      "status": "in-progress",
+      "notes": "DISPATCHED 2026-05-14. Jasmin's ATS Match engine confirmed ELBIT-SYSENG-001 + ELBIT-TPM-001 CVs lack JD-critical keywords. Cole integrating artillery/c4i/system-engineering/smart-sensing vocabulary WITHOUT fabricating experience — IAF Planning & Control (2000-2003) is legitimate C4I-adjacent grounding. Produces v2 of each CV. Must pass scripts/ats_format_check.py + re-verify via ATS Match engine. QA: Jasmin."
+    },
+    {
+      "task_id": "MCP-YOUTUBE-001",
+      "title": "YouTube Transcript MCP Server — built and registered",
+      "priority": "high",
+      "assigned_to": "Andy",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-13. Built FastMCP Python server at D:/Claude Playground/scripts/mcp_youtube_transcript/server.py. Tools: get_youtube_transcript(video_url_or_id, language) and list_available_languages(video_url_or_id). Registered via 'claude mcp add youtube-transcript'. API fix: new version of youtube-transcript-api uses instance methods (YouTubeTranscriptApi().fetch()) not class methods. Takes effect on next Claude Code session restart. Memory saved to feedback_youtube_transcripts.md."
+    },
+    {
       "task_id": "DASH-SYNC-001",
       "title": "Dashboard CV↔Job sync engine + UI connections",
       "priority": "high",
@@ -22,8 +62,16 @@
       "title": "Telegram MCP — 2-way bot pairing",
       "priority": "high",
       "assigned_to": "Mack",
-      "status": "pending-restart",
-      "notes": "FIXED 2026-05-10 (evening) CRLF in .env. CACHE FIX 2026-05-10 (night): Plugin cache populated. ROOT CAUSE FOUND 2026-05-10 (night): bun is correctly registered in user PATH (C:\\Users\\Inon Baasov\\.bun\\bin) but Claude Code process has stale PATH — it was launched before bun was in PATH, so bun executable not found at runtime. FIX: Restart Claude Code to inherit fresh PATH. After restart: (1) DM bot → get 6-char pairing code; (2) /telegram:access pair <code>; (3) /telegram:access policy allowlist."
+      "status": "done",
+      "notes": "FIXED 2026-05-14. Root cause: plugin .mcp.json used bare 'bun' command — Claude Code (Electron) inherits system PATH, not user PATH, so bun.exe was never found. Fix: .mcp.json rewritten to use full absolute path C:\\Users\\Inon Baasov\\.bun\\bin\\bun.exe. Verified: server starts, received queued Telegram DM. Token + allowlist (6283854178) intact. Activates on next Claude Code restart."
+    },
+    {
+      "task_id": "GITHUB-MCP-001",
+      "title": "GitHub MCP — local server via npx",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-14. Root cause: plugin pointed to api.githubcopilot.com/mcp/ (requires Copilot subscription). Fix: (1) PAT ghp_F1hjISk5... added to settings.json env as GITHUB_PERSONAL_ACCESS_TOKEN; (2) plugin .mcp.json rewritten to use cmd.exe /c npx -y @modelcontextprotocol/server-github; (3) Mack verified 'GitHub MCP Server running on stdio'. LlamaParse key stored at team_inbox/llamaparse_key.md. Activates on next Claude Code restart."
     },
     {
       "task_id": "BUILDAR-REBUILD-000",

@@ -88,6 +88,49 @@ These rules apply to every CV produced for Inon Baasov. They override ATS instin
 
 9. **One-page enforcement** — Every CV must fit on exactly one A4 page. If content is close to overflowing, reduce font sizes on secondary elements (skill chips, section labels) by 0.5pt rather than cutting sections. Education and Military Service must always be fully visible — never cut off at the bottom.
 
+## Mandatory Pre-Delivery ATS Format Check
+
+Before any CV is declared complete or moved to `/owner_inbox/archive/cv_archive/`, Cole **must** run the ATS format checker against the final HTML file.
+
+**The check is mandatory. No CV ships without it.**
+
+### How to run
+
+```
+python scripts\ats_format_check.py <path-to-cv.html>
+```
+
+Script location: `D:\Claude Playground\scripts\ats_format_check.py`
+Owner: Jasmin (Security & Logic Auditor) — questions or proposed changes go through her.
+
+### What the checker validates
+
+1. No `<table>` tags (FAIL on hit)
+2. No `<img>` tags or CSS `background-image` (FAIL on hit)
+3. No CSS `column-count` / `columns` / `column-width` multi-column layouts (FAIL on hit); flex/grid in body classes (WARN — confirm body content is not flowing side-by-side)
+4. No semantic `<header>` / `<footer>` in body (WARN — many ATS systems skip content in these tags)
+5. Font-family restricted to: Arial, Calibri, Cambria, Garamond, Georgia, Helvetica, Lato, Open Sans, Tahoma, Times New Roman, Trebuchet MS, Verdana, plus generic fallbacks (FAIL on non-standard font)
+6. Date format consistency (WARN on mixed formats)
+
+### Exit-code rule
+
+- **Exit 0 (PASS)** — Cole may proceed to archive the CV.
+- **Exit 1 (FAIL)** — Cole **must** fix the offending issues before archiving. No exceptions.
+- **Warnings** — Cole reviews each warning and **explicitly documents** the decision (accepted with rationale, or fixed) in the CV's INDEX.md entry.
+
+### Workflow integration
+
+1. Finalize CV HTML in `/scratchpad/` or the target `cv_archive` subfolder.
+2. Run `python scripts\ats_format_check.py <path>`.
+3. If FAIL: fix and re-run until PASS.
+4. If WARN: document the decision (accept-with-reason, or fix).
+5. Only after a clean PASS run, add the CV to `cv_archive/INDEX.md` and notify Andy.
+6. Paste the final ATS check report (or a summary line `ATS check: PASS — N pass, N warn, 0 fail`) into the CV's metadata block.
+
+### Why this rule exists
+
+98% of Fortune 500 companies use ATS. The most common reason a tailored CV gets ghosted is not weak content — it is formatting that an ATS parser cannot read. The format checker enforces the floor; tailoring and copy are layered on top of a known-good format.
+
 ## Constraints
 - Never fabricate experience, metrics, or qualifications.
 - Every CV version must be archived with its metadata in `/owner_inbox/archive/cv_archive/INDEX.md`.

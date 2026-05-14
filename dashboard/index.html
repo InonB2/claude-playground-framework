@@ -334,6 +334,269 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 .aging-ok{background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(250,204,21,0.3)}
 .aging-stale{background:var(--red-dim);color:var(--red);border:1px solid rgba(248,113,113,0.3)}
 
+/* ── Job Excitement Stars ─────────────────────────────────────── */
+.job-stars{display:inline-flex;gap:1px;margin-top:6px;align-items:center}
+.star-btn{
+  background:none;border:none;padding:1px 2px;cursor:pointer;line-height:0;
+  border-radius:3px;transition:transform 0.08s, background 0.12s;
+}
+.star-btn:hover{background:var(--surface3);transform:scale(1.12)}
+.star-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.star-btn.filled svg path{filter:drop-shadow(0 0 2px rgba(250,204,21,0.4))}
+
+/* ── Job Prep Checklist (modal + card) ────────────────────────── */
+.prep-checklist{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.prep-item{
+  display:flex;align-items:center;gap:8px;padding:5px 8px;
+  background:var(--surface3);border:1px solid var(--border);border-radius:6px;
+  cursor:pointer;transition:border-color 0.12s,background 0.12s;
+}
+.prep-item:hover{border-color:var(--border-hover);background:var(--surface2)}
+.prep-item input[type="checkbox"]{
+  width:14px;height:14px;flex-shrink:0;accent-color:var(--cyan);cursor:pointer;margin:0;
+}
+.prep-item input[type="checkbox"]:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.prep-item-label{font-size:12px;color:var(--text);line-height:1.4;flex:1;user-select:none}
+.prep-item.done .prep-item-label{color:var(--muted);text-decoration:line-through}
+/* Compact card progress bar */
+.prep-progress{
+  display:flex;align-items:center;gap:6px;margin-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-secondary);
+}
+.prep-progress-bar{
+  flex:1;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.prep-progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));
+  transition:width 0.2s ease;border-radius:2px;
+}
+.prep-progress-text{white-space:nowrap;letter-spacing:0.04em}
+.prep-progress.complete .prep-progress-fill{background:var(--green)}
+.prep-progress.complete .prep-progress-text{color:var(--green)}
+
+/* ── Follow-up Date Badge ─────────────────────────────────────── */
+.followup-badge{
+  display:inline-flex;align-items:center;gap:4px;margin-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;
+  border-radius:4px;padding:2px 6px;letter-spacing:0.03em;
+}
+.followup-badge.upcoming{background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(250,204,21,0.3)}
+.followup-badge.overdue{background:var(--red-dim);color:var(--red);border:1px solid rgba(248,113,113,0.4);animation:dotPulse 2s ease-in-out infinite}
+.followup-badge.distant{background:rgba(107,114,128,0.15);color:var(--muted);border:1px solid rgba(107,114,128,0.3)}
+
+/* ── Overdue Banner ───────────────────────────────────────────── */
+.overdue-banner{
+  margin:14px 24px 0;padding:10px 14px;
+  background:var(--red-dim);border:1px solid rgba(248,113,113,0.4);
+  border-left:3px solid var(--red);border-radius:8px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.overdue-banner-icon{font-size:14px;flex-shrink:0}
+.overdue-banner-title{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--red);
+  white-space:nowrap;
+}
+.overdue-banner-chips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1}
+.overdue-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid rgba(248,113,113,0.3);
+  border-radius:5px;padding:3px 4px 3px 8px;
+  font-size:11px;font-weight:500;color:var(--text);
+  cursor:pointer;transition:border-color 0.12s,background 0.12s;
+}
+.overdue-chip:hover{border-color:var(--red);background:var(--surface3)}
+.overdue-chip-date{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+.overdue-chip-snooze{
+  background:var(--surface3);border:1px solid var(--border);
+  color:var(--text-secondary);border-radius:4px;padding:1px 6px;
+  font-size:10px;cursor:pointer;line-height:1.3;
+  transition:border-color 0.12s,color 0.12s,background 0.12s;
+}
+.overdue-chip-snooze:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-dim)}
+.overdue-chip-snooze:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+/* Highlight ring when a card is scrolled-to from a chip */
+@keyframes jobCardFlash{
+  0%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
+  30%{box-shadow:0 0 0 3px rgba(34,211,238,0.6),0 0 18px rgba(34,211,238,0.4)}
+  100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}
+}
+.job-card.flash-highlight{animation:jobCardFlash 1.6s ease-out}
+
+/* ── Job Contacts (modal panel + card badge) ──────────────────── */
+.job-contacts{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.contact-row{
+  display:flex;align-items:flex-start;gap:8px;padding:7px 9px;
+  background:var(--surface3);border:1px solid var(--border);border-radius:6px;
+}
+.contact-row-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.contact-row-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.3}
+.contact-row-role{font-size:10px;color:var(--text-secondary);line-height:1.3}
+.contact-row-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);
+}
+.contact-row-link{
+  color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan);
+}
+.contact-row-link:hover{color:var(--text);border-bottom-color:var(--text)}
+.contact-row-date{white-space:nowrap}
+.contact-del-btn{
+  background:var(--surface2);border:1px solid var(--border);color:var(--muted);
+  border-radius:4px;width:20px;height:20px;line-height:1;flex-shrink:0;
+  cursor:pointer;font-size:12px;transition:border-color 0.12s,color 0.12s,background 0.12s;
+}
+.contact-del-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-dim)}
+.contact-del-btn:focus-visible{outline:2px solid var(--red);outline-offset:1px}
+.contact-add-btn{
+  align-self:flex-start;background:var(--surface3);border:1px dashed var(--border);
+  color:var(--text-secondary);border-radius:6px;padding:5px 12px;font-size:11px;
+  cursor:pointer;transition:border-color 0.12s,color 0.12s,background 0.12s;
+}
+.contact-add-btn:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-dim)}
+.contact-add-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.contact-add-form{
+  display:flex;flex-direction:column;gap:6px;padding:9px;
+  background:var(--surface2);border:1px solid var(--cyan);border-radius:6px;
+}
+.contact-add-form input{
+  width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:5px;
+  color:var(--text);font-size:11px;padding:5px 8px;
+}
+.contact-add-form input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(34,211,238,0.1)}
+.contact-add-form-actions{display:flex;gap:6px;justify-content:flex-end}
+.contact-add-form-actions button{
+  border-radius:5px;padding:4px 12px;font-size:11px;cursor:pointer;border:1px solid var(--border);
+}
+.contact-add-form-save{background:var(--cyan);border-color:var(--cyan);color:#0a0a0f;font-weight:600}
+.contact-add-form-cancel{background:var(--surface3);color:var(--text-secondary)}
+.contact-add-form-save:focus-visible,.contact-add-form-cancel:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.job-contacts-empty{font-size:11px;color:var(--muted);font-style:italic;padding:2px 0}
+.job-contact-badge{
+  display:inline-flex;align-items:center;gap:3px;margin-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;
+  border-radius:4px;padding:2px 6px;letter-spacing:0.03em;
+  background:rgba(139,92,246,0.15);color:var(--purple);border:1px solid rgba(139,92,246,0.3);
+}
+
+/* ── Today's Snapshot Widget (JOBSEARCH-009) ──────────────────── */
+.jobs-snapshot{
+  margin:14px 24px 0;display:flex;gap:10px;flex-wrap:wrap;
+}
+.snapshot-cell{
+  flex:1 1 140px;min-width:120px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:10px 14px;
+  display:flex;flex-direction:column;gap:2px;
+}
+.snapshot-cell-num{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;line-height:1;
+  color:var(--text);
+}
+.snapshot-cell-label{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);
+}
+.snapshot-cell-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-secondary)}
+.snapshot-cell.target-met{border-color:rgba(52,211,153,0.45);background:var(--green-dim)}
+.snapshot-cell.target-met .snapshot-cell-num{color:var(--green)}
+.snapshot-cell.target-partial{border-color:rgba(250,204,21,0.45);background:var(--yellow-dim)}
+.snapshot-cell.target-partial .snapshot-cell-num{color:var(--yellow)}
+.snapshot-cell.target-none{border-color:rgba(248,113,113,0.45);background:var(--red-dim)}
+.snapshot-cell.target-none .snapshot-cell-num{color:var(--red)}
+.snapshot-cell.alert .snapshot-cell-num{color:var(--red)}
+
+/* ── ATS Match Tab (JOBSEARCH-005) ────────────────────────────── */
+.ats-section{padding:20px 24px;display:flex;flex-direction:column;gap:14px}
+.ats-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ats-toolbar-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.ats-cv-picker{
+  background:var(--surface2);border:1px solid var(--border);border-radius:6px;
+  color:var(--text);font-size:12px;padding:4px 8px;min-width:240px;
+}
+.ats-toolbar-hint{margin-left:auto;font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.ats-inputs{display:flex;gap:14px;flex-wrap:wrap}
+.ats-input-col{flex:1 1 360px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.ats-input-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.ats-textarea{
+  width:100%;background:var(--surface3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'JetBrains Mono',monospace;
+  font-size:12px;line-height:1.5;padding:10px 12px;resize:vertical;min-height:240px;
+}
+.ats-textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,0.08)}
+.ats-textarea-hint{font-size:10px;color:var(--muted);font-style:italic}
+.ats-results:empty{display:none}
+.ats-results{
+  display:flex;flex-direction:column;gap:14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;
+}
+.ats-results-error{color:var(--red);font-size:13px;font-weight:600}
+.ats-score-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ats-score-pill{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:118px;height:118px;border-radius:50%;border:4px solid var(--border);
+  flex-shrink:0;
+}
+.ats-score-pill .ats-score-num{
+  font-family:'Syne',sans-serif;font-size:34px;font-weight:800;letter-spacing:-0.02em;line-height:1;
+}
+.ats-score-pill .ats-score-label{
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:4px;
+}
+.ats-score-red{border-color:rgba(248,113,113,0.6);background:rgba(248,113,113,0.08)}
+.ats-score-red .ats-score-num{color:var(--red)}
+.ats-score-yellow{border-color:rgba(250,204,21,0.6);background:rgba(250,204,21,0.08)}
+.ats-score-yellow .ats-score-num{color:var(--yellow)}
+.ats-score-green{border-color:rgba(52,211,153,0.6);background:rgba(52,211,153,0.08)}
+.ats-score-green .ats-score-num{color:var(--green)}
+.ats-score-meta{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-secondary)}
+.ats-score-meta b{color:var(--text)}
+.ats-title-match{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:6px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.04em;
+}
+.ats-title-match.yes{background:var(--green-dim);color:var(--green);border:1px solid rgba(52,211,153,0.4)}
+.ats-title-match.no{background:var(--red-dim);color:var(--red);border:1px solid rgba(248,113,113,0.4)}
+.ats-title-pair{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.ats-title-pair b{color:var(--text);font-weight:600}
+.ats-section-title{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--text);margin-bottom:6px;
+}
+.ats-section-title .ats-count{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+  color:var(--muted);margin-left:6px;letter-spacing:0.04em;
+}
+.ats-kw-list{display:flex;flex-wrap:wrap;gap:5px}
+.ats-kw{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--surface2);border:1px solid var(--border);border-radius:5px;
+  padding:3px 8px;font-size:11px;color:var(--text);
+  font-family:'JetBrains Mono',monospace;
+}
+.ats-kw .ats-kw-freq{
+  font-size:9px;color:var(--muted);background:var(--surface3);
+  border-radius:3px;padding:1px 4px;
+}
+.ats-kw-gap{border-color:rgba(248,113,113,0.3)}
+.ats-kw-gap:hover{border-color:var(--red)}
+.ats-kw-noise{border-color:rgba(250,204,21,0.25)}
+.ats-noise-details{margin-top:8px}
+.ats-noise-details summary{cursor:pointer;font-size:11px;color:var(--text-secondary);user-select:none}
+.ats-noise-details summary:hover{color:var(--text)}
+.ats-noise-details[open] summary{margin-bottom:8px}
+.ats-empty{font-size:11px;color:var(--muted);font-style:italic}
+.ats-timing{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.05em}
+
 /* ── CV Versions Tab ──────────────────────────────────────────── */
 .cv-section{padding:20px 24px}
 .cv-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:16px}
@@ -571,7 +834,9 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
   .owner-badge,
   .kanban-col[data-col="blocked"] .card.owner-blocked,
   .card-shimmer,
-  .notif-panel{
+  .notif-panel,
+  .followup-badge.overdue,
+  .job-card.flash-highlight{
     animation:none !important;
     transition:none !important;
   }
@@ -617,6 +882,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
   <button class="tab-btn active" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
   <button class="tab-btn" data-tab="jobs" onclick="switchTab('jobs')">Job Applications</button>
   <button class="tab-btn" data-tab="cv" onclick="switchTab('cv')">CV Versions</button>
+  <button class="tab-btn" data-tab="ats" onclick="switchTab('ats')">ATS Match</button>
   <button class="tab-btn" data-tab="linkedin" onclick="switchTab('linkedin')">LinkedIn</button>
 </div>
 
@@ -695,6 +961,12 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 <div class="tab-content" id="tab-jobs">
   <div class="filterbar">
     <button class="btn-primary" onclick="openJobModal()">+ Add Application</button>
+    <label for="jobSort" style="font-size:11px;color:var(--muted);margin-left:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase">Sort:</label>
+    <select id="jobSort" onchange="setJobSortMode(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;padding:4px 8px">
+      <option value="manual">Manual</option>
+      <option value="rating-desc">Rating (high → low)</option>
+      <option value="date-desc">Date (newest first)</option>
+    </select>
     <span class="filter-count" id="jobCount" style="margin-left:auto">0 applications</span>
   </div>
   <div class="job-kanban" id="jobKanban">
@@ -728,6 +1000,40 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
       </thead>
       <tbody id="cvTableBody"></tbody>
     </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ATS MATCH TAB (JOBSEARCH-005 — Yoni)                            -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-ats">
+  <div class="ats-section">
+    <div class="ats-toolbar">
+      <label for="atsCvPicker" class="ats-toolbar-label">Pre-fill CV:</label>
+      <select id="atsCvPicker" class="ats-cv-picker" onchange="atsPrefillCv(this.value)">
+        <option value="">— select a CV version —</option>
+      </select>
+      <button class="btn-primary" onclick="runAtsAnalyze()" id="atsAnalyzeBtn">Analyze</button>
+      <button class="btn-secondary" onclick="atsClear()" type="button">Clear</button>
+      <span class="ats-toolbar-hint">Target: 75% match</span>
+    </div>
+    <div class="ats-inputs">
+      <div class="ats-input-col">
+        <label for="atsCvText" class="ats-input-label">CV Text</label>
+        <textarea id="atsCvText" class="ats-textarea" rows="14"
+          placeholder="Paste CV plain text, or pick a CV version above to auto-fill."
+          aria-describedby="atsCvHint"></textarea>
+        <div class="ats-textarea-hint" id="atsCvHint">HTML is OK — tags are stripped automatically.</div>
+      </div>
+      <div class="ats-input-col">
+        <label for="atsJdText" class="ats-input-label">Job Description</label>
+        <textarea id="atsJdText" class="ats-textarea" rows="14"
+          placeholder="Paste the job description here."
+          aria-describedby="atsJdHint"></textarea>
+        <div class="ats-textarea-hint" id="atsJdHint">First "Title:" / "Job Title:" line is used for title match.</div>
+      </div>
+    </div>
+    <div id="atsResults" class="ats-results" aria-live="polite"></div>
   </div>
 </div>
 
@@ -889,22 +1195,38 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
       <div class="modal-field"><label for="jRole">Role</label><input type="text" id="jRole" /></div>
       <div class="modal-field"><label for="jStage">Stage</label>
         <select id="jStage">
-          <option value="Saved">Saved</option>
-          <option value="CV Ready">CV Ready</option>
+          <option value="Bookmarked">Bookmarked</option>
+          <option value="Preparing">Preparing</option>
           <option value="Applied">Applied</option>
-          <option value="Screen">Phone Screen</option>
-          <option value="Interview">Interview</option>
+          <option value="Interviewing">Interviewing</option>
           <option value="Offer">Offer</option>
-          <option value="Negotiating">Negotiating</option>
           <option value="Accepted">Accepted</option>
           <option value="Rejected">Rejected</option>
           <option value="Ghosted">Ghosted</option>
-          <option value="Withdrawn">Withdrawn</option>
           <option value="Archived">Archived</option>
         </select>
       </div>
+      <div class="modal-field"><label for="jRating">Excitement (1-5)</label>
+        <select id="jRating">
+          <option value="">— unrated —</option>
+          <option value="1">1 ★</option>
+          <option value="2">2 ★★</option>
+          <option value="3">3 ★★★</option>
+          <option value="4">4 ★★★★</option>
+          <option value="5">5 ★★★★★</option>
+        </select>
+      </div>
       <div class="modal-field"><label for="jDate">Applied Date</label><input type="date" id="jDate" /></div>
+      <div class="modal-field"><label for="jFollowUp">Follow-up date</label><input type="date" id="jFollowUp" aria-describedby="jFollowUpHint" /><div id="jFollowUpHint" style="font-size:10px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace">Banner-flagged once due, only for Applied / Interviewing / Offer stages.</div></div>
       <div class="modal-field"><label for="jUrl">Job URL</label><input type="url" id="jUrl" /></div>
+      <div class="modal-field">
+        <label>Preparation checklist</label>
+        <div class="prep-checklist" id="jPrepChecklist" role="group" aria-label="Preparation checklist"></div>
+      </div>
+      <div class="modal-field">
+        <label>Contacts</label>
+        <div class="job-contacts" id="jContacts" role="group" aria-label="Job contacts"></div>
+      </div>
       <div class="modal-field"><label for="jNotes">Notes</label><textarea id="jNotes" rows="3"></textarea></div>
     </div>
     <div class="modal-actions">
@@ -1078,7 +1400,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 // ══════════════════════════════════════════════════════════════════
 const LI_POSTS_SEED_VER = 2;
 const CV_SEED_VER = 6;
-const JOBS_SEED_VER = 3;
+const JOBS_SEED_VER = 5;
 const TASKS_SEED_VER = 2;
 let tasks = [];
 let jobs = [];
@@ -1192,10 +1514,10 @@ function seedDefaultTasks(){
 
 function seedDefaultJobs(){
   jobs = [
-    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',date:'2026-05-06',url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
-    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',date:'2026-05-06',url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
-    {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interview',date:'2026-04-15',url:'',notes:'Internal — own venture.'},
-    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'CV Ready',date:'2026-05-11',url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
+    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',rating:3,date:'2026-05-06',followUpDate:'2026-05-15',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
+    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',rating:4,date:'2026-05-06',followUpDate:'2026-05-13',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:false,coverLetterReady:true},url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
+    {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interviewing',rating:5,date:'2026-04-15',followUpDate:null,prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:true,coverLetterReady:true},url:'',notes:'Internal — own venture.'},
+    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
   ];
   saveJobs();
 }
@@ -1281,9 +1603,13 @@ const TASKS_V2_ENTRIES = [
   {id:'LENOVO-INC-001',title:'Tailored CV — Tech Incubation PM, Lenovo CTO Org',priority:'high',agent:'Cole',status:'needs-you',project:'Career',blockedBy:'',notes:'COMPLETED 2026-05-11. HTML at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Builder angle leaned hard. ATS ~9.5/10. Jasmin QA: PASS. Next: review HTML, convert to PDF, submit via LinkedIn.'}
 ];
 const JOBS_V2_ENTRIES = [
-  {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'CV Ready',date:'2026-05-11',url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10.'}
+  {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10.'}
 ];
 const JOBS_V3_ENTRIES = [];
+// V4: 5-stage funnel + rating field (handled at runtime via migrateLegacyJobStages)
+const JOBS_V4_ENTRIES = [];
+// V5: prepChecklist + followUpDate (handled at runtime via migrateLegacyJobStages — seeds defaults)
+const JOBS_V5_ENTRIES = [];
 function _mergeNewSeeds(arr, newEntries, saveFunc){
   const ids = new Set(arr.map(x=>x.id));
   let added = 0;
@@ -1740,20 +2066,52 @@ function addNewTask(){
 // ══════════════════════════════════════════════════════════════════
 // JOB APPLICATIONS
 // ══════════════════════════════════════════════════════════════════
-const JOB_STAGES=['Saved','CV Ready','Applied','Screen','Interview','Offer','Negotiating','Accepted','Rejected','Ghosted','Withdrawn','Archived'];
-const JOB_COL_COLORS={Saved:'var(--muted)','CV Ready':'var(--purple)',Applied:'var(--cyan)',Screen:'var(--yellow)',Interview:'var(--orange)',Offer:'var(--green)',Negotiating:'var(--purple)',Accepted:'var(--green)',Rejected:'var(--red)',Ghosted:'var(--muted)',Withdrawn:'var(--muted)',Archived:'var(--muted)'};
+// 5-stage Teal funnel (Bookmarked → Preparing → Applied → Interviewing → Offer)
+// + 4 terminal stages preserved from prior schema for completeness.
+const JOB_STAGES=['Bookmarked','Preparing','Applied','Interviewing','Offer','Accepted','Rejected','Ghosted','Archived'];
 
-// Pipeline rank — used to enforce "never downgrade" rule
-const JOB_STAGE_RANK = {Saved:0,'CV Ready':1,Applied:2,Screen:3,Interview:4,Offer:5,Negotiating:6,Accepted:7,Rejected:8,Ghosted:9,Withdrawn:10,Archived:11};
+// Preparation checklist — 5 default items, key + human label. Stage-agnostic so users
+// can backfill prep work retroactively for any job (Inon's stated preference).
+const PREP_ITEMS = [
+  {key:'identifiedRecruiter', label:'Identified recruiter'},
+  {key:'customizedCv',        label:'Customized CV'},
+  {key:'sentConnection',      label:'Sent connection request'},
+  {key:'gotReferral',         label:'Got referral'},
+  {key:'coverLetterReady',    label:'Cover letter ready'}
+];
+// Stages where overdue follow-ups should nag (skip Bookmarked + terminal stages).
+const FOLLOWUP_NAG_STAGES = new Set(['Applied','Interviewing','Offer']);
+// Stages where the compact prep-progress indicator is shown on cards.
+const PREP_INDICATOR_STAGES = new Set(['Bookmarked','Preparing']);
+const JOB_COL_COLORS={Bookmarked:'var(--muted)',Preparing:'var(--purple)',Applied:'var(--cyan)',Interviewing:'var(--orange)',Offer:'var(--green)',Accepted:'var(--green)',Rejected:'var(--red)',Ghosted:'var(--muted)',Archived:'var(--muted)'};
+
+// Pipeline rank — used to enforce "never downgrade" rule.
+// Includes legacy keys so in-flight code (e.g. older saved jobs) doesn't break before migration.
+const JOB_STAGE_RANK = {
+  Bookmarked:0, Preparing:1, Applied:2, Interviewing:3, Offer:4,
+  Accepted:5, Rejected:6, Ghosted:7, Archived:8,
+  // Legacy aliases (pre-2026-05-13)
+  Saved:0, 'CV Ready':1, Screen:3, Interview:3, Negotiating:4, Withdrawn:8
+};
 const CV_STATUS_RANK = {Drafting:0,'HTML Ready':1,'PDF Ready':2,Applied:3,Interview:4,Rejected:5,Ghosted:6};
+
+// Migration map: old stage → new stage. Applied once at load.
+const LEGACY_STAGE_MAP = {
+  'Saved':'Bookmarked',
+  'CV Ready':'Preparing',
+  'Screen':'Interviewing',
+  'Interview':'Interviewing',
+  'Negotiating':'Offer',
+  'Withdrawn':'Archived'
+};
 
 // CV status → minimum job stage to advance to (null = no auto-advance)
 const CV_TO_JOB_STAGE = {
   'Drafting':     null,
-  'HTML Ready':   'CV Ready',
-  'PDF Ready':    'CV Ready',
+  'HTML Ready':   'Preparing',
+  'PDF Ready':    'Preparing',
   'Applied':      'Applied',
-  'Interview':    'Interview',
+  'Interview':    'Interviewing',
   'Rejected':     'Rejected',
   'Ghosted':      'Ghosted'
 };
@@ -1761,9 +2119,9 @@ const CV_TO_JOB_STAGE = {
 // Job stage → CV status to advance to (null = no auto-sync back)
 const JOB_TO_CV_STATUS = {
   'Applied':      'Applied',
-  'Screen':       'Applied',
-  'Interview':    'Interview',
+  'Interviewing': 'Interview',
   'Offer':        'Interview',
+  'Accepted':     'Interview',
   'Rejected':     'Rejected',
   'Ghosted':      'Ghosted'
 };
@@ -1806,32 +2164,311 @@ function syncJobToCv(jobId) {
   if (changed) { saveCvs(); renderCvs(); }
 }
 
+// Sort mode for kanban cards within each column: 'manual' | 'rating-desc' | 'date-desc'
+let jobSortMode = 'manual';
+
+// One-time migration of legacy stages on every load (idempotent — only writes if changed).
+// Also seeds new optional fields (rating, prepChecklist, followUpDate) on legacy jobs so
+// they don't read as `undefined` later. Backward-compat: existing saved values are preserved.
+function migrateLegacyJobStages(){
+  let changed = false;
+  jobs.forEach(j=>{
+    if(LEGACY_STAGE_MAP[j.stage]){
+      j.stage = LEGACY_STAGE_MAP[j.stage];
+      changed = true;
+    }
+    if(!JOB_STAGES.includes(j.stage)) {
+      // Fallback: unknown stage → Bookmarked (safest, never downgrades anything important)
+      j.stage = 'Bookmarked';
+      changed = true;
+    }
+    // Ensure rating field exists with null default (so it persists once set)
+    if(j.rating === undefined){ j.rating = null; changed = true; }
+    // Phase 2: seed prepChecklist (all-false) and followUpDate (null) on legacy jobs.
+    if(!j.prepChecklist || typeof j.prepChecklist !== 'object'){
+      j.prepChecklist = defaultPrepChecklist();
+      changed = true;
+    } else {
+      // Ensure every PREP_ITEMS key exists (resilient to future additions).
+      PREP_ITEMS.forEach(it=>{
+        if(typeof j.prepChecklist[it.key] !== 'boolean'){
+          j.prepChecklist[it.key] = false;
+          changed = true;
+        }
+      });
+    }
+    if(j.followUpDate === undefined){ j.followUpDate = null; changed = true; }
+  });
+  if(changed) saveJobs();
+}
+
+// Factory for an all-unchecked prep object — used in migration + new-job creation.
+function defaultPrepChecklist(){
+  const o = {};
+  PREP_ITEMS.forEach(it=>{ o[it.key] = false; });
+  return o;
+}
+
+// Count completed prep items for a job — `{done, total, pct}`.
+function getPrepProgress(job){
+  const total = PREP_ITEMS.length;
+  if(!job || !job.prepChecklist) return {done:0, total, pct:0};
+  let done = 0;
+  PREP_ITEMS.forEach(it=>{ if(job.prepChecklist[it.key]) done++; });
+  return {done, total, pct: total ? Math.round((done/total)*100) : 0};
+}
+
+// Today as a `YYYY-MM-DD` string in the user's local timezone (consistent with the
+// HTML <input type="date"> value format).
+function todayIsoLocal(){
+  const d = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+
+// Add N days to a YYYY-MM-DD string. Used by the snooze action.
+function addDaysIso(iso, days){
+  if(!iso) return iso;
+  const [y,m,d] = iso.split('-').map(Number);
+  const dt = new Date(y, (m||1)-1, d||1);
+  dt.setDate(dt.getDate() + days);
+  const pad = n => String(n).padStart(2,'0');
+  return `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+}
+
+// Returns 'overdue' | 'upcoming' | 'distant' | null based on follow-up date.
+// 'overdue'  = date <= today
+// 'upcoming' = within next 7 days
+// 'distant'  = >7 days out
+// null       = no date
+function getFollowUpClass(iso){
+  if(!iso) return null;
+  const today = todayIsoLocal();
+  if(iso <= today) return 'overdue';
+  // Compute days delta lexicographically? Use Date math instead.
+  const [ty,tm,td] = today.split('-').map(Number);
+  const [iy,im,id] = iso.split('-').map(Number);
+  const t = new Date(ty, tm-1, td).getTime();
+  const i = new Date(iy, im-1, id).getTime();
+  const days = Math.round((i - t) / 86400000);
+  return days <= 7 ? 'upcoming' : 'distant';
+}
+
+// True when this job's follow-up should trip the overdue banner.
+function isOverdue(job){
+  if(!job || !job.followUpDate) return false;
+  if(!FOLLOWUP_NAG_STAGES.has(job.stage)) return false;
+  return getFollowUpClass(job.followUpDate) === 'overdue';
+}
+
+// Toggle a checklist item from the modal. Persists immediately so even closing
+// the modal without "Save" keeps the change (matches the brief's "persist on click" rule).
+function toggleChecklistItem(jobId, key, checked){
+  const job = jobs.find(j=>j.id===jobId);
+  if(!job) return;
+  if(!job.prepChecklist) job.prepChecklist = defaultPrepChecklist();
+  job.prepChecklist[key] = !!checked;
+  saveJobs();
+  // Re-render only what's needed — the kanban shows the progress bar.
+  renderJobs();
+}
+
+// Add 3 days to the follow-up date. Idempotent failsafe if no date set.
+function snoozeFollowUp(e, jobId){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  const job = jobs.find(j=>j.id===jobId);
+  if(!job || !job.followUpDate) return;
+  job.followUpDate = addDaysIso(job.followUpDate, 3);
+  saveJobs();
+  renderJobs();
+}
+
+// Scroll the job card into view + flash highlight ring. Used by the overdue chips.
+function scrollToJobCard(jobId){
+  const card = document.querySelector(`.job-card[data-job-id="${jobId}"]`);
+  if(!card) return;
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+  card.classList.remove('flash-highlight');
+  // Re-trigger animation by forcing a reflow.
+  void card.offsetWidth;
+  card.classList.add('flash-highlight');
+}
+
+// Render the "Overdue follow-ups" banner at the top of the Jobs tab.
+// Returns the HTML string (empty if no overdue jobs).
+function renderOverdueBanner(overdueJobs){
+  if(!overdueJobs || overdueJobs.length === 0) return '';
+  const chips = overdueJobs.map(j=>{
+    const name = `${j.company} — ${j.role}`;
+    return `<span class="overdue-chip" role="button" tabindex="0"
+        onclick="scrollToJobCard('${escHtml(j.id)}')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();scrollToJobCard('${escHtml(j.id)}')}"
+        title="Jump to ${escHtml(name)}">
+      <span>${escHtml(name)}</span>
+      <span class="overdue-chip-date">${escHtml(j.followUpDate||'')}</span>
+      <button type="button" class="overdue-chip-snooze"
+        onclick="snoozeFollowUp(event,'${escHtml(j.id)}')"
+        aria-label="Snooze follow-up for ${escHtml(name)} by 3 days"
+        title="Snooze 3 days">+3d</button>
+    </span>`;
+  }).join('');
+  return `<div class="overdue-banner" role="region" aria-label="Overdue follow-ups">
+    <span class="overdue-banner-icon" aria-hidden="true">⏰</span>
+    <span class="overdue-banner-title">Overdue follow-ups · ${overdueJobs.length}</span>
+    <div class="overdue-banner-chips">${chips}</div>
+  </div>`;
+}
+
+// Render a compact prep progress indicator for a job card (used on Bookmarked/Preparing).
+// Returns empty string outside those stages or when nothing has been touched AND nothing exists.
+function renderPrepBadge(job){
+  if(!job || !PREP_INDICATOR_STAGES.has(job.stage)) return '';
+  const {done,total,pct} = getPrepProgress(job);
+  const complete = (done === total) ? 'complete' : '';
+  return `<div class="prep-progress ${complete}" aria-label="Preparation: ${done} of ${total} complete">
+    <span class="prep-progress-text">Prep ${done}/${total}</span>
+    <div class="prep-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}">
+      <div class="prep-progress-fill" style="width:${pct}%"></div>
+    </div>
+  </div>`;
+}
+
+// Render the follow-up date badge for a job card.
+function renderFollowUpBadge(job){
+  if(!job || !job.followUpDate) return '';
+  let cls = getFollowUpClass(job.followUpDate);
+  // Suppress "overdue" styling for non-nag stages — show as plain distant pill instead.
+  if(cls === 'overdue' && !FOLLOWUP_NAG_STAGES.has(job.stage)) cls = 'distant';
+  if(!cls) return '';
+  return `<div class="followup-badge ${cls}" aria-label="Follow-up date ${escHtml(job.followUpDate)}">
+    <span aria-hidden="true">📅</span><span>${escHtml(job.followUpDate)}</span>
+  </div>`;
+}
+
+// Render the modal's prep-checklist UI into #jPrepChecklist. Called from openJobModal.
+function renderModalChecklist(job){
+  const host = document.getElementById('jPrepChecklist');
+  if(!host) return;
+  const jobId = job ? job.id : null;
+  const state = (job && job.prepChecklist) ? job.prepChecklist : defaultPrepChecklist();
+  host.innerHTML = PREP_ITEMS.map(it=>{
+    const checked = !!state[it.key];
+    const cbId = `prep-${escHtml(it.key)}`;
+    // For unsaved (new) jobs, jobId is null — we still let users tick boxes; saveJob() reads
+    // the live DOM state via collectPrepFromModal().
+    const onchange = jobId
+      ? `onchange="toggleChecklistItem('${escHtml(jobId)}','${escHtml(it.key)}',this.checked);this.closest('.prep-item').classList.toggle('done',this.checked)"`
+      : `onchange="this.closest('.prep-item').classList.toggle('done',this.checked)"`;
+    return `<label class="prep-item ${checked?'done':''}" for="${cbId}">
+      <input type="checkbox" id="${cbId}" data-prep-key="${escHtml(it.key)}" ${checked?'checked':''} ${onchange} />
+      <span class="prep-item-label">${escHtml(it.label)}</span>
+    </label>`;
+  }).join('');
+}
+
+// Read the current checked state of all prep checkboxes in the modal.
+function collectPrepFromModal(){
+  const out = defaultPrepChecklist();
+  document.querySelectorAll('#jPrepChecklist input[type="checkbox"][data-prep-key]').forEach(cb=>{
+    out[cb.dataset.prepKey] = !!cb.checked;
+  });
+  return out;
+}
+
+// Render a 5-star rating widget for a job card.
+// Stars are clickable; clicking the same star clears the rating (toggle).
+// Uses inline SVG to avoid font-glyph rendering inconsistencies.
+function renderStars(jobId, rating){
+  const r = Math.max(0, Math.min(5, parseInt(rating)||0));
+  let html = `<div class="job-stars" data-job-id="${escHtml(jobId)}" role="radiogroup" aria-label="Excitement rating">`;
+  for(let i=1; i<=5; i++){
+    const filled = i <= r;
+    html += `<button type="button" class="star-btn ${filled?'filled':''}" data-value="${i}" `+
+      `aria-label="${i} star${i>1?'s':''}" aria-checked="${filled?'true':'false'}" role="radio" `+
+      `onclick="setJobRating(event,'${escHtml(jobId)}',${i})">`+
+      `<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">`+
+      `<path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7.3L12 17.8 5.7 21.5 7.4 14.2 2 9.5l7.1-.6L12 2z" `+
+      `fill="${filled?'var(--yellow)':'none'}" stroke="${filled?'var(--yellow)':'var(--muted)'}" stroke-width="1.5" stroke-linejoin="round"/>`+
+      `</svg></button>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+// Click handler for star buttons. Click same star to clear; otherwise set.
+function setJobRating(e, jobId, value){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  const job = jobs.find(j=>j.id===jobId);
+  if(!job) return;
+  const cur = parseInt(job.rating)||0;
+  job.rating = (cur === value) ? null : value;
+  saveJobs();
+  renderJobs();
+}
+
 function renderJobs(){
   const container = document.getElementById('jobKanban');
   container.innerHTML='';
+  // Overdue follow-ups banner — injected as a sibling above the kanban container
+  // (we host it inside the parent tab-content so it spans the full Jobs tab width).
+  const tabHost = container.parentElement;
+  const oldBanner = tabHost ? tabHost.querySelector('.overdue-banner') : null;
+  if(oldBanner) oldBanner.remove();
+  if(tabHost){
+    const overdueJobs = jobs.filter(isOverdue);
+    if(overdueJobs.length){
+      const tmp = document.createElement('div');
+      tmp.innerHTML = renderOverdueBanner(overdueJobs);
+      const node = tmp.firstElementChild;
+      if(node) tabHost.insertBefore(node, container);
+    }
+  }
   JOB_STAGES.forEach(stage=>{
-    const stageCards = jobs.filter(j=>j.stage===stage);
+    let stageCards = jobs.filter(j=>j.stage===stage);
+    // Apply within-column sort
+    if(jobSortMode === 'rating-desc'){
+      stageCards = stageCards.slice().sort((a,b)=>{
+        const ra = parseInt(a.rating)||0, rb = parseInt(b.rating)||0;
+        if(rb !== ra) return rb - ra;
+        // tie-break by date desc, then by company asc for stability
+        const da = a.date ? new Date(a.date).getTime() : 0;
+        const db = b.date ? new Date(b.date).getTime() : 0;
+        if(db !== da) return db - da;
+        return String(a.company||'').localeCompare(String(b.company||''));
+      });
+    } else if(jobSortMode === 'date-desc'){
+      stageCards = stageCards.slice().sort((a,b)=>{
+        const da = a.date ? new Date(a.date).getTime() : 0;
+        const db = b.date ? new Date(b.date).getTime() : 0;
+        return db - da;
+      });
+    }
     const col = document.createElement('div');
     col.className='job-col';
     const color = JOB_COL_COLORS[stage]||'var(--muted)';
     col.innerHTML=`<div class="col-header">
       <div class="col-header-left">
         <div class="col-dot" style="background:${color}"></div>
-        <div class="col-title" style="color:${color};font-size:11px">${stage}</div>
+        <div class="col-title" style="color:${color};font-size:11px">${escHtml(stage)}</div>
       </div>
       <div class="col-count">${stageCards.length}</div>
-    </div><div class="col-cards" id="jcards-${stage}"></div>`;
+    </div><div class="col-cards" id="jcards-${escHtml(stage)}"></div>`;
     container.appendChild(col);
     stageCards.forEach((j,i)=>{
       const card = document.createElement('div');
       card.className='job-card';
-      card.draggable = true;
+      // Disable native drag while a custom sort is active — manual reorder no longer makes
+      // sense when cards are rearranged on every render.
+      const dragOn = (jobSortMode === 'manual');
+      card.draggable = dragOn;
       card.dataset.jobId = j.id;
       card.style.animationDelay=`${i*30}ms`;
-      card.setAttribute('ondragstart',`jobDragStart(event,'${j.id}')`);
-      card.setAttribute('ondragover','jobDragOver(event)');
-      card.setAttribute('ondrop',`jobDrop(event,'${j.id}')`);
-      card.setAttribute('ondragend','jobDragEnd(event)');
+      if(dragOn){
+        card.setAttribute('ondragstart',`jobDragStart(event,'${j.id}')`);
+        card.setAttribute('ondragover','jobDragOver(event)');
+        card.setAttribute('ondrop',`jobDrop(event,'${j.id}')`);
+        card.setAttribute('ondragend','jobDragEnd(event)');
+      }
       const days = j.date ? Math.floor((Date.now()-new Date(j.date))/(86400000)) : null;
       let agingHtml='';
       if(days!==null){
@@ -1842,15 +2479,31 @@ function renderJobs(){
       const cvChips = linkedCvs.map(cv =>
         `<span style="display:inline-block;margin-top:4px;font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(139,92,246,0.15);color:var(--purple);border:1px solid rgba(139,92,246,0.3)">${escHtml(cv.name)}</span>`
       ).join(' ');
+      const starsHtml = renderStars(j.id, j.rating);
+      const prepHtml = renderPrepBadge(j);
+      const followUpHtml = renderFollowUpBadge(j);
       card.innerHTML=`<div class="job-card-company">${escHtml(j.company)}</div>
         <div class="job-card-role">${escHtml(j.role)}</div>
         ${agingHtml}
+        ${followUpHtml}
+        ${starsHtml}
+        ${prepHtml}
         ${cvChips ? '<div style="margin-top:6px">'+cvChips+'</div>' : ''}`;
-      card.addEventListener('click',()=>openJobModal(j.id));
+      card.addEventListener('click',(ev)=>{
+        // Don't open the modal when clicking on a star button
+        if(ev.target.closest('.star-btn') || ev.target.closest('.job-stars')) return;
+        openJobModal(j.id);
+      });
       col.querySelector('.col-cards').appendChild(card);
     });
   });
   document.getElementById('jobCount').textContent=`${jobs.length} application${jobs.length!==1?'s':''}`;
+}
+
+// Handler for the sort dropdown in the job toolbar
+function setJobSortMode(mode){
+  jobSortMode = (mode === 'rating-desc' || mode === 'date-desc') ? mode : 'manual';
+  renderJobs();
 }
 
 function openJobModal(id){
@@ -1859,16 +2512,35 @@ function openJobModal(id){
   document.getElementById('jobModalTitle').textContent = j?`${j.company} — ${j.role}`:'New Application';
   document.getElementById('jCompany').value = j?j.company:'';
   document.getElementById('jRole').value = j?j.role:'';
-  document.getElementById('jStage').value = j?j.stage:'Applied';
+  document.getElementById('jStage').value = j?j.stage:'Bookmarked';
+  document.getElementById('jRating').value = (j && j.rating!=null) ? String(j.rating) : '';
   document.getElementById('jDate').value = j?j.date:'';
+  document.getElementById('jFollowUp').value = (j && j.followUpDate) ? j.followUpDate : '';
   document.getElementById('jUrl').value = j?j.url||'':'';
   document.getElementById('jNotes').value = j?j.notes||'':'';
+  // Render checklist last so the input handlers reference the right job id.
+  renderModalChecklist(j);
   document.getElementById('jobDeleteBtn').style.display = j?'':'none';
   document.getElementById('jobModal').classList.add('open');
 }
 function closeJobModal(){ document.getElementById('jobModal').classList.remove('open'); editingJobId=null; }
 function saveJob(){
-  const data={company:document.getElementById('jCompany').value,role:document.getElementById('jRole').value,stage:document.getElementById('jStage').value,date:document.getElementById('jDate').value,url:document.getElementById('jUrl').value,notes:document.getElementById('jNotes').value};
+  const rawRating = document.getElementById('jRating').value;
+  const rating = rawRating === '' ? null : Math.max(1, Math.min(5, parseInt(rawRating)||0)) || null;
+  const followUpRaw = document.getElementById('jFollowUp').value;
+  const followUpDate = followUpRaw && /^\d{4}-\d{2}-\d{2}$/.test(followUpRaw) ? followUpRaw : null;
+  const prepChecklist = collectPrepFromModal();
+  const data={
+    company:document.getElementById('jCompany').value,
+    role:document.getElementById('jRole').value,
+    stage:document.getElementById('jStage').value,
+    rating:rating,
+    date:document.getElementById('jDate').value,
+    followUpDate:followUpDate,
+    prepChecklist:prepChecklist,
+    url:document.getElementById('jUrl').value,
+    notes:document.getElementById('jNotes').value
+  };
   let savedJobId;
   if(editingJobId){ Object.assign(jobs.find(j=>j.id===editingJobId),data); savedJobId=editingJobId; }
   else { const newId='job-'+Date.now(); jobs.push({id:newId,...data}); savedJobId=newId; }
@@ -1963,6 +2635,8 @@ function renderCvs(){
     tbody.appendChild(tr);
   });
   document.getElementById('cvCount').textContent=`${all.length} version${all.length!==1?'s':''}`;
+  // JOBSEARCH-005: keep ATS picker in sync with CV list
+  try { if (typeof populateAtsCvPicker === 'function') populateAtsCvPicker(); } catch(_){}
 }
 const CV_VALID_STATUSES=['Drafting','HTML Ready','PDF Ready','Applied','Interview','Rejected','Ghosted'];
 const CV_NAME_PATTERN=/^IB-v\d+-[^-]+-[^-]+/;
@@ -2878,6 +3552,378 @@ window.cvTabTests = (function(){
 })();
 
 // ══════════════════════════════════════════════════════════════════
+// ATS MATCH ENGINE (JOBSEARCH-005 — Yoni)
+// Pure-JS keyword matcher. Exposes computeAtsMatch(cvText, jdText)
+// for QA. UI handlers below call it and render results.
+// ══════════════════════════════════════════════════════════════════
+const ATS_STOP_WORDS = new Set([
+  'a','an','the','and','or','but','if','then','else','for','to','of','in','on','at','by',
+  'with','from','as','is','are','was','were','be','been','being','am','do','does','did',
+  'doing','done','have','has','had','having','will','would','should','could','can','may',
+  'might','must','shall','this','that','these','those','it','its','they','them','their',
+  'theirs','we','us','our','ours','you','your','yours','he','him','his','she','her','hers',
+  'i','me','my','mine','who','whom','whose','which','what','where','when','why','how',
+  'no','not','nor','so','than','too','very','just','also','only','own','same','such',
+  'into','out','up','down','over','under','again','further','more','most','other','some',
+  'any','all','each','every','few','many','much','both','either','neither','etc','via',
+  'about','above','below','between','through','during','before','after','since','until',
+  'while','because','although','though','even','still','yet','already','around','across',
+  'among','within','without','toward','towards','upon','off','per','vs','versus',
+  // CV/JD noise
+  'years','year','years\'','experience','candidate','candidates','applicant','applicants',
+  'job','jobs','role','roles','position','positions','company','companies','employer',
+  'work','works','working','worked','team','teams','etc','required','requirement','requirements',
+  'responsibilities','responsibility','responsible','duties','description','please','apply',
+  'including','include','includes','included','use','uses','used','using','make','makes',
+  'made','look','looking','seek','seeking','find','found','need','needs','needed',
+  'ability','able','great','good','strong','excellent','high','low','new','old','best',
+  'one','two','three','four','five','six','seven','eight','nine','ten','first','second','third',
+  'least','plus','minus','also'
+]);
+
+function _atsStripHtml(s){
+  if(!s) return '';
+  // If looks like HTML, parse via DOMParser; otherwise return as-is
+  if(/<[a-z!\/][^>]*>/i.test(s)){
+    try{
+      const doc = new DOMParser().parseFromString(s,'text/html');
+      // remove script/style entirely
+      doc.querySelectorAll('script,style,noscript').forEach(n=>n.remove());
+      return doc.body ? doc.body.textContent : s;
+    }catch(e){ return s.replace(/<[^>]+>/g,' '); }
+  }
+  return s;
+}
+function _atsNormalize(s){
+  return _atsStripHtml(String(s||''))
+    .replace(/&[a-z]+;/gi,' ')      // HTML entities
+    .replace(/&#\d+;/g,' ')
+    .toLowerCase()
+    // collapse contractions
+    .replace(/'s\b/g,'')
+    .replace(/[^a-z0-9 \n]/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function _atsStem(tok){
+  // light stemmer — handles common English suffixes for matching only
+  if(tok.length<=3) return tok;
+  if(tok.endsWith('ies')&&tok.length>4) return tok.slice(0,-3)+'y';
+  if(tok.endsWith('sses')) return tok.slice(0,-2);
+  if(tok.endsWith('ing')&&tok.length>5) return tok.slice(0,-3);
+  if(tok.endsWith('ed')&&tok.length>4) return tok.slice(0,-2);
+  if(tok.endsWith('es')&&tok.length>4) return tok.slice(0,-2);
+  if(tok.endsWith('s')&&tok.length>3&&!tok.endsWith('ss')) return tok.slice(0,-1);
+  return tok;
+}
+function _atsTokenize(text){
+  const norm = _atsNormalize(text);
+  if(!norm) return [];
+  return norm.split(' ').filter(t=>t && t.length>=2 && !/^\d+$/.test(t));
+}
+function _atsNgrams(tokens, n){
+  if(tokens.length < n) return [];
+  const out = [];
+  for(let i=0;i<=tokens.length-n;i++){
+    const slice = tokens.slice(i,i+n);
+    if(n>1){
+      // skip n-grams that contain only stop words at ends — but allow internal stop words
+      if(ATS_STOP_WORDS.has(slice[0]) || ATS_STOP_WORDS.has(slice[slice.length-1])) continue;
+    } else {
+      if(ATS_STOP_WORDS.has(slice[0])) continue;
+    }
+    out.push(slice.join(' '));
+  }
+  return out;
+}
+function _atsBuildKeywordFreq(text){
+  // returns Map<string, freq>, includes 1/2/3-grams (stemmed unigrams added too)
+  const tokens = _atsTokenize(text);
+  const map = new Map();
+  const add = (k)=>{ if(!k) return; map.set(k, (map.get(k)||0)+1); };
+  _atsNgrams(tokens,1).forEach(add);
+  _atsNgrams(tokens,2).forEach(add);
+  _atsNgrams(tokens,3).forEach(add);
+  return { map, tokens };
+}
+function _atsExtractTitle(text, isJd){
+  if(!text) return '';
+  const raw = _atsStripHtml(text);
+  const lines = raw.split(/\n/).map(l=>l.trim()).filter(Boolean);
+  if(isJd){
+    // Look for explicit "Title:" / "Job Title:" / "Role:" line
+    for(const line of lines.slice(0,15)){
+      const m = line.match(/^(?:job\s*title|title|role|position)\s*[:\-]\s*(.+)$/i);
+      if(m) return m[1].replace(/\s*[\|\-—].*$/,'').trim();
+    }
+    // fall back to first non-trivial line
+    for(const line of lines){
+      if(line.length>=4 && line.length<=120 && !/^=+$/.test(line)) return line;
+    }
+  } else {
+    // CV: look for "title-line" class, or first line after the name, or <title> contents
+    const titleTagMatch = String(text).match(/<title[^>]*>([^<]+)<\/title>/i);
+    if(titleTagMatch){
+      // pattern: "Inon Baasov — Tech Incubation PM | …"
+      const t = titleTagMatch[1];
+      const parts = t.split(/[\-—|]/).map(p=>p.trim()).filter(Boolean);
+      if(parts.length>=2) return parts.slice(1).join(' | ');
+      return t.trim();
+    }
+    // fallback: first short line containing PM/Engineer/Manager/etc
+    for(const line of lines.slice(0,20)){
+      if(/manager|engineer|product|developer|designer|specialist|analyst|consultant|director|owner|lead/i.test(line)
+         && line.length<=120) return line;
+    }
+    return lines[0]||'';
+  }
+  return '';
+}
+function _atsTitleMatch(cvTitle, jdTitle){
+  const cvSet = new Set(_atsTokenize(cvTitle).filter(t=>!ATS_STOP_WORDS.has(t)).map(_atsStem));
+  const jdSet = new Set(_atsTokenize(jdTitle).filter(t=>!ATS_STOP_WORDS.has(t)).map(_atsStem));
+  if(cvSet.size===0 || jdSet.size===0) return { match:false, score:0 };
+  let inter = 0;
+  jdSet.forEach(t=>{ if(cvSet.has(t)) inter++; });
+  const score = inter / jdSet.size; // recall vs JD title
+  return { match: score >= 0.5, score };
+}
+
+/**
+ * Compute ATS keyword-match between a CV and a JD.
+ * @param {string} cvText  Plain or HTML CV text.
+ * @param {string} jdText  Plain JD text.
+ * @returns {{
+ *   score:number, matched:number, totalKeywords:number,
+ *   gap:Array<{kw:string,freq:number,weight:number}>,
+ *   noise:Array<{kw:string,freq:number}>,
+ *   titleMatch:{match:boolean,score:number,cvTitle:string,jdTitle:string},
+ *   stats:{cvTokens:number,jdTokens:number,uniqueJdKeywords:number}
+ * }}
+ */
+function computeAtsMatch(cvText, jdText){
+  const cv = _atsBuildKeywordFreq(cvText||'');
+  const jd = _atsBuildKeywordFreq(jdText||'');
+
+  // Build CV lookup set: original n-grams + stemmed unigrams + stemmed bigrams/trigrams
+  // Also build a stemmed-unigram-only set for "soft match" credit on n-grams
+  // whose tokens all individually exist in the CV but in different phrasing.
+  const cvKeys = new Set();
+  const cvStemKeys = new Set();
+  const cvStemUni = new Set();           // JOBSEARCH-005 retune (Jasmin): stemmed CV unigrams only
+  cv.map.forEach((_, k)=>{
+    cvKeys.add(k);
+    const stemmedKey = k.split(' ').map(_atsStem).join(' ');
+    cvStemKeys.add(stemmedKey);
+    if(k.indexOf(' ')<0) cvStemUni.add(stemmedKey);
+  });
+
+  // Helper: does this stemmed unigram appear in CV (exact or prefix-fuzzy)?
+  const _cvHasUni = (s)=>{
+    if(!s) return false;
+    if(cvStemUni.has(s)) return true;
+    if(s.length>=4){
+      const pref = s.slice(0,Math.max(4,s.length-1));
+      for(const ck of cvStemUni){ if(ck.startsWith(pref)) return true; }
+    }
+    return false;
+  };
+
+  // Weight each JD keyword and check match.
+  // JOBSEARCH-005 retune (Jasmin 2026-05-14):
+  //  - n-gram boost reduced (3-gram 1.6 to 1.15, 2-gram 1.3 to 1.10) — was over-amplifying
+  //    phrase-mismatch penalty even when concept was present at unigram level.
+  //  - Skip n-grams that are mostly stop-words inside (e.g. "lead the development")
+  //    to avoid weighting JD-syntactic noise as required keywords.
+  //  - Soft-match: an unmatched n-gram whose non-stop-word tokens all appear at the
+  //    CV unigram level gets 0.5x credit (concept present, phrasing differs).
+  let totalWeight = 0, matchedWeight = 0;
+  const gap = [];
+  const matchedList = [];
+  jd.map.forEach((freq, kw)=>{
+    if(!kw) return;
+    const parts = kw.split(' ');
+    const n = parts.length;
+    // Drop n-grams that are mostly stop-words inside (e.g. "lead the development")
+    if(n>=2){
+      const content = parts.filter(t=>!ATS_STOP_WORDS.has(t));
+      if(content.length < Math.ceil(n/2)) return; // too noisy to be a real keyword
+    }
+    const ngramBoost = (n===3)?1.15:(n===2)?1.10:1.0;
+    const cappedFreq = Math.min(freq,5);
+    const weight = (1 + Math.log2(cappedFreq)) * ngramBoost;
+    totalWeight += weight;
+    const stemmedParts = parts.map(_atsStem);
+    const stemmed = stemmedParts.join(' ');
+    let hit = cvKeys.has(kw) || cvStemKeys.has(stemmed) || cvKeys.has(stemmed);
+    // for unigrams, also try fuzzy stem-contains across CV tokens
+    if(!hit && n===1){
+      const s = _atsStem(kw);
+      if(_cvHasUni(s)) hit = true;
+    }
+    if(hit){ matchedWeight += weight; matchedList.push(kw); return; }
+    // Soft match for n-grams: all non-stop content tokens present at CV unigram level → 0.5x credit
+    if(n>=2){
+      const contentStems = stemmedParts.filter((_,i)=>!ATS_STOP_WORDS.has(parts[i]));
+      if(contentStems.length>0 && contentStems.every(_cvHasUni)){
+        matchedWeight += weight * 0.5;
+        matchedList.push(kw+' (soft)');
+        return;
+      }
+    }
+    gap.push({ kw, freq, weight, n });
+  });
+
+  // Sort gap by weight desc, then freq desc
+  gap.sort((a,b)=> (b.weight-a.weight) || (b.freq-a.freq));
+
+  // Noise list: CV keywords with freq>=2, not in JD, prefer multi-grams
+  const jdKeys = new Set(jd.map.keys());
+  const jdStemKeys = new Set();
+  jd.map.forEach((_, k)=>jdStemKeys.add(k.split(' ').map(_atsStem).join(' ')));
+  const noise = [];
+  cv.map.forEach((freq, kw)=>{
+    if(freq < 2) return;
+    if(jdKeys.has(kw)) return;
+    const stemmed = kw.split(' ').map(_atsStem).join(' ');
+    if(jdStemKeys.has(stemmed)) return;
+    noise.push({ kw, freq, n: kw.split(' ').length });
+  });
+  // Sort noise: prefer bigrams/trigrams then frequency
+  noise.sort((a,b)=> (b.n-a.n) || (b.freq-a.freq));
+
+  // Title match
+  const cvTitle = _atsExtractTitle(cvText, false);
+  const jdTitle = _atsExtractTitle(jdText, true);
+  const tm = _atsTitleMatch(cvTitle, jdTitle);
+
+  const score = totalWeight>0 ? Math.round(100 * matchedWeight/totalWeight) : 0;
+  return {
+    score,
+    matched: matchedList.length,
+    totalKeywords: jd.map.size,
+    gap: gap.slice(0,50).map(g=>({kw:g.kw,freq:g.freq,weight:Math.round(g.weight*100)/100})),
+    noise: noise.slice(0,50).map(n=>({kw:n.kw,freq:n.freq})),
+    titleMatch: { match: tm.match, score: Math.round(tm.score*100)/100, cvTitle, jdTitle },
+    stats: { cvTokens: cv.tokens.length, jdTokens: jd.tokens.length, uniqueJdKeywords: jd.map.size }
+  };
+}
+// expose for QA / console debugging
+window.computeAtsMatch = computeAtsMatch;
+
+// ── UI HANDLERS ──────────────────────────────────────────────────
+function populateAtsCvPicker(){
+  const sel = document.getElementById('atsCvPicker');
+  if(!sel) return;
+  const cur = sel.value;
+  // keep first placeholder
+  sel.innerHTML = '<option value="">— select a CV version —</option>';
+  cvVersions.forEach(cv=>{
+    if(!cv.htmlPath) return;
+    // only HTML CVs (we can fetch them as text)
+    if(!/\.html?$/i.test(cv.htmlPath)) return;
+    const opt = document.createElement('option');
+    opt.value = cv.id;
+    opt.textContent = `${cv.name||cv.id} — ${cv.role||''}`.trim();
+    sel.appendChild(opt);
+  });
+  if(cur) sel.value = cur;
+}
+async function atsPrefillCv(cvId){
+  if(!cvId) return;
+  const cv = cvVersions.find(c=>c.id===cvId);
+  if(!cv || !cv.htmlPath) return;
+  const url = resolveCvPath(cv.htmlPath);
+  const ta = document.getElementById('atsCvText');
+  if(!ta) return;
+  ta.value = 'Loading CV…';
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const html = await res.text();
+    // store HTML raw — computeAtsMatch will strip; but show plain text in textarea for readability
+    const plain = _atsStripHtml(html).replace(/\n{2,}/g,'\n').trim();
+    ta.value = plain;
+    // also try to pull title from HTML and append at top if not present
+    const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if(titleMatch && !plain.toLowerCase().includes(titleMatch[1].toLowerCase().slice(0,20))){
+      ta.value = titleMatch[1].trim() + '\n\n' + ta.value;
+    }
+  }catch(e){
+    ta.value = '';
+    alert('Failed to load CV: '+e.message);
+  }
+}
+function atsClear(){
+  document.getElementById('atsCvText').value='';
+  document.getElementById('atsJdText').value='';
+  document.getElementById('atsResults').innerHTML='';
+  document.getElementById('atsCvPicker').value='';
+}
+function runAtsAnalyze(){
+  const cvText = document.getElementById('atsCvText').value||'';
+  const jdText = document.getElementById('atsJdText').value||'';
+  const out = document.getElementById('atsResults');
+  if(!cvText.trim() || !jdText.trim()){
+    out.innerHTML = '<div class="ats-results-error">Paste both CV text and JD text, then click Analyze.</div>';
+    return;
+  }
+  const t0 = (performance && performance.now) ? performance.now() : Date.now();
+  let result;
+  try{
+    result = computeAtsMatch(cvText, jdText);
+  }catch(e){
+    out.innerHTML = '<div class="ats-results-error">Engine error: '+escHtml(e.message||String(e))+'</div>';
+    return;
+  }
+  const t1 = (performance && performance.now) ? performance.now() : Date.now();
+  renderAtsResults(result, Math.round(t1-t0));
+}
+function renderAtsResults(r, ms){
+  const out = document.getElementById('atsResults');
+  if(!out) return;
+  const band = r.score>=75 ? 'green' : (r.score>=50 ? 'yellow' : 'red');
+  const tmCls = r.titleMatch.match ? 'yes' : 'no';
+  const tmLabel = r.titleMatch.match ? 'YES' : 'NO';
+  const cvT = r.titleMatch.cvTitle || '(not detected)';
+  const jdT = r.titleMatch.jdTitle || '(not detected)';
+
+  const gapHtml = r.gap.length>0
+    ? r.gap.map(g=>`<span class="ats-kw ats-kw-gap">${escHtml(g.kw)}<span class="ats-kw-freq">×${g.freq}</span></span>`).join('')
+    : '<div class="ats-empty">No gaps — every JD keyword is covered.</div>';
+  const noiseHtml = r.noise.length>0
+    ? r.noise.map(n=>`<span class="ats-kw ats-kw-noise">${escHtml(n.kw)}<span class="ats-kw-freq">×${n.freq}</span></span>`).join('')
+    : '<div class="ats-empty">No notable noise.</div>';
+
+  out.innerHTML = `
+    <div class="ats-score-row">
+      <div class="ats-score-pill ats-score-${band}">
+        <div class="ats-score-num">${r.score}%</div>
+        <div class="ats-score-label">match</div>
+      </div>
+      <div class="ats-score-meta">
+        <div><b>${r.matched}</b> of <b>${r.totalKeywords}</b> JD keywords matched (weighted)</div>
+        <div>CV tokens: <b>${r.stats.cvTokens}</b> · JD tokens: <b>${r.stats.jdTokens}</b></div>
+        <div class="ats-timing">Computed in ${ms} ms</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-left:auto;min-width:0">
+        <div class="ats-title-match ${tmCls}">Job title match: ${tmLabel}</div>
+        <div class="ats-title-pair">CV: <b>${escHtml(cvT)}</b></div>
+        <div class="ats-title-pair">JD: <b>${escHtml(jdT)}</b></div>
+      </div>
+    </div>
+    <div>
+      <div class="ats-section-title">Missing keywords <span class="ats-count">(${r.gap.length})</span></div>
+      <div class="ats-kw-list">${gapHtml}</div>
+    </div>
+    <details class="ats-noise-details">
+      <summary>CV keywords not in JD <span class="ats-count">(${r.noise.length} shown)</span> — informational</summary>
+      <div class="ats-kw-list">${noiseHtml}</div>
+    </details>
+  `;
+}
+
+// ══════════════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════════════
 (function init(){
@@ -2890,6 +3936,8 @@ window.cvTabTests = (function(){
   const _jobsVer = parseInt(localStorage.getItem('andy_jobs_ver')||'0');
   if(jobs.length===0){ seedDefaultJobs(); localStorage.setItem('andy_jobs_ver', JOBS_SEED_VER); }
   else if(_jobsVer < JOBS_SEED_VER){ _mergeNewSeeds(jobs, JOBS_V2_ENTRIES, saveJobs); localStorage.setItem('andy_jobs_ver', JOBS_SEED_VER); }
+  // Always run legacy-stage migration after loading jobs (idempotent).
+  migrateLegacyJobStages();
 
   const _liVer = parseInt(localStorage.getItem('andy_liposts_ver')||'0');
   if(_liVer < LI_POSTS_SEED_VER){ seedDefaultLiPosts(); localStorage.setItem('andy_liposts_ver', LI_POSTS_SEED_VER); }
@@ -2900,6 +3948,8 @@ window.cvTabTests = (function(){
   renderJobs();
   renderCvs();
   renderLiList();
+  // JOBSEARCH-005: belt-and-suspenders — ensure ATS picker is populated even if renderCvs() ordering changes.
+  try { populateAtsCvPicker(); } catch(_){}
 })();
 </script>
 </body>
