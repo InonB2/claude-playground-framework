@@ -1,6 +1,15 @@
 {
-  "last_updated": "2026-05-14",
+  "last_updated": "2026-05-15",
   "tasks": [
+    {
+      "task_id": "SYSTEM-IMPROVE-2026-05-15",
+      "title": "7 system improvements (dashboard UX + automation routines)",
+      "priority": "high",
+      "assigned_to": "Rex + Mack",
+      "tested_by": "Vera + Jasmin",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. (1) JD auto-load on CV pick — ATS Match + AI Toolkit fetch sibling JD.txt from CV folder; graceful 404 fallback. (2) CV action↔status linkage — forward-only chain (Drafting → HTML Ready → PDF Ready → Applied → Interview), never-downgrade enforced. (3) AI news scanner — Mack built scripts/ai_news_scan.py, daily 09:00 IL via Windows Task Scheduler, writes owner_inbox/research/ai_news_daily.md. (4) CV-Job sync clarified — both maps documented in code, Bookmarked column has ? tooltip ('Saved for later — no CV linked yet'). (5) Mouse wheel horizontal scroll on Jobs kanban — deltaY → scrollLeft. (6) Tested column added to Tasks kanban (Backlog/Needs You → In Progress → Blocked → Tested → Done) + worker/tester badges (👤 worker, ✓ tester or '—'); CLAUDE.md Rubric point 4 documents SOP. (7) Task sync scanner — Mack built scripts/task_sync_scanner.py, daily 08:00, audit report at agents/andy/inbox/task_sync_audit_YYYY-MM-DD.md; non-destructive. Vera QA: 111/111 jsdom PASS, 0 console errors. Jasmin QA: both scripts safe, schtasks registered, 4 true-positive 'looks done' hits (all pending-owner) + 1 false positive medium-confidence. Both verdicts PASS WITH NOTES (D3+D4 contrast bundleable into future a11y pass). Reports: rex_system_improvements_done.md, mack_news_and_sync_routines_done.md, vera_system_improvements_qa.md, jasmin_routines_qa.md."
+    },
     {
       "task_id": "JOBSEARCH-PLAN-001",
       "title": "Job Search System Upgrade — Phase 1 (Kanban + Rating + ATS Format Check)",
@@ -75,11 +84,11 @@
     },
     {
       "task_id": "BUILDAR-REBUILD-000",
-      "title": "BuildAR Pro Rebuild — 7 open questions (waiting on Inon)",
+      "title": "BuildAR Pro Rebuild — all questions answered, Stage 1 dispatched",
       "priority": "critical",
       "assigned_to": "Andy",
-      "status": "pending-owner",
-      "notes": "Plan at scratchpad/plan_buildar_pro_rebuild_2026-05-07.md. 7 questions must be answered before Stage 2 (backbone) can start: (1) Expo vs bare RN, (2) CMS data access pattern, (3) deployment topology, (4) Hebrew in CMS v0, (5) seed library projects, (6) publishing model, (7) existing vs fresh Supabase project. Tomy + Pat dispatched in parallel while awaiting answers."
+      "status": "in_progress",
+      "notes": "DECISIONS 2026-05-15: (1) Bare React Native, (2) Direct Supabase for CMS + mandatory RLS review, (3) One service (api+orchestrator as modules), (4) Architecture RTL support only in v0, (5) Seed: wall shelf install + table assembly (IKEA-style), (6) Admin-only publishing, (7) Fresh Supabase project. Stage 1 agents dispatched: Silas (schema+Supabase), Yoni (monorepo scaffold), Mack (Telegram notifications), Lena (UX briefs). Repo: D:\\BuildAR\\ → GitHub InonB2/buildar-pro. Model: Opus 4.7 for code, Sonnet 4.6 for non-code."
     },
     {
       "task_id": "BUILDAR-REBUILD-001",
@@ -96,6 +105,40 @@
       "assigned_to": "Nolan",
       "status": "done",
       "notes": "COMPLETED 2026-05-14. agents/dev.md created, roster bumped v2.2→v2.3 (15 agents). Inbox scaffolded. FLAG: BKM/sop_infra.md does not exist yet — Dev's startup protocol references it. Dev's first task should be to stub this file."
+    },
+    {
+      "task_id": "BUILDAR-S1-001",
+      "title": "BuildAR Pro Stage 1 — Supabase fresh project + 6-table schema migrations",
+      "priority": "critical",
+      "assigned_to": "Silas",
+      "tested_by": "Jasmin",
+      "status": "in_progress",
+      "notes": "Dispatched 2026-05-15. Create fresh Supabase project (eu-west-1). Write 6-table migration set: profiles, projects, project_steps, assets, sessions, events. RLS + auto-profile trigger. Seed 2 projects: wall shelf install + table assembly (IKEA-style steps). Store creds at D:\\BuildAR\\supabase\\.env.local. Deliver migration files to D:\\BuildAR\\supabase\\migrations\\."
+    },
+    {
+      "task_id": "BUILDAR-S1-002",
+      "title": "BuildAR Pro Stage 1 — PNPM monorepo scaffold at D:\\BuildAR\\",
+      "priority": "critical",
+      "assigned_to": "Yoni",
+      "tested_by": "Dev",
+      "status": "in_progress",
+      "notes": "Dispatched 2026-05-15. Bare React Native (ViroReact). One backend service (api+orchestrator modules). Direct structure per 01-claude-code-master-instructions.md. No domain types yet — wait for Silas's schema. Deliver: working PNPM install, TypeScript compiles, ESLint+Prettier pass, all workspace paths resolve."
+    },
+    {
+      "task_id": "BUILDAR-S1-003",
+      "title": "BuildAR Pro Stage 1 — Telegram team notification helper",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. Script at scripts/buildar_notify.py. Token from ~/.claude/channels/telegram/.env (existing team bot). Supports: done/ratelimit/restart/update commands. ratelimit auto-calculates +2h10min restart in Asia/Jerusalem TZ. Test message delivered successfully. Requires tzdata pip package (already installed). Report: owner_inbox/buildar/mack_telegram_notify_done.md."
+    },
+    {
+      "task_id": "BUILDAR-S1-004",
+      "title": "BuildAR Pro Stage 1 — Mobile UX + CMS UX design briefs",
+      "priority": "high",
+      "assigned_to": "Lena",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. Both briefs delivered to owner_inbox/design/. (1) buildar_mobile_ux_brief.md — 5 screens (Sign-in, Home/Project List, Project Detail, Session/Step View, Completion); IKEA-style one-thing-at-a-time; #FF6B2B construction-orange design system; 44pt touch targets; RTL via logical CSS properties; system font stack. (2) buildar_cms_ux_brief.md — full Lovable prompt for internal ops CMS; sidebar layout; Projects + Assets screens; Step CRUD inline; access denied for non-admin/creator; Supabase RLS + @buildar/core-types shared types. Report: owner_inbox/design/."
     },
     {
       "task_id": "ELBIT-SYSENG-001",
@@ -269,7 +312,6 @@
       "notes": "REVISED 2026-05-09. Post 1: Approved. Posts 2–5 rewritten — improved content at owner_inbox/posts/linkedin_posts_v2.md. All Hebrew. NEW BATCH 2026-05-14: 3 AI news posts (Anthropic vs OpenAI enterprise, Android agentic, Claude Mythos zero-day) at owner_inbox/posts/linkedin_ai_news_2026-05-14.md. Dashboard updated by Rex: LI-006/007/008 added, 'Ready' stage added to pipeline, LI_POSTS_SEED_VER=3. Vera QA: PASS 8/8."
     },
     {
-      {
       "task_id": "INFRA-TRIAGE-001",
       "title": "Infrastructure Triage Agent (Finn) — onboarding complete",
       "priority": "high",
