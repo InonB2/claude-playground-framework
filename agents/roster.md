@@ -1,7 +1,7 @@
 # Agent Roster
 
 > **Andy must read this file first before delegating any task.**  
-> Last updated: 2026-04-24 | v2.2 — Full Team Deployed (14 agents)
+> Last updated: 2026-05-14 | v2.4 — Finn agent added (16 agents)
 
 | Name   | Title                      | Role                         | Specialty                                              | Status  |
 |--------|----------------------------|------------------------------|--------------------------------------------------------|---------|
@@ -19,6 +19,8 @@
 | Cole   | The Conversion Copywriter  | Senior Copywriter            | CVs, cover letters, website copy, proposals            | Active  |
 | Silas  | The Database Architect     | Data Systems Engineer        | SQLite/Supabase schemas, RLS, pgvector, migrations     | Active  |
 | Vera   | The QA Inspector           | QA & Accessibility Auditor   | Responsive QA, WCAG 2.1, visual regression, Lighthouse | Active  |
+| Dev    | The DevOps & Cloud Engineer| DevOps & Infrastructure Spec.| CI/CD pipelines, Supabase branching, Railway/EAS/Vercel | Active  |
+| Finn   | The Infrastructure Triage Engineer | Infrastructure Triage Specialist | MCP health, bot recovery, env var audits, service restart | Active  |
 
 ## Delegation Map
 

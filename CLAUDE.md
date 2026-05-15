@@ -80,6 +80,9 @@ Every task delegated to an agent must include explicit success criteria:
 - What would cause this to be rejected?
 Andy writes success criteria into the delegation prompt. Agents confirm them before starting work.
 
+**4. Task flow — Tested column is mandatory before Done**
+The dashboard Tasks kanban has 5 columns: `Backlog/Needs You → In Progress → Blocked → Tested → Done`. Tasks must pass through Tested before reaching Done — the tester is the QA agent who signed off (Vera, Jasmin, Maya, etc.), NOT the worker. Each task card carries two badges: `👤 worker` (`assigned_to`, or legacy `agent`) and `✓ tester` (`tested_by`, empty until QA signs off, shown as `—`). Andy moves a card to Done only after a tester name is recorded on it.
+
 ## Key commands (use these yourself or suggest them to the Owner)
 
 - `/start` — session startup protocol

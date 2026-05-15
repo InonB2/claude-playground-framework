@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-13",
+  "last_updated": "2026-05-14",
   "tasks": [
     {
       "task_id": "JOBSEARCH-PLAN-001",
@@ -22,16 +22,16 @@
       "title": "Job Search System Upgrade — Phase 3 (Contacts + AI Toolkit + URL Parser)",
       "priority": "medium",
       "assigned_to": "Rex + Yoni + Mack",
-      "status": "in-progress",
-      "notes": "DISPATCHED 2026-05-14. Phase 2 dependency met. (1) JOBSEARCH-006: Rex contacts sub-panel per job card; (2) JOBSEARCH-009: Rex daily widget (jobs added this week vs 5/week target, apps sent, overdue follow-ups, next interview); (3) JOBSEARCH-007: Yoni AI Prompt Toolkit tab (6 templates); (4) JOBSEARCH-010: Mack job URL auto-parser. Sequential on dashboard file (Rex → Yoni → Mack) to avoid merge conflicts. QA: Vera (UI), Jasmin (parser logic)."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. All 4 features shipped + QA-approved. (1) JOBSEARCH-006 Contacts: Rex re-applied after worktree-glitch loss — contacts CRUD per job, LinkedIn links, sort by lastContacted, contact-count badge, XSS-safe; 12 functions verified on disk via grep. (2) JOBSEARCH-007 AI Toolkit: Yoni — 6 copy-paste prompt generators (networking, coffee chat, interview Qs, thank-you, salary negotiation, LinkedIn connect), job/CV auto-fill, XSS-safe via textarea.value. (3) JOBSEARCH-009 Today's Snapshot: Rex — 4-stat strip atop Jobs tab (jobs added vs 5/week target, applications sent, overdue count, next interview), color-coded cells. (4) JOBSEARCH-010 Import Job: Mack — scripts/job_url_parser.py (JSON-LD-first, LinkedIn live OK, Indeed 403 graceful) + 2-mode dashboard panel. Vera QA: 166/166 jsdom PASS, 22/29 WCAG AA contrast (7 fails are carry-forward decorative chrome from prior phases). Mack's import seeds contacts:[]/createdAt matching Rex's model — no integration drift. KEY LESSON saved as memory: parallel agents on same file lost work once (feedback_parallel_agent_file_conflicts). Reports: rex_jobsearch_phase3_REDO_done.md, yoni_ai_toolkit_done.md, mack_job_url_parser_done.md, vera_jobsearch_phase3_qa.md."
     },
     {
       "task_id": "ELBIT-CV-KEYWORD-FIX",
       "title": "Elbit CVs — integrate missing JD vocabulary (artillery/c4i/smart sensing/cyber)",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "in-progress",
-      "notes": "DISPATCHED 2026-05-14. Jasmin's ATS Match engine confirmed ELBIT-SYSENG-001 + ELBIT-TPM-001 CVs lack JD-critical keywords. Cole integrating artillery/c4i/system-engineering/smart-sensing vocabulary WITHOUT fabricating experience — IAF Planning & Control (2000-2003) is legitimate C4I-adjacent grounding. Produces v2 of each CV. Must pass scripts/ats_format_check.py + re-verify via ATS Match engine. QA: Jasmin."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. v2 (2026-05-14): SysEng 39→48%, TechPM 42→51%. v3 (2026-05-15) with C4I integrated post Rule-3 relaxation: SysEng 48→49%, TechPM 51→52%. C4I genuinely fits BOTH CVs — TechPM JD's division is literally 'Smart Sensing Group, C4I and Cyber'. C4I appears 5× SysEng, 6× TechPM — every instance grounded in IAF Planning & Control role. Artillery/smart sensing/cyber stay OUT (genuine gaps, zero fabrication confirmed by grep). Jasmin QA PASS WITH NOTES: scores independently verified exact, all 9 Permanent Rules upheld, ats_format_check exit 0 both files, v2 untouched. 2 non-blocking notes for Cole: tally error in his report (TechPM C4I count 4 claimed vs 6 actual), Portfolio section structure pre-exists v1. Andy may commit. Reports: cole_elbit_keyword_fix_done.md, cole_elbit_c4i_v3_done.md, jasmin_elbit_v3_qa.md."
     },
     {
       "task_id": "MCP-YOUTUBE-001",
@@ -93,9 +93,9 @@
       "task_id": "BUILDAR-REBUILD-002",
       "title": "BuildAR Pro — DevOps agent profile brief",
       "priority": "high",
-      "assigned_to": "Pat",
-      "status": "pending-owner",
-      "notes": "COMPLETED 2026-05-10. Profile at scratchpad/pat_devops_agent_profile.md. Agent name: Dev — The DevOps & Cloud Infrastructure Engineer. Stack: Railway (API) + Expo EAS (mobile) + Vercel (web). Boundary with Mack: Mack connects systems at runtime; Dev configures infrastructure. 7 sample tasks defined. Nolan handoff note included. Awaiting Andy/Inon approval to proceed with Nolan agent creation."
+      "assigned_to": "Nolan",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-14. agents/dev.md created, roster bumped v2.2→v2.3 (15 agents). Inbox scaffolded. FLAG: BKM/sop_infra.md does not exist yet — Dev's startup protocol references it. Dev's first task should be to stub this file."
     },
     {
       "task_id": "ELBIT-SYSENG-001",
@@ -262,11 +262,36 @@
     },
     {
       "task_id": "LINKEDIN-001",
-      "title": "LinkedIn posts — 5 posts ready",
+      "title": "LinkedIn posts — batch ready for review",
       "priority": "medium",
       "assigned_to": "Sage",
       "status": "pending-owner",
-      "notes": "REVISED 2026-05-09. Post 1: Approved. Posts 2–5 rewritten — improved content at owner_inbox/posts/linkedin_posts_v2.md. All 5 reflected in dashboard LinkedIn tab. Post 2: /session-handoff mechanism. Post 3: PM identity/craft shift. Post 4: Gemini Drive synthesis. Post 5: Ghost.build. All Hebrew, RTL-aligned in dashboard."
+      "notes": "REVISED 2026-05-09. Post 1: Approved. Posts 2–5 rewritten — improved content at owner_inbox/posts/linkedin_posts_v2.md. All Hebrew. NEW BATCH 2026-05-14: 3 AI news posts (Anthropic vs OpenAI enterprise, Android agentic, Claude Mythos zero-day) at owner_inbox/posts/linkedin_ai_news_2026-05-14.md. Dashboard updated by Rex: LI-006/007/008 added, 'Ready' stage added to pipeline, LI_POSTS_SEED_VER=3. Vera QA: PASS 8/8."
+    },
+    {
+      {
+      "task_id": "INFRA-TRIAGE-001",
+      "title": "Infrastructure Triage Agent (Finn) — onboarding complete",
+      "priority": "high",
+      "assigned_to": "Nolan",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-14. agents/finn.md created, roster bumped v2.3→v2.4 (16 agents). Inbox scaffolded. First task: create BKM/sop_infra_triage.md. Finn's specialty: MCP health, bot recovery, plugin diagnostics, env var audits, service restarts."
+    },
+    {
+      "task_id": "DEV-ONBOARD-001",
+      "title": "Dev agent first task — create BKM/sop_infra.md",
+      "priority": "medium",
+      "assigned_to": "Dev",
+      "status": "pending",
+      "notes": "Dev startup protocol references BKM/sop_infra.md which does not exist. Dev's first task: stub this SOP file covering infrastructure standards for the BuildAR Pro stack (Railway/EAS/Vercel/Supabase env discipline, secrets management conventions)."
+    },
+    {
+      "task_id": "FINN-ONBOARD-001",
+      "title": "Finn agent first task — create BKM/sop_infra_triage.md",
+      "priority": "medium",
+      "assigned_to": "Finn",
+      "status": "pending",
+      "notes": "Finn startup protocol references BKM/sop_infra_triage.md which does not exist. Finn's first task: stub this SOP covering triage methodology — session-start health check checklist, log-first diagnosis rules, MCP restart procedures, escalation paths to Mack/Dev."
     },
     {
       "task_id": "SCRATCHPAD-001",

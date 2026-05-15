@@ -242,6 +242,11 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 .card-agent{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.2);border-radius:4px;padding:1px 6px}
 .card-note{font-size:11px;color:var(--text-secondary);margin-top:4px;line-height:1.5}
 .card.owner-blocked .card-note::before{content:'WAITING ON YOU · ';color:var(--owner-block);font-family:'JetBrains Mono',monospace;font-weight:600}
+/* DASH-IMPROVE-2026-05-15: Worker/Tester roles at bottom of task card. */
+.task-roles{display:flex;gap:8px;align-items:center;margin-top:8px;padding-top:6px;border-top:1px dashed var(--border);flex-wrap:wrap}
+.task-role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.03em;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.task-role-worker{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(34,211,238,0.25)}
+.task-role-tester{background:rgba(139,92,246,0.12);color:var(--purple);border:1px solid rgba(139,92,246,0.3)}
 
 /* Inline edit overlay */
 .card-edit-panel{
@@ -318,6 +323,9 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 
 /* ── Job Applications Tab ─────────────────────────────────────── */
 .job-kanban{display:flex;gap:12px;padding:20px 24px;overflow-x:auto;align-items:flex-start}
+/* DASH-IMPROVE-2026-05-15 (item 3): "?" help marker on column titles (Bookmarked). */
+.col-help{display:inline-block;margin-left:6px;font-size:9px;font-weight:700;width:14px;height:14px;line-height:14px;text-align:center;border-radius:50%;background:var(--surface3);color:var(--muted);border:1px solid var(--border);cursor:help;font-family:'JetBrains Mono',monospace}
+.col-help:hover{color:var(--text);border-color:var(--border-hover)}
 .job-col{flex:0 0 200px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
 .job-card{
   background:var(--surface2);border:1px solid var(--border);border-radius:8px;
@@ -480,6 +488,44 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
   background:rgba(139,92,246,0.15);color:var(--purple);border:1px solid rgba(139,92,246,0.3);
 }
 
+/* ── Import Job modal (JOBSEARCH-010 — Mack) ──────────────────── */
+.imp-modes{display:flex;gap:6px;margin-bottom:14px}
+.imp-mode-btn{
+  flex:1;background:var(--surface3);border:1px solid var(--border);
+  color:var(--text-secondary);border-radius:7px;padding:7px 10px;
+  font-size:12px;font-weight:600;cursor:pointer;
+  transition:border-color 0.12s,color 0.12s,background 0.12s;
+}
+.imp-mode-btn:hover{border-color:var(--border-hover);color:var(--text)}
+.imp-mode-btn.active{background:var(--cyan-dim);border-color:rgba(34,211,238,0.4);color:var(--cyan)}
+.imp-mode-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.imp-help{
+  font-size:11px;line-height:1.55;color:var(--text-secondary);
+  background:var(--surface3);border:1px solid var(--border);border-radius:7px;
+  padding:9px 11px;margin-bottom:12px;
+}
+.imp-help code{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  background:var(--surface);border:1px solid var(--border);border-radius:4px;
+  padding:1px 5px;color:var(--cyan);
+}
+.imp-status{
+  font-size:11px;line-height:1.5;border-radius:7px;padding:9px 11px;margin:12px 0 0;
+  font-family:'Inter',sans-serif;
+}
+.imp-status.err{background:var(--red-dim);border:1px solid rgba(248,113,113,0.4);color:var(--red)}
+.imp-status.warn{background:var(--yellow-dim);border:1px solid rgba(250,204,21,0.4);color:var(--yellow)}
+.imp-status.ok{background:var(--green-dim);border:1px solid rgba(52,211,153,0.4);color:var(--green)}
+.imp-preview{
+  margin-top:14px;padding:14px;border:1px solid var(--cyan);
+  border-radius:9px;background:var(--surface);
+}
+.imp-preview-head{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;
+}
+.imp-jd-hint{font-size:10px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono',monospace}
+
 /* ── Today's Snapshot Widget (JOBSEARCH-009) ──────────────────── */
 .jobs-snapshot{
   margin:14px 24px 0;display:flex;gap:10px;flex-wrap:wrap;
@@ -532,6 +578,11 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 }
 .ats-textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,0.08)}
 .ats-textarea-hint{font-size:10px;color:var(--muted);font-style:italic}
+/* DASH-IMPROVE-2026-05-15 (item 1): JD auto-load status + jdUrl reference line. */
+.ats-jd-helper{font-size:10px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.jd-helper-status{font-weight:600}
+.jd-helper-link{color:var(--cyan);text-decoration:underline;cursor:pointer}
+.jd-helper-link:hover{color:var(--cyan-light, var(--cyan));opacity:0.85}
 .ats-results:empty{display:none}
 .ats-results{
   display:flex;flex-direction:column;gap:14px;
@@ -596,6 +647,84 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 .ats-noise-details[open] summary{margin-bottom:8px}
 .ats-empty{font-size:11px;color:var(--muted);font-style:italic}
 .ats-timing{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.05em}
+
+/* ── AI Toolkit Tab (JOBSEARCH-007) ───────────────────────────── */
+.tk-section{padding:20px 24px;display:flex;flex-direction:column;gap:14px}
+.tk-intro{
+  font-size:12px;color:var(--text-secondary);line-height:1.6;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;
+}
+.tk-intro b{color:var(--text)}
+.tk-layout{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.tk-rail{
+  flex:0 0 230px;display:flex;flex-direction:column;gap:6px;min-width:200px;
+}
+.tk-rail-item{
+  text-align:left;background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;color:var(--text-secondary);cursor:pointer;
+  padding:9px 11px;font-size:12px;line-height:1.4;transition:all .12s;
+}
+.tk-rail-item:hover{border-color:var(--cyan);color:var(--text)}
+.tk-rail-item.active{
+  border-color:var(--cyan);background:rgba(34,211,238,0.08);color:var(--text);
+  box-shadow:0 0 0 1px rgba(34,211,238,0.25);
+}
+.tk-rail-item .tk-rail-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-right:6px;
+}
+.tk-rail-item.active .tk-rail-num{color:var(--cyan)}
+.tk-main{flex:1 1 420px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.tk-template-head{display:flex;flex-direction:column;gap:4px}
+.tk-template-title{font-size:16px;font-weight:700;color:var(--text);margin:0}
+.tk-template-desc{font-size:12px;color:var(--text-secondary);margin:0;line-height:1.5}
+.tk-autofill{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+}
+.tk-autofill-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.tk-picker{
+  background:var(--surface2);border:1px solid var(--border);border-radius:6px;
+  color:var(--text);font-size:12px;padding:4px 8px;min-width:200px;
+}
+.tk-fields{display:flex;flex-direction:column;gap:12px}
+.tk-field{display:flex;flex-direction:column;gap:5px}
+.tk-field-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.tk-field-label .tk-req{color:var(--red);margin-left:3px}
+.tk-field-hint{font-size:10px;color:var(--muted);font-style:italic}
+.tk-input,.tk-textarea{
+  width:100%;background:var(--surface3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'JetBrains Mono',monospace;
+  font-size:12px;line-height:1.5;padding:9px 12px;resize:vertical;
+}
+.tk-textarea{min-height:90px}
+.tk-input:focus,.tk-textarea:focus{
+  outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,0.08);
+}
+.tk-input.tk-missing,.tk-textarea.tk-missing{border-color:var(--red)}
+.tk-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tk-result-block{
+  display:flex;flex-direction:column;gap:8px;
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;
+}
+.tk-result-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tk-result-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+.tk-result{
+  width:100%;background:var(--surface3);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-family:'JetBrains Mono',monospace;
+  font-size:12px;line-height:1.55;padding:12px 14px;resize:vertical;min-height:260px;
+}
+.tk-result:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,0.08)}
+.tk-result-hint{font-size:10px;color:var(--muted);font-style:italic}
+.tk-result-hint.tk-ok{color:var(--green);font-style:normal}
 
 /* ── CV Versions Tab ──────────────────────────────────────────── */
 .cv-section{padding:20px 24px}
@@ -710,6 +839,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 .li-status-badge.idea{background:rgba(107,114,128,0.15);color:var(--muted);border:1px solid rgba(107,114,128,0.3)}
 .li-status-badge.draft{background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(250,204,21,0.35)}
 .li-status-badge.approved{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(34,211,238,0.35)}
+.li-status-badge.ready{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(249,115,22,0.35)}
 .li-status-badge.posted{background:var(--green-dim);color:var(--green);border:1px solid rgba(52,211,153,0.35)}
 
 /* Right panel */
@@ -883,6 +1013,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
   <button class="tab-btn" data-tab="jobs" onclick="switchTab('jobs')">Job Applications</button>
   <button class="tab-btn" data-tab="cv" onclick="switchTab('cv')">CV Versions</button>
   <button class="tab-btn" data-tab="ats" onclick="switchTab('ats')">ATS Match</button>
+  <button class="tab-btn" data-tab="toolkit" onclick="switchTab('toolkit')">AI Toolkit</button>
   <button class="tab-btn" data-tab="linkedin" onclick="switchTab('linkedin')">LinkedIn</button>
 </div>
 
@@ -940,6 +1071,18 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
       </div>
       <div class="col-cards" id="cards-blocked"></div>
     </div>
+    <!-- Tested (DASH-IMPROVE-2026-05-15 — QA gate before Done) -->
+    <div class="kanban-col col-tested" id="col-tested" data-col="tested"
+         ondragover="event.preventDefault()" ondrop="onDrop(event,'tested')">
+      <div class="col-header">
+        <div class="col-header-left">
+          <div class="col-dot" style="background:var(--purple)"></div>
+          <div class="col-title" style="color:var(--purple)">Tested</div>
+        </div>
+        <div class="col-count" id="count-tested">0</div>
+      </div>
+      <div class="col-cards" id="cards-tested"></div>
+    </div>
     <!-- Done -->
     <div class="kanban-col col-done" id="col-done" data-col="done"
          ondragover="event.preventDefault()" ondrop="onDrop(event,'done')">
@@ -961,6 +1104,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 <div class="tab-content" id="tab-jobs">
   <div class="filterbar">
     <button class="btn-primary" onclick="openJobModal()">+ Add Application</button>
+    <button class="btn-secondary" onclick="openImportModal()" title="Import a job from a parsed URL (JSON) or pasted job-posting text">⇩ Import Job</button>
     <label for="jobSort" style="font-size:11px;color:var(--muted);margin-left:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase">Sort:</label>
     <select id="jobSort" onchange="setJobSortMode(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;padding:4px 8px">
       <option value="manual">Manual</option>
@@ -1031,9 +1175,57 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
           placeholder="Paste the job description here."
           aria-describedby="atsJdHint"></textarea>
         <div class="ats-textarea-hint" id="atsJdHint">First "Title:" / "Job Title:" line is used for title match.</div>
+        <!-- DASH-IMPROVE-2026-05-15 (item 1): JD auto-load status / jdUrl reference. -->
+        <div class="ats-jd-helper" id="atsJdHelper" hidden></div>
       </div>
     </div>
     <div id="atsResults" class="ats-results" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- AI TOOLKIT TAB (JOBSEARCH-007)                                  -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-toolkit">
+  <div class="tk-section">
+    <div class="tk-intro">
+      <b>AI Prompt Toolkit.</b> Pick a scenario, fill in the fields (or auto-fill from a saved job),
+      then copy the assembled prompt and paste it into ChatGPT or Claude. This tool builds the prompt —
+      it does not call an AI. Prompt quality is the differentiator.
+    </div>
+    <div class="tk-layout">
+      <nav class="tk-rail" id="tkRail" aria-label="Prompt templates"></nav>
+      <div class="tk-main">
+        <div class="tk-template-head">
+          <h2 class="tk-template-title" id="tkTemplateTitle">—</h2>
+          <p class="tk-template-desc" id="tkTemplateDesc"></p>
+        </div>
+        <div class="tk-autofill">
+          <label for="tkJobPicker" class="tk-autofill-label">Auto-fill from job:</label>
+          <select id="tkJobPicker" class="tk-picker" onchange="tkAutofillJob(this.value)">
+            <option value="">— select a saved job —</option>
+          </select>
+          <label for="tkCvPicker" class="tk-autofill-label">Auto-fill background from CV:</label>
+          <select id="tkCvPicker" class="tk-picker" onchange="tkAutofillCv(this.value)">
+            <option value="">— select a CV version —</option>
+          </select>
+        </div>
+        <div class="tk-fields" id="tkFields"></div>
+        <div class="tk-actions">
+          <button class="btn-primary" id="tkGenerateBtn" onclick="tkGenerate()">Generate prompt</button>
+          <button class="btn-secondary" type="button" onclick="tkClearFields()">Clear fields</button>
+        </div>
+        <div class="tk-result-block" id="tkResultBlock" hidden>
+          <div class="tk-result-head">
+            <span class="tk-result-label">Assembled prompt</span>
+            <button class="btn-secondary tk-copy-btn" type="button" onclick="tkCopy()">Copy to clipboard</button>
+          </div>
+          <textarea id="tkResult" class="tk-result" readonly rows="18"
+            aria-label="Assembled AI prompt — read only"></textarea>
+          <div class="tk-result-hint" id="tkResultHint"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1058,6 +1250,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
           <option value="Idea">Idea</option>
           <option value="Draft">Draft</option>
           <option value="Approved">Approved</option>
+          <option value="Ready">Ready</option>
           <option value="Posted">Posted</option>
         </select>
       </div>
@@ -1101,8 +1294,14 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
           <option value="needs-you">Needs You</option>
           <option value="in-progress">In Progress</option>
           <option value="blocked">Blocked</option>
+          <option value="tested">Tested</option>
           <option value="done">Done</option>
         </select>
+      </div>
+      <!-- DASH-IMPROVE-2026-05-15: Tested-by field (QA agent who signed off, NOT the worker). -->
+      <div class="modal-field">
+        <label for="modalTestedBy">Tested By <span style="color:var(--muted);font-weight:400">(QA agent, not the worker)</span></label>
+        <input type="text" id="modalTestedBy" placeholder="e.g. Vera, Jasmin, Maya — leave empty until QA signs off" />
       </div>
       <div class="modal-field">
         <label for="modalPriority">Priority</label>
@@ -1233,6 +1432,91 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
       <button class="btn-secondary" id="jobDeleteBtn" onclick="deleteJob()" style="display:none">Delete</button>
       <button class="btn-secondary" onclick="closeJobModal()">Cancel</button>
       <button class="btn-primary" onclick="saveJob()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Import Job Modal (JOBSEARCH-010 — Mack) ─────────────────── -->
+<div class="modal-overlay" id="importJobModal" role="dialog" aria-modal="true" aria-labelledby="importJobTitle">
+  <div class="modal" style="max-width:620px">
+    <div class="modal-header">
+      <div class="modal-title" id="importJobTitle">Import Job</div>
+      <button class="modal-close" onclick="closeImportModal()" aria-label="Close import dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Mode switch -->
+      <div class="imp-modes" role="tablist" aria-label="Import mode">
+        <button class="imp-mode-btn active" id="impModeJsonBtn" role="tab" aria-selected="true" onclick="impSetMode('json')">Paste JSON</button>
+        <button class="imp-mode-btn" id="impModeTextBtn" role="tab" aria-selected="false" onclick="impSetMode('text')">Paste raw text</button>
+      </div>
+
+      <!-- Mode A — paste JSON -->
+      <div class="imp-pane" id="impPaneJson">
+        <div class="imp-help">
+          Run <code>python scripts/job_url_parser.py "&lt;job-url&gt;"</code> in a terminal,
+          then paste its JSON output below. Works for LinkedIn and any board that
+          embeds JobPosting structured data. If a board blocks the fetch, the script
+          tells you to use <strong>Paste raw text</strong> instead.
+        </div>
+        <div class="modal-field">
+          <label for="impJsonInput">Parser JSON output</label>
+          <textarea id="impJsonInput" rows="7" placeholder='{ "title": "...", "company": "...", "location": "...", "jd": "...", "url": "...", "source": "linkedin" }' spellcheck="false" style="font-family:'JetBrains Mono',monospace;font-size:11px"></textarea>
+        </div>
+        <button class="btn-secondary" onclick="impParseJson()">Parse &amp; preview ↓</button>
+      </div>
+
+      <!-- Mode B — paste raw text -->
+      <div class="imp-pane" id="impPaneText" style="display:none">
+        <div class="imp-help">
+          Open the job posting in your browser, select the whole posting, copy it,
+          and paste it below. This works for <strong>any</strong> board — no network,
+          no CORS, nothing to install. The fields are best-effort; check the preview
+          and edit anything before adding.
+        </div>
+        <div class="modal-field">
+          <label for="impTextInput">Pasted job-posting text</label>
+          <textarea id="impTextInput" rows="9" placeholder="Paste the copied job posting here — title, company, location, and the full description…" spellcheck="false"></textarea>
+        </div>
+        <div class="modal-field" style="margin-bottom:10px">
+          <label for="impTextUrl">Job URL (optional)</label>
+          <input type="url" id="impTextUrl" placeholder="https://… (paste the posting URL so it's saved on the card)" />
+        </div>
+        <button class="btn-secondary" onclick="impParseRawText()">Parse &amp; preview ↓</button>
+      </div>
+
+      <!-- Parse error / status line -->
+      <div class="imp-status" id="impStatus" style="display:none" role="status"></div>
+
+      <!-- Editable preview -->
+      <div class="imp-preview" id="impPreview" style="display:none">
+        <div class="imp-preview-head">Preview — edit any field before adding</div>
+        <div class="modal-field"><label for="impPvTitle">Role / Title</label><input type="text" id="impPvTitle" /></div>
+        <div class="modal-field"><label for="impPvCompany">Company</label><input type="text" id="impPvCompany" /></div>
+        <div class="modal-field"><label for="impPvLocation">Location</label><input type="text" id="impPvLocation" /></div>
+        <div class="modal-field"><label for="impPvUrl">Job URL</label><input type="url" id="impPvUrl" /></div>
+        <div class="modal-field"><label for="impPvStage">Stage</label>
+          <select id="impPvStage">
+            <option value="Bookmarked">Bookmarked</option>
+            <option value="Preparing">Preparing</option>
+            <option value="Applied">Applied</option>
+            <option value="Interviewing">Interviewing</option>
+            <option value="Offer">Offer</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Ghosted">Ghosted</option>
+            <option value="Archived">Archived</option>
+          </select>
+        </div>
+        <div class="modal-field">
+          <label for="impPvJd">Job description (saved into Notes)</label>
+          <textarea id="impPvJd" rows="6"></textarea>
+          <div class="imp-jd-hint" id="impJdHint"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeImportModal()">Cancel</button>
+      <button class="btn-primary" id="impCommitBtn" onclick="impCommit()" style="display:none">Add to board</button>
     </div>
   </div>
 </div>
@@ -1398,9 +1682,9 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 // ══════════════════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════════════════
-const LI_POSTS_SEED_VER = 2;
+const LI_POSTS_SEED_VER = 3;
 const CV_SEED_VER = 6;
-const JOBS_SEED_VER = 5;
+const JOBS_SEED_VER = 6;
 const TASKS_SEED_VER = 2;
 let tasks = [];
 let jobs = [];
@@ -1514,10 +1798,10 @@ function seedDefaultTasks(){
 
 function seedDefaultJobs(){
   jobs = [
-    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',rating:3,date:'2026-05-06',followUpDate:'2026-05-15',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
-    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',rating:4,date:'2026-05-06',followUpDate:'2026-05-13',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:false,coverLetterReady:true},url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
-    {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interviewing',rating:5,date:'2026-04-15',followUpDate:null,prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:true,coverLetterReady:true},url:'',notes:'Internal — own venture.'},
-    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
+    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',rating:3,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-15',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[{name:'Dana Levi',role:'Talent Acquisition',linkedinUrl:'https://www.linkedin.com/in/dana-levi',lastContacted:'2026-05-08'}],url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
+    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',rating:4,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-13',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:false,coverLetterReady:true},contacts:[],url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
+    {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interviewing',rating:5,date:'2026-04-15',createdAt:'2026-04-15',followUpDate:'2026-05-20',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:true,coverLetterReady:true},contacts:[{name:'Amir Cohen',role:'Co-Founder',linkedinUrl:'https://www.linkedin.com/in/amir-cohen',lastContacted:'2026-05-10'},{name:'Noa Bar',role:'Advisor',linkedinUrl:'',lastContacted:null}],url:'',notes:'Internal — own venture.'},
+    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',createdAt:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[],url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
   ];
   saveJobs();
 }
@@ -1610,6 +1894,10 @@ const JOBS_V3_ENTRIES = [];
 const JOBS_V4_ENTRIES = [];
 // V5: prepChecklist + followUpDate (handled at runtime via migrateLegacyJobStages — seeds defaults)
 const JOBS_V5_ENTRIES = [];
+// V6: contacts[] + createdAt (handled at runtime via migrateLegacyJobStages — seeds defaults).
+// No merge entries needed: the V6 payload IS the migration, which runs every load,
+// so existing users get contacts[]/createdAt backfilled with no data loss.
+const JOBS_V6_ENTRIES = [];
 function _mergeNewSeeds(arr, newEntries, saveFunc){
   const ids = new Set(arr.map(x=>x.id));
   let added = 0;
@@ -1826,6 +2114,86 @@ Ghost.build בחבילה החינמית: 100 שעות מחשוב בחודש, TB1
 שווה לנסות אם אתם בונים משהו עם agents כרגע.
 
 #AIAgents #DeveloperTools #ClaudeCode #BuildInPublic #AIEngineering`
+    },
+    {
+      id:'LI-006',
+      title:'Anthropic עוקפת את OpenAI בארגונים',
+      status:'Ready',
+      scheduledDate:'2026-05-14',
+      postedDate:null,
+      postedUrl:null,
+      performanceNotes:'',
+      tags:['ProductManagement','AI','EnterpriseAI','Anthropic','בינהמלאכותית'],
+      versions:[
+        {version:1,timestamp:'2026-05-14T10:00:00Z',note:'Sage draft — AI news batch'}
+      ],
+      body:`משהו השתנה בשוק שלא דיברו עליו מספיק.
+
+לראשונה אנתרופיק עברה את OpenAI בנתח השוק הארגוני — 34.4% מול 32.3%. אנתרופיק הכפילה את עצמה פי ארבעה בשנה. OpenAI גדלה ב-0.3%.
+
+זה לא מספר אקראי. זה סימן לפיצול עמוק בשוק.
+
+כשאני מדבר עם CPO-ים וסמנכ"לי טכנולוגיה על בחירת ספק AI, השיחה השתנתה. לפני שנה זו הייתה שאלה טכנית — מה עובד יותר טוב. היום זו שאלת עמדה אסטרטגית. Claude מנצח על ציות, אמינות, ועל כך שאנתרופיק נתפסת כ"הבוגרת שבחדר". GPT מנצח על מהירות, אינטגרציות, ועל כך שכולם כבר מכירים אותו.
+
+הבחירה בין ספקים היא עכשיו חלק מהמיתוג של החברה שלך.
+
+ה-PM שמחכה שהארגון "יחליט" — הפסיד את הרגע. הפרודקט שלך צריך עמדה.
+
+#ProductManagement #AI #EnterpriseAI #Anthropic #בינהמלאכותית`
+    },
+    {
+      id:'LI-007',
+      title:'אנדרואיד הופך לפלטפורמה של סוכנים',
+      status:'Ready',
+      scheduledDate:'2026-05-14',
+      postedDate:null,
+      postedUrl:null,
+      performanceNotes:'',
+      tags:['MobileFirst','AgentFirst','ProductStrategy','Android','UX'],
+      versions:[
+        {version:1,timestamp:'2026-05-14T10:00:00Z',note:'Sage draft — AI news batch'}
+      ],
+      body:`גמיני עובר בין אפליקציות, ממלא טפסים, בונה ווידג'טים — הכל בקול. מגיע בקיץ ל-Galaxy ו-Pixel.
+
+זה לא פיצ'ר חדש. זה שכבת UX שלמה שמוחלפת.
+
+אני חושב על זה מזווית של בניין AR — כשהסוכן יכול לעבור בין אפליקציות, מה קורה לכל המוצרים שבנינו סביב הנחה שהמשתמש הוא זה שמנווט? שהוא פותח אפליקציה, מחפש פונקציה, לוחץ כפתור?
+
+שאלה אחת — כמה מהזרימות שתכננת בשנה האחרונה מבוססות על ניווט אקטיבי של המשתמש? כמה מהן שורדות עולם שבו הסוכן עושה את זה במקומו?
+
+אם האפליקציה שלך לא חושפת API ידידותי לסוכן — היא לא נעלמת מחר. אבל היא מתחילה להידחק לצדדים.
+
+הפעם הפלטפורמה לא מחכה לנו.
+
+#MobileFirst #AgentFirst #ProductStrategy #Android #UX`
+    },
+    {
+      id:'LI-008',
+      title:'Claude Mythos — ה-AI מוצא חולשות אפס-יום לבד',
+      status:'Ready',
+      scheduledDate:'2026-05-14',
+      postedDate:null,
+      postedUrl:null,
+      performanceNotes:'',
+      tags:['Cybersecurity','AI','ZeroDay','DefenseTech','AISecurity'],
+      versions:[
+        {version:1,timestamp:'2026-05-14T10:00:00Z',note:'Sage draft — AI news batch'}
+      ],
+      body:`אנתרופיק הכריזה על Claude Mythos Preview — מערכת AI שמזהה בעצמה חולשות אפס-יום בכל מערכות ההפעלה הגדולות ודפדפנים. מוגבל כרגע לשותפי ביטחון בלבד: Apple, Amazon, JPMorgan, Palo Alto Networks.
+
+לא פתוח לציבור. לא בקרוב.
+
+אני מגיע מרקע של מערכות ביטחוניות, ואני אגיד לכם — זה לא headline שרוב האנשים מבינים את המשמעות שלו.
+
+ה-AI לא עוזר לחוקרי אבטחה למצוא חולשות. הוא מוצא אותן לבד, בקצב שבן-אדם לא יכול לעמוד בו. זה שינוי קטגורי. לא שיפור — מעבר.
+
+וכשזה קורה, החלון שבין גילוי חולשה לניצול שלה — מתכווץ דרמטית.
+
+אני שואל את עצמי: הארגונים שצריכים לדאוג מזה הכי הרבה — האם הם בכלל עוקבים? או שהם עוד בשיח על "כיצד לאמץ AI בצורה אחראית"?
+
+הזמן לשאלות הפילוסופיות עבר. זה כבר בשטח.
+
+#Cybersecurity #AI #ZeroDay #DefenseTech #AISecurity`
     }
   ];
   saveLiPosts();
@@ -1848,7 +2216,7 @@ function switchTab(tab){
 function updateNotifBell(){
   const needsYouTasks = tasks.filter(t=>t.status==='needs-you');
   const ownerBlocked  = tasks.filter(t=>t.blockedBy==='owner');
-  const liActionNeeded = liPosts.filter(p=>p.status==='Draft'||p.status==='Approved');
+  const liActionNeeded = liPosts.filter(p=>p.status==='Draft'||p.status==='Approved'||p.status==='Ready');
   const all = [
     ...needsYouTasks.map(t=>({type:'red',text:t.title,meta:'Tasks'})),
     ...ownerBlocked.filter(t=>t.status!=='needs-you').map(t=>({type:'red',text:`Blocked: ${t.title}`,meta:'Tasks · Waiting on you'})),
@@ -1901,10 +2269,14 @@ document.addEventListener('click',e=>{
 // ══════════════════════════════════════════════════════════════════
 // TASK STATUS → COLUMN MAPPING
 // ══════════════════════════════════════════════════════════════════
+// DASH-IMPROVE-2026-05-15: 5-column task flow — Needs You → In Progress → Blocked → Tested → Done.
+// "Tested" is a mandatory QA gate before Done. A task only reaches Done after a tester (NOT the
+// worker) has signed off — Tested is the column where Vera/Jasmin/Maya review work.
 function statusToCol(status){
   if(status==='needs-you'||status==='pending-owner') return 'needs-you';
   if(status==='in-progress'||status==='partial') return 'in-progress';
   if(status==='blocked'||status==='paused') return 'blocked';
+  if(status==='tested') return 'tested';
   return 'done';
 }
 
@@ -1912,12 +2284,13 @@ function statusToCol(status){
 // RENDER TASKS
 // ══════════════════════════════════════════════════════════════════
 function renderTasks(){
-  const cols = ['needs-you','in-progress','blocked','done'];
+  // DASH-IMPROVE-2026-05-15: Added 'tested' column (QA gate before Done).
+  const cols = ['needs-you','in-progress','blocked','tested','done'];
   cols.forEach(col=>{
     document.getElementById(`cards-${col}`).innerHTML='';
   });
   const filtered = currentFilter==='all' ? tasks : tasks.filter(t=>t.project===currentFilter);
-  let counts = {'needs-you':0,'in-progress':0,'blocked':0,'done':0};
+  let counts = {'needs-you':0,'in-progress':0,'blocked':0,'tested':0,'done':0};
   let cardIndex = 0;
   filtered.forEach(task=>{
     const col = statusToCol(task.status);
@@ -1932,6 +2305,31 @@ function renderTasks(){
     cardIndex++;
     const prioLabel = task.priority ? task.priority.charAt(0).toUpperCase()+task.priority.slice(1) : '';
     const noteSnippet = task.notes ? task.notes.substring(0,120)+(task.notes.length>120?'…':'') : '';
+    // DASH-IMPROVE-2026-05-15: Worker / Tester at-a-glance badges (item 5B).
+    //   Worker = task.assigned_to OR legacy task.agent.
+    //   Tester = task.tested_by (default null/'' → shown as "—" so it's clear QA is pending).
+    const _worker = (task.assigned_to || task.agent || '').trim();
+    const _tester = (task.tested_by || '').trim();
+    const workerTesterHtml = `<div class="task-roles">
+      <span class="task-role task-role-worker" title="Worker (assigned_to)">👤 ${escHtml(_worker || '—')}</span>
+      <span class="task-role task-role-tester" title="Tester (tested_by) — QA agent who signed off">✓ ${escHtml(_tester || '—')}</span>
+    </div>`;
+    // DASH-IMPROVE-2026-05-15: CTA matches new flow.
+    //   needs-you → Start, in-progress → Continue, blocked → Unblock,
+    //   tested    → Ship (approve & move to Done), done → QA (re-verify).
+    const _ctaLabel = task.status==='needs-you' ? 'Start'
+                    : task.status==='in-progress' ? 'Continue'
+                    : task.status==='blocked' ? 'Unblock'
+                    : task.status==='tested' ? 'Ship'
+                    : 'QA';
+    const _ctaColor = task.status==='needs-you' ? 'var(--orange)'
+                    : task.status==='in-progress' ? 'var(--cyan)'
+                    : task.status==='tested' ? 'var(--purple)'
+                    : 'var(--green)';
+    const _ctaBg    = task.status==='needs-you' ? 'var(--orange-dim)'
+                    : task.status==='in-progress' ? 'var(--cyan-dim)'
+                    : task.status==='tested' ? 'rgba(139,92,246,0.15)'
+                    : 'var(--green-dim)';
     card.innerHTML=`
       <div class="card-id">${escHtml(task.id||'')}</div>
       <div class="card-header">
@@ -1943,8 +2341,9 @@ function renderTasks(){
         ${task.project?`<span class="card-tag">${escHtml(task.project)}</span>`:''}
       </div>
       ${noteSnippet?`<div class="card-note">${escHtml(noteSnippet)}</div>`:''}
+      ${workerTesterHtml}
       <div style="display:flex;justify-content:flex-end;margin-top:6px">
-        <button class="task-cta-btn" data-task-cta="${task.id}" onclick="taskCTA('${task.id}');event.stopPropagation()" style="background:${task.status==='needs-you'?'var(--orange-dim)':task.status==='in-progress'?'var(--cyan-dim)':'var(--green-dim)'};color:${task.status==='needs-you'?'var(--orange)':task.status==='in-progress'?'var(--cyan)':'var(--green)'};">${task.status==='needs-you'?'Start':task.status==='in-progress'?'Continue':'QA'}</button>
+        <button class="task-cta-btn" data-task-cta="${task.id}" onclick="taskCTA('${task.id}');event.stopPropagation()" style="background:${_ctaBg};color:${_ctaColor};">${_ctaLabel}</button>
       </div>
       <button class="card-edit-btn" onclick="openTaskModal('${task.id}',event)">✏️</button>
     `;
@@ -1987,7 +2386,8 @@ function onDrop(e,col){
   if(!dragTaskId) return;
   const t = tasks.find(t=>t.id===dragTaskId);
   if(!t) return;
-  const colToStatus = {'needs-you':'needs-you','in-progress':'in-progress','blocked':'blocked','done':'done'};
+  // DASH-IMPROVE-2026-05-15: 'tested' added — drops onto Tested column set status to 'tested'.
+  const colToStatus = {'needs-you':'needs-you','in-progress':'in-progress','blocked':'blocked','tested':'tested','done':'done'};
   t.status = colToStatus[col];
   saveTasks();
   renderTasks();
@@ -2019,8 +2419,10 @@ function openTaskModal(id, e){
   document.getElementById('modalTitleInput').value = t.title||'';
   document.getElementById('modalAgent').value = t.agent||'';
   document.getElementById('modalNotes').value = t.notes||'';
-  const statusMap={'needs-you':'needs-you','pending-owner':'needs-you','in-progress':'in-progress','partial':'in-progress','blocked':'blocked','paused':'blocked','done':'done'};
+  // DASH-IMPROVE-2026-05-15: 'tested' added to statusMap (passthrough — no legacy aliases).
+  const statusMap={'needs-you':'needs-you','pending-owner':'needs-you','in-progress':'in-progress','partial':'in-progress','blocked':'blocked','paused':'blocked','tested':'tested','done':'done'};
   document.getElementById('modalStatus').value = statusMap[t.status]||'in-progress';
+  document.getElementById('modalTestedBy').value = t.tested_by || '';
   document.getElementById('modalPriority').value = t.priority||'medium';
   document.getElementById('modalProject').value = t.project||'Other';
   document.getElementById('modalBlockedBy').value = t.blockedBy||'';
@@ -2039,6 +2441,8 @@ function saveTask(){
   t.agent = document.getElementById('modalAgent').value;
   t.notes = document.getElementById('modalNotes').value;
   t.status = document.getElementById('modalStatus').value;
+  // DASH-IMPROVE-2026-05-15: Persist tester (trim → '' is the "no QA yet" sentinel).
+  t.tested_by = (document.getElementById('modalTestedBy').value||'').trim();
   t.priority = document.getElementById('modalPriority').value;
   t.project = document.getElementById('modalProject').value;
   t.blockedBy = document.getElementById('modalBlockedBy').value;
@@ -2057,7 +2461,8 @@ function addNewTask(){
   const title = document.getElementById('newTaskTitle').value.trim();
   if(!title) return;
   const id = 'TASK-'+Date.now();
-  tasks.push({id,title,agent:document.getElementById('newTaskAgent').value,priority:document.getElementById('newTaskPriority').value,project:document.getElementById('newTaskProject').value,status:'in-progress',blockedBy:'',notes:document.getElementById('newTaskNotes').value});
+  // DASH-IMPROVE-2026-05-15: New tasks default tested_by='' (no QA signed off yet).
+  tasks.push({id,title,agent:document.getElementById('newTaskAgent').value,priority:document.getElementById('newTaskPriority').value,project:document.getElementById('newTaskProject').value,status:'in-progress',blockedBy:'',tested_by:'',notes:document.getElementById('newTaskNotes').value});
   saveTasks();
   renderTasks();
   document.getElementById('addTaskModal').classList.remove('open');
@@ -2083,6 +2488,11 @@ const PREP_ITEMS = [
 const FOLLOWUP_NAG_STAGES = new Set(['Applied','Interviewing','Offer']);
 // Stages where the compact prep-progress indicator is shown on cards.
 const PREP_INDICATOR_STAGES = new Set(['Bookmarked','Preparing']);
+// JOBSEARCH-009: weekly target for jobs-added (single const to retune the goal).
+const WEEKLY_JOBS_TARGET = 5;
+// JOBSEARCH-009: stages that count as "an application has been sent" — used by
+// the "Applications sent this week" proxy (no stage-change timestamps exist).
+const APPLIED_OR_BEYOND_STAGES = new Set(['Applied','Interviewing','Offer','Accepted','Rejected','Ghosted']);
 const JOB_COL_COLORS={Bookmarked:'var(--muted)',Preparing:'var(--purple)',Applied:'var(--cyan)',Interviewing:'var(--orange)',Offer:'var(--green)',Accepted:'var(--green)',Rejected:'var(--red)',Ghosted:'var(--muted)',Archived:'var(--muted)'};
 
 // Pipeline rank — used to enforce "never downgrade" rule.
@@ -2105,9 +2515,21 @@ const LEGACY_STAGE_MAP = {
   'Withdrawn':'Archived'
 };
 
-// CV status → minimum job stage to advance to (null = no auto-advance)
+// DASH-IMPROVE-2026-05-15: CV↔Job sync map — DOCUMENTED & AUDITED.
+// CV status → minimum job stage to advance to (never downgrades; see syncCvToJob).
+//
+//   Drafting    → Preparing      (CV work has begun → job is no longer "just bookmarked")
+//   HTML Ready  → Preparing      (still pre-submission)
+//   PDF Ready   → Preparing      (ready to submit but not submitted)
+//   Applied     → Applied        (CV was sent)
+//   Interview   → Interviewing   (recruiter engaged)
+//   Rejected    → Rejected       (terminal)
+//   Ghosted     → Ghosted        (terminal)
+//
+// Bookmarked = job saved BUT no CV linked / no CV work begun. The moment a CV
+// is linked AND in any status, the job auto-advances out of Bookmarked.
 const CV_TO_JOB_STAGE = {
-  'Drafting':     null,
+  'Drafting':     'Preparing',
   'HTML Ready':   'Preparing',
   'PDF Ready':    'Preparing',
   'Applied':      'Applied',
@@ -2116,7 +2538,16 @@ const CV_TO_JOB_STAGE = {
   'Ghosted':      'Ghosted'
 };
 
-// Job stage → CV status to advance to (null = no auto-sync back)
+// DASH-IMPROVE-2026-05-15: Reverse mapping. Job stage → CV status (never downgrade).
+// Used by syncJobToCv when the user manually moves a job card on the Job Applications
+// kanban — the linked CV(s) auto-advance to keep the two views in sync.
+//
+//   Applied      → Applied      (job marked submitted → CV is "Applied")
+//   Interviewing → Interview    (recruiter engaged → CV reached interview stage)
+//   Offer        → Interview    (still in active dialogue from CV's POV)
+//   Accepted     → Interview    (terminal-positive, no separate CV status)
+//   Rejected     → Rejected
+//   Ghosted      → Ghosted
 const JOB_TO_CV_STATUS = {
   'Applied':      'Applied',
   'Interviewing': 'Interview',
@@ -2198,6 +2629,26 @@ function migrateLegacyJobStages(){
       });
     }
     if(j.followUpDate === undefined){ j.followUpDate = null; changed = true; }
+    // Phase 3 (JOBSEARCH-006): seed contacts[] on legacy jobs + defensively
+    // backfill missing keys on existing contact objects. Idempotent.
+    if(!Array.isArray(j.contacts)){
+      j.contacts = [];
+      changed = true;
+    } else {
+      j.contacts.forEach(c=>{
+        if(c && typeof c === 'object'){
+          if(typeof c.name !== 'string'){ c.name = String(c.name || ''); changed = true; }
+          if(typeof c.role !== 'string'){ c.role = String(c.role || ''); changed = true; }
+          if(typeof c.linkedinUrl !== 'string'){ c.linkedinUrl = String(c.linkedinUrl || ''); changed = true; }
+          if(c.lastContacted === undefined){ c.lastContacted = null; changed = true; }
+        }
+      });
+    }
+    // Phase 3 (JOBSEARCH-009): seed createdAt — fall back to applied date, else today.
+    if(j.createdAt === undefined || j.createdAt === null || j.createdAt === ''){
+      j.createdAt = j.date || todayIsoLocal();
+      changed = true;
+    }
   });
   if(changed) saveJobs();
 }
@@ -2406,9 +2857,223 @@ function setJobRating(e, jobId, value){
   renderJobs();
 }
 
+// ══════════════════════════════════════════════════════════════════
+// JOBSEARCH-006 — Contacts sub-panel per job
+// ══════════════════════════════════════════════════════════════════
+
+// Working copy of the contacts array for the currently-open modal.
+// For a SAVED job this is a reference to job.contacts (mutate-in-place).
+// For a NEW job (no id yet) it's a standalone array that saveJob() reads.
+let _modalContacts = [];
+// True while the inline add-contact form is showing.
+let _contactFormOpen = false;
+
+// Count contacts on a job (defensive — contacts may be missing pre-migration).
+function getContactCount(job){
+  return (job && Array.isArray(job.contacts)) ? job.contacts.length : 0;
+}
+
+// Sort contacts by lastContacted descending (most recent first), nulls last.
+// Returns a NEW array of {contact, idx} so deletes can resolve the true index.
+function sortContacts(contacts){
+  return contacts.map((c,idx)=>({c, idx})).sort((a,b)=>{
+    const av = a.c && a.c.lastContacted ? a.c.lastContacted : '';
+    const bv = b.c && b.c.lastContacted ? b.c.lastContacted : '';
+    if(av && bv){ return bv < av ? -1 : (bv > av ? 1 : 0); }
+    if(av && !bv) return -1;   // a has a date, b doesn't → a first
+    if(!av && bv) return 1;    // b has a date → b first
+    return 0;                  // both null → stable
+  });
+}
+
+// Card badge — 👤 N pill when the job has ≥1 contact.
+function renderContactBadge(job){
+  const n = getContactCount(job);
+  if(n < 1) return '';
+  return `<div class="job-contact-badge" aria-label="${n} contact${n>1?'s':''}">`+
+    `<span aria-hidden="true">👤</span><span>${n}</span></div>`;
+}
+
+// Persist contact changes immediately + refresh card badges. Mirrors the
+// prep-checklist pattern: changes survive closing the modal without "Save".
+function _persistModalContacts(){
+  saveJobs();
+  renderJobs();
+}
+
+// Render the modal's Contacts UI into #jContacts. Called from openJobModal.
+function renderModalContacts(){
+  const host = document.getElementById('jContacts');
+  if(!host) return;
+  const sorted = sortContacts(_modalContacts);
+  let html = '';
+  if(sorted.length === 0){
+    html += `<div class="job-contacts-empty">No contacts yet.</div>`;
+  } else {
+    html += sorted.map(({c, idx})=>{
+      const name = escHtml(c.name || '(no name)');
+      const role = c.role ? `<span class="contact-row-role">${escHtml(c.role)}</span>` : '';
+      const linkUrl = (c.linkedinUrl || '').trim();
+      const link = linkUrl
+        ? `<a class="contact-row-link" href="${escHtml(linkUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">LinkedIn ↗</a>`
+        : '';
+      const date = c.lastContacted
+        ? `<span class="contact-row-date">Last: ${escHtml(c.lastContacted)}</span>`
+        : `<span class="contact-row-date">Never contacted</span>`;
+      return `<div class="contact-row">
+        <div class="contact-row-main">
+          <span class="contact-row-name">${name}</span>
+          ${role}
+          <div class="contact-row-meta">${link}${date}</div>
+        </div>
+        <button type="button" class="contact-del-btn" aria-label="Delete contact ${escHtml(c.name||'')}"
+          onclick="deleteContact(${idx})">×</button>
+      </div>`;
+    }).join('');
+  }
+  if(_contactFormOpen){
+    html += `<div class="contact-add-form">
+      <input type="text" id="cNewName" placeholder="Name" aria-label="Name" />
+      <input type="text" id="cNewRole" placeholder="Role" aria-label="Role" />
+      <input type="url" id="cNewUrl" placeholder="LinkedIn URL" aria-label="LinkedIn URL" />
+      <input type="date" id="cNewDate" aria-label="Last contacted date" />
+      <div class="contact-add-form-actions">
+        <button type="button" class="contact-add-form-cancel" onclick="cancelContactRow()">Cancel</button>
+        <button type="button" class="contact-add-form-save" onclick="saveContact()">Add</button>
+      </div>
+    </div>`;
+  } else {
+    html += `<button type="button" class="contact-add-btn" onclick="addContactRow()">+ Add contact</button>`;
+  }
+  host.innerHTML = html;
+}
+
+// Show the inline add-contact form.
+function addContactRow(){
+  _contactFormOpen = true;
+  renderModalContacts();
+  const el = document.getElementById('cNewName');
+  if(el) el.focus();
+}
+
+// Hide the add-contact form without saving.
+function cancelContactRow(){
+  _contactFormOpen = false;
+  renderModalContacts();
+}
+
+// Read the add-contact form, append to the working array, persist, re-render.
+// Empty submits (no name) are silently ignored.
+function saveContact(){
+  const nameEl = document.getElementById('cNewName');
+  const roleEl = document.getElementById('cNewRole');
+  const urlEl  = document.getElementById('cNewUrl');
+  const dateEl = document.getElementById('cNewDate');
+  const name = nameEl ? nameEl.value.trim() : '';
+  const role = roleEl ? roleEl.value.trim() : '';
+  const url  = urlEl ? urlEl.value.trim() : '';
+  const dateRaw = dateEl ? dateEl.value : '';
+  const lastContacted = /^\d{4}-\d{2}-\d{2}$/.test(dateRaw) ? dateRaw : null;
+  if(!name && !role && !url){ _contactFormOpen = false; renderModalContacts(); return; }
+  if(!name){ if(nameEl) nameEl.focus(); return; }  // require a name at minimum
+  _modalContacts.push({name, role, linkedinUrl: url, lastContacted});
+  _contactFormOpen = false;
+  _persistModalContacts();
+  renderModalContacts();
+}
+
+// Delete a contact by its TRUE index in _modalContacts.
+function deleteContact(idx){
+  if(idx < 0 || idx >= _modalContacts.length) return;
+  _modalContacts.splice(idx, 1);
+  _persistModalContacts();
+  renderModalContacts();
+}
+
+// ══════════════════════════════════════════════════════════════════
+// JOBSEARCH-009 — "Today's Snapshot" widget
+// ══════════════════════════════════════════════════════════════════
+
+// Most recent Monday (inclusive — if today is Monday, returns today), local time.
+function getMostRecentMonday(){
+  const d = new Date();
+  const dow = d.getDay();                 // 0=Sun … 6=Sat
+  const back = (dow === 0) ? 6 : dow - 1;  // days since Monday
+  d.setDate(d.getDate() - back);
+  const pad = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+
+// Compute the 4 snapshot stats. Returns:
+//  {addedThisWeek, appliedThisWeek, overdueCount, nextInterview}
+function computeSnapshot(){
+  const monday = getMostRecentMonday();
+  let addedThisWeek = 0, appliedThisWeek = 0, overdueCount = 0;
+  let nextInterview = null;
+  jobs.forEach(j=>{
+    // Jobs added this week — by createdAt.
+    if(j.createdAt && j.createdAt >= monday) addedThisWeek++;
+    // Applications sent this week — documented proxy: stage is Applied-or-beyond
+    // AND the applied date (j.date) falls in the current week. No stage-change
+    // timestamps exist, so this is accurate going forward as Inon sets the date.
+    if(j.date && j.date >= monday && APPLIED_OR_BEYOND_STAGES.has(j.stage)) appliedThisWeek++;
+    // Overdue follow-ups — reuse Phase 2 isOverdue logic.
+    if(isOverdue(j)) overdueCount++;
+    // Next interview date — earliest followUpDate among Interviewing-stage jobs.
+    if(j.stage === 'Interviewing' && j.followUpDate){
+      if(nextInterview === null || j.followUpDate < nextInterview) nextInterview = j.followUpDate;
+    }
+  });
+  return {addedThisWeek, appliedThisWeek, overdueCount, nextInterview};
+}
+
+// Render the 4-cell snapshot strip. Returns the HTML string.
+function renderSnapshot(){
+  const s = computeSnapshot();
+  const addedClass = s.addedThisWeek >= WEEKLY_JOBS_TARGET ? 'target-met'
+                   : s.addedThisWeek >= 1 ? 'target-partial' : 'target-none';
+  const overdueClass = s.overdueCount > 0 ? 'alert' : '';
+  return `<div class="jobs-snapshot" role="region" aria-label="Today's job-search snapshot">
+    <div class="snapshot-cell ${addedClass}">
+      <span class="snapshot-cell-num">${s.addedThisWeek}</span>
+      <span class="snapshot-cell-label">Jobs added this week</span>
+      <span class="snapshot-cell-sub">Target: ${WEEKLY_JOBS_TARGET}/week</span>
+    </div>
+    <div class="snapshot-cell">
+      <span class="snapshot-cell-num">${s.appliedThisWeek}</span>
+      <span class="snapshot-cell-label">Applications sent</span>
+      <span class="snapshot-cell-sub">This week</span>
+    </div>
+    <div class="snapshot-cell ${overdueClass}">
+      <span class="snapshot-cell-num">${s.overdueCount}</span>
+      <span class="snapshot-cell-label">Overdue follow-ups</span>
+      <span class="snapshot-cell-sub">${s.overdueCount > 0 ? 'Needs attention' : 'All clear'}</span>
+    </div>
+    <div class="snapshot-cell">
+      <span class="snapshot-cell-num">${s.nextInterview ? escHtml(s.nextInterview) : '—'}</span>
+      <span class="snapshot-cell-label">Next interview</span>
+      <span class="snapshot-cell-sub">${s.nextInterview ? 'Interviewing stage' : 'None scheduled'}</span>
+    </div>
+  </div>`;
+}
+
 function renderJobs(){
   const container = document.getElementById('jobKanban');
   container.innerHTML='';
+  // JOBSEARCH-009: Today's Snapshot strip — injected as a sibling above the
+  // kanban (and above the overdue banner) inside the Jobs tab. Rebuilt every
+  // render so it's always live.
+  {
+    const tabHost = container.parentElement;
+    if(tabHost){
+      const oldSnap = tabHost.querySelector('.jobs-snapshot');
+      if(oldSnap) oldSnap.remove();
+      const tmp = document.createElement('div');
+      tmp.innerHTML = renderSnapshot();
+      const node = tmp.firstElementChild;
+      if(node) tabHost.insertBefore(node, container);
+    }
+  }
   // Overdue follow-ups banner — injected as a sibling above the kanban container
   // (we host it inside the parent tab-content so it spans the full Jobs tab width).
   const tabHost = container.parentElement;
@@ -2446,10 +3111,16 @@ function renderJobs(){
     const col = document.createElement('div');
     col.className='job-col';
     const color = JOB_COL_COLORS[stage]||'var(--muted)';
+    // DASH-IMPROVE-2026-05-15 (item 3): "?" tooltip on Bookmarked column header.
+    // Bookmarked = saved-but-no-CV-work-started. Once a CV is created/linked, the
+    // job auto-advances to Preparing via CV_TO_JOB_STAGE['Drafting']='Preparing'.
+    const stageTooltip = (stage === 'Bookmarked')
+      ? `<span class="col-help" title="Bookmarked = jobs you've saved but haven't started prep on yet. No linked CV yet, or no CV work begun. Once a CV is created or linked, the job auto-advances to Preparing." aria-label="Bookmarked column help">?</span>`
+      : '';
     col.innerHTML=`<div class="col-header">
       <div class="col-header-left">
         <div class="col-dot" style="background:${color}"></div>
-        <div class="col-title" style="color:${color};font-size:11px">${escHtml(stage)}</div>
+        <div class="col-title" style="color:${color};font-size:11px">${escHtml(stage)}${stageTooltip}</div>
       </div>
       <div class="col-count">${stageCards.length}</div>
     </div><div class="col-cards" id="jcards-${escHtml(stage)}"></div>`;
@@ -2482,10 +3153,12 @@ function renderJobs(){
       const starsHtml = renderStars(j.id, j.rating);
       const prepHtml = renderPrepBadge(j);
       const followUpHtml = renderFollowUpBadge(j);
+      const contactBadgeHtml = renderContactBadge(j);
       card.innerHTML=`<div class="job-card-company">${escHtml(j.company)}</div>
         <div class="job-card-role">${escHtml(j.role)}</div>
         ${agingHtml}
         ${followUpHtml}
+        ${contactBadgeHtml}
         ${starsHtml}
         ${prepHtml}
         ${cvChips ? '<div style="margin-top:6px">'+cvChips+'</div>' : ''}`;
@@ -2498,6 +3171,8 @@ function renderJobs(){
     });
   });
   document.getElementById('jobCount').textContent=`${jobs.length} application${jobs.length!==1?'s':''}`;
+  // JOBSEARCH-007: keep the AI Toolkit job picker in sync with the jobs list.
+  try { if(typeof tkPopulateJobPicker==='function') tkPopulateJobPicker(); } catch(_){}
 }
 
 // Handler for the sort dropdown in the job toolbar
@@ -2520,6 +3195,17 @@ function openJobModal(id){
   document.getElementById('jNotes').value = j?j.notes||'':'';
   // Render checklist last so the input handlers reference the right job id.
   renderModalChecklist(j);
+  // JOBSEARCH-006: set up the contacts working copy. Saved job → reference to
+  // job.contacts (mutate-in-place, persists on every add/delete). New job →
+  // standalone array that saveJob() reads into the new job object.
+  if(j){
+    if(!Array.isArray(j.contacts)) j.contacts = [];
+    _modalContacts = j.contacts;
+  } else {
+    _modalContacts = [];
+  }
+  _contactFormOpen = false;
+  renderModalContacts();
   document.getElementById('jobDeleteBtn').style.display = j?'':'none';
   document.getElementById('jobModal').classList.add('open');
 }
@@ -2538,17 +3224,353 @@ function saveJob(){
     date:document.getElementById('jDate').value,
     followUpDate:followUpDate,
     prepChecklist:prepChecklist,
+    // JOBSEARCH-006: contacts from the modal working copy. For a saved job
+    // this is the same array reference as job.contacts (no-op assign); for a
+    // new job it's the standalone array built in the modal.
+    contacts: Array.isArray(_modalContacts) ? _modalContacts : [],
     url:document.getElementById('jUrl').value,
     notes:document.getElementById('jNotes').value
   };
   let savedJobId;
-  if(editingJobId){ Object.assign(jobs.find(j=>j.id===editingJobId),data); savedJobId=editingJobId; }
-  else { const newId='job-'+Date.now(); jobs.push({id:newId,...data}); savedJobId=newId; }
+  if(editingJobId){
+    const existing = jobs.find(j=>j.id===editingJobId);
+    // JOBSEARCH-009: preserve createdAt across edits (never re-stamp).
+    if(!existing.createdAt) existing.createdAt = existing.date || todayIsoLocal();
+    Object.assign(existing,data);
+    savedJobId=editingJobId;
+  }
+  else {
+    const newId='job-'+Date.now();
+    jobs.push({id:newId,...data,createdAt:todayIsoLocal()});
+    savedJobId=newId;
+  }
   saveJobs(); renderJobs();
   syncJobToCv(savedJobId);
   closeJobModal();
 }
 function deleteJob(){ jobs=jobs.filter(j=>j.id!==editingJobId); saveJobs(); renderJobs(); closeJobModal(); }
+
+// ══════════════════════════════════════════════════════════════════
+// IMPORT JOB (JOBSEARCH-010 — Mack)
+// Two-piece solution. The network fetch lives in scripts/job_url_parser.py
+// (server-side — the dashboard is a static file and CORS blocks browser
+// fetches of LinkedIn/Indeed/etc). This module is the dashboard half:
+//  - Mode A: paste the parser's JSON output → preview → add a job card.
+//  - Mode B: paste raw job-posting text → JS heuristics → preview → add.
+// Both modes show an EDITABLE preview before committing. All rendering of
+// untrusted pasted text goes through .value / textContent — never
+// innerHTML — so pasted JSON and pasted JD text can never inject markup.
+// New jobs are built to EXACTLY the saveJob() shape so they're
+// indistinguishable from normally-added jobs.
+// ══════════════════════════════════════════════════════════════════
+
+let _impMode = 'json';   // 'json' | 'text'
+
+function openImportModal(){
+  _impMode = 'json';
+  // Reset every field so a stale preview from a prior open never leaks.
+  ['impJsonInput','impTextInput','impTextUrl',
+   'impPvTitle','impPvCompany','impPvLocation','impPvUrl','impPvJd'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.value = '';
+  });
+  document.getElementById('impPvStage').value = 'Bookmarked';
+  impSetMode('json');
+  _impHideStatus();
+  _impHidePreview();
+  document.getElementById('importJobModal').classList.add('open');
+  document.getElementById('impJsonInput').focus();
+}
+function closeImportModal(){
+  document.getElementById('importJobModal').classList.remove('open');
+}
+
+function impSetMode(mode){
+  _impMode = (mode === 'text') ? 'text' : 'json';
+  const isJson = _impMode === 'json';
+  document.getElementById('impPaneJson').style.display = isJson ? '' : 'none';
+  document.getElementById('impPaneText').style.display = isJson ? 'none' : '';
+  const jb = document.getElementById('impModeJsonBtn');
+  const tb = document.getElementById('impModeTextBtn');
+  jb.classList.toggle('active', isJson);
+  tb.classList.toggle('active', !isJson);
+  jb.setAttribute('aria-selected', isJson ? 'true' : 'false');
+  tb.setAttribute('aria-selected', isJson ? 'false' : 'true');
+  // Switching modes invalidates any existing preview.
+  _impHideStatus();
+  _impHidePreview();
+}
+
+function _impSetStatus(kind, msg){
+  const el = document.getElementById('impStatus');
+  el.className = 'imp-status ' + kind;   // kind = 'err' | 'warn' | 'ok'
+  el.textContent = msg;                  // textContent — never innerHTML
+  el.style.display = '';
+}
+function _impHideStatus(){
+  const el = document.getElementById('impStatus');
+  el.style.display = 'none'; el.textContent = '';
+}
+function _impHidePreview(){
+  document.getElementById('impPreview').style.display = 'none';
+  document.getElementById('impCommitBtn').style.display = 'none';
+}
+
+// Populate the editable preview. Every value is assigned via .value, so the
+// browser treats it as inert text — no markup interpretation, no XSS.
+function _impShowPreview(fields){
+  document.getElementById('impPvTitle').value    = fields.title    || '';
+  document.getElementById('impPvCompany').value  = fields.company  || '';
+  document.getElementById('impPvLocation').value = fields.location || '';
+  document.getElementById('impPvUrl').value      = fields.url      || '';
+  document.getElementById('impPvJd').value       = fields.jd       || '';
+  document.getElementById('impPvStage').value    = 'Bookmarked';
+  const jd = fields.jd || '';
+  const hint = document.getElementById('impJdHint');
+  hint.textContent = jd
+    ? (jd.length + ' chars — saved into the job’s Notes field.')
+    : 'No description captured — you can paste or type one here.';
+  document.getElementById('impPreview').style.display = '';
+  document.getElementById('impCommitBtn').style.display = '';
+}
+
+// ── Mode A — paste JSON ───────────────────────────────────────────
+function impParseJson(){
+  _impHidePreview();
+  const raw = document.getElementById('impJsonInput').value.trim();
+  if(!raw){
+    _impSetStatus('err', 'Paste the JSON output from job_url_parser.py first.');
+    return;
+  }
+  let obj;
+  try{
+    obj = JSON.parse(raw);
+  }catch(e){
+    _impSetStatus('err', 'That is not valid JSON. Copy the parser output '
+      + 'exactly — it should start with { and end with }. ('+ e.message +')');
+    return;
+  }
+  if(!obj || typeof obj !== 'object' || Array.isArray(obj)){
+    _impSetStatus('err', 'Expected a JSON object from the parser.');
+    return;
+  }
+  // The parser emits an {error, hint} object when a board blocks the fetch.
+  if(obj.error){
+    _impSetStatus('err', obj.error + (obj.hint ? ' — ' + obj.hint : ''));
+    return;
+  }
+  const fields = {
+    title:    _impStr(obj.title),
+    company:  _impStr(obj.company),
+    location: _impStr(obj.location),
+    jd:       _impStr(obj.jd),
+    url:      _impStr(obj.url),
+  };
+  if(!fields.title && !fields.company && !fields.jd){
+    _impSetStatus('err', 'The JSON has no title, company, or description. '
+      + 'Re-run the parser, or use Paste raw text.');
+    return;
+  }
+  if(obj.warning){
+    _impSetStatus('warn', obj.warning);
+  }else{
+    const src = obj.source ? ' (source: ' + _impStr(obj.source) + ')' : '';
+    _impSetStatus('ok', 'Parsed' + src + '. Review the fields below, then add.');
+  }
+  _impShowPreview(fields);
+}
+
+// Coerce any JSON value to a trimmed string (defends against numbers,
+// nested objects, arrays sneaking into fields).
+function _impStr(v){
+  if(v == null) return '';
+  if(typeof v === 'string') return v.trim();
+  if(typeof v === 'number' || typeof v === 'boolean') return String(v);
+  return '';   // objects/arrays → drop, never stringify markup-y junk
+}
+
+// ── Mode B — paste raw text (universal, zero-network fallback) ─────
+// Heuristic field extraction from copied job-posting text. Job pages,
+// once copied to plain text, follow loose-but-real conventions: the title
+// is near the top, the company appears on an early line (often right after
+// the title, sometimes "at <Company>"), and a location line contains a
+// city/Remote token. We extract title + company confidently and location
+// best-effort; the user edits the preview before committing.
+function impParseRawText(){
+  _impHidePreview();
+  const raw = document.getElementById('impTextInput').value;
+  const url = document.getElementById('impTextUrl').value.trim();
+  if(!raw || !raw.trim()){
+    _impSetStatus('err', 'Paste the copied job-posting text first.');
+    return;
+  }
+  const fields = _impHeuristicParse(raw);
+  fields.url = url;
+  if(!fields.title && !fields.company){
+    _impSetStatus('err', 'Could not pick out a title or company from that '
+      + 'text. Check the preview and fill the fields in manually — '
+      + 'everything is editable.');
+    // Still show the preview (with the full text as JD) so the user can
+    // salvage it by hand rather than starting over.
+    fields.jd = raw.trim();
+    _impShowPreview(fields);
+    return;
+  }
+  const got = [];
+  if(fields.title) got.push('title');
+  if(fields.company) got.push('company');
+  if(fields.location) got.push('location');
+  _impSetStatus('ok', 'Extracted ' + got.join(' + ')
+    + '. Heuristic parse — check every field before adding.');
+  _impShowPreview(fields);
+}
+
+function _impHeuristicParse(text){
+  const norm = text.replace(/\r\n?/g, '\n');
+  // Non-empty, trimmed lines — keep first ~40 for header detection.
+  const lines = norm.split('\n').map(l=>l.trim()).filter(l=>l.length);
+  const head = lines.slice(0, 40);
+
+  let title = '';
+  let company = '';
+  let location = '';
+
+  // ── Company via explicit "at <Company>" / "@ <Company>" pattern ──
+  for(let i=0;i<head.length;i++){
+    const m = head[i].match(/^(.{2,90}?)\s+(?:at|@)\s+([A-Z][\w&.,'\- ]{1,60})$/);
+    if(m){
+      if(!title) title = m[1].trim();
+      company = m[2].trim();
+      break;
+    }
+  }
+
+  // ── Title: first plausible header line ──
+  // Skip obvious chrome ("Skip to main content", nav, "Sign in"), and lines
+  // that look like a location or a sentence.
+  const CHROME = /(skip to|sign in|log ?in|menu|search|cookie|share|save|apply now|easy apply|posted|ago\b|^home$|notifications)/i;
+  if(!title){
+    for(let i=0;i<head.length;i++){
+      const l = head[i];
+      if(l.length < 3 || l.length > 110) continue;
+      if(CHROME.test(l)) continue;
+      if(/[.!?]$/.test(l) && l.split(' ').length > 8) continue; // a sentence
+      if(_impLooksLikeLocation(l)) continue;
+      title = l;
+      break;
+    }
+  }
+
+  // ── Company: the line right after the title is very often the company ──
+  if(!company && title){
+    const ti = head.indexOf(title);
+    for(let i=ti+1;i<Math.min(ti+4, head.length);i++){
+      const l = head[i];
+      if(!l || CHROME.test(l)) continue;
+      if(_impLooksLikeLocation(l)) continue;
+      // A company line: short-ish, not a full sentence, has a capital.
+      if(l.length <= 60 && /[A-Za-z]/.test(l) && /^[A-Z0-9]/.test(l)
+         && l.split(' ').length <= 7 && !/[.!?]$/.test(l)){
+        company = l;
+        break;
+      }
+    }
+  }
+
+  // ── Location: first line that looks like one ──
+  for(let i=0;i<head.length;i++){
+    if(_impLooksLikeLocation(head[i])){ location = head[i]; break; }
+  }
+  // Trim a trailing " · 2 days ago" / " • Remote" decoration LinkedIn adds.
+  location = location.replace(/\s*[·•|]\s*.*$/,'').trim();
+
+  // JD: the whole pasted text is the most honest "description" — the user
+  // can trim it in the preview. Drop a leading title/company echo if the
+  // text starts with them, otherwise keep it whole.
+  let jd = norm.trim();
+
+  return {
+    title: _impClean(title),
+    company: _impClean(company),
+    location: _impClean(location),
+    jd: jd,
+  };
+}
+
+function _impLooksLikeLocation(l){
+  if(!l || l.length > 70) return false;
+  if(/^(remote|hybrid|on-?site|anywhere)\b/i.test(l)) return true;
+  // "City, ST" / "City, Country" / "City, ST, Country"
+  if(/^[A-Z][\w.\- ]+,\s*[A-Z][\w.\- ]+(,\s*[A-Z][\w.\- ]+)?$/.test(l)
+     && l.split(' ').length <= 8) return true;
+  // Contains a location keyword and is short.
+  if(/\b(remote|hybrid|metropolitan area|united states|israel|tel aviv|new york|london|san francisco|bay area)\b/i.test(l)
+     && l.length <= 60) return true;
+  return false;
+}
+function _impClean(s){
+  return (s||'').replace(/\s+/g,' ').trim();
+}
+
+// ── Commit — build a job in EXACTLY the saveJob() shape ───────────
+function impCommit(){
+  const title    = _impClean(document.getElementById('impPvTitle').value);
+  const company  = _impClean(document.getElementById('impPvCompany').value);
+  const location = _impClean(document.getElementById('impPvLocation').value);
+  const url      = document.getElementById('impPvUrl').value.trim();
+  const stage    = document.getElementById('impPvStage').value;
+  const jd       = document.getElementById('impPvJd').value;
+
+  if(!company && !title){
+    _impSetStatus('err', 'Add at least a company or a role before adding to the board.');
+    return;
+  }
+  const safeStage = JOB_STAGES.includes(stage) ? stage : 'Bookmarked';
+
+  // Notes = location header (if any) + JD body. Keeps the JD discoverable
+  // without adding a new field to the data model that other features
+  // (Rex's widgets, Yoni's toolkit) don't know about.
+  let notes = '';
+  if(location) notes += 'Location: ' + location + '\n\n';
+  if(jd) notes += jd;
+  notes = notes.trim();
+
+  // EXACT saveJob() shape: {id, company, role, stage, rating, date,
+  // followUpDate, prepChecklist, url, notes}. Plus contacts[] + createdAt,
+  // which Rex's Phase 3 migration also backfills — seeding them here keeps
+  // imported jobs forward-compatible and migrateLegacyJobStages stays
+  // idempotent (it only writes when a field is missing).
+  const newJob = {
+    id: 'job-' + Date.now(),
+    company: company,
+    role: title,
+    stage: safeStage,
+    rating: null,
+    date: '',
+    followUpDate: null,
+    prepChecklist: defaultPrepChecklist(),
+    url: url,
+    notes: notes,
+    contacts: [],
+    createdAt: (typeof todayIsoLocal === 'function') ? todayIsoLocal() : ''
+  };
+  jobs.push(newJob);
+  saveJobs();
+  renderJobs();
+  if(typeof syncJobToCv === 'function'){
+    try{ syncJobToCv(newJob.id); }catch(e){ /* non-fatal */ }
+  }
+  closeImportModal();
+  // Flash the freshly-imported card so the user sees where it landed —
+  // reuses the existing .flash-highlight animation Rex's chip-scroll uses.
+  setTimeout(()=>{
+    const card = document.querySelector('.job-card[data-job-id="'+newJob.id+'"]');
+    if(card){
+      card.classList.add('flash-highlight');
+      card.scrollIntoView({behavior:'smooth', block:'nearest'});
+      setTimeout(()=>card.classList.remove('flash-highlight'), 1800);
+    }
+  }, 60);
+}
 
 // ══════════════════════════════════════════════════════════════════
 // CV VERSIONS
@@ -2606,8 +3628,24 @@ function renderCvs(){
     const editInlineBtn = isHtmlFile
       ? `<button class="cv-edit-inline-btn" onclick="openCvEditorInline('${cv.id}')">Edit CV</button>`
       : '';
-    const applyBtn = (cv.status !== 'Applied' && cv.status !== 'Rejected' && cv.status !== 'Ghosted')
-      ? `<button class="cv-apply-btn" onclick="markCvApplied('${cv.id}')" title="Mark this CV as Applied and advance linked job">Applied ✓</button>`
+    // DASH-IMPROVE-2026-05-15 (item 2): CV status flow — actions linked to status.
+    //
+    //   Drafting → HTML Ready → PDF Ready → Applied → Interview → Rejected | Ghosted
+    //
+    // Each status exposes ONE forward action (the next step). Terminal states show none.
+    // "Mark Applied" only appears at PDF Ready — submitting a CV before it's a PDF makes no sense.
+    // This replaces the old behaviour where "Applied ✓" appeared from Drafting onward,
+    // which let users skip Writing/Review/PDF stages and broke the action/status link.
+    const _cvActionByStatus = {
+      'Drafting':   {label:'→ HTML Ready', next:'HTML Ready',  title:'Mark CV draft complete (HTML ready for review)'},
+      'HTML Ready': {label:'→ PDF Ready',  next:'PDF Ready',   title:'Mark CV approved — PDF exported and ready to submit'},
+      'PDF Ready':  {label:'Applied ✓',    next:'Applied',     title:'Mark this CV as Applied and advance linked job'},
+      'Applied':    {label:'→ Interview',  next:'Interview',   title:'Mark that the application reached interview stage'},
+      // Terminals: Interview / Rejected / Ghosted — no forward action.
+    };
+    const _cvAction = _cvActionByStatus[cv.status];
+    const applyBtn = _cvAction
+      ? `<button class="cv-apply-btn" onclick="advanceCvStatus('${cv.id}','${_cvAction.next.replace(/'/g,"\\'")}')" title="${escHtml(_cvAction.title)}">${escHtml(_cvAction.label)}</button>`
       : '';
     const linkedJobObj = cv.linkedJob ? jobs.find(j=>j.id===cv.linkedJob) : null;
     const _ljStage = linkedJobObj ? escHtml(linkedJobObj.stage) : null;
@@ -2637,6 +3675,8 @@ function renderCvs(){
   document.getElementById('cvCount').textContent=`${all.length} version${all.length!==1?'s':''}`;
   // JOBSEARCH-005: keep ATS picker in sync with CV list
   try { if (typeof populateAtsCvPicker === 'function') populateAtsCvPicker(); } catch(_){}
+  // JOBSEARCH-007: keep the AI Toolkit CV picker in sync with CV list
+  try { if (typeof tkPopulateCvPicker === 'function') tkPopulateCvPicker(); } catch(_){}
 }
 const CV_VALID_STATUSES=['Drafting','HTML Ready','PDF Ready','Applied','Interview','Rejected','Ghosted'];
 const CV_NAME_PATTERN=/^IB-v\d+-[^-]+-[^-]+/;
@@ -2755,12 +3795,32 @@ function markCvApplied(cvId) {
   renderCvs();
 }
 
+// DASH-IMPROVE-2026-05-15 (item 2): Generic forward-advance for CV status.
+// Validates the next status is in CV_VALID_STATUSES and ranks higher than the
+// current one (never downgrade). Then re-runs the CV→Job sync so the linked
+// job auto-advances along the documented map (see CV_TO_JOB_STAGE).
+//
+// Reused by the row's single dynamic action button, which now reflects the
+// current status (see _cvActionByStatus in renderCvs).
+function advanceCvStatus(cvId, nextStatus){
+  const cv = cvVersions.find(c => c.id === cvId);
+  if(!cv) return;
+  if(!CV_VALID_STATUSES.includes(nextStatus)) return;
+  const curRank = CV_STATUS_RANK[cv.status] ?? -1;
+  const nxtRank = CV_STATUS_RANK[nextStatus] ?? -1;
+  if(nxtRank <= curRank) return; // never downgrade
+  cv.status = nextStatus;
+  saveCvs();
+  syncCvToJob(cvId);
+  renderCvs();
+}
+
 // ══════════════════════════════════════════════════════════════════
 // LINKEDIN CMS
 // ══════════════════════════════════════════════════════════════════
-const LI_STAGES=['Idea','Draft','Approved','Posted'];
-const LI_STAGE_COLORS={Idea:'var(--muted)',Draft:'var(--yellow)',Approved:'var(--cyan)',Posted:'var(--green)'};
-const LI_STAGE_ICONS={Idea:'💡',Draft:'✏️',Approved:'✓',Posted:'🌐'};
+const LI_STAGES=['Idea','Draft','Approved','Ready','Posted'];
+const LI_STAGE_COLORS={Idea:'var(--muted)',Draft:'var(--yellow)',Approved:'var(--cyan)',Ready:'var(--orange)',Posted:'var(--green)'};
+const LI_STAGE_ICONS={Idea:'💡',Draft:'✏️',Approved:'✓',Ready:'🚀',Posted:'🌐'};
 
 function renderLiList(search='', stageFilter='all'){
   const container = document.getElementById('liPipelineList');
@@ -3812,6 +4872,78 @@ function computeAtsMatch(cvText, jdText){
 window.computeAtsMatch = computeAtsMatch;
 
 // ── UI HANDLERS ──────────────────────────────────────────────────
+// DASH-IMPROVE-2026-05-15 (item 1): JD auto-load helpers.
+//
+// CV folders live at owner_inbox/archive/cv_archive/[FOLDER]/[file]. Most folders
+// also contain a JD.txt sibling. We derive the folder from cv.htmlPath, fetch
+// JD.txt, and populate a JD textarea. On 404 we leave the textarea empty and
+// show a small hint. We DO NOT try to fetch cv.jdUrl directly — CORS blocks
+// that for the LinkedIn / Elbit careers URLs Inon has stored (see Mack's
+// job_url_parser report). Instead we surface jdUrl as a clickable reference.
+//
+// Returns the URL we'll attempt (or null if htmlPath doesn't look usable).
+function _deriveJdTxtUrl(htmlPath){
+  if(!htmlPath || typeof htmlPath !== 'string') return null;
+  // Strip the filename — keep the directory.
+  const lastSlash = htmlPath.lastIndexOf('/');
+  if(lastSlash < 0) return null;
+  const dir = htmlPath.slice(0, lastSlash + 1);
+  // Reuse the same resolver renderCvs uses, so this works in both http:// and file:// modes.
+  if(typeof resolveCvPath === 'function'){
+    return resolveCvPath(dir + 'JD.txt');
+  }
+  return dir + 'JD.txt';
+}
+
+// Try to fetch JD.txt for a CV. Resolves to {ok, text, url} — never rejects.
+// Used by both ATS Match (atsPrefillCv) and AI Toolkit (tkAutofillCv).
+async function _fetchCvJdTxt(cv){
+  const url = _deriveJdTxtUrl(cv && cv.htmlPath);
+  if(!url) return {ok:false, text:'', url:null, reason:'no-htmlpath'};
+  try{
+    const res = await fetch(url);
+    if(!res.ok) return {ok:false, text:'', url, reason:'http-'+res.status};
+    const text = await res.text();
+    return {ok:true, text:text, url};
+  }catch(e){
+    return {ok:false, text:'', url, reason:'fetch-error'};
+  }
+}
+
+// Render the JD helper line (status + jdUrl reference link) into a container.
+// XSS-safe — uses textContent + href via setAttribute on a created anchor.
+function _renderJdHelper(containerId, cv, fetchResult){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = '';
+  el.hidden = false;
+  const parts = [];
+  // Status pill.
+  const status = document.createElement('span');
+  status.className = 'jd-helper-status';
+  if(fetchResult && fetchResult.ok){
+    status.textContent = '✓ JD.txt auto-loaded from CV folder';
+    status.style.color = 'var(--green)';
+  } else {
+    status.textContent = 'No JD.txt found for this CV — paste manually.';
+    status.style.color = 'var(--muted)';
+  }
+  el.appendChild(status);
+  // jdUrl reference (if present) — clickable, opens in new tab.
+  if(cv && cv.jdUrl){
+    const sep = document.createTextNode(' · ');
+    el.appendChild(sep);
+    const a = document.createElement('a');
+    a.textContent = 'View original JD ↗';
+    a.setAttribute('href', cv.jdUrl);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+    a.className = 'jd-helper-link';
+    a.title = 'Opens the JD source URL in a new tab — auto-fetch is blocked by CORS for most career sites.';
+    el.appendChild(a);
+  }
+}
+
 function populateAtsCvPicker(){
   const sel = document.getElementById('atsCvPicker');
   if(!sel) return;
@@ -3853,6 +4985,14 @@ async function atsPrefillCv(cvId){
     ta.value = '';
     alert('Failed to load CV: '+e.message);
   }
+  // DASH-IMPROVE-2026-05-15 (item 1): also try to auto-load the sibling JD.txt
+  // from the CV's folder. Does NOT clobber an existing JD textarea value.
+  const jdTa = document.getElementById('atsJdText');
+  const fetchResult = await _fetchCvJdTxt(cv);
+  if(jdTa && fetchResult.ok && !jdTa.value.trim()){
+    jdTa.value = fetchResult.text.trim();
+  }
+  _renderJdHelper('atsJdHelper', cv, fetchResult);
 }
 function atsClear(){
   document.getElementById('atsCvText').value='';
@@ -3924,6 +5064,657 @@ function renderAtsResults(r, ms){
 }
 
 // ══════════════════════════════════════════════════════════════════
+// AI PROMPT TOOLKIT (JOBSEARCH-007)
+// Static prompt generator — assembles copy-paste prompts, never calls an AI.
+// ══════════════════════════════════════════════════════════════════
+
+// Each template: id, label, desc, fields[], build(values) -> prompt string.
+// Fields: {key, label, type:'text'|'textarea', placeholder, hint, required, autofill}
+//   autofill: 'company'|'role'|'jd'|'background' — keys auto-fill knows how to populate.
+const TK_TEMPLATES = [
+  {
+    id:'networking',
+    label:'Networking outreach',
+    desc:'Turn a LinkedIn profile into a specific, personalized outreach message that references real achievements — never a generic "I like your content".',
+    fields:[
+      {key:'profile',label:'Target person — LinkedIn profile text',type:'textarea',required:true,
+       placeholder:'Paste the full text of their LinkedIn profile (About, Experience, posts) here.',
+       hint:'Open their profile, select-all, paste. The more raw text, the better the personalization.'},
+      {key:'background',label:'Your background',type:'textarea',required:true,autofill:'background',
+       placeholder:'Paste your CV text or a short bio — or auto-fill from a CV version above.',
+       hint:'Used so the AI can find a genuine, specific point of connection.'},
+      {key:'goal',label:'What you want from the connection',type:'text',required:false,
+       placeholder:'e.g. a referral for a PM role, advice on breaking into defense-tech, a 15-min call',
+       hint:'Optional — sharpens the ask. Leave blank for a soft relationship-first message.'}
+    ],
+    build:function(v){
+      return [
+'You are an expert networking coach. Help me write a personalized LinkedIn outreach message.',
+'',
+'Let\'s think step by step:',
+'1. Read the target person\'s profile below and identify their top 3 concrete achievements or distinctive experiences — be specific (numbers, projects, roles), not generic.',
+'2. Read my background and find ONE genuine, specific point of overlap or relevance between us.',
+'3. Draft a short outreach message (90-130 words) that: opens by referencing ONE specific achievement from step 1 (not flattery, not "I love your content"), states the honest reason I\'m reaching out, and ends with a low-friction ask.',
+'4. Then list the 2 other achievements you found, so I can use them in follow-ups.',
+'',
+'Constraints: warm but professional, no buzzwords, no "I hope this finds you well", no exclamation marks. Sound like a real person. Prioritize specific, lesser-known details from their profile over obvious headline facts — specificity is what gets a reply.',
+'',
+'=== TARGET PERSON’S PROFILE ===',
+v.profile,
+'',
+'=== MY BACKGROUND ===',
+v.background,
+'',
+'=== WHAT I WANT FROM THE CONNECTION ===',
+(v.goal && v.goal.trim()) ? v.goal : '(not specified — keep it relationship-first, no hard ask)'
+      ].join('\n');
+    }
+  },
+  {
+    id:'coffeechat',
+    label:'Coffee chat questions',
+    desc:'Get 10 tailored questions for an informational interview that prove you did your homework — not questions anyone could ask.',
+    fields:[
+      {key:'contact',label:'The contact — profile / role / company',type:'textarea',required:true,
+       placeholder:'Paste their LinkedIn profile text, or describe their role, company and background.',
+       hint:'More detail = more tailored questions.'},
+      {key:'field',label:'The field / role you are targeting',type:'text',required:true,autofill:'role',
+       placeholder:'e.g. Technical Program Manager in defense systems',
+       hint:'Auto-fills from a selected job’s role.'},
+      {key:'focus',label:'What you most want to learn from them',type:'text',required:false,
+       placeholder:'e.g. how they moved from engineering into product, what the hiring bar really is',
+       hint:'Optional — steers the question set toward what matters to you.'}
+    ],
+    build:function(v){
+      return [
+'You are a career coach preparing me for a coffee chat / informational interview.',
+'',
+'Let\'s think step by step:',
+'1. Study the contact\'s background below and note what is distinctive about their path, their company, and their current role.',
+'2. Consider the field I\'m targeting and what I most want to learn.',
+'3. Generate exactly 10 questions I should ask in the conversation.',
+'',
+'The questions must:',
+'- Be specific to THIS person\'s experience — referencing their actual path, company, or decisions — so it\'s obvious I did my homework.',
+'- Be open-ended (not yes/no), and impossible to answer with a generic Google search.',
+'- Mix categories: their career decisions, the day-to-day reality of the role, the team/company, industry shifts, and advice for someone in my position.',
+'- Avoid questions that are really disguised asks for a job. This is relationship-building.',
+'',
+'Prioritize unorthodox, lesser-known angles over the obvious "what does a typical day look like" questions. Order them from easy-rapport to more reflective. For each question, add a one-line note on why it works.',
+'',
+'=== THE CONTACT ===',
+v.contact,
+'',
+'=== FIELD / ROLE I AM TARGETING ===',
+v.field,
+'',
+'=== WHAT I MOST WANT TO LEARN ===',
+(v.focus && v.focus.trim()) ? v.focus : '(not specified — cover a balanced spread)'
+      ].join('\n');
+    }
+  },
+  {
+    id:'interviewq',
+    label:'Interview questions to ask',
+    desc:'Get 5 sharp questions to ask at the END of an interview — questions only that interviewer could answer, not Googleable.',
+    fields:[
+      {key:'role',label:'Role title',type:'text',required:true,autofill:'role',
+       placeholder:'e.g. Technical Program Manager',
+       hint:'Auto-fills from a selected job.'},
+      {key:'company',label:'Company',type:'text',required:false,autofill:'company',
+       placeholder:'e.g. Elbit Systems',
+       hint:'Auto-fills from a selected job.'},
+      {key:'jd',label:'Job description',type:'textarea',required:true,autofill:'jd',
+       placeholder:'Paste the full job description here.',
+       hint:'The JD is not stored on job cards — paste it. Company/role can auto-fill.'},
+      {key:'interviewer',label:'Who is interviewing me (if known)',type:'text',required:false,
+       placeholder:'e.g. the hiring manager, a future peer, the VP of Product',
+       hint:'Optional — tailors the questions to who is in the room.'}
+    ],
+    build:function(v){
+      return [
+'You are an interview strategist. Help me prepare questions to ask at the END of an interview.',
+'',
+'Let\'s think step by step:',
+'1. Read the job description below and identify the parts that are ambiguous, unusually demanding, or hint at an underlying challenge the team is facing.',
+'2. Consider who is interviewing me and what they would uniquely know.',
+'3. Generate exactly 5 questions I should ask when the interviewer says "do you have any questions for us?"',
+'',
+'The questions must:',
+'- Only be answerable by someone who works there — not findable on the company website, Glassdoor, or via Google.',
+'- Show that I read the JD closely and am thinking about the actual work, not just trying to get hired.',
+'- Surface real signal for me: what success looks like in 6 months, why the role is open, what the hardest part of the job is, how decisions actually get made, what would make them NOT hire someone.',
+'- Be confident but not presumptuous.',
+'',
+'Favor sharp, slightly unorthodox questions over safe ones — the goal is to be memorable and to actually learn whether I want this job. For each question, add a one-line note on what a good vs. concerning answer would sound like.',
+'',
+'=== ROLE ===',
+v.role,
+'',
+'=== COMPANY ===',
+(v.company && v.company.trim()) ? v.company : '(not specified)',
+'',
+'=== JOB DESCRIPTION ===',
+v.jd,
+'',
+'=== WHO IS INTERVIEWING ME ===',
+(v.interviewer && v.interviewer.trim()) ? v.interviewer : '(not specified)'
+      ].join('\n');
+    }
+  },
+  {
+    id:'thankyou',
+    label:'Thank-you email',
+    desc:'Draft a under-200-word post-interview thank-you that references a specific moment and reiterates fit — without sucking up.',
+    fields:[
+      {key:'specific',label:'A specific thing from the interview',type:'textarea',required:true,
+       placeholder:'e.g. the interviewer mentioned the team is rebuilding the deployment pipeline from scratch; we discussed the tradeoff between speed and test coverage.',
+       hint:'The more concrete, the more the email lands. A real moment, not "great conversation".'},
+      {key:'background',label:'Your transferable skills / relevant background',type:'textarea',required:true,autofill:'background',
+       placeholder:'Paste your CV text or list the skills relevant to this role — or auto-fill from a CV version.',
+       hint:'Used to reiterate fit, tied to the specific thing above.'},
+      {key:'role',label:'Role title',type:'text',required:false,autofill:'role',
+       placeholder:'e.g. Technical Program Manager',
+       hint:'Auto-fills from a selected job.'},
+      {key:'name',label:'Interviewer name',type:'text',required:false,
+       placeholder:'e.g. Dana',
+       hint:'Optional — for the greeting.'}
+    ],
+    build:function(v){
+      return [
+'You are a professional communication coach. Help me write a post-interview thank-you email.',
+'',
+'Let\'s think step by step:',
+'1. Read the specific thing from the interview below — this is the anchor of the email.',
+'2. Read my transferable skills and find the ONE that most directly connects to that specific thing.',
+'3. Draft a thank-you email under 200 words.',
+'',
+'The email must:',
+'- Reference the specific moment from the interview concretely, so it is obviously not a template.',
+'- Use that moment as a natural bridge to reiterate ONE concrete reason I am a strong fit (tied to my background).',
+'- Be genuine and confident. Do NOT flatter or suck up to the interviewer. Do not over-thank. No "I would be honored". No exclamation marks.',
+'- Close simply, signalling continued interest without desperation.',
+'',
+'Give me the email, then a one-line note on the single most important word or phrase to personalize before sending.',
+'',
+'=== SPECIFIC THING FROM THE INTERVIEW ===',
+v.specific,
+'',
+'=== MY TRANSFERABLE SKILLS / BACKGROUND ===',
+v.background,
+'',
+'=== ROLE ===',
+(v.role && v.role.trim()) ? v.role : '(not specified)',
+'',
+'=== INTERVIEWER NAME ===',
+(v.name && v.name.trim()) ? v.name : '(not specified — use a neutral greeting)'
+      ].join('\n');
+    }
+  },
+  {
+    id:'salary',
+    label:'Salary negotiation roleplay',
+    desc:'Have the AI role-play the full negotiation conversation realistically so you walk in with the right words — plus a follow-up prompt to push toward your target.',
+    fields:[
+      {key:'role',label:'Role title',type:'text',required:true,autofill:'role',
+       placeholder:'e.g. Technical Program Manager',
+       hint:'Auto-fills from a selected job.'},
+      {key:'company',label:'Company',type:'text',required:false,autofill:'company',
+       placeholder:'e.g. Elbit Systems',
+       hint:'Auto-fills from a selected job.'},
+      {key:'offer',label:'The offer amount',type:'text',required:true,
+       placeholder:'e.g. 32,000 ILS/month base, or $180k base',
+       hint:'Include currency and period (monthly / annual) and whether it is base only.'},
+      {key:'target',label:'Your target amount',type:'text',required:true,
+       placeholder:'e.g. 38,000 ILS/month base, or $205k base',
+       hint:'What you actually want to land at.'},
+      {key:'leverage',label:'Your leverage / context',type:'textarea',required:false,
+       placeholder:'e.g. competing offer, in-demand skills, market data showing the range, you are currently employed.',
+       hint:'Optional — gives the roleplay realistic material to work with.'}
+    ],
+    build:function(v){
+      return [
+'You are an experienced compensation negotiation coach. Role-play a salary negotiation with me so I can rehearse before the real call.',
+'',
+'Let\'s think step by step:',
+'1. First, briefly assess my situation: the gap between the offer and my target, and how realistic my target is given the leverage I described.',
+'2. Then role-play the full negotiation as a back-and-forth dialogue. You play the hiring manager / recruiter; I play the job seeker. Make the hiring manager realistic — they push back, cite budget, ask why I deserve more. Cover the whole arc: my counter, their response, the back-and-forth, and a landing point.',
+'3. Throughout, write the job seeker\'s lines the way I should actually deliver them: polite but firm, never apologetic, anchored on value not need, comfortable with silence.',
+'4. After the dialogue, list the 3 highest-leverage phrases I should memorize, and the 2 most common mistakes to avoid.',
+'',
+'Prioritize practical, slightly unorthodox negotiation tactics that most candidates don\'t know over generic advice. Be realistic — do not let me "win" too easily.',
+'',
+'When you finish, end with this line exactly: "Reply \'push harder\' and I will run a second round where you aim for the top of your range."',
+'',
+'=== ROLE ===',
+v.role,
+'',
+'=== COMPANY ===',
+(v.company && v.company.trim()) ? v.company : '(not specified)',
+'',
+'=== THE OFFER ===',
+v.offer,
+'',
+'=== MY TARGET ===',
+v.target,
+'',
+'=== MY LEVERAGE / CONTEXT ===',
+(v.leverage && v.leverage.trim()) ? v.leverage : '(not specified — assume modest leverage and play it realistically)',
+'',
+'--- FOLLOW-UP PROMPT (paste this after the first roleplay) ---',
+'Push harder. Run the negotiation again, but this time the job seeker aims for the very top of the range (' + v.target + ' or above). Show how to hold firm when the hiring manager resists, how to use silence, and how to get there without burning the relationship. End by telling me the single moment in the conversation where the negotiation was actually won or lost.'
+      ].join('\n');
+    }
+  },
+  {
+    id:'linkedinreq',
+    label:'LinkedIn connection request',
+    desc:'Get a short, standout connection-request note that fits LinkedIn\'s ~300-character limit and earns the accept.',
+    fields:[
+      {key:'achievements',label:'The person’s top achievements or profile',type:'textarea',required:true,
+       placeholder:'Paste their profile text, or list their top 2-3 achievements (use the Networking template first to extract these).',
+       hint:'Specifics beat generalities — the note has to feel hand-written.'},
+      {key:'relevance',label:'What makes you relevant to them',type:'textarea',required:true,autofill:'background',
+       placeholder:'Paste your background, or state in one or two lines why connecting makes sense — or auto-fill from a CV.',
+       hint:'The note must show a real reason, not just "expand my network".'},
+      {key:'context',label:'How you came across them',type:'text',required:false,
+       placeholder:'e.g. saw their talk, same alumni network, they posted about a role you applied to',
+       hint:'Optional — a real touchpoint makes the request far stronger.'}
+    ],
+    build:function(v){
+      return [
+'You are a networking expert. Write me a LinkedIn connection-request note.',
+'',
+'Let\'s think step by step:',
+'1. From the person\'s achievements/profile below, pick the ONE detail most worth referencing.',
+'2. From what makes me relevant, pick the ONE thread that makes connecting make sense for THEM, not just me.',
+'3. Write a connection-request note.',
+'',
+'Hard constraints:',
+'- Maximum 300 characters (LinkedIn\'s limit). Aim for 200-280. Count the characters and tell me the count.',
+'- Reference the one specific detail from step 1 — no generic flattery, no "I\'d like to add you to my network".',
+'- Give a real, honest reason for connecting.',
+'- Warm, human, confident. No buzzwords. No exclamation marks.',
+'',
+'Give me 3 variations at different tones (warm / direct / curious), each under 300 characters with its character count. Favor a memorable, slightly unorthodox opening line over a safe one.',
+'',
+'=== THE PERSON’S TOP ACHIEVEMENTS / PROFILE ===',
+v.achievements,
+'',
+'=== WHAT MAKES ME RELEVANT TO THEM ===',
+v.relevance,
+'',
+'=== HOW I CAME ACROSS THEM ===',
+(v.context && v.context.trim()) ? v.context : '(not specified)'
+      ].join('\n');
+    }
+  }
+];
+
+let tkActiveId = TK_TEMPLATES[0].id;
+const TK_LS_KEY = 'andy_toolkit_inputs'; // {templateId: {fieldKey: value}}
+
+function tkGetTemplate(id){ return TK_TEMPLATES.find(t=>t.id===id) || TK_TEMPLATES[0]; }
+
+function tkLoadSaved(){
+  try{
+    const raw = localStorage.getItem(TK_LS_KEY);
+    if(!raw) return {};
+    const parsed = (typeof _safeJsonParse==='function') ? _safeJsonParse(raw,{},TK_LS_KEY) : JSON.parse(raw);
+    return (parsed && typeof parsed==='object') ? parsed : {};
+  }catch(_){ return {}; }
+}
+function tkSaveCurrent(){
+  try{
+    const all = tkLoadSaved();
+    const t = tkGetTemplate(tkActiveId);
+    const vals = {};
+    t.fields.forEach(f=>{
+      const el = document.getElementById('tkf_'+f.key);
+      if(el) vals[f.key] = el.value;
+    });
+    all[tkActiveId] = vals;
+    localStorage.setItem(TK_LS_KEY, JSON.stringify(all));
+  }catch(_){ /* persistence is best-effort, never break the UI */ }
+}
+
+function tkRenderRail(){
+  const rail = document.getElementById('tkRail');
+  if(!rail) return;
+  rail.innerHTML = '';
+  TK_TEMPLATES.forEach((t,i)=>{
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tk-rail-item' + (t.id===tkActiveId ? ' active' : '');
+    btn.setAttribute('aria-pressed', t.id===tkActiveId ? 'true' : 'false');
+    // textContent only — template labels are static, but stay disciplined
+    const num = document.createElement('span');
+    num.className = 'tk-rail-num';
+    num.textContent = (i+1)+'.';
+    btn.appendChild(num);
+    btn.appendChild(document.createTextNode(t.label));
+    btn.addEventListener('click', ()=>tkSelect(t.id));
+    rail.appendChild(btn);
+  });
+}
+
+function tkSelect(id){
+  // persist whatever is currently typed before switching away
+  tkSaveCurrent();
+  tkActiveId = id;
+  tkRenderRail();
+  tkRenderFields();
+  // hide stale result on template switch
+  const block = document.getElementById('tkResultBlock');
+  if(block) block.hidden = true;
+}
+
+function tkRenderFields(){
+  const t = tkGetTemplate(tkActiveId);
+  const titleEl = document.getElementById('tkTemplateTitle');
+  const descEl  = document.getElementById('tkTemplateDesc');
+  const wrap    = document.getElementById('tkFields');
+  if(titleEl) titleEl.textContent = t.label;
+  if(descEl)  descEl.textContent  = t.desc;
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  const saved = tkLoadSaved()[t.id] || {};
+  t.fields.forEach(f=>{
+    const field = document.createElement('div');
+    field.className = 'tk-field';
+
+    const label = document.createElement('label');
+    label.className = 'tk-field-label';
+    label.setAttribute('for','tkf_'+f.key);
+    label.textContent = f.label;
+    if(f.required){
+      const req = document.createElement('span');
+      req.className = 'tk-req';
+      req.textContent = '*';
+      req.title = 'Required';
+      label.appendChild(req);
+    }
+    field.appendChild(label);
+
+    let input;
+    if(f.type==='textarea'){
+      input = document.createElement('textarea');
+      input.className = 'tk-textarea';
+      input.rows = 4;
+    } else {
+      input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'tk-input';
+    }
+    input.id = 'tkf_'+f.key;
+    input.placeholder = f.placeholder || '';
+    if(typeof saved[f.key] === 'string') input.value = saved[f.key];
+    input.addEventListener('input', ()=>{
+      input.classList.remove('tk-missing');
+      tkSaveCurrent();
+    });
+    field.appendChild(input);
+
+    if(f.hint){
+      const hint = document.createElement('div');
+      hint.className = 'tk-field-hint';
+      hint.textContent = f.hint;
+      field.appendChild(hint);
+    }
+    wrap.appendChild(field);
+  });
+}
+
+function tkPopulateJobPicker(){
+  const sel = document.getElementById('tkJobPicker');
+  if(!sel) return;
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— select a saved job —</option>';
+  (jobs||[]).forEach(j=>{
+    const opt = document.createElement('option');
+    opt.value = j.id;
+    // textContent — company/role are user data
+    opt.textContent = `${j.company||'(no company)'} — ${j.role||'(no role)'}`;
+    sel.appendChild(opt);
+  });
+  if(cur) sel.value = cur;
+}
+
+function tkPopulateCvPicker(){
+  const sel = document.getElementById('tkCvPicker');
+  if(!sel) return;
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— select a CV version —</option>';
+  (cvVersions||[]).forEach(cv=>{
+    const opt = document.createElement('option');
+    opt.value = cv.id;
+    opt.textContent = `${cv.name||cv.id}${cv.role ? ' — '+cv.role : ''}`;
+    sel.appendChild(opt);
+  });
+  if(cur) sel.value = cur;
+}
+
+// Set a field value by autofill-key for the active template, if that field exists.
+// Returns the field label if set, else null. Never overwrites a non-empty field
+// silently unless the user just picked the source — we ask via confirm only when clobbering.
+function _tkSetByAutofill(autofillKey, value, force){
+  const t = tkGetTemplate(tkActiveId);
+  const f = t.fields.find(x=>x.autofill===autofillKey);
+  if(!f) return null;
+  const el = document.getElementById('tkf_'+f.key);
+  if(!el) return null;
+  if(el.value.trim() && !force) return null; // don't clobber existing content
+  el.value = value;
+  el.classList.remove('tk-missing');
+  return f.label;
+}
+
+function tkAutofillJob(jobId){
+  if(!jobId) return;
+  const job = (jobs||[]).find(j=>j.id===jobId);
+  if(!job) return;
+  const filled = [];
+  let r;
+  r = _tkSetByAutofill('company', job.company||'', false); if(r) filled.push(r);
+  r = _tkSetByAutofill('role', job.role||'', false); if(r) filled.push(r);
+  // JD text is NOT stored on job cards (documented tradeoff) — we can't auto-fill it.
+  tkSaveCurrent();
+  const t = tkGetTemplate(tkActiveId);
+  const hasJdField = t.fields.some(f=>f.autofill==='jd');
+  const hint = document.getElementById('tkResultHint');
+  if(filled.length){
+    _tkFlashHint(filled.join(' and ') + ' filled from job.' +
+      (hasJdField ? ' Paste the job description manually — it is not stored on job cards.' : ''));
+  } else {
+    _tkFlashHint('Nothing to auto-fill for this template' +
+      (hasJdField ? ', and the JD must be pasted manually (not stored on job cards).' :
+       ' — its fields are not job-linked. Fill them by hand.'));
+  }
+}
+
+async function tkAutofillCv(cvId){
+  if(!cvId) return;
+  const cv = (cvVersions||[]).find(c=>c.id===cvId);
+  if(!cv) return;
+  const t = tkGetTemplate(tkActiveId);
+  const bgField = t.fields.find(f=>f.autofill==='background');
+  const jdField = t.fields.find(f=>f.autofill==='jd');
+  const messages = [];
+
+  // ── Background field (legacy behavior, preserved) ──
+  if(bgField){
+    const el = document.getElementById('tkf_'+bgField.key);
+    if(el){
+      let proceed = true;
+      if(el.value.trim()){
+        proceed = confirm('"'+bgField.label+'" already has text. Replace it with the CV content?');
+      }
+      if(proceed){
+        if(cv.htmlPath && /\.html?$/i.test(cv.htmlPath) && typeof resolveCvPath==='function'){
+          el.value = 'Loading CV…';
+          try{
+            const res = await fetch(resolveCvPath(cv.htmlPath));
+            if(!res.ok) throw new Error('HTTP '+res.status);
+            const html = await res.text();
+            const plain = (typeof _atsStripHtml==='function')
+              ? _atsStripHtml(html).replace(/\n{2,}/g,'\n').trim()
+              : html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+            el.value = plain;
+            el.classList.remove('tk-missing');
+            tkSaveCurrent();
+            messages.push('Background filled from CV "'+(cv.name||cv.id)+'"');
+          }catch(e){
+            el.value = '';
+            messages.push('Could not load CV file ('+(e.message||e)+'). Paste background manually.');
+          }
+        } else {
+          // PDF or no fetchable path — fall back to the CV's notes/metadata as a starting point.
+          const bits = [cv.name, cv.role, cv.industry, cv.notes].filter(Boolean).join(' — ');
+          el.value = bits || '';
+          el.classList.remove('tk-missing');
+          tkSaveCurrent();
+          messages.push('CV is a PDF — only metadata filled into background. Edit as needed.');
+        }
+      }
+    }
+  }
+
+  // ── DASH-IMPROVE-2026-05-15 (item 1): JD field auto-load from sibling JD.txt ──
+  if(jdField){
+    const jdEl = document.getElementById('tkf_'+jdField.key);
+    if(jdEl){
+      const fetchResult = await _fetchCvJdTxt(cv);
+      if(fetchResult.ok && !jdEl.value.trim()){
+        jdEl.value = fetchResult.text.trim();
+        jdEl.classList.remove('tk-missing');
+        tkSaveCurrent();
+        messages.push('JD auto-loaded from CV folder');
+      } else if(!fetchResult.ok){
+        // Leave JD textarea alone, but surface a hint about jdUrl reference.
+        const refHint = cv.jdUrl ? ' (jdUrl available as reference — open it in a new tab and copy/paste)' : '';
+        messages.push('No JD.txt found for this CV — paste manually.'+refHint);
+      }
+    }
+  }
+
+  if(!bgField && !jdField){
+    _tkFlashHint('This template has no "background" or "jd" field to fill from a CV.');
+    return;
+  }
+  _tkFlashHint(messages.join(' · '));
+}
+
+function _tkFlashHint(msg){
+  const hint = document.getElementById('tkResultHint');
+  const block = document.getElementById('tkResultBlock');
+  if(!hint) return;
+  // show the hint area even if the result block is hidden? keep it simple:
+  // the hint lives inside the result block; reveal the block so the message is visible.
+  if(block) block.hidden = false;
+  hint.textContent = msg;
+  hint.classList.remove('tk-ok');
+}
+
+function tkGenerate(){
+  const t = tkGetTemplate(tkActiveId);
+  const values = {};
+  let firstMissing = null;
+  t.fields.forEach(f=>{
+    const el = document.getElementById('tkf_'+f.key);
+    const val = el ? el.value : '';
+    values[f.key] = val;
+    if(f.required && !val.trim()){
+      if(el) el.classList.add('tk-missing');
+      if(!firstMissing) firstMissing = el;
+    } else if(el){
+      el.classList.remove('tk-missing');
+    }
+  });
+  if(firstMissing){
+    _tkFlashHint('Fill in the required fields (marked *) before generating.');
+    firstMissing.focus();
+    const ta = document.getElementById('tkResult');
+    if(ta) ta.value = '';
+    return;
+  }
+  let prompt;
+  try{
+    prompt = t.build(values);
+  }catch(e){
+    _tkFlashHint('Could not build the prompt: '+(e.message||e));
+    return;
+  }
+  const block = document.getElementById('tkResultBlock');
+  const ta = document.getElementById('tkResult');
+  if(block) block.hidden = false;
+  // XSS-safe: result goes into a readonly <textarea> via .value — never innerHTML.
+  if(ta){
+    ta.value = prompt;
+    ta.scrollTop = 0;
+  }
+  const hint = document.getElementById('tkResultHint');
+  if(hint){
+    hint.textContent = 'Prompt ready ('+prompt.length+' characters). Click "Copy to clipboard", then paste into ChatGPT or Claude.';
+    hint.classList.remove('tk-ok');
+  }
+  tkSaveCurrent();
+}
+
+function tkCopy(){
+  const ta = document.getElementById('tkResult');
+  const hint = document.getElementById('tkResultHint');
+  if(!ta || !ta.value){
+    if(hint){ hint.textContent = 'Nothing to copy — generate a prompt first.'; hint.classList.remove('tk-ok'); }
+    return;
+  }
+  const done = ()=>{
+    if(hint){ hint.textContent = 'Copied to clipboard. Paste it into ChatGPT or Claude.'; hint.classList.add('tk-ok'); }
+  };
+  const fallback = ()=>{
+    // execCommand path for non-secure contexts / older browsers
+    try{
+      ta.removeAttribute('readonly');
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      const ok = document.execCommand('copy');
+      ta.setAttribute('readonly','');
+      window.getSelection && window.getSelection().removeAllRanges();
+      if(ok){ done(); }
+      else if(hint){ hint.textContent = 'Copy failed — select the text manually (Ctrl+A, Ctrl+C).'; hint.classList.remove('tk-ok'); }
+    }catch(e){
+      if(hint){ hint.textContent = 'Copy not supported here — select the text manually (Ctrl+A, Ctrl+C).'; hint.classList.remove('tk-ok'); }
+    }
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+
+function tkClearFields(){
+  const t = tkGetTemplate(tkActiveId);
+  t.fields.forEach(f=>{
+    const el = document.getElementById('tkf_'+f.key);
+    if(el){ el.value = ''; el.classList.remove('tk-missing'); }
+  });
+  const block = document.getElementById('tkResultBlock');
+  if(block) block.hidden = true;
+  const ta = document.getElementById('tkResult');
+  if(ta) ta.value = '';
+  const jp = document.getElementById('tkJobPicker'); if(jp) jp.value = '';
+  const cp = document.getElementById('tkCvPicker'); if(cp) cp.value = '';
+  tkSaveCurrent();
+}
+
+function tkInit(){
+  tkRenderRail();
+  tkRenderFields();
+  tkPopulateJobPicker();
+  tkPopulateCvPicker();
+}
+
+// ══════════════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════════════
 (function init(){
@@ -3950,6 +5741,26 @@ function renderAtsResults(r, ms){
   renderLiList();
   // JOBSEARCH-005: belt-and-suspenders — ensure ATS picker is populated even if renderCvs() ordering changes.
   try { populateAtsCvPicker(); } catch(_){}
+  // JOBSEARCH-007: initialize the AI Prompt Toolkit tab (rail, fields, job/CV pickers).
+  try { tkInit(); } catch(_){}
+
+  // DASH-IMPROVE-2026-05-15 (item 4): horizontal wheel scroll on Job Applications kanban.
+  // 9 columns scroll horizontally; users intuitively spin the wheel to pan sideways.
+  // Convert deltaY → scrollLeft, but only when the kanban actually has horizontal overflow
+  // AND the user is not using a horizontal trackpad gesture (deltaX != 0).
+  // preventDefault stops the page from vertically scrolling underneath.
+  try {
+    const _jobKanban = document.getElementById('jobKanban');
+    if(_jobKanban){
+      _jobKanban.addEventListener('wheel', function(ev){
+        // If the user is already scrolling horizontally (trackpad), let the browser handle it.
+        if(Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) return;
+        if(_jobKanban.scrollWidth <= _jobKanban.clientWidth) return; // nothing to pan
+        ev.preventDefault();
+        _jobKanban.scrollLeft += ev.deltaY;
+      }, {passive:false});
+    }
+  } catch(_){}
 })();
 </script>
 </body>

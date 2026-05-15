@@ -74,9 +74,9 @@ These rules apply to every CV produced for Inon Baasov. They override ATS instin
 
 2. **Experience order is always reverse chronological** — Most recent role FIRST. Do NOT reorder for "strongest signal" or ATS reasons. Inon's structure must reflect his actual career timeline. Correct order: Inon Baasov Ltd (2024–Present) → TouchE (2018–2024) → Arena Plus (2013–2018).
 
-3. **No C4I references** — Even for defense-sector roles, do not use "C4I" as a label or skill anywhere in the CV (summary, key skills, skills grid, military service section). It reads as too narrow and pigeonholing. Use "Defense Domain" if a defense signal is needed.
+3. **C4I references — permitted for defense-sector roles only** — For defense-sector roles (e.g. Elbit, Rafael, IAI, defense primes/subcontractors), "C4I" MAY be used as a label or skill where it is genuinely grounded in Inon's background — his IAF Planning & Control role is legitimate C4I-adjacent grounding. For ALL non-defense roles, do NOT use "C4I" anywhere in the CV — it reads as too narrow and pigeonholing; use "Defense Domain" instead if a defense signal is needed. _(Rule relaxed by Inon 2026-05-14 — was previously a blanket ban.)_
 
-4. **Military Service section: always keep it, never over-label it** — Include Israeli Air Force, Planning & Control Department, 2000–2003. Do not append unit technical labels or acronyms such as "(C4I)".
+4. **Military Service section: always keep it, never over-label it** — Include Israeli Air Force, Planning & Control Department, 2000–2003. Do not append unit technical labels or acronyms — EXCEPT a "C4I" label is permitted here for defense-sector roles per Rule 3. For all non-defense roles, keep this section unlabeled.
 
 5. **No hyperbolic scale claims unless verifiable** — Remove unverifiable scale language like "millions of concurrent users" unless Inon explicitly confirms the metric in writing. Quantified claims (uptime %, budget, team size) must come from Inon directly.
 

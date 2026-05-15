@@ -869,3 +869,19 @@
  HTTP  10/05/2026 17:55:33 ::1 Returned 200 in 319 ms
  HTTP  10/05/2026 17:55:39 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
  HTTP  10/05/2026 17:55:39 ::1 Returned 200 in 46 ms
+ HTTP  10/05/2026 23:11:21 ::1 GET /owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM
+ HTTP  10/05/2026 23:11:21 ::1 Returned 200 in 82 ms
+ HTTP  10/05/2026 23:36:29 ::1 GET /dashboard/
+ HTTP  10/05/2026 23:36:29 ::1 Returned 200 in 117 ms
+ HTTP  11/05/2026 11:26:39 ::1 GET /dashboard/
+ HTTP  11/05/2026 11:26:39 ::1 Returned 304 in 88 ms
+ HTTP  11/05/2026 11:36:04 ::1 GET /dashboard/
+ HTTP  11/05/2026 11:36:04 ::1 Returned 200 in 118 ms
+ HTTP  12/05/2026 14:15:35 ::1 GET /dashboard/
+ HTTP  12/05/2026 14:15:35 ::1 Returned 200 in 568 ms
+ HTTP  12/05/2026 14:15:47 ::1 GET /owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html
+ HTTP  12/05/2026 14:15:47 ::1 Returned 301 in 4 ms
+ HTTP  12/05/2026 14:15:47 ::1 GET /owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM
+ HTTP  12/05/2026 14:15:47 ::1 Returned 200 in 28 ms
+ HTTP  13/05/2026 22:27:46 ::1 GET /dashboard/
+ HTTP  13/05/2026 22:27:46 ::1 Returned 200 in 67 ms
