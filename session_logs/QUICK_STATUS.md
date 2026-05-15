@@ -1,13 +1,15 @@
 # Quick Status — Last updated: 2026-05-15
 
-## Last Session (2026-05-15)
-Infrastructure + content session: 3 Hebrew LinkedIn posts written (Tomy→Sage, Vera QA PASS), dashboard LinkedIn tab updated (LI-006/7/8 + Ready stage). Two new agents onboarded: Dev (#15, DevOps/Cloud) and Finn (#16, Infrastructure Triage). All MCPs verified live. Andy role corrected — new delegation-only rules enforced.
+## Last Session (2026-05-15 — rate-limit recovery)
+Rate limit hit mid-session. Before cut-off: Rex completed 5-item DASH-IMPROVE dashboard pass (Vera QA PASS 111/111), Mack shipped Telegram notify script + two automation routines (Jasmin QA PASS), Lena delivered both BuildAR UX briefs. Dashboard was committed in `1d60c4d` (all 23 markers confirmed). Rate-limit recovery commit `bada502` synced task queue + QA reports + owner_inbox drops.
 
 ## Active Tasks
 
 | ID | Title | Priority | Owner | Status |
 |----|-------|----------|-------|--------|
-| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — 7 open questions | critical | Andy | pending-owner |
+| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — Stage 1 in progress | critical | Andy | in_progress |
+| BUILDAR-S1-001 | Supabase schema + migrations | critical | Silas | in_progress |
+| BUILDAR-S1-002 | PNPM monorepo scaffold at D:\BuildAR\ | critical | Yoni | in_progress |
 | LENOVO-INC-001 | Tailored CV — Lenovo CTO Org Incubation PM | high | Cole | pending-owner |
 | ELBIT-TPM-001 | Tailored CV — Elbit Smart Sensing Technical PM | high | Cole | pending-owner |
 | ELBIT-SYSENG-001 | Tailored CV — Elbit Artillery C4I PM/SysEng | high | Cole | pending-owner |
@@ -23,8 +25,9 @@ Infrastructure + content session: 3 Hebrew LinkedIn posts written (Tomy→Sage, 
 | SCRATCHPAD-001 | Scratchpad cleanup | low | General | pending |
 
 ## Owner Blockers
-1. **BUILDAR-REBUILD-000** — answer 7 architecture questions to unblock Stage 2
+1. **BUILDAR-S1-001 / S1-002** — Silas and Yoni dispatched; check D:\BuildAR\ for completion status
 2. **3 LinkedIn posts** — review `owner_inbox/posts/linkedin_ai_news_2026-05-14.md`, approve/queue
 3. **Elbit CVs** — v3 Jasmin QA-approved; review HTML → approve → Cole PDF + submit
-4. **Lenovo CV** — pending review since 2026-05-11; `owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/`
+4. **Lenovo CV** — pending review; `owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/`
 5. **Elbit apply** — Gmail draft ready; attach PDF, submit at elbitsystemscareer.com jid=20344
+6. **BuildAR CMS UX** — Lena's Lovable prompt ready at `owner_inbox/design/buildar_cms_ux_brief.md` — paste into Lovable when ready

@@ -2,7 +2,7 @@
 
 > Business Knowledge Management: centralized procedural library.  
 > All agents must check this index before executing complex tasks.  
-> Last updated: 2026-04-27
+> Last updated: 2026-05-15
 
 | SOP Name                 | File                       | Applies To          | Summary                                              |
 |--------------------------|----------------------------|---------------------|------------------------------------------------------|
@@ -14,6 +14,8 @@
 | CV Management            | `sop_cv_management.md`     | Cole, Silas         | CV creation, application tracking, archive protocol  |
 | Session Logging          | `sop_session_logging.md`   | All Agents          | Mandatory end-of-session summary format and protocol |
 | Writing Style Influences | `writing_style.md`         | Sage, Cole          | Voice references, LinkedIn post rules, writing principles |
+| Infrastructure Standards | `sop_infra.md`             | Dev                 | BuildAR Pro stack, env discipline, secrets, deploys, CI/CD |
+| Infrastructure Triage    | `sop_infra_triage.md`      | Finn                | Health checks, log-first diagnosis, MCP/bot restart, env audit, escalation |
 
 ## SOP Naming Convention
 `sop_[domain]_[topic].md` — e.g. `sop_web_security.md`, `sop_db_migrations.md`

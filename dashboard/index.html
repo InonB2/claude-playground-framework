@@ -1030,6 +1030,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
     <button class="filter-btn" data-filter="FamilyFlow" onclick="setFilter('FamilyFlow',this)">FamilyFlow</button>
     <button class="filter-btn" data-filter="Career" onclick="setFilter('Career',this)">Career</button>
     <button class="filter-btn" data-filter="Infra" onclick="setFilter('Infra',this)">Infra</button>
+    <button class="filter-btn" data-filter="Other" onclick="setFilter('Other',this)">Other</button><!-- DASH-001 (item 1) -->
     <span class="filter-count" id="filterCount">0 tasks</span>
   </div>
 
@@ -2330,6 +2331,8 @@ function renderTasks(){
                     : task.status==='in-progress' ? 'var(--cyan-dim)'
                     : task.status==='tested' ? 'rgba(139,92,246,0.15)'
                     : 'var(--green-dim)';
+    // DASH-001 (item 2) — inline-edit panel embedded in card; hidden by default.
+    // Fields: description (textarea = task.notes) and column/status (select).
     card.innerHTML=`
       <div class="card-id">${escHtml(task.id||'')}</div>
       <div class="card-header">
@@ -2345,9 +2348,31 @@ function renderTasks(){
       <div style="display:flex;justify-content:flex-end;margin-top:6px">
         <button class="task-cta-btn" data-task-cta="${task.id}" onclick="taskCTA('${task.id}');event.stopPropagation()" style="background:${_ctaBg};color:${_ctaColor};">${_ctaLabel}</button>
       </div>
-      <button class="card-edit-btn" onclick="openTaskModal('${task.id}',event)">✏️</button>
+      <button class="card-edit-btn" title="Quick edit" onclick="openInlineEdit('${task.id}',event)">✏️</button>
+      <!-- DASH-001 (item 3) — inline edit panel (description + status) -->
+      <div class="card-edit-panel" id="inline-edit-${task.id}">
+        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Description</label>
+        <textarea id="inline-desc-${task.id}" rows="3" style="resize:vertical" placeholder="Task notes / description">${escHtml(task.notes||'')}</textarea>
+        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Column / Status</label>
+        <select id="inline-status-${task.id}">
+          <option value="needs-you"${task.status==='needs-you'?' selected':''}>Needs You</option>
+          <option value="in-progress"${(task.status==='in-progress'||task.status==='partial')?' selected':''}>In Progress</option>
+          <option value="blocked"${(task.status==='blocked'||task.status==='paused')?' selected':''}>Blocked</option>
+          <option value="tested"${task.status==='tested'?' selected':''}>Tested</option>
+          <option value="done"${task.status==='done'?' selected':''}>Done</option>
+        </select>
+        <div class="card-edit-actions">
+          <button class="btn-save" onclick="saveInlineEdit('${task.id}',event)">Save</button>
+          <button class="btn-cancel" onclick="cancelInlineEdit('${task.id}',event)">Cancel</button>
+        </div>
+      </div>
     `;
-    card.addEventListener('click', e=>{ if(!e.target.classList.contains('card-edit-btn')) openTaskModal(task.id,e); });
+    // DASH-001 (item 2 cont.) — guard: don't open modal when clicking inside inline-edit panel or edit btn.
+    card.addEventListener('click', e=>{
+      if(e.target.classList.contains('card-edit-btn')) return;
+      if(e.target.closest('.card-edit-panel')) return;
+      openTaskModal(task.id,e);
+    });
     card.addEventListener('dragstart', ()=>{ dragTaskId=task.id; card.style.opacity='0.5'; });
     card.addEventListener('dragend', ()=>{ card.style.opacity='1'; });
     // Insert owner-blocked cards before regular blocked cards
@@ -2399,6 +2424,39 @@ function setFilter(f,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderTasks();
+}
+
+// DASH-001 (item 4) — Inline edit: open, save, cancel handlers.
+// openInlineEdit: show the embedded edit panel on a card; close any other open panel first.
+function openInlineEdit(id, e){
+  if(e){ e.stopPropagation(); }
+  // Close any other open panels
+  document.querySelectorAll('.card-edit-panel.open').forEach(p=>{
+    if(p.id !== `inline-edit-${id}`) p.classList.remove('open');
+  });
+  const panel = document.getElementById(`inline-edit-${id}`);
+  if(!panel) return;
+  panel.classList.toggle('open');
+}
+
+// DASH-001 (item 5) — saveInlineEdit: persist description + status changes in-memory (localStorage).
+function saveInlineEdit(id, e){
+  if(e){ e.stopPropagation(); }
+  const t = tasks.find(x=>x.id===id);
+  if(!t) return;
+  const descEl   = document.getElementById(`inline-desc-${id}`);
+  const statusEl = document.getElementById(`inline-status-${id}`);
+  if(descEl)   t.notes  = descEl.value;
+  if(statusEl) t.status = statusEl.value;
+  saveTasks();
+  renderTasks();
+}
+
+// DASH-001 (item 6) — cancelInlineEdit: close panel without saving.
+function cancelInlineEdit(id, e){
+  if(e){ e.stopPropagation(); }
+  const panel = document.getElementById(`inline-edit-${id}`);
+  if(panel) panel.classList.remove('open');
 }
 
 function updateLastUpdated(){

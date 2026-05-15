@@ -1,5 +1,6 @@
 {
   "last_updated": "2026-05-15",
+  "_note_wave1_2026-05-15": "BuildAR Stage 1 Wave 1 closeouts: Yoni PASS, Silas PARTIAL (blocked on SUPABASE_SERVICE_ROLE_KEY from Inon), Dev+Finn onboarding done.",
   "tasks": [
     {
       "task_id": "SYSTEM-IMPROVE-2026-05-15",
@@ -112,8 +113,9 @@
       "priority": "critical",
       "assigned_to": "Silas",
       "tested_by": "Jasmin",
-      "status": "in_progress",
-      "notes": "Dispatched 2026-05-15. Create fresh Supabase project (eu-west-1). Write 6-table migration set: profiles, projects, project_steps, assets, sessions, events. RLS + auto-profile trigger. Seed 2 projects: wall shelf install + table assembly (IKEA-style steps). Store creds at D:\\BuildAR\\supabase\\.env.local. Deliver migration files to D:\\BuildAR\\supabase\\migrations\\."
+      "status": "blocked",
+      "blocked_by": "Inon — paste SUPABASE_SERVICE_ROLE_KEY into D:\\BuildAR\\supabase\\.env.local",
+      "notes": "CLOSEOUT 2026-05-15 (PARTIAL). Fresh Supabase project xbfgohafudrfygztqmtg (eu-west-1) live. All 6 tables (profiles, projects, project_steps, assets, sessions, events) respond HTTP 200. Seed: 2 projects (wall shelf + table assembly) + 12 steps. RLS behavior under anon matches policy intent on every table. BLOCKER: SUPABASE_SERVICE_ROLE_KEY missing from .env.local — Silas couldn't run pg_catalog/pg_policies/pg_trigger audit. 7 RLS risks flagged for Jasmin (no INSERT policy on profiles, projects_update_staff may allow creators editing published, overlapping events SELECT, projects.published_by no ON DELETE, etc.). Report: owner_inbox/buildar/silas_s1_done.md."
     },
     {
       "task_id": "BUILDAR-S1-002",
@@ -121,8 +123,8 @@
       "priority": "critical",
       "assigned_to": "Yoni",
       "tested_by": "Dev",
-      "status": "in_progress",
-      "notes": "Dispatched 2026-05-15. Bare React Native (ViroReact). One backend service (api+orchestrator modules). Direct structure per 01-claude-code-master-instructions.md. No domain types yet — wait for Silas's schema. Deliver: working PNPM install, TypeScript compiles, ESLint+Prettier pass, all workspace paths resolve."
+      "status": "done",
+      "notes": "DONE 2026-05-15. Yoni PASS: 7 workspaces resolve, install/typecheck/lint/build all green, .env.example complete (7 keys), README + tsconfig strict + .gitignore correct, Bare RN confirmed (no Expo). Dev QA: PASS WITH NOTES — all 11 independent checks green; 2 MINOR (README env section, TS path aliases deferred to Phase B); no blockers. Recommendation from Dev: dispatch a Phase A ci.yml workflow before Silas's schema lands so first PR has green CI. Reports: owner_inbox/buildar/yoni_s1_done.md, owner_inbox/buildar/dev_s1_qa.md."
     },
     {
       "task_id": "BUILDAR-S1-003",
@@ -242,8 +244,9 @@
       "title": "C&C Dashboard — project filters + inline edit",
       "priority": "high",
       "assigned_to": "Rex",
-      "status": "pending",
-      "notes": "RATE LIMITED 2026-05-03. Replace agent filters with project filters (BuildARPro/Website/TradeMetrics/FamilyFlow/Career/Infra/Other). Add inline edit per card: description text + column dropdown. In-memory is fine."
+      "tested_by": "Vera",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. (1) 'Other' filter button added (line 1033) — full set: All, BuildARPro, Website, TradeMetrics, FamilyFlow, Career, Infra, Other. (2) Inline edit panel per card (lines 2334–2375) — ✏️ toggles hidden panel with textarea (task.notes) + status select (5 Kanban values); one-panel-at-a-time; card body still opens full modal. (3) openInlineEdit / saveInlineEdit / cancelInlineEdit (lines 2424–2455) — saves via saveTasks() to localStorage. CSS was already written. Vera QA: PASS WITH NOTES — all mechanics confirmed, XSS-safe, zero Phase 1–4 regressions, 3 non-blocking a11y notes. Reports: rex_dashboard001_done.md, vera_dashboard001_qa.md."
     },
     {
       "task_id": "CAREER-DASH-001",
@@ -324,16 +327,34 @@
       "title": "Dev agent first task — create BKM/sop_infra.md",
       "priority": "medium",
       "assigned_to": "Dev",
-      "status": "pending",
-      "notes": "Dev startup protocol references BKM/sop_infra.md which does not exist. Dev's first task: stub this SOP file covering infrastructure standards for the BuildAR Pro stack (Railway/EAS/Vercel/Supabase env discipline, secrets management conventions)."
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. BKM/sop_infra.md (219 lines) — Railway/EAS/Vercel/Supabase stack, env discipline (.env.local / .env.example / platform vars), secrets classification (server-only/public/CI-only) with 90-day rotation (last 2026-05-15, next 2026-08-13), single-API-service deployment topology, Supabase Pro preview branching with migration-first, CI/CD at .github/workflows/ci.yml, incident handoff to Finn's triage SOP. INDEX.md updated."
     },
     {
       "task_id": "FINN-ONBOARD-001",
       "title": "Finn agent first task — create BKM/sop_infra_triage.md",
       "priority": "medium",
       "assigned_to": "Finn",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. BKM/sop_infra_triage.md (271 lines) — triage scope (handles MCP/bots/logs/env; escalates schema→Silas, code→Yoni/Rex, CI/CD→Dev, security→Jasmin), session-start health checklist with PowerShell commands for MCP/Telegram/Supabase/WhatsApp(PAUSED)/GitHub/Task Scheduler, log-first diagnosis ordering, CLI-preferred MCP restart procedure, Telegram bot zombie-detection + last-4-only token verification, env var audit with CRLF-byte check, escalation paths. Cross-refs Dev's sop_infra.md. INDEX.md updated."
+    },
+    {
+      "task_id": "MACK-WATCHDOG-001",
+      "title": "Rate-limit watchdog + auto-restart script",
+      "priority": "high",
+      "assigned_to": "Mack",
+      "tested_by": "—",
+      "status": "done",
+      "notes": "COMPLETED 2026-05-15. scripts/rate_limit_watchdog.py (149 lines, stdlib only). on-stop: if five_hour.used_percentage >= 95%, sends Telegram ratelimit alert + writes scratchpad/rate_limit_queue.json + schedules Windows Task ANDY_RL_RESTART via schtasks to fire 'claude --continue' at resets_at epoch. on-start: if queue file exists, sends Telegram restart alert with last-task context + clears queue. Hooks wired in ~/.claude/settings.json (Stop + PreToolUse). 7 test cases PASS. 2 bugs fixed: schtasks /RL HIGHEST elevation rejection, en-IL locale date format mismatch. Report: agents/andy/inbox/mack_rate_limit_watchdog_done.md."
+    },
+    {
+      "task_id": "BUILDAR-CI-001",
+      "title": "BuildAR Pro — Phase A CI workflow (.github/workflows/ci.yml)",
+      "priority": "high",
+      "assigned_to": "Dev",
+      "tested_by": "—",
       "status": "pending",
-      "notes": "Finn startup protocol references BKM/sop_infra_triage.md which does not exist. Finn's first task: stub this SOP covering triage methodology — session-start health check checklist, log-first diagnosis rules, MCP restart procedures, escalation paths to Mack/Dev."
+      "notes": "Recommended by Dev in S1-002 QA report. Ubuntu latest, Node 20 LTS, PNPM 11.1.2. Steps: checkout → setup Node+PNPM (cache on pnpm-lock.yaml) → pnpm install --frozen-lockfile → pnpm typecheck → pnpm lint → pnpm -r build. Trigger: push to main + pull_request. Required status check on PRs. Dispatch before Silas's schema lands so first PR has green CI. Out of scope: test job, migration validation, preview envs, deploy jobs."
     },
     {
       "task_id": "SCRATCHPAD-001",
