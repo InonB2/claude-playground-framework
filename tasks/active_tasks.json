@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-15",
-  "_note_wave1_2026-05-15": "BuildAR Stage 1 Wave 1 closeouts: Yoni PASS, Silas PARTIAL (blocked on SUPABASE_SERVICE_ROLE_KEY from Inon), Dev+Finn onboarding done.",
+  "last_updated": "2026-05-16",
+  "_note_buildar_stage1_2026-05-16": "Gate A nearly complete: Silas schema DONE (Jasmin PASS), Yoni monorepo DONE (Dev PASS), Dev+Finn onboarding DONE. Dev CI workflow built — awaiting Vera QA. Phase B backlog: 2 Silas tickets (FK ON DELETE, storage bucket).",
   "tasks": [
     {
       "task_id": "SYSTEM-IMPROVE-2026-05-15",
@@ -108,14 +108,40 @@
       "notes": "COMPLETED 2026-05-14. agents/dev.md created, roster bumped v2.2→v2.3 (15 agents). Inbox scaffolded. FLAG: BKM/sop_infra.md does not exist yet — Dev's startup protocol references it. Dev's first task should be to stub this file."
     },
     {
+      "task_id": "BUILDAR-S1-005",
+      "title": "BuildAR Pro Stage 1 — Phase A CI workflow (GitHub Actions)",
+      "priority": "high",
+      "assigned_to": "Dev",
+      "tested_by": "Vera",
+      "status": "in_progress",
+      "notes": "Dispatched 2026-05-16. Dev built .github/workflows/ci.yml (5 jobs: install, lint, typecheck, test, migration-validate label-gated), .github/workflows/README.md, .github/CODEOWNERS. pnpm 9 + Node 20 LTS, concurrency cancel, contents:read only, all actions pinned. actionlint 1.7.1 zero findings + powershell-yaml parse clean. No secrets referenced (Phase A is validation only). No commit yet — awaiting Vera QA. Report: owner_inbox/buildar/dev_ci_workflow_done.md."
+    },
+    {
+      "task_id": "BUILDAR-S2-001",
+      "title": "BuildAR Pro Phase B — FK ON DELETE clauses (projects.published_by, events.user_id)",
+      "priority": "medium",
+      "assigned_to": "Silas",
+      "tested_by": "Jasmin",
+      "status": "backlog",
+      "notes": "Flagged by Jasmin 2026-05-16 as MAJOR for Phase B. Both columns currently have no ON DELETE clause — deleting an auth.users row would either block (FK violation) or leave dangling references. Set both to ON DELETE SET NULL. Migration 0003. Dispatch after Gate A is closed."
+    },
+    {
+      "task_id": "BUILDAR-S2-002",
+      "title": "BuildAR Pro Phase B — Storage bucket + RLS policies",
+      "priority": "medium",
+      "assigned_to": "Silas",
+      "tested_by": "Jasmin",
+      "status": "backlog",
+      "notes": "Flagged by Jasmin 2026-05-16 as MAJOR for Phase B. No storage buckets defined yet. Assets table references file paths but bucket isn't provisioned. Create 'project-assets' bucket with RLS (admin upload, signed-URL read for app users). Migration 0004. Dispatch when Yoni needs asset uploads (likely Sprint 1)."
+    },
+    {
       "task_id": "BUILDAR-S1-001",
       "title": "BuildAR Pro Stage 1 — Supabase fresh project + 6-table schema migrations",
       "priority": "critical",
       "assigned_to": "Silas",
       "tested_by": "Jasmin",
-      "status": "blocked",
-      "blocked_by": "Inon — paste SUPABASE_SERVICE_ROLE_KEY into D:\\BuildAR\\supabase\\.env.local",
-      "notes": "CLOSEOUT 2026-05-15 (PARTIAL). Fresh Supabase project xbfgohafudrfygztqmtg (eu-west-1) live. All 6 tables (profiles, projects, project_steps, assets, sessions, events) respond HTTP 200. Seed: 2 projects (wall shelf + table assembly) + 12 steps. RLS behavior under anon matches policy intent on every table. BLOCKER: SUPABASE_SERVICE_ROLE_KEY missing from .env.local — Silas couldn't run pg_catalog/pg_policies/pg_trigger audit. 7 RLS risks flagged for Jasmin (no INSERT policy on profiles, projects_update_staff may allow creators editing published, overlapping events SELECT, projects.published_by no ON DELETE, etc.). Report: owner_inbox/buildar/silas_s1_done.md."
+      "status": "done",
+      "notes": "DONE 2026-05-15. Fresh Supabase project xbfgohafudrfygztqmtg (eu-west-1). 6 tables, 24 policies, all RLS enabled. Seed: 2 projects + 12 steps. Auto-profile trigger live-validated (create auth.user→profile appears, delete→profile vanishes). Jasmin QA PASS WITH NOTES: 0 blockers, 2 MAJOR for Phase B (FK ON DELETE on projects.published_by + events.user_id; storage bucket + RLS not yet defined), 3 MINOR + 1 NIT. Silas's risk #2 was actually safer than flagged — creators cannot leave projects in published state after update. ENV NOTE: .env.local stored service role key as 'SUPABASE_service_role_KEY' (mixed case) — should be SUPABASE_SERVICE_ROLE_KEY per Dev SOP; Yoni backend will expect all-caps. Reports: owner_inbox/buildar/silas_s1_done.md, owner_inbox/buildar/jasmin_s1_qa.md."
     },
     {
       "task_id": "BUILDAR-S1-002",

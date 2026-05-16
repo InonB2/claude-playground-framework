@@ -2290,7 +2290,7 @@ function renderTasks(){
   cols.forEach(col=>{
     document.getElementById(`cards-${col}`).innerHTML='';
   });
-  const filtered = currentFilter==='all' ? tasks : tasks.filter(t=>t.project===currentFilter);
+  const filtered = currentFilter==='all' ? tasks : tasks.filter(t=>(t.project||'Other')===currentFilter); // DASH-001-A11Y (fix 3)
   let counts = {'needs-you':0,'in-progress':0,'blocked':0,'tested':0,'done':0};
   let cardIndex = 0;
   filtered.forEach(task=>{
@@ -2348,12 +2348,12 @@ function renderTasks(){
       <div style="display:flex;justify-content:flex-end;margin-top:6px">
         <button class="task-cta-btn" data-task-cta="${task.id}" onclick="taskCTA('${task.id}');event.stopPropagation()" style="background:${_ctaBg};color:${_ctaColor};">${_ctaLabel}</button>
       </div>
-      <button class="card-edit-btn" title="Quick edit" onclick="openInlineEdit('${task.id}',event)">✏️</button>
+      <button class="card-edit-btn" title="Quick edit" aria-label="Quick edit" onclick="openInlineEdit('${task.id}',event)">✏️</button><!-- DASH-001-A11Y (fix 2) -->
       <!-- DASH-001 (item 3) — inline edit panel (description + status) -->
       <div class="card-edit-panel" id="inline-edit-${task.id}">
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Description</label>
+        <label for="inline-desc-${task.id}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Description</label><!-- DASH-001-A11Y (fix 1) -->
         <textarea id="inline-desc-${task.id}" rows="3" style="resize:vertical" placeholder="Task notes / description">${escHtml(task.notes||'')}</textarea>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Column / Status</label>
+        <label for="inline-status-${task.id}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:3px">Column / Status</label><!-- DASH-001-A11Y (fix 1) -->
         <select id="inline-status-${task.id}">
           <option value="needs-you"${task.status==='needs-you'?' selected':''}>Needs You</option>
           <option value="in-progress"${(task.status==='in-progress'||task.status==='partial')?' selected':''}>In Progress</option>
