@@ -36,5 +36,5 @@ BuildAR Stage 1 Gate A is complete. CI workflow v2 written by Dev, Vera re-QA PA
 7. **BuildAR initial git commit** — D:\BuildAR\ has zero commits; all files untracked. Approve when ready.
 8. **Apply 0003_security_fixes.sql** — migration file written by Silas, not yet pushed to Supabase.
 
-## Waiting On (agent in flight)
-- **Jasmin live RLS audit** — af95f82e still running; delivers to agents/andy/inbox/jasmin_buildar_live_qa.md
+## BuildAR Gate A — Security Sign-Off
+Jasmin live RLS audit (2026-05-16): **PASS WITH NOTES**. All 5 live checks complete. Schema is secure. Trigger fires. No storage buckets. **One open item:** `0003_security_fixes.sql` must be applied to live DB before user-facing testing (`sessions_select_admin` policy is missing; 4 other FK/trigger fixes in same file). Apply via Supabase SQL editor or `npx supabase db push --linked`.
