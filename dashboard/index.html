@@ -1685,7 +1685,7 @@ body.tab-linkedin .tab-btn[data-tab="linkedin"].active{color:var(--linkedin-brig
 // ══════════════════════════════════════════════════════════════════
 const LI_POSTS_SEED_VER = 3;
 const CV_SEED_VER = 6;
-const JOBS_SEED_VER = 6;
+const JOBS_SEED_VER = 7;
 const TASKS_SEED_VER = 2;
 let tasks = [];
 let jobs = [];
@@ -1799,10 +1799,10 @@ function seedDefaultTasks(){
 
 function seedDefaultJobs(){
   jobs = [
-    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Applied',rating:3,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-15',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[{name:'Dana Levi',role:'Talent Acquisition',linkedinUrl:'https://www.linkedin.com/in/dana-levi',lastContacted:'2026-05-08'}],url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Cover letter needed — degree gap (BioEng vs CS).'},
-    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Applied',rating:4,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-13',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:false,coverLetterReady:true},contacts:[],url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'ATS fit 8.5/10. 14 keywords injected.'},
+    {id:'job-001',company:'Elbit Systems',role:'Training PM',stage:'Archived',rating:3,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-15',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[{name:'Dana Levi',role:'Talent Acquisition',linkedinUrl:'https://www.linkedin.com/in/dana-levi',lastContacted:'2026-05-08'}],url:'https://elbitsystemscareer.com/job/?jid=20344',notes:'Scrapped by Inon 2026-05-16.'},
+    {id:'job-002',company:'Elbit Smart Sensing',role:'Technical PM',stage:'Archived',rating:4,date:'2026-05-06',createdAt:'2026-05-06',followUpDate:'2026-05-13',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:false,coverLetterReady:true},contacts:[],url:'https://elbitsystemscareer.com/job/?jid=20248',notes:'Scrapped by Inon 2026-05-16. (was: ATS fit 8.5/10. 14 keywords injected.)'},
     {id:'job-003',company:'BuildARPro',role:'Co-Founder / CPO',stage:'Interviewing',rating:5,date:'2026-04-15',createdAt:'2026-04-15',followUpDate:'2026-05-20',prepChecklist:{identifiedRecruiter:true,customizedCv:true,sentConnection:true,gotReferral:true,coverLetterReady:true},contacts:[{name:'Amir Cohen',role:'Co-Founder',linkedinUrl:'https://www.linkedin.com/in/amir-cohen',lastContacted:'2026-05-10'},{name:'Noa Bar',role:'Advisor',linkedinUrl:'',lastContacted:null}],url:'',notes:'Internal — own venture.'},
-    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',createdAt:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[],url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.'},
+    {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Rejected',rating:5,date:'2026-05-11',createdAt:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},contacts:[],url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'Rejected by employer 2026-05-16. (was: $180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.)'},
   ];
   saveJobs();
 }
@@ -1888,7 +1888,7 @@ const TASKS_V2_ENTRIES = [
   {id:'LENOVO-INC-001',title:'Tailored CV — Tech Incubation PM, Lenovo CTO Org',priority:'high',agent:'Cole',status:'needs-you',project:'Career',blockedBy:'',notes:'COMPLETED 2026-05-11. HTML at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Builder angle leaned hard. ATS ~9.5/10. Jasmin QA: PASS. Next: review HTML, convert to PDF, submit via LinkedIn.'}
 ];
 const JOBS_V2_ENTRIES = [
-  {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Preparing',rating:5,date:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'$180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10.'}
+  {id:'job-lenovo-inc-001',company:'Lenovo CTO Org',role:'Tech Incubation PM',stage:'Rejected',rating:5,date:'2026-05-11',followUpDate:'2026-05-18',prepChecklist:{identifiedRecruiter:false,customizedCv:true,sentConnection:false,gotReferral:false,coverLetterReady:false},url:'https://www.linkedin.com/jobs/search/?currentJobId=4380617928',notes:'Rejected by employer 2026-05-16.'}
 ];
 const JOBS_V3_ENTRIES = [];
 // V4: 5-stage funnel + rating field (handled at runtime via migrateLegacyJobStages)
@@ -1899,11 +1899,35 @@ const JOBS_V5_ENTRIES = [];
 // No merge entries needed: the V6 payload IS the migration, which runs every load,
 // so existing users get contacts[]/createdAt backfilled with no data loss.
 const JOBS_V6_ENTRIES = [];
+// V7: 2026-05-16 cancellations — Lenovo Incubation PM → Rejected; Elbit Training PM + Elbit Smart
+// Sensing Technical PM → Archived. Handled at runtime via _patchCancelledJobs() (idempotent).
+const JOBS_V7_ENTRIES = [];
 function _mergeNewSeeds(arr, newEntries, saveFunc){
   const ids = new Set(arr.map(x=>x.id));
   let added = 0;
   newEntries.forEach(e=>{ if(!ids.has(e.id)){ arr.push(e); added++; } });
   if(added>0) saveFunc();
+}
+
+// V7 (2026-05-16): one-time patch — force specific job IDs to their terminal stages.
+// Idempotent: once the target stage is already set, nothing changes. Does NOT fire again
+// after localStorage key 'andy_jobs_patch_v7' is written as '1'.
+function _patchCancelledJobs(){
+  if(localStorage.getItem('andy_jobs_patch_v7')==='1') return;
+  const patches = {
+    'job-001':         {stage:'Archived', notes:'Scrapped by Inon 2026-05-16.'},
+    'job-002':         {stage:'Archived', notes:'Scrapped by Inon 2026-05-16. (was: ATS fit 8.5/10. 14 keywords injected.)'},
+    'job-lenovo-inc-001': {stage:'Rejected', notes:'Rejected by employer 2026-05-16. (was: $180k–$210k base. Bay Area/Remote. ~50% travel. Builder angle CV ready. ATS ~9.5/10. Jasmin QA: PASS.)'}
+  };
+  let changed = false;
+  jobs.forEach(j=>{
+    if(patches[j.id]){
+      const p = patches[j.id];
+      if(j.stage !== p.stage){ j.stage = p.stage; j.notes = p.notes; changed = true; }
+    }
+  });
+  if(changed) saveJobs();
+  localStorage.setItem('andy_jobs_patch_v7','1');
 }
 
 function seedDefaultLiPosts(){
@@ -5787,6 +5811,8 @@ function tkInit(){
   else if(_jobsVer < JOBS_SEED_VER){ _mergeNewSeeds(jobs, JOBS_V2_ENTRIES, saveJobs); localStorage.setItem('andy_jobs_ver', JOBS_SEED_VER); }
   // Always run legacy-stage migration after loading jobs (idempotent).
   migrateLegacyJobStages();
+  // V7 one-time patch: move cancelled/rejected jobs to terminal stages.
+  _patchCancelledJobs();
 
   const _liVer = parseInt(localStorage.getItem('andy_liposts_ver')||'0');
   if(_liVer < LI_POSTS_SEED_VER){ seedDefaultLiPosts(); localStorage.setItem('andy_liposts_ver', LI_POSTS_SEED_VER); }
