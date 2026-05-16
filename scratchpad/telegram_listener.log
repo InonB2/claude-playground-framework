@@ -1,0 +1,267 @@
+2026-05-16 15:50:20,310 INFO ============================================================
+2026-05-16 15:50:20,310 INFO Andy Telegram Listener starting
+2026-05-16 15:50:20,310 INFO Allowed user ID: 6283854178
+2026-05-16 15:50:20,310 INFO Trigger commands: {'/resume', '/start', '/continue'}
+2026-05-16 15:50:20,310 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 15:50:20,310 INFO Bot token (masked): 8731882312...
+2026-05-16 15:50:20,310 INFO ============================================================
+2026-05-16 15:50:21,334 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 15:50:21,796 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 15:50:21,890 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 15:50:21,894 INFO Application started
+2026-05-16 15:50:52,157 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:51:24,247 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:51:56,338 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:52:28,435 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:53:00,665 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:53:32,752 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:54:04,841 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:54:36,945 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:55:09,043 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:55:22,156 INFO ============================================================
+2026-05-16 15:55:22,156 INFO Andy Telegram Listener starting
+2026-05-16 15:55:22,156 INFO Allowed user ID: 6283854178
+2026-05-16 15:55:22,156 INFO Trigger commands: {'/continue', '/start', '/resume'}
+2026-05-16 15:55:22,156 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 15:55:22,156 INFO Bot token (masked): 8731882312...
+2026-05-16 15:55:22,156 INFO ============================================================
+2026-05-16 15:55:22,734 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 15:55:23,142 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 15:55:23,224 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 15:55:23,229 INFO Application started
+2026-05-16 15:55:23,560 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:55:23,562 ERROR No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 672, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 4865, in get_updates
+    await self._post(
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 704, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 370, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 733, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-16 15:55:26,669 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:55:26,671 ERROR No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 672, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 4865, in get_updates
+    await self._post(
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 704, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 370, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 733, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-16 15:55:56,659 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:56:28,750 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:56:30,862 INFO ============================================================
+2026-05-16 15:56:30,863 INFO Andy Telegram Listener starting
+2026-05-16 15:56:30,863 INFO Allowed user ID: 6283854178
+2026-05-16 15:56:30,863 INFO Trigger commands: {'/start', '/resume', '/continue'}
+2026-05-16 15:56:30,863 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 15:56:30,863 INFO Bot token (masked): 8731882312...
+2026-05-16 15:56:30,863 INFO ============================================================
+2026-05-16 15:56:31,635 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 15:56:32,009 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 15:56:32,094 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 15:56:32,098 INFO Application started
+2026-05-16 15:56:32,339 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:56:32,343 ERROR No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 672, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 4865, in get_updates
+    await self._post(
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 704, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 370, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 733, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-16 15:56:35,459 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:56:35,467 CRITICAL Conflict: another bot instance is already polling. Stop the duplicate process and restart this one. Exiting.
+2026-05-16 15:56:53,334 INFO ============================================================
+2026-05-16 15:56:53,334 INFO Andy Telegram Listener starting
+2026-05-16 15:56:53,334 INFO Allowed user ID: 6283854178
+2026-05-16 15:56:53,334 INFO Trigger commands: {'/start', '/continue', '/resume'}
+2026-05-16 15:56:53,334 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 15:56:53,334 INFO Bot token (masked): 8731882312...
+2026-05-16 15:56:53,334 INFO ============================================================
+2026-05-16 15:56:53,864 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 15:56:54,231 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 15:56:54,317 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 15:56:54,323 INFO Application started
+2026-05-16 15:56:54,575 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:56:54,579 ERROR No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 161, in network_retry_loop
+    await do_action()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_utils\networkloop.py", line 154, in do_action
+    action_cb_task.result()
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 672, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 4865, in get_updates
+    await self._post(
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 704, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\ext\_extbot.py", line 370, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\_bot.py", line 733, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Inon Baasov\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-16 15:56:59,180 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 15:56:59,187 CRITICAL Conflict: another bot instance is already polling. Stop the duplicate process and restart this one. Exiting.
+2026-05-16 15:57:30,288 INFO ============================================================
+2026-05-16 15:57:30,288 INFO Andy Telegram Listener starting
+2026-05-16 15:57:30,289 INFO Allowed user ID: 6283854178
+2026-05-16 15:57:30,289 INFO Trigger commands: {'/start', '/resume', '/continue'}
+2026-05-16 15:57:30,289 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 15:57:30,289 INFO Bot token (masked): 8731882312...
+2026-05-16 15:57:30,289 INFO ============================================================
+2026-05-16 15:57:30,818 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 15:57:31,151 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 15:57:31,243 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 15:57:31,246 INFO Application started
+2026-05-16 15:58:01,510 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:58:33,611 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:59:05,720 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 15:59:37,847 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:00:10,261 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:00:43,068 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:01:15,172 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:01:47,288 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:02:19,389 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:02:51,493 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:03:23,594 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:03:55,703 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:04:27,814 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:04:40,212 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:04:40,221 INFO Message from user_id=6283854178: '/continue'
+2026-05-16 16:04:40,221 INFO Authorized trigger from 6283854178: '/continue'
+2026-05-16 16:04:40,616 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/sendMessage "HTTP/1.1 200 OK"
+2026-05-16 16:04:40,622 INFO Launching Windows Terminal → claude -c
+2026-05-16 16:04:40,875 INFO wt.exe launched successfully
+2026-05-16 16:05:12,357 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:05:44,469 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:06:10,588 INFO ============================================================
+2026-05-16 16:06:10,588 INFO Andy Telegram Listener starting
+2026-05-16 16:06:10,588 INFO Allowed user ID: 6283854178
+2026-05-16 16:06:10,588 INFO Trigger commands: {'/continue', '/resume', '/start'}
+2026-05-16 16:06:10,588 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 16:06:10,588 INFO Bot token (masked): 8731882312...
+2026-05-16 16:06:10,588 INFO ============================================================
+2026-05-16 16:06:11,082 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 16:06:11,415 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 16:06:11,498 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 16:06:11,500 INFO Application started
+2026-05-16 16:06:41,735 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:07:13,838 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:07:23,797 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:07:23,803 INFO Message from user_id=6283854178: '/continue'
+2026-05-16 16:07:23,804 INFO Authorized trigger from 6283854178: '/continue'
+2026-05-16 16:07:24,118 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/sendMessage "HTTP/1.1 200 OK"
+2026-05-16 16:07:24,239 INFO Launching Windows Terminal → claude -c
+2026-05-16 16:07:26,105 INFO wt.exe launched successfully
+2026-05-16 16:07:56,676 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:08:28,768 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:09:00,863 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:09:32,976 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:10:01,418 INFO ============================================================
+2026-05-16 16:10:01,419 INFO Andy Telegram Listener starting
+2026-05-16 16:10:01,419 INFO Allowed user ID: 6283854178
+2026-05-16 16:10:01,419 INFO Trigger commands: {'/continue', '/start', '/resume'}
+2026-05-16 16:10:01,419 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 16:10:01,419 INFO Bot token (masked): 8731882312...
+2026-05-16 16:10:01,419 INFO ============================================================
+2026-05-16 16:10:02,534 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 16:10:02,970 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 16:10:03,068 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 16:10:03,087 INFO Application started
+2026-05-16 16:10:33,381 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:11:00,283 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 200 OK"
+2026-05-16 16:11:00,292 INFO Message from user_id=6283854178: '/continue'
+2026-05-16 16:11:00,292 INFO Authorized trigger from 6283854178: '/continue'
+2026-05-16 16:11:00,612 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/sendMessage "HTTP/1.1 200 OK"
+2026-05-16 16:11:00,620 INFO Launching Windows Terminal → claude -c
+2026-05-16 16:11:00,867 INFO wt.exe launched successfully
+2026-05-16 16:11:08,884 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 16:11:08,892 CRITICAL Conflict: another bot instance is already polling. Stop the duplicate process and restart this one. Exiting.
+2026-05-16 16:16:09,373 INFO ============================================================
+2026-05-16 16:16:09,373 INFO Andy Telegram Listener starting
+2026-05-16 16:16:09,373 INFO Allowed user ID: 6283854178
+2026-05-16 16:16:09,373 INFO Trigger commands: {'/continue', '/start', '/resume'}
+2026-05-16 16:16:09,373 INFO Rate-limit queue: D:\Claude Playground\scratchpad\rate_limit_queue.json
+2026-05-16 16:16:09,373 INFO Bot token (masked): 8731882312...
+2026-05-16 16:16:09,373 INFO ============================================================
+2026-05-16 16:16:10,307 INFO Polling started (poll_interval=2s, timeout=30s)
+2026-05-16 16:16:10,792 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getMe "HTTP/1.1 200 OK"
+2026-05-16 16:16:10,885 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/deleteWebhook "HTTP/1.1 200 OK"
+2026-05-16 16:16:10,891 INFO Application started
+2026-05-16 16:16:13,532 INFO HTTP Request: POST https://api.telegram.org/bot8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I/getUpdates "HTTP/1.1 409 Conflict"
+2026-05-16 16:16:14,946 CRITICAL Conflict: another bot instance is already polling. Stop the duplicate process and restart this one. Exiting.

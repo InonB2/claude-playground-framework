@@ -1,40 +1,29 @@
-# Quick Status — Last updated: 2026-05-16
+# Quick Status — Last updated: 2026-05-16 (session 2)
 
-## Last Session (2026-05-16 — verification wave complete)
-BuildAR Stage 1 Gate A is complete. CI workflow v2 written by Dev, Vera re-QA PASS (all 16 spec items). Dashboard 5-item pass (DASH-IMPROVE) and DASHBOARD-001 (filters + inline edit) both done and QA-approved. Watchdog live. Jasmin live RLS audit running (af95f82e — 0 bytes so far). All BuildAR Stage 1 reports committed.
+## Last Session Summary
+Watchdog QA-verified (Jasmin PASS WITH NOTES), Telegram remote trigger built and live (/continue from Telegram opens Claude session + sends notification), journal section shipped (3 posts, Vera PASS). Andy's cardinal rule enforced via constraint rewrite — 6 forbidden work categories now explicit in orchestrator.md.
 
-## Active Tasks (as of 2026-05-16)
+## Active Tasks
 
 | ID | Title | Priority | Owner | Status |
 |----|-------|----------|-------|--------|
-| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — Stage 1 gate closed, Phase B pending | critical | Andy | in_progress |
-| BUILDAR-S1-001 | Supabase schema + migrations | critical | Silas | done |
-| BUILDAR-S1-002 | PNPM monorepo scaffold at D:\BuildAR\ | critical | Yoni | done |
-| BUILDAR-S1-003 | Telegram notify helper (scripts/buildar_notify.py) | high | Mack | done |
-| BUILDAR-S1-004 | Mobile UX + CMS UX design briefs | high | Lena | done |
-| BUILDAR-S1-005 | CI workflow 5-job pipeline (.github/workflows/ci.yml) | high | Dev | done |
+| BUILDAR-REBUILD-000 | BuildAR Pro Rebuild — Phase B pending | critical | Andy | in_progress |
 | BUILDAR-S2-001 | FK ON DELETE clauses (Phase B) | medium | Silas | backlog |
 | BUILDAR-S2-002 | Storage bucket + RLS policies (Phase B) | medium | Silas | backlog |
-| LENOVO-INC-001 | Tailored CV — Lenovo CTO Org Incubation PM | high | Cole | pending-owner |
-| ELBIT-TPM-001 | Tailored CV — Elbit Smart Sensing Technical PM | high | Cole | pending-owner |
-| ELBIT-SYSENG-001 | Tailored CV — Elbit Artillery C4I PM/SysEng | high | Cole | pending-owner |
-| ELBIT-APPLY-001 | Submit CV to Elbit Systems (Training PM) | high | Cole | pending-owner |
-| LINKEDIN-001 | LinkedIn posts — new batch (LI-006/7/8) ready | medium | Sage | pending-owner |
-| WEBSITE-001-DESIGN-01 | Full Awwwards-level visual redesign | high | Rex | blocked |
-| WEBSITE-001-SEC-04 | Security headers | high | Rex | partial |
-| WEBSITE-001-CONTENT-01 | Thought leadership / journal section | medium | Rex | in-progress |
-| PROMAKER-AR-003 | BuildARPro pitch deck — stealth version | high | Cole | partial |
+| MACK-WATCHDOG-001 | Rate-limit watchdog + Telegram notification | high | Mack | done |
+| TELEGRAM-TRIGGER-001 | Telegram remote session trigger | high | Mack | done (Jasmin QA pending) |
+| WEBSITE-001-CONTENT-01 | Journal / thought leadership section | medium | Rex | done |
+| WEBSITE-001-SEC-04 | Security headers | high | Rex | partial (blocked: Owner applies in Base44) |
+| WEBSITE-001-DESIGN-01 | Awwwards-level visual redesign | high | Rex | blocked |
+| LINKEDIN-001 | LinkedIn posts LI-006/7/8 ready for review | medium | Sage | pending-owner |
+| PROMAKER-AR-003 | BuildARPro pitch deck — stealth version | high | Cole | partial (Owner applies text to PPTX) |
 | SCRATCHPAD-001 | Scratchpad cleanup | low | General | pending |
 
-## Owner Action Queue (needs Inon decision — no agent work pending)
-1. **3 LinkedIn posts** — approve/queue: `owner_inbox/posts/linkedin_ai_news_2026-05-14.md`
-2. **Elbit CVs v3** — Jasmin QA-approved; review HTML → approve → Cole PDF + submit
-3. **Lenovo CV** — review: `owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/`
-4. **Elbit apply** — Gmail draft ready; attach PDF, submit at elbitsystemscareer.com jid=20344
-5. **BuildAR CMS UX** — Lovable prompt: `owner_inbox/design/buildar_cms_ux_brief.md`
-6. **BuildAR Mobile UX brief** — 5-screen spec: `owner_inbox/design/buildar_mobile_ux_brief.md`
-7. **BuildAR initial git commit** — D:\BuildAR\ has zero commits; all files untracked. Approve when ready.
-8. **Apply 0003_security_fixes.sql** — migration file written by Silas, not yet pushed to Supabase.
+## Owner Action Queue (needs Inon — no agent work pending)
+1. **LinkedIn posts** — approve/queue: `owner_inbox/posts/linkedin_ai_news_2026-05-14.md` (Andy will remind if not done)
+2. **Security headers** — apply in Base44 Custom Headers panel (WEBSITE-001-SEC-04)
+3. **BuildAR Phase B** — say go when ready; Silas has 2 backlog tasks queued
 
-## BuildAR Gate A — Security Sign-Off
-Jasmin live RLS audit (2026-05-16): **PASS WITH NOTES**. All 5 live checks complete. Schema is secure. Trigger fires. No storage buckets. **One open item:** `0003_security_fixes.sql` must be applied to live DB before user-facing testing (`sessions_select_admin` policy is missing; 4 other FK/trigger fixes in same file). Apply via Supabase SQL editor or `npx supabase db push --linked`.
+## Next Session Auto-Actions (Andy runs these without being asked)
+- Run `python scripts/rate_limit_watchdog.py check` — verify template expansion from this session's Stop hook
+- Queue Jasmin QA on `scripts/telegram_listener.py` + `scripts/open_claude.ps1`

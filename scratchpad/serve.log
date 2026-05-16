@@ -885,3 +885,15 @@
  HTTP  12/05/2026 14:15:47 ::1 Returned 200 in 28 ms
  HTTP  13/05/2026 22:27:46 ::1 GET /dashboard/
  HTTP  13/05/2026 22:27:46 ::1 Returned 200 in 67 ms
+ HTTP  15/05/2026 10:52:59 ::1 GET /favicon.ico
+ HTTP  15/05/2026 10:52:59 ::1 Returned 404 in 345 ms
+ HTTP  15/05/2026 10:53:00 ::1 GET /dashboard/
+ HTTP  15/05/2026 10:53:00 ::1 Returned 200 in 99 ms
+ HTTP  15/05/2026 10:54:47 ::1 GET /owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html
+ HTTP  15/05/2026 10:54:47 ::1 Returned 301 in 6 ms
+ HTTP  15/05/2026 10:54:47 ::1 GET /owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM
+ HTTP  15/05/2026 10:54:47 ::1 Returned 200 in 18 ms
+ HTTP  15/05/2026 11:59:07 ::1 GET /dashboard/
+ HTTP  15/05/2026 11:59:07 ::1 Returned 200 in 64 ms
+ HTTP  15/05/2026 11:59:52 ::1 GET /owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/v1_Inon_Baasov_CV_TechnicalPM
+ HTTP  15/05/2026 11:59:52 ::1 Returned 200 in 28 ms
