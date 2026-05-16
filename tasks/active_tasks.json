@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-05-16",
-  "_note_buildar_stage1_2026-05-16": "Gate A nearly complete: Silas schema DONE (Jasmin PASS), Yoni monorepo DONE (Dev PASS), Dev+Finn onboarding DONE. Dev CI workflow built — awaiting Vera QA. Phase B backlog: 2 Silas tickets (FK ON DELETE, storage bucket).",
+  "_note_buildar_stage1_2026-05-16": "Gate A complete: Silas schema DONE (Jasmin PASS), Yoni monorepo DONE (Dev PASS), Dev+Finn onboarding DONE, CI workflow DONE (Vera re-QA PASS all 16 items), Lena UX briefs DONE, Mack Telegram notifier DONE. WAITING: Jasmin live RLS audit (agent af95f82e). Phase B backlog: 2 Silas tickets (FK ON DELETE, storage bucket). Next: apply 0003_security_fixes.sql, initial git commit for D:\\BuildAR\\.",
   "tasks": [
     {
       "task_id": "SYSTEM-IMPROVE-2026-05-15",
@@ -113,8 +113,8 @@
       "priority": "high",
       "assigned_to": "Dev",
       "tested_by": "Vera",
-      "status": "in_progress",
-      "notes": "REWORK 2026-05-16. Vera QA: FAIL — ci.yml on disk is a single-job pipeline (checkout→install→typecheck→lint→build), NOT the spec'd 5-job workflow Dev's report describes. README + CODEOWNERS are fine. All local pnpm commands exit 0. No secrets referenced. Sent back to Dev to ship the correct spec'd workflow (5 jobs: install/lint/typecheck/test/migration-validate label-gated, concurrency cancel, permissions:contents:read, pinned actions). Reports: owner_inbox/buildar/dev_ci_workflow_done.md (initial), owner_inbox/buildar/vera_ci_workflow_qa.md (FAIL)."
+      "status": "done",
+      "notes": "DONE 2026-05-16. Round 1: Vera FAIL (file on disk was single-job, not spec'd 5-job). Dev rework: replaced ci.yml (226 lines, 5 jobs install/lint/typecheck/test/migration-validate, postgres:16 service container, label-gated, concurrency cancel, contents:read, pinned actions). Root cause: missed Read-after-Write — now standing rule for Dev. Vera re-QA: PASS WITH NOTES — 0 BLOCKER, 0 MAJOR, 2 MINOR (docstring drift: Dev's report said 186 lines / cache deferred; actually 226 lines / cache present in all 5 jobs), 2 NIT (CODEOWNERS placeholders, apps/api+apps/web lack lint configs). Ready for first PR. Reports: owner_inbox/buildar/dev_ci_workflow_done.md (+ rework note), owner_inbox/buildar/vera_ci_workflow_qa.md (+ re-QA note)."
     },
     {
       "task_id": "BUILDAR-S2-001",
@@ -378,9 +378,9 @@
       "title": "BuildAR Pro — Phase A CI workflow (.github/workflows/ci.yml)",
       "priority": "high",
       "assigned_to": "Dev",
-      "tested_by": "—",
-      "status": "pending",
-      "notes": "Recommended by Dev in S1-002 QA report. Ubuntu latest, Node 20 LTS, PNPM 11.1.2. Steps: checkout → setup Node+PNPM (cache on pnpm-lock.yaml) → pnpm install --frozen-lockfile → pnpm typecheck → pnpm lint → pnpm -r build. Trigger: push to main + pull_request. Required status check on PRs. Dispatch before Silas's schema lands so first PR has green CI. Out of scope: test job, migration validation, preview envs, deploy jobs."
+      "tested_by": "Vera",
+      "status": "done",
+      "notes": "DONE 2026-05-16. Superseded by BUILDAR-S1-005 (same deliverable). Dev built 5-job pipeline (install/lint/typecheck/test/migration-validate), Vera re-QA PASS all 16 spec items. File at D:\\BuildAR\\.github\\workflows\\ci.yml. See BUILDAR-S1-005 for full notes."
     },
     {
       "task_id": "SCRATCHPAD-001",

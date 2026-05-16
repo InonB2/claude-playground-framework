@@ -179,3 +179,180 @@ The shipped workflow does not implement the BUILDAR-S1-005 spec. The README and 
 **Do not move to Done.** Card stays in "In Progress" with Dev as `assigned_to` and `tested_by` left blank.
 
 — Vera
+
+---
+## RE-QA 2026-05-16
+**Tester:** Vera
+**Verdict:** PASS WITH NOTES
+
+Dev's rework is real. The file at `D:\BuildAR\.github\workflows\ci.yml` now parses to 5 jobs with the required `needs:` graph, `concurrency`, `permissions`, label-gated `migration-validate`, and `postgres:16` service container. Every BLOCKER and MAJOR from my first pass is resolved. Two minor accuracy issues in Dev's closeout note (line count, and the cache claim) — the file is actually BETTER than the note describes — and `actionlint` is still unverifiable. Not blockers.
+
+---
+
+### 1. YAML syntax — PASS
+
+`powershell-yaml` `ConvertFrom-Yaml` against the on-disk file:
+
+```
+YAML OK
+Top-level keys: name, concurrency, jobs, permissions, on
+Jobs count: 5
+Jobs: lint, migration-validate, install, test, typecheck
+
+Per-job sanity:
+  lint                   runs-on=ubuntu-latest  needs=install  if=-
+  migration-validate     runs-on=ubuntu-latest  needs=install  if=contains(github.event.pull_request.labels.*.name, 'validate-migrations')
+  install                runs-on=ubuntu-latest  needs=-  if=-
+  test                   runs-on=ubuntu-latest  needs=install  if=-
+  typecheck              runs-on=ubuntu-latest  needs=install  if=-
+
+concurrency.cancel-in-progress = True
+concurrency.group               = ${{ github.workflow }}-${{ github.ref }}
+permissions.contents            = read
+migration-validate has services.postgres = True
+migration-validate postgres image        = postgres:16
+```
+
+Parses cleanly. **PASS.**
+
+### 2. actionlint — SKIP (still not installed)
+
+```
+PS> Get-Command actionlint -ErrorAction SilentlyContinue
+PS> # (empty)
+PS> Get-ChildItem "D:\BuildAR" -Recurse -Filter "actionlint*"
+PS> # (empty)
+PS> Get-ChildItem "D:\Claude Playground" -Recurse -Filter "actionlint*" -First 5
+PS> # (empty)
+```
+
+Same as last pass — `actionlint` is not on PATH and not in either repo. Dev acknowledges this in his rework note and flags it as a Phase B follow-up (commit `tools/actionlint.exe` or add it as a CI step). I accept the deferral; the rest of the structural verification (YAML parse, grep, runtime) is independently solid. **SKIP / UNVERIFIED — non-blocking.**
+
+### 3. Job graph sanity — PASS
+
+5 jobs present: `install`, `lint`, `typecheck`, `test`, `migration-validate`. `lint`/`typecheck`/`test`/`migration-validate` all `needs: install`. `migration-validate` gated on the `validate-migrations` PR label. Workflow-level `concurrency` with `cancel-in-progress: true` and `permissions: { contents: read }` both present. Everything the BLOCKER from pass 1 called out is now in the file. **PASS.**
+
+### 4. Action pinning — PASS
+
+```
+PS> Grep "uses:" D:\BuildAR\.github\workflows\ci.yml
+22:        uses: actions/checkout@v4
+25:        uses: pnpm/action-setup@v3
+30:        uses: actions/setup-node@v4
+40:        uses: actions/cache@v4
+54:        uses: actions/checkout@v4
+57:        uses: pnpm/action-setup@v3
+62:        uses: actions/setup-node@v4
+69:        uses: actions/cache@v4
+86:        uses: actions/checkout@v4
+89:        uses: pnpm/action-setup@v3
+94:        uses: actions/setup-node@v4
+101:        uses: actions/cache@v4
+118:        uses: actions/checkout@v4
+121:        uses: pnpm/action-setup@v3
+126:        uses: actions/setup-node@v4
+133:        uses: actions/cache@v4
+171:        uses: actions/checkout@v4
+174:        uses: pnpm/action-setup@v3
+179:        uses: actions/setup-node@v4
+186:        uses: actions/cache@v4
+```
+
+20 `uses:` lines total. All pinned to a major version (`@v4`/`@v3`). None float to `@main` or `@master`. Dev's rework note claimed only 3 distinct actions (`checkout@v4`, `pnpm/action-setup@v3`, `setup-node@v4`) — actually there are 4 (he also uses `actions/cache@v4`). The extra action is a positive deviation; flagged as MINOR doc drift in his closeout, not a workflow defect. **PASS.**
+
+### 5. Local equivalence — PASS
+
+From `D:\BuildAR\`:
+
+```
+=== pnpm install --frozen-lockfile ===
+Scope: all 8 workspace projects
+Already up to date
+Done in 1.4s using pnpm v11.1.2
+EXIT install=0
+
+=== pnpm -r lint ===
+apps/mobile lint: Done
+packages/validation lint$ eslint "src/**/*.ts"
+packages/core-types lint: Done
+packages/validation lint: Done
+packages/utils lint: Done
+EXIT lint=0
+
+=== pnpm -r typecheck ===
+packages/validation typecheck$ tsc -p tsconfig.json --noEmit
+apps/mobile typecheck: Done
+apps/api typecheck: Done
+packages/utils typecheck: Done
+packages/validation typecheck: Done
+EXIT typecheck=0
+
+=== pnpm -r test ===
+Scope: 7 of 8 workspace projects
+EXIT test=0
+```
+
+All four root scripts (`lint`, `typecheck`, `test`, plus `install`) exit 0. Root `package.json` defines `lint`/`typecheck`/`test`/`build` as `pnpm -r <script>` — same commands the workflow runs. `pnpm-lock.yaml` is present, `--frozen-lockfile` succeeds, version drift (local pnpm 11.1.2 vs. workflow pnpm 9) is acceptable for Phase A. **PASS.**
+
+### 6. Secrets discipline — PASS
+
+```
+PS> Grep "secrets\." D:\BuildAR\.github\workflows\ci.yml
+No matches found
+```
+
+Zero `secrets.*` references. **PASS.**
+
+### 7. README sanity — PASS
+
+README untouched (LastWriteTime 2026-05-15 23:51:30; ci.yml LastWriteTime 2026-05-16 09:55:32 — Dev modified only the workflow). The README's 5-job description now matches the file on disk; the drift that drove last pass's MAJOR finding is gone. **PASS.**
+
+### 8. CODEOWNERS sanity — PASS WITH NOTES
+
+CODEOWNERS untouched (LastWriteTime 2026-05-15 23:51:38). Same status as pass 1: syntactically valid, all owners are `@InonB2` placeholders pending real GitHub handles per agent. Documented follow-up, not a blocker. **PASS WITH NOTES.**
+
+### 9. Caching — PASS (improved over Dev's note)
+
+Every job that runs `pnpm install --frozen-lockfile` uses BOTH:
+- `actions/setup-node@v4` with `cache: 'pnpm'` + `cache-dependency-path: pnpm-lock.yaml` — caches the pnpm store.
+- `actions/cache@v4` keyed on `hashFiles('pnpm-lock.yaml')` over `node_modules`, `apps/*/node_modules`, `packages/*/node_modules` — caches the resolved tree.
+
+`install` writes the cache; `lint`/`typecheck`/`test`/`migration-validate` restore it. This is exactly the spec'd design from `BKM/sop_infra.md §6` and goes BEYOND what Dev's rework note claims ("cross-job `actions/cache@v4` for `node_modules` was deliberately deferred"). The deferral statement in the note is incorrect — the cache is in the file. Not a defect, just a closeout-vs-file drift on Dev's part. **PASS.**
+
+### 10. No-op `pnpm -r test` — PASS
+
+Verified empirically in check 5: `pnpm -r test` exits 0 with `Scope: 7 of 8 workspace projects` and no test scripts defined. pnpm silently skips workspaces lacking the script. The moment any workspace adds a `test`, it starts running. **PASS.**
+
+---
+
+## Findings (re-QA)
+
+### BLOCKER
+None. All BLOCKERs from pass 1 are resolved.
+
+### MAJOR
+None. All MAJORs from pass 1 are resolved.
+
+### MINOR
+
+1. **Closeout-vs-file drift in Dev's rework note.** The note states "Cross-job `actions/cache@v4` for `node_modules` was deliberately deferred — adds key-management risk without meaningful savings at this scale." The on-disk file contradicts this — `actions/cache@v4` is used in all 5 jobs. Also: note says file is 186 lines; actual is 226 (LF-only line endings, 225 newlines). The file is better than the note describes (positive drift), but the report is inaccurate and a future maintainer reading it will be confused. Recommend Dev update the rework note to reflect what was actually shipped.
+2. **`actionlint` still unverifiable on this machine.** No binary on PATH, none in the BuildAR repo, none in the Claude Playground tree. Dev's previous "0 findings" cannot be reproduced; his rework note explicitly acknowledges this and proposes committing `tools/actionlint.exe` or adding a CI step as Phase B work. Accepted as a known gap, not a blocker for Phase A merge.
+
+### NIT
+
+3. **CODEOWNERS `@InonB2` placeholders.** Carried over from pass 1 — documented, intentional, follow-up only once agents have real GitHub handles or `@buildar/<area>` teams exist.
+4. **Lint missing on apps/web and apps/api.** `pnpm -r lint` reports `Done` for `apps/mobile`, `packages/core-types`, `packages/validation`, `packages/utils` only. `apps/api` and `apps/web` have no lint script (or no-op). Not a CI defect — the workflow correctly runs whatever the workspace defines — but worth a follow-up for Yoni/Rex to add real ESLint configs to those apps in a separate task.
+
+---
+
+## Sign-off
+
+**PASS WITH NOTES — Vera signs off. Move BUILDAR-S1-005 to Done with `tested_by: Vera`.**
+
+The file on disk now implements the BUILDAR-S1-005 spec: 5 jobs with the correct `needs:` graph, `concurrency` with `cancel-in-progress`, workflow-level `permissions: contents: read`, label-gated `migration-validate` with a `postgres:16` service container, pinned actions, no secrets, and a working cache strategy (both pnpm-store via `setup-node` and resolved `node_modules` via `actions/cache@v4`). All local-equivalent commands exit 0. README and CODEOWNERS untouched, as agreed.
+
+Dev's "Read what you write" prevention rule from the rework note is the right fix — but it didn't get fully applied this time either (the closeout note understates the file's cache strategy and miscounts lines). Recommend he tighten the rule to also re-grep the file for the structural claims he writes into the closeout, not just confirm jobs exist. Non-blocking.
+
+Andy: this is ready to commit + push as the first PR on the BuildAR repo.
+
+— Vera
