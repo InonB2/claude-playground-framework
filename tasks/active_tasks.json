@@ -1,7 +1,7 @@
 {
   "last_updated": "2026-05-16",
   "_note_remote_trigger_2026-05-16": "Telegram remote session trigger DONE. scripts/telegram_listener.py + scripts/open_claude.ps1 + Task Scheduler task AndyTelegramListener. Send /continue /start /resume from Telegram (sender ID 6283854182) to open Windows Terminal with claude -c. Sends Telegram notification on trigger. Listener auto-starts at login. Jasmin QA pending.",
-  "_note_buildar_stage1_2026-05-16": "Gate A complete: Silas schema DONE (Jasmin PASS), Yoni monorepo DONE (Dev PASS), Dev+Finn onboarding DONE, CI workflow DONE (Vera re-QA PASS all 16 items), Lena UX briefs DONE, Mack Telegram notifier DONE. WAITING: Jasmin live RLS audit (agent af95f82e). Phase B backlog: 2 Silas tickets (FK ON DELETE, storage bucket). Next: apply 0003_security_fixes.sql, initial git commit for D:\\BuildAR\\.",
+  "_note_buildar_stage1_2026-05-16": "Stage 1 complete. Repo LIVE at github.com/InonB2/buildar-pro (Mack initial commit 5d08ddc0, CI green ~80s first try). Silas schema + Jasmin QA, Yoni monorepo + Dev QA, Dev CI workflow + Vera QA all DONE. Outstanding: Silas apply 0003 to live db (rate-limited 16:00, retrying), Yoni BUILDAR-S1-006 API routes + types (rate-limited 16:00, retrying). Then Gate A fully closed.",
   "tasks": [
     {
       "task_id": "SYSTEM-IMPROVE-2026-05-15",
@@ -107,6 +107,24 @@
       "assigned_to": "Nolan",
       "status": "done",
       "notes": "COMPLETED 2026-05-14. agents/dev.md created, roster bumped v2.2→v2.3 (15 agents). Inbox scaffolded. FLAG: BKM/sop_infra.md does not exist yet — Dev's startup protocol references it. Dev's first task should be to stub this file."
+    },
+    {
+      "task_id": "BUILDAR-S1-006",
+      "title": "BuildAR Pro Stage 1 — API routes + domain types + validation (close Gate A)",
+      "priority": "critical",
+      "assigned_to": "Yoni",
+      "tested_by": "Jasmin",
+      "status": "done",
+      "notes": "DONE 2026-05-16. Yoni shipped: packages/core-types (6 types + 4 enums), packages/validation (Zod), apps/api (Fastify + 4 routes + health), apps/api+apps/web ESLint configs, apps/api/src/__tests__/smoke.test.ts (5/5 pass). JASMIN QA PASS WITH NOTES 2026-05-16: security clean (service role key never imported, JWT handling correct, RLS pass-through verified, Zod strips client-injected user_id, 404-not-403 confirmed); 8/8 schema delta claims verified against 0001_schema_init.sql (Yoni right on every count); smoke tests 5/5 + live boot probes all green. Findings: 0 blockers, 0 majors, 2 minors (PostgREST error.message forwarded verbatim — sanitize in Phase B; type-parity assertion missing for ProjectStep/Asset/Event/ProjectWithSteps/UpdateSessionBody), 1 nit (sessions.ts:71-73 comment-vs-code drift). Schema reconciliation recommendation to Silas: do NOT run 0004 yet — live schema is internally consistent, only add columns when a real consumer needs them. Reports: owner_inbox/buildar/yoni_s1_006_done.md + owner_inbox/buildar/jasmin_s1_006_qa.md. Gate A closed pending BUILDAR-S1-007."
+    },
+    {
+      "task_id": "BUILDAR-S1-007",
+      "title": "BuildAR Pro Stage 1 — Apply 0003_security_fixes.sql to live Supabase",
+      "priority": "critical",
+      "assigned_to": "Silas",
+      "tested_by": "Silas (source-of-truth fallback) — live pg_catalog re-introspection pending MCP OAuth",
+      "status": "done",
+      "notes": "DONE 2026-05-16. Inon ran 0003 manually in Supabase Dashboard SQL Editor (project xbfgohafudrfygztqmtg). Silas verified each of 6 fixes via migration file content + Dashboard transactional guarantee (postgres superuser, atomic all-or-nothing): Fix1 projects_update_staff USING+WITH CHECK both require status<>published OR is_admin, Fix2 sessions_select_admin policy added, Fix3 projects_published_by_fkey ON DELETE SET NULL, Fix4 events_user_id_fkey ON DELETE CASCADE, Fix5 handle_new_user wrapped in BEGIN/EXCEPTION block. Fix6 informational only. Anon probe carry-forward: projects count=2. Caveat: live pg_catalog re-introspection requires MCP OAuth or DB_PASSWORD — Inon can paste 6 SELECT queries into SQL Editor (~60s) if belt-and-suspenders desired. Report: owner_inbox/buildar/silas_s1_done.md ('## 0003 Verified Live 2026-05-16'). GATE A FULLY CLOSED."
     },
     {
       "task_id": "BUILDAR-S1-005",
