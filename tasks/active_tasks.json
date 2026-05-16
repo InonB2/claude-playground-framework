@@ -114,7 +114,7 @@
       "assigned_to": "Dev",
       "tested_by": "Vera",
       "status": "in_progress",
-      "notes": "Dispatched 2026-05-16. Dev built .github/workflows/ci.yml (5 jobs: install, lint, typecheck, test, migration-validate label-gated), .github/workflows/README.md, .github/CODEOWNERS. pnpm 9 + Node 20 LTS, concurrency cancel, contents:read only, all actions pinned. actionlint 1.7.1 zero findings + powershell-yaml parse clean. No secrets referenced (Phase A is validation only). No commit yet — awaiting Vera QA. Report: owner_inbox/buildar/dev_ci_workflow_done.md."
+      "notes": "REWORK 2026-05-16. Vera QA: FAIL — ci.yml on disk is a single-job pipeline (checkout→install→typecheck→lint→build), NOT the spec'd 5-job workflow Dev's report describes. README + CODEOWNERS are fine. All local pnpm commands exit 0. No secrets referenced. Sent back to Dev to ship the correct spec'd workflow (5 jobs: install/lint/typecheck/test/migration-validate label-gated, concurrency cancel, permissions:contents:read, pinned actions). Reports: owner_inbox/buildar/dev_ci_workflow_done.md (initial), owner_inbox/buildar/vera_ci_workflow_qa.md (FAIL)."
     },
     {
       "task_id": "BUILDAR-S2-001",
