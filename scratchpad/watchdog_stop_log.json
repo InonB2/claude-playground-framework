@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-05-16T13:58:52.648636+03:00",
+  "raw_args": [
+    "{{rate_limits.five_hour.used_percentage}}",
+    "{{rate_limits.five_hour.resets_at}}"
+  ],
+  "templates_expanded": false
+}

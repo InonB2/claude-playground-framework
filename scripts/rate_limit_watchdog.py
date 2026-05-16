@@ -3,8 +3,8 @@ rate_limit_watchdog.py — Claude Code rate-limit detector and restart scheduler
 
 USAGE:
   python scripts/rate_limit_watchdog.py on-stop <used_pct> <resets_at_epoch>
-      Stop hook: if pct >= 95, send Telegram alert, write queue file,
-      schedule Windows Task to relaunch claude --continue at resets_at time.
+      Stop hook: log args received; if pct >= 95, send Telegram alert, write queue
+      file, schedule Windows Task ANDY_RL_RESTART to fire rl_restart.bat at resets_at.
 
   python scripts/rate_limit_watchdog.py on-start
       Startup hook: if queue file exists, send Telegram restart notification
@@ -14,25 +14,34 @@ USAGE:
       Dry-run: simulate 100% rate-limit, +130 min restart. Sends Telegram,
       writes queue file, creates ANDY_RL_RESTART scheduled task.
 
+  python scripts/rate_limit_watchdog.py fire-test
+      Schedule ANDY_RL_RESTART to fire in 3 minutes. Use to verify that the
+      scheduled task actually executes (check scratchpad/watchdog_stop_log.json
+      and Telegram for restart notification after 2 min).
+
   python scripts/rate_limit_watchdog.py check
       Print queue file contents or "clean state".
 
-HOOK SETUP in ~/.claude/settings.json → "hooks":
+HOOK SETUP in ~/.claude/settings.json -> "hooks":
   "Stop":  python "D:/Claude Playground/scripts/rate_limit_watchdog.py"
                on-stop "{{rate_limits.five_hour.used_percentage}}"
                         "{{rate_limits.five_hour.resets_at}}"
   "PreToolUse": python "D:/Claude Playground/scripts/rate_limit_watchdog.py" on-start
 
 HOW IT WORKS — Infrastructure:
-  Stop hook fires on any session end. If five_hour.used_percentage >= 95%,
-  we treat this as a rate-limit termination: write scratchpad/rate_limit_queue.json,
-  send Telegram ratelimit alert, and register a one-shot Windows Task (schtasks)
-  to fire `claude --continue` at the exact resets_at epoch. The scheduled task
-  runs without admin elevation (/RL HIGHEST is omitted intentionally).
+  Stop hook fires on any session end. Args are logged to scratchpad/watchdog_stop_log.json
+  every time so template expansion can be verified. If five_hour.used_percentage >= 95%,
+  write scratchpad/rate_limit_queue.json, send Telegram ratelimit alert, and register a
+  one-shot Windows Task (ANDY_RL_RESTART) to fire scripts/rl_restart.bat at the exact
+  resets_at epoch.
+
+  The restart batch file runs claude --continue --print "/start ...", which triggers the
+  on-start PreToolUse hook. That hook reads the queue, sends a Telegram restart
+  notification, and clears the queue.
 
   Design decisions:
   - Threshold 95% (not 100%): session may terminate before full saturation.
-  - Claude Code has no --resume flag; --continue continues last conversation.
+  - Batch file (rl_restart.bat) avoids nested-quote fragility in schtasks /TR.
   - Queue file persists if schtasks fails, so the next manual start still fires
     the Telegram restart notification automatically via on-start.
   - Pure stdlib, no external deps.
@@ -47,9 +56,10 @@ except ImportError:
 
 ROOT       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QUEUE_FILE = os.path.join(ROOT, "scratchpad", "rate_limit_queue.json")
+DIAG_LOG   = os.path.join(ROOT, "scratchpad", "watchdog_stop_log.json")
 NOTIFY     = os.path.join(ROOT, "scripts", "buildar_notify.py")
 TASKS      = os.path.join(ROOT, "tasks", "active_tasks.json")
-CLAUDE_EXE = r"C:\Users\Inon Baasov\AppData\Roaming\npm\claude.cmd"
+RESTART_BAT = os.path.join(ROOT, "scripts", "rl_restart.bat")
 TASK_NAME  = "ANDY_RL_RESTART"
 THRESHOLD  = 95  # percent
 
@@ -86,9 +96,23 @@ def del_queue():
     try: os.remove(QUEUE_FILE); print("[OK] Queue cleared")
     except FileNotFoundError: pass
 
+def write_diag(raw_args):
+    """Always log on-stop invocation — proves whether {{...}} templates expanded."""
+    try:
+        os.makedirs(os.path.dirname(DIAG_LOG), exist_ok=True)
+        entry = {
+            "timestamp": il_now().isoformat(),
+            "raw_args": list(raw_args),
+            "templates_expanded": not any(
+                a.startswith("{{") for a in raw_args
+            ) if raw_args else False,
+        }
+        json.dump(entry, open(DIAG_LOG, "w", encoding="utf-8"), indent=2)
+    except Exception as e:
+        print(f"[WARN] diag log: {e}", file=sys.stderr)
+
 def schedule_task(epoch):
     local = datetime.fromtimestamp(epoch, tz=IL_TZ).astimezone().replace(tzinfo=None)
-    # Detect locale short-date format via Windows API (avoids locale mismatch)
     try:
         buf = ctypes.create_unicode_buffer(80)
         ctypes.windll.kernel32.GetLocaleInfoW(0, 0x1F, buf, 80)
@@ -96,15 +120,19 @@ def schedule_task(epoch):
         date_str = local.strftime(fmt)
     except Exception:
         date_str = local.strftime("%d/%m/%Y")
-    action = (f'cmd /c "cd /d {ROOT} && "{CLAUDE_EXE}" --continue --print '
-              f'"/start Session restarted after rate-limit window. Continue active tasks.""')
-    r = subprocess.run(["schtasks","/Create","/F","/TN",TASK_NAME,"/TR",action,
-                        "/SC","ONCE","/SD",date_str,"/ST",local.strftime("%H:%M")],
-                       capture_output=True, text=True, timeout=15)
-    if r.returncode == 0: print(f"[OK] Task '{TASK_NAME}' scheduled at {local.strftime('%H:%M')} local")
-    else: print(f"[WARN] schtasks failed: {r.stderr.strip()} — queue still active", file=sys.stderr)
+    r = subprocess.run(
+        ["schtasks", "/Create", "/F", "/TN", TASK_NAME,
+         "/TR", f'"{RESTART_BAT}"',
+         "/SC", "ONCE", "/SD", date_str, "/ST", local.strftime("%H:%M")],
+        capture_output=True, text=True, timeout=15
+    )
+    if r.returncode == 0:
+        print(f"[OK] Task '{TASK_NAME}' scheduled at {local.strftime('%H:%M')} local")
+    else:
+        print(f"[WARN] schtasks failed: {r.stderr.strip()} — queue still active", file=sys.stderr)
 
 def on_stop(args):
+    write_diag(args)  # always log — diagnostic for template expansion
     if len(args) < 2: print("[INFO] on-stop: no args (hook template not expanded)"); return
     PLACEHOLDER = ("{{rate_limits.five_hour.used_percentage}}", "{{rate_limits.five_hour.resets_at}}", "0", "")
     try:
@@ -136,12 +164,32 @@ def test(_):
     schedule_task(epoch)
     print(f"=== DONE — queue: {QUEUE_FILE} | task: {TASK_NAME} ===")
 
+def fire_test(_):
+    """Schedule ANDY_RL_RESTART to fire in 3 minutes for execution verification."""
+    print("=== FIRE-TEST: scheduling ANDY_RL_RESTART in 2 minutes ===")
+    epoch = (il_now() + timedelta(minutes=3)).timestamp()
+    task = next_task() or "FIRE-TEST TASK"
+    write_queue(epoch, f"[FIRE-TEST] {task}")
+    schedule_task(epoch)
+    print(f"[INFO] Task will fire at {il_str(epoch)} IL (about 3 min from now)")
+    print("[INFO] Check Telegram for restart notification + scratchpad/rate_limit_queue.json cleanup")
+    print("=== DONE ===")
+
 def check(_):
     q = read_queue()
     if not q: print("[OK] No queue — clean state")
     else: print("\n".join(f"  {k}: {v}" for k,v in q.items()))
+    # Also show diag log if present
+    try:
+        d = json.load(open(DIAG_LOG, encoding="utf-8"))
+        print(f"\n[DIAG] Last on-stop call: {d.get('timestamp','?')}")
+        print(f"  raw_args: {d.get('raw_args','?')}")
+        print(f"  templates_expanded: {d.get('templates_expanded','?')}")
+    except FileNotFoundError:
+        print("\n[DIAG] No stop-log yet (on-stop never fired in this install)")
 
-CMDS = {"on-stop": on_stop, "on-start": on_start, "test": test, "check": check}
+CMDS = {"on-stop": on_stop, "on-start": on_start, "test": test,
+        "fire-test": fire_test, "check": check}
 
 if __name__ == "__main__":
     args = sys.argv[1:]
