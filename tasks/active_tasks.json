@@ -1,5 +1,6 @@
 {
   "last_updated": "2026-05-16",
+  "_note_remote_trigger_2026-05-16": "Telegram remote session trigger DONE. scripts/telegram_listener.py + scripts/open_claude.ps1 + Task Scheduler task AndyTelegramListener. Send /continue /start /resume from Telegram (sender ID 6283854182) to open Windows Terminal with claude -c. Sends Telegram notification on trigger. Listener auto-starts at login. Jasmin QA pending.",
   "_note_buildar_stage1_2026-05-16": "Gate A complete: Silas schema DONE (Jasmin PASS), Yoni monorepo DONE (Dev PASS), Dev+Finn onboarding DONE, CI workflow DONE (Vera re-QA PASS all 16 items), Lena UX briefs DONE, Mack Telegram notifier DONE. WAITING: Jasmin live RLS audit (agent af95f82e). Phase B backlog: 2 Silas tickets (FK ON DELETE, storage bucket). Next: apply 0003_security_fixes.sql, initial git commit for D:\\BuildAR\\.",
   "tasks": [
     {
@@ -64,8 +65,8 @@
       "title": "Tailored CV — Tech Incubation PM, Lenovo CTO Org (LinkedIn jid=4380617928)",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "pending-owner",
-      "notes": "COMPLETED 2026-05-11. CV at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html. Strategy: builder angle leaned hard — 3 live solo products + 4 AI startup incubation engagements framed as real-stakes 0-to-1 work. Biotech degree framed as Engineering (accurate) + scientist's hypothesis-driven incubation approach. No location shown. No Mandarin gap raised (preferred only). JD ATS fit: ~9.5/10. Jasmin QA: PASS — all 9 permanent rules verified. Next: Inon reviews, Cole converts to PDF, dashboard entry IB-v1-IncubationPM-Lenovo."
+      "status": "cancelled",
+      "notes": "CANCELLED 2026-05-16. Inon received rejection from Lenovo — position closed or not selected. CV archived at owner_inbox/archive/cv_archive/LENOVO-CTO-IncubationPM/v1_Inon_Baasov_CV_IncubationPM.html for future reference. No further action needed."
     },
     {
       "task_id": "TELEGRAM-001",
@@ -173,16 +174,16 @@
       "title": "Tailored CV — Product Manager / System Engineer, Elbit Artillery C4I, Netanya",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "pending-owner",
-      "notes": "COMPLETED 2026-05-10. CV at owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/v1_Inon_Baasov_CV_SystemEngPM.html. 12 JD keywords injected. ATS fit: 8.5/10. All permanent CV rules applied. Portfolio section removed (irrelevant for defense hiring). Gap: artillery systems not in Inon's background — IAF framed as operational environment proxy. Dashboard updated (IB-v1-SystemEngPM-Elbit, status: Drafting). Next: Inon reviews HTML, Cole converts to PDF, Gmail draft."
+      "status": "cancelled",
+      "notes": "CANCELLED 2026-05-16. Inon scrapped this application — not pursuing Elbit Artillery C4I position. CV archived at owner_inbox/archive/cv_archive/ELBIT-SystemEng-PM-Netanya/. No further action."
     },
     {
       "task_id": "ELBIT-TPM-001",
       "title": "Tailored CV — Technical PM, Elbit Smart Sensing (jid=20248)",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "pending-owner",
-      "notes": "COMPLETED 2026-05-06. CV at owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/v1_Inon_Baasov_CV_TechnicalPM.html. 14 JD keywords injected. ATS fit: 8.5/10. TouchE moved to lead role (strongest tech signal). Military Service kept + labeled C4I. Flag: Inon's BSc is Biotechnology & Food Engineering — JD requires CS/Software Eng. Cole recommends cover letter addressing degree gap before submission. Next: Inon reviews HTML, Cole converts to PDF, Gmail draft created."
+      "status": "cancelled",
+      "notes": "CANCELLED 2026-05-16. Inon scrapped this application — not pursuing Elbit Smart Sensing Technical PM position. CV archived at owner_inbox/archive/cv_archive/20248_TechnicalPM_Elbit_Netanya/. No further action."
     },
     {
       "task_id": "FAMILYFLOW-KEEPALIVE-001",
@@ -197,8 +198,8 @@
       "title": "Submit CV to Elbit Systems",
       "priority": "high",
       "assigned_to": "Cole",
-      "status": "pending-owner",
-      "notes": "Gmail draft ready (inonbaasov@gmail.com). Attach v4_Inon_Baasov_CV_TrainingPM.pdf → apply at https://elbitsystemscareer.com/job/?jid=20344."
+      "status": "cancelled",
+      "notes": "CANCELLED 2026-05-16. Inon scrapped — no cover letter or Gmail draft needed unless explicitly requested. No further action."
     },
     {
       "task_id": "PROMAKER-AR-003",
@@ -329,8 +330,9 @@
       "title": "Thought leadership / journal section",
       "priority": "medium",
       "assigned_to": "Rex",
-      "status": "in-progress",
-      "notes": "3 posts at owner_inbox/posts/thought_leadership_batch_001.md. Rex builds journal section UI."
+      "tested_by": "Vera",
+      "status": "done",
+      "notes": "DONE 2026-05-16. Rex found UI already built in Base44 (InsightsSection, /insights page, InsightDetail, tag filters). Section was blank because Insight entity had zero records. Rex created all 3 posts via Base44 entity API with published:true. Posts: 'Why I Stopped Building Features', 'The AI Stack That Actually Runs My Work in 2026', 'What the Best PMs I've Met Have in Common'. Vera QA: PASS all 10 items — DB records confirmed, home cards, tag filters, article detail, reading-progress bar, navbar, mobile responsive, no regressions. One non-blocking note: article detail uses in-page state not slug URLs (future improvement). Reports: rex_journal_done.md, vera_journal_qa.md."
     },
     {
       "task_id": "LINKEDIN-001",
@@ -366,12 +368,12 @@
     },
     {
       "task_id": "MACK-WATCHDOG-001",
-      "title": "Rate-limit watchdog + auto-restart script",
+      "title": "Rate-limit watchdog + Telegram notification on rate-limit reset",
       "priority": "high",
       "assigned_to": "Mack",
-      "tested_by": "—",
+      "tested_by": "Jasmin",
       "status": "done",
-      "notes": "COMPLETED 2026-05-15. scripts/rate_limit_watchdog.py (149 lines, stdlib only). on-stop: if five_hour.used_percentage >= 95%, sends Telegram ratelimit alert + writes scratchpad/rate_limit_queue.json + schedules Windows Task ANDY_RL_RESTART via schtasks to fire 'claude --continue' at resets_at epoch. on-start: if queue file exists, sends Telegram restart alert with last-task context + clears queue. Hooks wired in ~/.claude/settings.json (Stop + PreToolUse). 7 test cases PASS. 2 bugs fixed: schtasks /RL HIGHEST elevation rejection, en-IL locale date format mismatch. Report: agents/andy/inbox/mack_rate_limit_watchdog_done.md."
+      "notes": "DONE 2026-05-16. Jasmin QA: PASS WITH NOTES (15/16 PASS, 1 cosmetic fixed). scripts/rate_limit_watchdog.py (~200 lines, stdlib). scripts/rl_restart.bat (python-only, no claude dependency, ASCII-only, safe for schtasks). WHAT IT DOES: on-stop fires when session ends — if five_hour.used_percentage >= 95%, sends Telegram ratelimit alert, writes queue file, schedules Windows Task ANDY_RL_RESTART to fire at reset epoch. Task fires rl_restart.bat → python on-start → sends Telegram restart notification + clears queue. IMPORTANT LIMITATION: system sends Telegram notification only — does NOT auto-start a new Claude session. Inon still opens Claude manually. When he does, on-start PreToolUse hook reads queue and resumes context. Fire-test v2: PASS (queue consumed, Telegram sent). KNOWN GAP: template expansion {{rate_limits.*}} in live rate-limit Stop hook unverified — diag log (scratchpad/watchdog_stop_log.json) captures on every session end. Check at next session start: 'python scripts/rate_limit_watchdog.py check'. Reports: agents/andy/inbox/mack_rate_limit_watchdog_done.md, agents/andy/inbox/jasmin_watchdog_qa.md."
     },
     {
       "task_id": "BUILDAR-CI-001",
