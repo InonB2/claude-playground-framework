@@ -19,6 +19,10 @@ DO NOT run two instances — only one poller per bot token is allowed.
 
 import os
 import sys
+import time
+import socket
+import atexit
+import threading
 import subprocess
 import logging
 import json
@@ -51,6 +55,12 @@ WORKSPACE  = str(_ROOT)
 LOG_FILE   = str(_ROOT / "scratchpad" / "telegram_listener.log")
 QUEUE_FILE = str(_ROOT / "scratchpad" / "rate_limit_queue.json")
 
+# Single-instance lock — TCP loopback bind. If the port is taken, another
+# listener owns it; we exit cleanly without ever calling Telegram.getUpdates,
+# which is what creates the 409 Conflict storm.
+SINGLETON_PORT = 50917  # arbitrary, well above ephemeral range
+_singleton_socket: socket.socket | None = None
+
 # ---------------------------------------------------------------------------
 # Logging — always goes to file; also stdout so interactive runs show output
 # ---------------------------------------------------------------------------
@@ -66,6 +76,62 @@ logging.basicConfig(
     handlers=_handlers,
 )
 log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Single-instance guard
+# ---------------------------------------------------------------------------
+def acquire_singleton_lock() -> bool:
+    """
+    Bind to a fixed loopback port to guarantee only one listener per machine.
+    Returns True if we got the lock; False if another instance is already running.
+    The socket lives in module-global state so the OS releases it on process exit.
+
+    Also spawns a daemon accept-loop thread so heartbeat probes get a clean
+    accept+close round-trip instead of stale CLOSE_WAIT/SYN_SENT entries.
+    """
+    global _singleton_socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.bind(("127.0.0.1", SINGLETON_PORT))
+        s.listen(5)
+        _singleton_socket = s
+        atexit.register(_release_singleton_lock)
+
+        def _accept_loop():
+            while True:
+                try:
+                    conn, _ = s.accept()
+                    try:
+                        conn.close()
+                    except Exception:
+                        pass
+                except OSError:
+                    return  # socket closed (process shutting down)
+                except Exception:
+                    return
+
+        t = threading.Thread(target=_accept_loop, name="singleton-heartbeat", daemon=True)
+        t.start()
+        return True
+    except OSError as exc:
+        log.warning(
+            f"Singleton lock held by another process on port {SINGLETON_PORT} "
+            f"({exc}). Exiting without polling — avoids Telegram 409 Conflict."
+        )
+        try:
+            s.close()
+        except Exception:
+            pass
+        return False
+
+def _release_singleton_lock() -> None:
+    global _singleton_socket
+    if _singleton_socket is not None:
+        try:
+            _singleton_socket.close()
+        except Exception:
+            pass
+        _singleton_socket = None
 
 # ---------------------------------------------------------------------------
 # Rate-limit guard
@@ -174,6 +240,27 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def _build_app():
+    app = Application.builder().token(BOT_TOKEN).build()
+    app.add_handler(MessageHandler(filters.TEXT, handle_message))
+
+    # Error handler — Conflict is now soft: log + let outer loop back off and retry.
+    # Hard-exit was the historical root cause of the listener disappearing for hours.
+    async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+        exc = context.error
+        if isinstance(exc, Conflict):
+            log.warning(
+                "Conflict from Telegram (duplicate poller suspected). "
+                "Will be handled by outer restart loop with backoff."
+            )
+        elif isinstance(exc, NetworkError):
+            log.warning(f"Network error (will retry): {exc}")
+        else:
+            log.error(f"Unhandled error: {exc}", exc_info=exc)
+
+    app.add_error_handler(error_handler)
+    return app
+
 def main():
     log.info("=" * 60)
     log.info("Andy Telegram Listener starting")
@@ -181,36 +268,51 @@ def main():
     log.info(f"Trigger commands: {TRIGGER_CMDS}")
     log.info(f"Rate-limit queue: {QUEUE_FILE}")
     log.info(f"Bot token (masked): {BOT_TOKEN[:10]}...")
+    log.info(f"Singleton port: {SINGLETON_PORT}")
     log.info("=" * 60)
 
-    app = Application.builder().token(BOT_TOKEN).build()
+    # Refuse to start if another instance already holds the singleton lock.
+    # This prevents the 409 Conflict crash storm caused by overlapping pollers.
+    if not acquire_singleton_lock():
+        log.info("Another listener instance is alive. Exiting cleanly (no error).")
+        sys.exit(0)
 
-    # Handle all text messages (commands and plain text)
-    app.add_handler(MessageHandler(filters.TEXT, handle_message))
+    log.info("Singleton lock acquired.")
 
-    # Error handler — log Conflict (duplicate poller) as a clear warning
-    async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
-        exc = context.error
-        if isinstance(exc, Conflict):
-            log.critical(
-                "Conflict: another bot instance is already polling. "
-                "Stop the duplicate process and restart this one. Exiting."
+    # Outer restart loop — survives Conflict and transient errors.
+    # Backoff bounded so the watchdog still has a heartbeat to check.
+    backoff = 5
+    max_backoff = 120
+    while True:
+        try:
+            app = _build_app()
+            log.info("Polling started (poll_interval=2s, timeout=30s)")
+            app.run_polling(
+                poll_interval=2.0,
+                timeout=30,
+                drop_pending_updates=True,
             )
-            # Exit so Task Scheduler can restart after the other instance is gone
-            import os as _os; _os._exit(1)
-        elif isinstance(exc, NetworkError):
-            log.warning(f"Network error (will retry): {exc}")
+            # If run_polling returns cleanly (shouldn't happen unless told to stop),
+            # break out so the process can exit and the watchdog respawn it.
+            log.info("run_polling returned cleanly. Exiting main loop.")
+            break
+        except Conflict:
+            log.warning(
+                f"Conflict caught at top level. Backing off {backoff}s before retry. "
+                "If the duplicate poller is another listener instance on this machine, "
+                "it should also see this and one of them will eventually win."
+            )
+            time.sleep(backoff)
+            backoff = min(backoff * 2, max_backoff)
+        except KeyboardInterrupt:
+            log.info("KeyboardInterrupt — shutting down.")
+            break
+        except Exception as exc:
+            log.error(f"Top-level exception: {exc}. Backing off {backoff}s.", exc_info=exc)
+            time.sleep(backoff)
+            backoff = min(backoff * 2, max_backoff)
         else:
-            log.error(f"Unhandled error: {exc}", exc_info=exc)
-
-    app.add_error_handler(error_handler)
-
-    log.info("Polling started (poll_interval=2s, timeout=30s)")
-    app.run_polling(
-        poll_interval=2.0,
-        timeout=30,
-        drop_pending_updates=True,   # ignore backlog from while listener was offline
-    )
+            backoff = 5  # reset on a clean cycle
 
 if __name__ == "__main__":
     main()
