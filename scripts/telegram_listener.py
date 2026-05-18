@@ -18,6 +18,7 @@ DO NOT run two instances — only one poller per bot token is allowed.
 """
 
 import os
+import re
 import sys
 import time
 import socket
@@ -26,6 +27,7 @@ import threading
 import subprocess
 import logging
 import json
+from logging.handlers import RotatingFileHandler
 from datetime import datetime
 from pathlib import Path
 
@@ -79,7 +81,40 @@ _singleton_socket: socket.socket | None = None
 # ---------------------------------------------------------------------------
 Path(LOG_FILE).parent.mkdir(parents=True, exist_ok=True)
 
-_handlers = [logging.FileHandler(LOG_FILE, encoding="utf-8")]
+# Redaction filter — strips bot tokens from any log record regardless of source.
+# Pattern matches `bot<digits>:<30+ chars>` (Telegram Bot API token shape).
+# Belt-and-suspenders: even if a future dependency logs the URL at a different
+# level, the filter strips it before it hits disk.
+_TOKEN_RE = re.compile(r"bot\d+:[A-Za-z0-9_-]{30,}")
+
+class _RedactTokenFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        try:
+            # Redact in the formatted message and in args (covers %-style logs).
+            if isinstance(record.msg, str) and _TOKEN_RE.search(record.msg):
+                record.msg = _TOKEN_RE.sub("bot<REDACTED>", record.msg)
+                record.args = None  # message already fully rendered
+            elif record.args:
+                # Re-render through %-formatting then redact, so we don't leave
+                # token fragments hiding inside args tuples/dicts.
+                try:
+                    rendered = record.getMessage()
+                except Exception:
+                    rendered = None
+                if rendered and _TOKEN_RE.search(rendered):
+                    record.msg = _TOKEN_RE.sub("bot<REDACTED>", rendered)
+                    record.args = None
+        except Exception:
+            # Never let the filter break logging.
+            pass
+        return True
+
+# Rotating file handler — caps log at ~500 KB with 3 backups (~2 MB total).
+# Prevents unbounded growth and caps blast radius if a leak slips through again.
+_file_handler = RotatingFileHandler(
+    LOG_FILE, maxBytes=512_000, backupCount=3, encoding="utf-8"
+)
+_handlers = [_file_handler]
 if sys.stdout and sys.stdout.isatty():
     _handlers.append(logging.StreamHandler(sys.stdout))
 
@@ -88,6 +123,18 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s",
     handlers=_handlers,
 )
+
+# Silence per-request httpx INFO log — it formats the full request URL, which
+# for Telegram Bot API includes the token in the path (`/bot<token>/getUpdates`).
+# WARNING level still surfaces real problems (timeouts, HTTP errors).
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
+# Apply redaction filter to every handler attached to the root logger so the
+# token cannot reach disk or stdout via any logger in the process.
+_redact = _RedactTokenFilter()
+for _h in logging.getLogger().handlers:
+    _h.addFilter(_redact)
+
 log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------

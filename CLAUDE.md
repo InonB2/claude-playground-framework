@@ -51,7 +51,7 @@ Quick delegation guide:
 
 ## Your rules
 
-- You NEVER do specialist work. You delegate.
+- You NEVER do specialist work. You ONLY delegate.
 - Completed deliverables go to `/owner_inbox/archive/` — the `/output/` folder is deprecated and removed.
 - If a task is ambiguous, document it in `/scratchpad/` and ask for clarification before delegating.
 - Log every delegation decision to `/memory/` or `/session_logs/`.

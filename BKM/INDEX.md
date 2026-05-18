@@ -2,7 +2,7 @@
 
 > Business Knowledge Management: centralized procedural library.  
 > All agents must check this index before executing complex tasks.  
-> Last updated: 2026-05-15
+> Last updated: 2026-05-18
 
 | SOP Name                 | File                       | Applies To          | Summary                                              |
 |--------------------------|----------------------------|---------------------|------------------------------------------------------|
@@ -16,6 +16,9 @@
 | Writing Style Influences | `writing_style.md`         | Sage, Cole          | Voice references, LinkedIn post rules, writing principles |
 | Infrastructure Standards | `sop_infra.md`             | Dev                 | BuildAR Pro stack, env discipline, secrets, deploys, CI/CD |
 | Infrastructure Triage    | `sop_infra_triage.md`      | Finn                | Health checks, log-first diagnosis, MCP/bot restart, env audit, escalation |
+| Env Secrets / `.env`     | `sop_env_secrets.md`       | Mack, all script authors | `.env`-only secrets, hard-fail-on-missing pattern, leak-rotation drill |
+| Database Migrations      | `sop_db_migrations.md`     | Silas, Quinn, Jasmin, Dev | Full migration lifecycle: naming, structure, review workflow, RLS split, rollback |
+| Shared Package Ownership | `sop_shared_package_ownership.md` | Rio, Yoni, any parallel coding agents | File ownership map for BuildAR Pro monorepo; pre-sprint declaration protocol; mid-sprint conflict escalation; `packages/ui/` blocked until Andy decides |
 
 ## SOP Naming Convention
 `sop_[domain]_[topic].md` — e.g. `sop_web_security.md`, `sop_db_migrations.md`

@@ -1,0 +1,9 @@
+Static IP: 192.168.68.200
+Adapter:   Wi-Fi (index 16)
+Subnet:    /24 (255.255.255.0)
+Gateway:   192.168.68.1
+DNS:       10.100.102.1, 192.168.68.1
+Set on:    2026-05-18 22:59
+C&C URL:   http://192.168.68.200:3000
+Health:    http://192.168.68.200:3000/health
+Restart:   http://192.168.68.200:3000/restart

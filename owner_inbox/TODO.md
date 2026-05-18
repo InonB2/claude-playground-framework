@@ -1,5 +1,60 @@
 # Owner Action Items
-_Last updated: 2026-05-14_
+_Last updated: 2026-05-18_
+
+---
+
+### [TELEGRAM-WATCHDOG-CHECK] Watchdog process not running on host
+**Context (2026-05-18):** Mack rotated the Telegram token + closed the httpx logger leak. Listener PID 68044 is alive and polling cleanly. However: the watchdog (`scripts/telegram_listener_watchdog.ps1` + the `AndyTelegramListener` Scheduled Task) wasn't observed running during Mack's restart — he had to start the listener manually. If the machine reboots, /continue from Telegram may not auto-resume.
+**Action when at desk:** Check Task Scheduler → AndyTelegramListener → Last Run Result. If disabled/failed, re-enable. Or tell Andy "fix the watchdog" and Mack will diagnose + restore auto-start.
+
+---
+
+### [BUILDAR-LOVABLE-CMS] Lovable CMS — ready when you're at the computer
+**Context (2026-05-17):** Inon away today; Andy in autonomous mode on BuildAR. Lovable CMS requires interactive steps (sign-in, paste prompt, connect Supabase).
+**Two options — pick when at desk:**
+1. **Sequential (RECOMMENDED for first attempt):** `owner_inbox/buildar/lovable_sequential_prompts.md` — 5 paste-and-review cycles. You see what's being built at each step, can course-correct mid-way. ~90-150 min total.
+2. **Single-prompt (faster, less control):** `owner_inbox/buildar/lovable_handoff_ready.md` — one big prompt builds the whole CMS in one Lovable pass. ~60-90 min total.
+**Both reference:** Phase B SQL must be live first (Silas's 2 SQL blocks in `agents/andy/inbox/silas_phase_b_done.md`).
+
+---
+
+### [BUILDAR-SPRINT-1] Sprint 1 / Gate B — CODE COMPLETE, awaiting your authorization
+**Status as of 2026-05-17 end-of-autonomous-run:**
+
+All 4 branches are MERGE GREEN on local `D:\BuildAR\` (NOT pushed):
+- `feat/orchestrator-mvp` — Wave 1 (ai-client + telemetry) — Jasmin PASS WITH NOTES
+- `feat/phase-b-prereqs` — Migrations 0004 (FK) + 0005 (storage bucket) — Jasmin PASS (cherry-pick the 2 files into a clean branch for the PR; Yoni's S1-006 baseline polluted this branch from a parallel-agent incident)
+- `feat/events-schema-alignment` — Migration 0006 (events alignment + sessions.current_step_id) — Jasmin PASS WITH NOTES
+- `feat/mobile-shell` — 5 screens + WCAG-AA compliant + 35/35 tests + MINOR-1 hotfix bundled — Vera HOLD → Yoni fix → Jasmin re-verify → GREEN
+
+**Your sequence of action items when at the desk (rough order):**
+
+1. **URGENT — Rotate Telegram bot token via @BotFather.** Token leaked via public repo; external poller has been hijacking /continue. Step 1 is BotFather-only. Then Mack will scrub + restart. (See `tasks/active_tasks.json` → TELEGRAM-TOKEN-ROTATE-2026-05-17 for full notes.)
+
+2. **Paste 3 SQL blocks into Supabase SQL Editor** (in order: 0004 → 0005 → 0006; 0004 is idempotent no-op if 0003 already applied):
+   - SQL block #1 (0004 FK ON DELETE) + #2 (0005 storage bucket) — both in `agents/andy/inbox/silas_phase_b_done.md`
+   - SQL block (0006 events alignment) — in `agents/andy/inbox/silas_s1_010_done.md`
+   - Run verification queries in each report after pasting. Confirm expected output matches.
+
+3. **Drop ANTHROPIC_API_KEY into `D:\BuildAR\.env`** — same key you use for Claude Code. Without it, Yoni's live /assist curl can't run as final S1-008 verification.
+
+4. **Drop SUPABASE_ANON_KEY into `D:\BuildAR\apps\mobile\.env`** — copy from `.env.example`, paste real anon key from Supabase Dashboard.
+
+5. **Authorize the 4-branch merge to main + push to GitHub** — I didn't auto-push (shared-state needs your sign-off). When ready, either:
+   - Cherry-pick + open 4 PRs manually
+   - Or tell me to dispatch Mack to push the branches and open the PRs
+
+6. **Lovable CMS (when ready)** — two ways to consume:
+   - **SEQUENTIAL (recommended for visibility into each step):** `owner_inbox/buildar/lovable_sequential_prompts.md` — 5 paste-and-review prompts with explanations
+   - **SINGLE-PROMPT (faster):** `owner_inbox/buildar/lovable_handoff_ready.md` — all-in-one
+   - Pre-flight requires SQL blocks 0004 + 0005 to be applied first (step 2 above)
+
+7. **Optional Phase 2 follow-ups (deferred, not blocking):**
+   - Android emulator boot verification — requires Android Studio + SDK on host (30-90 min)
+   - iOS native build — requires macOS + Xcode
+   - HomeScreen resume banner — client-side cache or new `GET /sessions?status=active` route
+   - Migration 0006 backfill edge-case investigation (Jasmin's S1-010 review §C minor)
+   - NIT-1 + NIT-2 doc comments (Silas skipped because target files weren't on main; can land after Yoni's S1-008/009 branch merges)
 
 ---
 
@@ -48,8 +103,9 @@ _Last updated: 2026-05-14_
 
 ---
 
-### [WEBSITE-001-SEC-01] Remove Base44 platform badge
-**Action:** base44.app → app settings → disable platform badge.
+~~### [WEBSITE-001-SEC-01] Remove Base44 platform badge~~
+~~**Action:** base44.app → app settings → disable platform badge.~~
+**Status:** DONE — Fixed by Inon on Base44 directly — 2026-05-18.
 
 ---
 

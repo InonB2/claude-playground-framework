@@ -1,7 +1,7 @@
 # Agent Roster
 
 > **Andy must read this file first before delegating any task.**  
-> Last updated: 2026-05-14 | v2.4 — Finn agent added (16 agents)
+> Last updated: 2026-05-18 | v2.5 — Rio and Quinn added (18 agents)
 
 | Name   | Title                      | Role                         | Specialty                                              | Status  |
 |--------|----------------------------|------------------------------|--------------------------------------------------------|---------|
@@ -21,6 +21,13 @@
 | Vera   | The QA Inspector           | QA & Accessibility Auditor   | Responsive QA, WCAG 2.1, visual regression, Lighthouse | Active  |
 | Dev    | The DevOps & Cloud Engineer| DevOps & Infrastructure Spec.| CI/CD pipelines, Supabase branching, Railway/EAS/Vercel | Active  |
 | Finn   | The Infrastructure Triage Engineer | Infrastructure Triage Specialist | MCP health, bot recovery, env var audits, service restart | Active  |
+| Rio    | The Mobile Engineer                | Mobile Software Engineer         | React Native / Expo / mobile UI / device testing / TypeScript | Active  |
+| Quinn  | The Logic & Content Reviewer       | QA Reviewer — Logic, Scripts & Content | Python script review / SQL migrations / content accuracy / automation validation / CI config review | Active  |
+
+## Adding New Agents
+New rows must be added by **Nolan** only, after **Pat** has submitted a Candidate Profile Brief to `/scratchpad/`.
+
+---
 
 ## Delegation Map
 
@@ -34,16 +41,19 @@ Owner / team_inbox
        │       ├──► Yoni (General Code)                   │
        │       │       └──► Jasmin (Review)               │
        │       │                └──► owner_inbox          │
-       │       │                         └──► /output/    │
+       │       ├──► Rio (Mobile / React Native)           │
+       │       │       ├──► Vera (UI QA → QA APPROVED)    │
+       │       │       └──► Jasmin (Logic QA → READY FOR DEPLOY) │
+       │       │                └──► owner_inbox          │
        │       └──► Web Pipeline:                         │
        │             Tomy → Maya (Security Audit)         │
        │             Tomy → Lena (Design Brief)           │
        │             Maya + Lena → Rex (Implementation)   │
        │                    └──► Jasmin (Review)          │
        │                             └──► owner_inbox     │
-       │                                      └──► /output│
+       ├──► Mack / Silas / Cole / Dev (specialist work)   │
+       │       └──► Quinn (Logic & Content QA)            │
+       │               ├──► LOGIC APPROVED → owner_inbox  │
+       │               └──► Security flag → Jasmin        │
        └──► Pat (Profile) ──► Nolan (Deploy agent) ───────┘
 ```
-
-## Adding New Agents
-New rows must be added by **Nolan** only, after **Pat** has submitted a Candidate Profile Brief to `/scratchpad/`.

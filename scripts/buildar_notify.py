@@ -12,9 +12,43 @@ import urllib.request
 import urllib.parse
 import json
 from datetime import datetime, timedelta
+from pathlib import Path
 import zoneinfo
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I")
+# ---------------------------------------------------------------------------
+# .env loader — populate os.environ from D:\Claude Playground\.env before
+# any config lookup. Uses python-dotenv if present; otherwise a tiny manual
+# parser. Never overrides values already set in the real environment.
+# ---------------------------------------------------------------------------
+def _load_dotenv() -> None:
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    if not env_path.exists():
+        return
+    try:
+        from dotenv import load_dotenv  # type: ignore
+        load_dotenv(dotenv_path=env_path, override=False)
+        return
+    except ImportError:
+        pass
+    for raw in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+_load_dotenv()
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+if not BOT_TOKEN:
+    raise SystemExit(
+        "FATAL: TELEGRAM_BOT_TOKEN is not set. "
+        "Populate D:\\Claude Playground\\.env with TELEGRAM_BOT_TOKEN=<token> "
+        "or export it in the environment before running this script."
+    )
 CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID", "6283854178")
 IL_TZ     = zoneinfo.ZoneInfo("Asia/Jerusalem")
 

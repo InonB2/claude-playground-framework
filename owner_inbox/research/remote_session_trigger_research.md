@@ -287,7 +287,7 @@ This uses Claude Code's official Telegram Channels feature (research preview, av
 **Prerequisites (already met on this machine):**
 - Claude Code v2.1.143 (Channels requires v2.1.80+) ✓
 - Bun installed at `C:\Users\Inon Baasov\.bun\bin\bun.exe` ✓
-- Existing Telegram bot token in `buildar_notify.py` (`8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I`) — this bot is currently outbound-only (notifications); we would use the same or a second bot for the channel
+- Existing Telegram bot token in `buildar_notify.py` (`<REDACTED — see .env>`) — this bot is currently outbound-only (notifications); we would use the same or a second bot for the channel
 
 **How it works:**
 1. Claude Code session starts with `claude -c --channels plugin:telegram@claude-plugins-official`
@@ -300,7 +300,7 @@ This uses Claude Code's official Telegram Channels feature (research preview, av
 ```
 # Inside an active Claude session:
 /plugin install telegram@claude-plugins-official
-/telegram:configure 8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I
+/telegram:configure <REDACTED — see .env>
 # (or use a second bot for the inbound channel)
 
 # Then restart with channels:
@@ -361,7 +361,7 @@ from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 # --- Config ---
-BOT_TOKEN     = os.environ.get("TELEGRAM_BOT_TOKEN", "8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I")
+BOT_TOKEN     = os.environ.get("TELEGRAM_BOT_TOKEN", "<REDACTED — see .env>")
 ALLOWED_ID    = 6283854178
 TRIGGER_CMDS  = {"/continue", "/start", "/resume"}
 WORKSPACE     = r"D:\Claude Playground"
@@ -481,7 +481,7 @@ This means the listener only needs to do one thing: open a terminal with the rig
 ### Phase 2: Install Claude Code Channels Telegram Plugin (20 min)
 - [ ] Start a Claude session: `claude -c`
 - [ ] Install plugin: `/plugin install telegram@claude-plugins-official`
-- [ ] Configure token: `/telegram:configure 8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I`
+- [ ] Configure token: `/telegram:configure <REDACTED — see .env>`
 - [ ] Restart with channels: `claude -c --channels plugin:telegram@claude-plugins-official`
 - [ ] Send any message to bot from Telegram, get pairing code
 - [ ] In session: `/telegram:access pair <code>`

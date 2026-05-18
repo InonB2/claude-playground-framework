@@ -1,0 +1,5 @@
+[cc_server] Andy C&C Dashboard running on http://0.0.0.0:3000
+[cc_server] Serving: D:\Claude Playground\dashboard
+[cc_server] Health:  http://localhost:3000/health
+[cc_server] Restart: http://localhost:3000/restart
+[cc_server] PID: 73984

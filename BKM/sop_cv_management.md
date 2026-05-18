@@ -21,10 +21,10 @@ Every CV version sent and every job application made must be archived. No CV lea
    - The JD for keyword alignment
    - Past CV versions for consistency
 4. CV draft goes to `/scratchpad/cv_draft_[company]_[date].md`
-5. **Jasmin** reviews for accuracy (no false claims)
+5. **Quinn** reviews for content accuracy, claim verification, tone consistency, and completeness — signs off with `LOGIC APPROVED`. Default CV reviewer is Quinn. Escalate to Jasmin only when content includes security-sensitive claims (e.g., clearance levels, regulatory compliance language).
 6. Cole generates the PDF via `scripts/generate_elbit_cv.py` (use as template)
 7. **PDF moved to `/owner_inbox/` for approval**
-8. Owner approves → file moved to `/output/cv_archive/`
+8. Owner approves → file moved to `/archive/cv_inon/`
 9. Application logged in `cv_archive.db`
 
 ---

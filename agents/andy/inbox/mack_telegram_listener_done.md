@@ -18,7 +18,7 @@ The Telegram listener is built, tested, and running as a background Task Schedul
 
 - `python-telegram-bot==22.7` installed successfully
 - `claude auth status`: `authMethod: claude.ai`, `subscriptionType: pro` — OAuth confirmed
-- Bot token obtained from `buildar_notify.py`: `8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I`
+- Bot token obtained from `buildar_notify.py`: `<REDACTED — see .env>` (token rotated 2026-05-18, old value scrubbed)
 
 ### Phase 2: Channels Plugin — NOT AVAILABLE AS CLI FLAG
 

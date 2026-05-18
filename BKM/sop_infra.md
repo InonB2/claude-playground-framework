@@ -1,7 +1,7 @@
 # SOP — Infrastructure Standards (BuildAR Pro)
 
 **Owner:** Dev
-**Last reviewed:** 2026-05-15
+**Last reviewed:** 2026-05-18
 **Applies to:** BuildAR Pro infrastructure (`D:\BuildAR\`)
 
 ---
@@ -167,7 +167,54 @@ Secrets are classified by who is allowed to see them. The classification dictate
 
 ---
 
-## 6. CI/CD Requirements
+## 6. No-Staging Fallback
+
+When Quinn (schema review) or Mack (automation scripts) cannot run output against a live or staging environment, they tag the review file with:
+
+> `schema-review only, live validation pending Dev environment`
+
+### What the tag means
+
+Structural review passed — the SQL, script, or config is syntactically and logically correct based on static analysis. Live behavior (constraint enforcement, trigger execution, side-effects, timing) is **unverified** because no staging or preview environment was available at time of review.
+
+### Who clears it — Dev is the named owner
+
+Dev is responsible for clearing this tag. When a staging environment is provisioned or a test run becomes possible, Dev:
+
+1. Runs the flagged output against the staging/preview environment.
+2. Verifies actual behavior matches expected behavior (no constraint violations, correct row counts, no unintended side-effects).
+3. Updates the review file with the sign-off line:
+
+   ```
+   [DEV SIGN-OFF] Live validation complete — [date] — [environment used]
+   ```
+
+No one else clears this tag. If Dev delegates the run to another agent, Dev still writes the sign-off after reviewing results.
+
+### Escalation
+
+If Dev cannot provision a staging environment within the current sprint:
+
+- Dev flags to **Andy** with a clear blocker note: what is blocked, why staging is unavailable, and estimated time to resolve.
+- Andy decides one of two paths:
+  - **Hold** — task stays in Tested/Blocked until staging is available.
+  - **Proceed with risk acknowledgement** — Andy presents the unverified items to Inon with an explicit `[RISK: live validation not yet run]` flag. Inon decides whether to accept the risk.
+
+Dev does not make the hold/proceed call unilaterally.
+
+### Scope
+
+This protocol applies to:
+
+| Output type | Primary author | Reviewer |
+|---|---|---|
+| SQL migrations (`supabase/migrations/`) | Quinn + Silas | Dev clears the tag |
+| Automation scripts (`scripts/`) | Mack | Dev clears the tag |
+| CI pipeline configs (`.github/workflows/`) | Dev | Dev self-clears after staging run |
+
+---
+
+## 7. CI/CD Requirements
 
 Workflow lives at `.github/workflows/ci.yml` (Dev owns this file).
 
@@ -208,7 +255,7 @@ All deploys block on CI green. No "force deploy" lane — if you need to bypass,
 
 For runtime incidents (API down, deploy failures, Supabase outages, EAS build queue failures), follow the triage playbook owned by Finn:
 
-- **Playbook:** `BKM/sop_infra_triage.md` (maintained by Finn — may not exist yet; check before linking from agent personas).
+- **Playbook:** `BKM/sop_infra_triage.md` (maintained by Finn — verify the file exists before linking from agent personas; if absent, flag to Andy to commission it).
 
 Dev's responsibility during an incident is to provide infrastructure context (recent deploys, env var diffs, platform status) to Finn and execute any rollback or env change Finn directs. Finn owns the incident itself end-to-end.
 
@@ -216,4 +263,5 @@ Dev's responsibility during an incident is to provide infrastructure context (re
 
 ## Change log
 
+- **2026-05-18** — Added Section 6 (No-Staging Fallback): named Dev as owner for clearing `schema-review only, live validation pending Dev environment` tags; defined escalation path to Andy. Minor fix: triage playbook hedge in Incident Response reworded to actionable language.
 - **2026-05-15** — Initial SOP created by Dev as part of DEV-ONBOARD-001.

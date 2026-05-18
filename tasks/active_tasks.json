@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-17",
+  "last_updated": "2026-05-18",
   "_note_remote_trigger_2026-05-16": "Telegram remote session trigger DONE. scripts/telegram_listener.py + scripts/open_claude.ps1 + Task Scheduler task AndyTelegramListener. Send /continue /start /resume from Telegram (sender ID 6283854182) to open Windows Terminal with claude -c. Sends Telegram notification on trigger. Listener auto-starts at login. Jasmin QA pending.",
   "_note_buildar_stage1_2026-05-16": "Stage 1 complete. Repo LIVE at github.com/InonB2/buildar-pro (Mack initial commit 5d08ddc0, CI green ~80s first try). Silas schema + Jasmin QA, Yoni monorepo + Dev QA, Dev CI workflow + Vera QA all DONE. Outstanding: Silas apply 0003 to live db (rate-limited 16:00, retrying), Yoni BUILDAR-S1-006 API routes + types (rate-limited 16:00, retrying). Then Gate A fully closed.",
   "tasks": [
@@ -196,7 +196,16 @@
       "assigned_to": "Yoni",
       "tested_by": "Vera (UI) + Jasmin (logic/security)",
       "status": "done",
-      "notes": "MERGE GREEN 2026-05-17. Branch feat/mobile-shell (NOT pushed — awaiting Inon authorization). 7 commits beyond main: 1f5c2e4 (MINOR-1 sanitization) + 8b8f683 (mobile shell core) + 6a59c2c + 6a48cd4 + f8afdf7 (Vera MINOR fix bundle: hybrid colors, bg tokens, a11y live regions) + 5076063 (Jasmin MINOR-3 fix: primary #C0461A 5.08:1) + 337ba11 (NIT-A1: maxLength=2000 on assistant input). Final state: 35/35 tests pass, lint+typecheck clean, ALL 6 Vera MINORS + 1 Jasmin MINOR-3 CLOSED. White-on-primary 5.08:1 AA-normal PASS confirmed by Yoni's Python recompute; primaryDark text 6.75:1 PASS. 5 screens per Lena's brief. AR fallback verified. AssistantSheet renders Safety blocked state with reason. Touch targets ✓, RTL ✓ (zero left/right), zero analytics, zero OAuth. DEFERRED (environmental): Android emulator boot needs SDK on host (30-90 min on equipped host). iOS deferred (Windows). DEFERRED (Inon decision): HomeScreen resume banner — currently scope-cut, can add via client-side cache in Phase 2. Reports: agents/andy/inbox/yoni_s1_011_done.md, vera_s1_011_qa.md, yoni_s1_011_fix_done.md, jasmin_s1_011_combined_qa.md, yoni_s1_011_final_fix_done.md."
+      "notes": "MERGE GREEN 2026-05-17. Branch feat/mobile-shell (NOT pushed — awaiting Inon authorization). 7 commits beyond main: 1f5c2e4 (MINOR-1 sanitization) + 8b8f683 (mobile shell core) + 6a59c2c + 6a48cd4 + f8afdf7 (Vera MINOR fix bundle: hybrid colors, bg tokens, a11y live regions) + 5076063 (Jasmin MINOR-3 fix: primary #C0461A 5.08:1) + 337ba11 (NIT-A1: maxLength=2000 on assistant input). Final state: 35/35 tests pass, lint+typecheck clean, ALL 6 Vera MINORS + 1 Jasmin MINOR-3 CLOSED. White-on-primary 5.08:1 AA-normal PASS confirmed by Yoni's Python recompute; primaryDark text 6.75:1 PASS. 5 screens per Lena's brief. AR fallback verified. AssistantSheet renders Safety blocked state with reason. Touch targets ✓, RTL ✓ (zero left/right), zero analytics, zero OAuth. DEFERRED (environmental): Android emulator boot needs SDK on host (30-90 min on equipped host). iOS deferred (Windows). HomeScreen resume banner shipped as S1-012 on 2026-05-18. Reports: agents/andy/inbox/yoni_s1_011_done.md, vera_s1_011_qa.md, yoni_s1_011_fix_done.md, jasmin_s1_011_combined_qa.md, yoni_s1_011_final_fix_done.md."
+    },
+    {
+      "task_id": "BUILDAR-S1-012",
+      "title": "BuildAR Pro Sprint 1 — HomeScreen resume-active-session banner (Phase 2 polish)",
+      "priority": "medium",
+      "assigned_to": "Yoni",
+      "tested_by": "Vera (UI/a11y) + Jasmin (logic/security)",
+      "status": "done",
+      "notes": "GREEN 2026-05-18 (autonomous). Branch feat/mobile-shell, 2 commits: cf682a7 (initial — 6 files, +483/-4) + a208284 (polish S1-012-P1 — closes Vera NIT 4 + NIT 6 + Jasmin DESIGN-1/2/3). 57/57 tests pass (was 35 baseline; +22 across activeSessionCache.test.ts, ResumeBanner.test.tsx, HomeScreen.test.tsx). Lint + typecheck clean. Banner renders only when fresh (<7d) non-completed session cached; shows project name + 'Step N of M' + Resume CTA; tap fetches project + navs to SessionScreen; 5 invalidation paths (completion, 404 prune, corrupt JSON, schema fail, stale on read). a11y label format 'Resume {name}, step N of M' with totalSteps=0 fallback to 'Resume {name}'. KEY INFRA NOTE: AsyncStorage native dep NOT actually wired in Bare RN — Yoni shipped pluggable ActiveSessionBackend with in-memory default; one-line `setActiveSessionCacheBackend(AsyncStorage)` at app init makes it persistent across cold-start. Documented inline. QA lineage: Vera S1-012 PASS WITH NOTES (6 NITs) → Jasmin S1-012 PASS WITH NOTES (3 DESIGN) → Yoni polish (1 commit, +11 tests) → Vera S1-012-P1 PASS → Jasmin S1-012-P1 PASS (57/57 confirmed). Remaining open: Vera NIT 1/2/3/5 (all cosmetic, deferred). NOT pushed — awaiting Inon authorization. Reports: yoni_s1_012_done.md, vera_s1_012_qa.md, jasmin_s1_012_logic_qa.md, yoni_s1_012_p1_done.md, vera_s1_012_p1_qa.md, jasmin_s1_012_p1_qa.md."
     },
     {
       "task_id": "BUILDAR-S1-001",
@@ -378,7 +387,7 @@
       "assigned_to": "Rex",
       "status": "done",
       "blocked_by": null,
-      "notes": "COMPLETED 2026-05-09. Tomy verified https://inon-baasov-website.base44.app — no Base44 badge, footer, or hidden markup found anywhere on the page. Owner disabled it via Base44 app settings."
+      "notes": "COMPLETED 2026-05-09. Tomy verified https://inon-baasov-website.base44.app — no Base44 badge, footer, or hidden markup found anywhere on the page. Owner disabled it via Base44 app settings. Re-confirmed done 2026-05-18 — fixed by Inon on Base44 directly."
     },
     {
       "task_id": "WEBSITE-001-SEC-04",

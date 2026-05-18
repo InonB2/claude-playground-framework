@@ -9,7 +9,7 @@
 ## Where the bot token was found
 
 `C:\Users\Inon Baasov\.claude\channels\telegram\.env`  
-Key: `TELEGRAM_BOT_TOKEN=8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I`
+Key: `TELEGRAM_BOT_TOKEN=<REDACTED — see .env>` (token rotated 2026-05-18, old value scrubbed)
 
 This is the existing Telegram bot already in use by the team's Telegram MCP plugin. No new bot was created.
 
