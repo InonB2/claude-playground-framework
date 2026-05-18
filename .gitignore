@@ -18,3 +18,7 @@ team_inbox/*.doc
 team_inbox/*error*.png
 team_inbox/*screenshot*.png
 scratchpad/trademetrics/
+
+# Logs containing secrets — never commit
+scratchpad/telegram_listener.log
+scratchpad/remote_session.log
