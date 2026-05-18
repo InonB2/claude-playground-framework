@@ -36,24 +36,37 @@ except ImportError:
     from datetime import timezone, timedelta
     IL_TZ = timezone(timedelta(hours=3))  # fallback: UTC+3
 
-# pip install python-telegram-bot
+# pip install python-telegram-bot python-dotenv
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 from telegram.error import Conflict, NetworkError
+from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-BOT_TOKEN    = os.environ.get("TELEGRAM_BOT_TOKEN",
-                              "8731882312:AAEyGQODr6F1dXVlvabJO9MX_u1JFONdr1I")
-ALLOWED_ID   = 6283854178          # Inon's Telegram user ID
-TRIGGER_CMDS = {"/continue", "/start", "/resume"}
-
 # Derive paths relative to this script so they work regardless of CWD
 _ROOT      = Path(__file__).resolve().parent.parent   # D:\Claude Playground
 WORKSPACE  = str(_ROOT)
 LOG_FILE   = str(_ROOT / "scratchpad" / "telegram_listener.log")
 QUEUE_FILE = str(_ROOT / "scratchpad" / "rate_limit_queue.json")
+ENV_FILE   = _ROOT / ".env"
+
+# Load .env so TELEGRAM_BOT_TOKEN is available. Policy (2026-05-18):
+# token MUST come from environment only — no hardcoded fallback. This makes
+# leaking the token via a committed file mechanically impossible.
+load_dotenv(ENV_FILE)
+
+BOT_TOKEN    = os.environ.get("TELEGRAM_BOT_TOKEN")
+if not BOT_TOKEN:
+    sys.stderr.write(
+        f"FATAL: TELEGRAM_BOT_TOKEN not set. Expected in env or {ENV_FILE}.\n"
+        "Refusing to start — no fallback token is permitted.\n"
+    )
+    sys.exit(2)
+
+ALLOWED_ID   = 6283854178          # Inon's Telegram user ID
+TRIGGER_CMDS = {"/continue", "/start", "/resume"}
 
 # Single-instance lock — TCP loopback bind. If the port is taken, another
 # listener owns it; we exit cleanly without ever calling Telegram.getUpdates,

@@ -1,8 +1,17 @@
 {
-  "last_updated": "2026-05-16",
+  "last_updated": "2026-05-17",
   "_note_remote_trigger_2026-05-16": "Telegram remote session trigger DONE. scripts/telegram_listener.py + scripts/open_claude.ps1 + Task Scheduler task AndyTelegramListener. Send /continue /start /resume from Telegram (sender ID 6283854182) to open Windows Terminal with claude -c. Sends Telegram notification on trigger. Listener auto-starts at login. Jasmin QA pending.",
   "_note_buildar_stage1_2026-05-16": "Stage 1 complete. Repo LIVE at github.com/InonB2/buildar-pro (Mack initial commit 5d08ddc0, CI green ~80s first try). Silas schema + Jasmin QA, Yoni monorepo + Dev QA, Dev CI workflow + Vera QA all DONE. Outstanding: Silas apply 0003 to live db (rate-limited 16:00, retrying), Yoni BUILDAR-S1-006 API routes + types (rate-limited 16:00, retrying). Then Gate A fully closed.",
   "tasks": [
+    {
+      "task_id": "TELEGRAM-TOKEN-ROTATE-2026-05-17",
+      "title": "Rotate Telegram bot token — current token leaked via public repo, external poller hijacking /continue",
+      "priority": "high",
+      "assigned_to": "Inon (BotFather revoke) + Mack (replace + scrub)",
+      "tested_by": "Jasmin",
+      "status": "tested",
+      "notes": "Listener resilience fixed by Mack 2026-05-17 (commit 442c744), but Telegram log shows continuous 409 Conflict from an external poller — only one local process exists. Token 8731882312:AAEy... is hardcoded in scripts/telegram_listener.py:44 and present in master commits 21179c9 + 5dde974 on public repo InonB2/claude-playground-framework — scraped. Step 1 (Inon only): @BotFather → /revoke → confirm. Step 2 (Mack): move new token to .env, delete hardcoded value, restart listener via watchdog, scrub the old token from git history if practical. Step 3 (Jasmin): verify /continue end-to-end from Inon's Telegram. Until Step 1, /continue from Telegram does not reach us — including the MCP plugin path, which disconnected during this session likely for the same reason. | 2026-05-18 Mack: New token from team_inbox/Git Hub - key.docx loaded into .env (gitignored, verified). scripts/telegram_listener.py refactored — removed hardcoded fallback at line 48, added python-dotenv load_dotenv(ENV_FILE), fail-loud sys.exit(2) if TELEGRAM_BOT_TOKEN missing. requirements.txt created documenting deps. Old pythonw3.11 PID 39004 killed; AndyTelegramListener scheduler task triggered; new listener PID 65832 alive (singleton lock held). Independent /getMe with new token returns 200 OK ok:true username:Andy_inon_bot. Log shows /getMe + /deleteWebhook 200 OK + Application started at 07:48 — no 409s or 401s post-restart. Pending Jasmin: end-to-end /continue from Telegram."
+    },
     {
       "task_id": "SYSTEM-IMPROVE-2026-05-15",
       "title": "7 system improvements (dashboard UX + automation routines)",
@@ -86,11 +95,11 @@
     },
     {
       "task_id": "BUILDAR-REBUILD-000",
-      "title": "BuildAR Pro Rebuild — all questions answered, Stage 1 dispatched",
+      "title": "BuildAR Pro Rebuild — Sprint 1 Gate B in progress",
       "priority": "critical",
       "assigned_to": "Andy",
       "status": "in_progress",
-      "notes": "DECISIONS 2026-05-15: (1) Bare React Native, (2) Direct Supabase for CMS + mandatory RLS review, (3) One service (api+orchestrator as modules), (4) Architecture RTL support only in v0, (5) Seed: wall shelf install + table assembly (IKEA-style), (6) Admin-only publishing, (7) Fresh Supabase project. Stage 1 agents dispatched: Silas (schema+Supabase), Yoni (monorepo scaffold), Mack (Telegram notifications), Lena (UX briefs). Repo: D:\\BuildAR\\ → GitHub InonB2/buildar-pro. Model: Opus 4.7 for code, Sonnet 4.6 for non-code."
+      "notes": "GATE A CLOSED 2026-05-16. SPRINT 1 WAVE 1 DISPATCHED 2026-05-17 (Inon away — autonomous mode): Yoni on S1-008 Orchestrator MVP + S1-009 Telemetry; Silas on S2-001 FK ON DELETE + S2-002 Storage bucket (Phase B prerequisites, unblocks mobile shell). Wave 2 = Yoni mobile shell (ViroReact, 5 screens per Lena's brief) — dispatches after Jasmin signs off Wave 1 and Silas's storage bucket is live. Lovable CMS handoff packaged at owner_inbox/buildar/lovable_handoff_ready.md — Inon executes when at computer. DECISIONS 2026-05-15: (1) Bare React Native, (2) Direct Supabase for CMS + mandatory RLS review, (3) One service (api+orchestrator as modules), (4) Architecture RTL support only in v0, (5) Seed: wall shelf install + table assembly, (6) Admin-only publishing, (7) Fresh Supabase project. Repo: D:\\BuildAR\\ → InonB2/buildar-pro. Model: Opus 4.7 for code, Sonnet 4.6 for non-code."
     },
     {
       "task_id": "BUILDAR-REBUILD-001",
@@ -141,8 +150,8 @@
       "priority": "medium",
       "assigned_to": "Silas",
       "tested_by": "Jasmin",
-      "status": "backlog",
-      "notes": "Flagged by Jasmin 2026-05-16 as MAJOR for Phase B. Both columns currently have no ON DELETE clause — deleting an auth.users row would either block (FK violation) or leave dangling references. Set both to ON DELETE SET NULL. Migration 0003. Dispatch after Gate A is closed."
+      "status": "partial",
+      "notes": "SILAS DONE 2026-05-17 — migration 0004_fk_ondelete_clauses.sql at D:\\BuildAR\\supabase\\migrations\\. Branch feat/phase-b-prereqs (note: polluted by concurrent Yoni S1-006 commit — PR will need cherry-pick). Silas chose ON DELETE CASCADE for events.user_id (defended in report: events.user_id is NOT NULL in 0001 schema, GDPR-clean for right-to-erasure). Paste-ready SQL block + verification queries in agents/andy/inbox/silas_phase_b_done.md. Note: overlaps with 0003 Fix3+Fix4 (already applied 2026-05-16) — running 0004 is idempotent no-op. Awaiting: Inon paste (optional, idempotent if 0003 already live), then Jasmin behavioral QA."
     },
     {
       "task_id": "BUILDAR-S2-002",
@@ -150,8 +159,44 @@
       "priority": "medium",
       "assigned_to": "Silas",
       "tested_by": "Jasmin",
-      "status": "backlog",
-      "notes": "Flagged by Jasmin 2026-05-16 as MAJOR for Phase B. No storage buckets defined yet. Assets table references file paths but bucket isn't provisioned. Create 'project-assets' bucket with RLS (admin upload, signed-URL read for app users). Migration 0004. Dispatch when Yoni needs asset uploads (likely Sprint 1)."
+      "status": "partial",
+      "notes": "SILAS DONE 2026-05-17 — migration 0005_storage_bucket_project_assets.sql at D:\\BuildAR\\supabase\\migrations\\. Private 'project-assets' bucket + 4 RLS policies (insert=creator/admin via is_creator_or_admin(), select=authenticated, update=admin, delete=admin). Role source: public.profiles.role via existing helper functions (NOT auth.jwt user_metadata — Silas defended: user_metadata is user-mutable, profiles is single source of truth used by all other RLS). Paste-ready SQL block + verification queries in agents/andy/inbox/silas_phase_b_done.md. Awaiting: Inon paste, then Jasmin behavioral QA (upload-denied for non-admin, etc)."
+    },
+    {
+      "task_id": "BUILDAR-S1-008",
+      "title": "BuildAR Pro Sprint 1 — Orchestrator MVP (packages/ai-client + Tutor + Safety + /assist endpoint)",
+      "priority": "critical",
+      "assigned_to": "Yoni",
+      "tested_by": "Jasmin",
+      "status": "done",
+      "notes": "YONI DONE 2026-05-17, JASMIN QA PASS WITH NOTES 2026-05-17. 20/20 tests reproduced (6 orchestrator + 3 telemetry + 6 safety_parse + 5 smoke). All gates green. PostgREST sanitization done at sessions+orchestrator boundary (S1-006 minor #1 closed); type-parity assertions added (S1-006 minor #2 closed). Service-role isolation confirmed (1 grep hit, comment-only). Prompt caching verified on Safety + Tutor blocks. Safety JSON parser fail-safes confirmed (defaults to block on parse failure). DEFERRED: live Anthropic curl pending Inon dropping ANTHROPIC_API_KEY into D:\\BuildAR\\.env. NIT-1: doc comment on injection-mitigation. Report: agents/andy/inbox/jasmin_s1_s2_qa.md. Branch feat/orchestrator-mvp ready for merge."
+    },
+    {
+      "task_id": "BUILDAR-S1-009",
+      "title": "BuildAR Pro Sprint 1 — Telemetry wiring (events table helper + session lifecycle events)",
+      "priority": "critical",
+      "assigned_to": "Yoni",
+      "tested_by": "Jasmin",
+      "status": "done",
+      "notes": "YONI DONE 2026-05-17, JASMIN QA PASS WITH NOTES 2026-05-17. 6 recordEvent call sites verified (5 sessions + 1 orchestrator). Adapter integrity confirmed (session_resumed → step_viewed+metadata.resumed; project_id/step_id folded into metadata jsonb without data loss). never-throws contract verified. MINOR-2: step_index contract is split (caller may pre-resolve UUID → index) — auto-resolves when S1-010 ships. NIT-2: top-of-funnel events with session_id=null silently dropped — acceptable for now, re-evaluate after S1-010."
+    },
+    {
+      "task_id": "BUILDAR-S1-010",
+      "title": "BuildAR Pro — Events schema alignment migration (0006)",
+      "priority": "medium",
+      "assigned_to": "Silas",
+      "tested_by": "Jasmin",
+      "status": "partial",
+      "notes": "SILAS DONE 2026-05-17 — branch feat/events-schema-alignment, commit 9a5f36b (NOT pushed). 313-line migration 0006_events_schema_alignment.sql: events gets project_id+step_id+payload (FKs ON DELETE SET NULL), payload backfilled from metadata, NOT NULL dropped on session_id, event_type CHECK extended with 'session_resumed', indexes on FKs. Sessions gets current_step_id uuid FK with backfill from (project_id, current_step_index) join. Retains legacy columns (events.metadata, sessions.current_step_index) for zero-downtime — drops queued as follow-up. NIT-1 + NIT-2 SKIPPED: target TS files (orchestrator.ts, events.ts) aren't on main yet — Yoni's S1-008/009 lives on unmerged branch. Exact 2-line diff documented in §6 of done-report for whoever lands Yoni's PR. Awaiting: Jasmin static SQL review (bundled with mobile shell QA), then Inon paste, then Jasmin behavioral probes. Report: agents/andy/inbox/silas_s1_010_done.md."
+    },
+    {
+      "task_id": "BUILDAR-S1-011",
+      "title": "BuildAR Pro Sprint 1 — Mobile shell (RN + ViroReact, 5 screens, AR fallback)",
+      "priority": "critical",
+      "assigned_to": "Yoni",
+      "tested_by": "Vera (UI) + Jasmin (logic/security)",
+      "status": "done",
+      "notes": "MERGE GREEN 2026-05-17. Branch feat/mobile-shell (NOT pushed — awaiting Inon authorization). 7 commits beyond main: 1f5c2e4 (MINOR-1 sanitization) + 8b8f683 (mobile shell core) + 6a59c2c + 6a48cd4 + f8afdf7 (Vera MINOR fix bundle: hybrid colors, bg tokens, a11y live regions) + 5076063 (Jasmin MINOR-3 fix: primary #C0461A 5.08:1) + 337ba11 (NIT-A1: maxLength=2000 on assistant input). Final state: 35/35 tests pass, lint+typecheck clean, ALL 6 Vera MINORS + 1 Jasmin MINOR-3 CLOSED. White-on-primary 5.08:1 AA-normal PASS confirmed by Yoni's Python recompute; primaryDark text 6.75:1 PASS. 5 screens per Lena's brief. AR fallback verified. AssistantSheet renders Safety blocked state with reason. Touch targets ✓, RTL ✓ (zero left/right), zero analytics, zero OAuth. DEFERRED (environmental): Android emulator boot needs SDK on host (30-90 min on equipped host). iOS deferred (Windows). DEFERRED (Inon decision): HomeScreen resume banner — currently scope-cut, can add via client-side cache in Phase 2. Reports: agents/andy/inbox/yoni_s1_011_done.md, vera_s1_011_qa.md, yoni_s1_011_fix_done.md, jasmin_s1_011_combined_qa.md, yoni_s1_011_final_fix_done.md."
     },
     {
       "task_id": "BUILDAR-S1-001",
